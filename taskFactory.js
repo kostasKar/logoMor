@@ -24,6 +24,10 @@ function checkTaskFactory(){
       var ift = new IfTask();
       currentIndex++;
       return;
+  } else if (token === "ifelse"){
+      var ifet = new IfElseTask();
+      currentIndex++;
+      return;
   }
 
   console.log("Invalid token: ");
