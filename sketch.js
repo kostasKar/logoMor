@@ -13,6 +13,8 @@ function setup() {
   canvas.parent('drawCanvas');
   initializeCamera();
   canvas.doubleClicked(resetCamera);
+  canvas.mouseOver(enableCamera);
+  canvas.mouseOut(disableCamera);
   stroke(255);
 
   //labels fonts

@@ -15,11 +15,13 @@ var centerY;
 var fov;
 var fov_min;
 var fov_max;
+var cameraEnabled;
 
 
 function initializeCamera(){
   fov_min = radians(1);
   fov_max = radians(90);
+  cameraEnabled = false;
   resetCamera();
 }
 
@@ -32,15 +34,19 @@ function resetCamera(){
   yRotation = 0;
 }
 
+function enableCamera(){ cameraEnabled = true;}
+function disableCamera(){ cameraEnabled = false;}
 
 function mouseWheel(event) {
-  fov += event.delta / 6000;
-  if (fov < fov_min){
-    fov = fov_min;
-  }
-  else if (fov > fov_max){
-    fov = fov_max;
-  }  
+  if (cameraEnabled){	
+	  fov += event.delta / 6000;
+	  if (fov < fov_min){
+	    fov = fov_min;
+	  }
+	  else if (fov > fov_max){
+	    fov = fov_max;
+	  } 
+  } 
 }
 
 function adjustCamera(){
@@ -48,12 +54,12 @@ function adjustCamera(){
   var aspect = width / height;
   perspective(fov, aspect, cameraZ/200.0, cameraZ*10.0);
   
-  if (mouseIsPressed && (mouseButton == LEFT)) {
+  if (cameraEnabled && mouseIsPressed && (mouseButton == LEFT)) {
     xRotation += - (mouseY - pmouseY)/(height) * PI;
     yRotation += (mouseX - pmouseX)/(height) * PI;
   }
   
-  if (mouseIsPressed && (mouseButton == CENTER)) {
+  if (cameraEnabled && mouseIsPressed && (mouseButton == CENTER)) {
     centerX += (mouseX - pmouseX) * (fov / 1.2);
     centerY += (mouseY - pmouseY) * (fov / 1.2);
   }
