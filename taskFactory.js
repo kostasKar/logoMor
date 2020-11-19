@@ -12,6 +12,14 @@ function checkTaskFactory(){
       var rtt = new RtTask();
       currentIndex++;
       return;
+  } else if (token === "("){
+      var pt = new ParenthesisTask();
+      currentIndex++;
+      return;
   }
+
+  console.log("Invalid token: ");
+  console.log(token);
+  exit();
 
 }

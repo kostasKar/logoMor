@@ -84,17 +84,17 @@ class ArgumentResolverTask {
       if (this.stringArgumentSet){
         return this.stringArgument;
       } else {
-        return this.leftArgument;
+        return this.leftArgument.toString();
       }
     } else {
       if (this.operator === "+"){
-        return this.leftArgument + this.rightArgument;
+        return (this.leftArgument + this.rightArgument).toString();
       } else if (this.operator === "-"){
-        return this.leftArgument - this.rightArgument;
+        return (this.leftArgument - this.rightArgument).toString();
       } else if (this.operator === "*"){
-        return this.leftArgument * this.rightArgument;
+        return (this.leftArgument * this.rightArgument).toString();
       } else if (this.operator === "/"){
-        return this.leftArgument / this.this.rightArgument;
+        return (this.leftArgument / this.this.rightArgument).toString();
       } else if (this.operator === ">"){
         return (this.leftArgument > this.rightArgument) ? "1" : "0";
       } else if (this.operator === "<"){
