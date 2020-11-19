@@ -12,10 +12,10 @@ canvas {
 
 #controlsColumn {
 	position: fixed;
-	top: 10px;
+	top: 30px;
 	right: 10px;
-	width: 500px;
-	height: 600px;
+	width: 420px;
+	height: 400px;
 	z-index: 10;
 }
 
@@ -27,6 +27,8 @@ canvas {
 	background-color: #111111;
 	color: #eeeeee;
 	border: 3px solid #333333;
+	font-family: Courier New, monospace;
+	font-size: 16px;
 }
 
 #playButton {
