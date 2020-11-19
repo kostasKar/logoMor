@@ -78,7 +78,7 @@ class GenericCommandTaskS extends GenericCommandTaskF {
  class TwoArgumentsCommandTask extends GenericCommandTaskF{constructor() {super(2);}}
  class ThreeArgumentsCommandTask extends GenericCommandTaskF{constructor() {super(3);}}
 
-
+//Movement related classes
  class FdTask extends SingleArgumentCommandTask {run() { FORWARD(this.arguments[0]); return "";}}
  class BkTask extends SingleArgumentCommandTask {run() { BACKWARD(this.arguments[0]); return "";}}
  class RtTask extends SingleArgumentCommandTask {run() { RIGHTTURN(this.arguments[0]); return "";}}
@@ -92,10 +92,25 @@ class GenericCommandTaskS extends GenericCommandTaskF {
  class PdTask extends NoArgumentCommandTask { run() { PENDOWN(); return "";}}
  class PuTask extends NoArgumentCommandTask { run() { PENUP(); return "";}}
  class HmTask extends NoArgumentCommandTask { run() { HOME(); return "";}}
- class GetXTask extends NoArgumentCommandTask { run() { return GETX();}}
- class GetYTask extends NoArgumentCommandTask { run() { return GETY();}}
- class GetZTask extends NoArgumentCommandTask { run() { return GETZ();}}
+ class GetXTask extends NoArgumentCommandTask { run() { return GETX().toString();}}
+ class GetYTask extends NoArgumentCommandTask { run() { return GETY().toString();}}
+ class GetZTask extends NoArgumentCommandTask { run() { return GETZ().toString();}}
  class SetXTask extends SingleArgumentCommandTask { run() {SETX(this.arguments[0]); return "";}}
  class SetYTask extends SingleArgumentCommandTask { run() {SETY(this.arguments[0]); return "";}}
  class SetZTask extends SingleArgumentCommandTask { run() {SETZ(this.arguments[0]); return "";}}
  class SetXYZTask extends ThreeArgumentsCommandTask { run() {SETXYZ(this.arguments[0], this.arguments[1], this.arguments[2]); return "";}}
+
+
+//Output commands:
+ class PrintTask extends SingleStringArgumentCommandTask { run(){console.log(this.arguments[0]); return "";}}
+ class LabelTask extends SingleStringArgumentCommandTask { run(){LABEL(this.arguments[0]); return "";}}
+
+
+//Logical commands
+ class AndTask extends TwoArgumentsCommandTask { run() {return ((this.arguments[0] != 0) && (this.arguments[1] != 0))? "1" : "0";}}
+ class OrTask extends TwoArgumentsCommandTask { run() {return ((this.arguments[0] != 0) || (this.arguments[1] != 0))? "1" : "0";}}
+ class NotTask extends SingleArgumentCommandTask { run() {return (this.arguments[0] == 0)? "1" : "0";}}
+
+//Random number generation
+ class RandTask extends SingleArgumentCommandTask { run() {return Math.floor(seedableRNG() * this.arguments[0]).toString();}}
+ class RandCrazyTask extends SingleArgumentCommandTask { run() {return Math.floor(Math.random() * this.arguments[0]).toString();}}

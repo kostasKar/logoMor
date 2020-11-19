@@ -120,6 +120,34 @@ function checkTaskFactory(){
       var setxyzt = new SetXYZTask();
       currentIndex++;
       return;
+  } else if (token === "print") {
+      var printt = new PrintTask();
+      currentIndex++;
+      return;
+  } else if (token === "label") {
+      var labelt = new LabelTask();
+      currentIndex++;
+      return;
+  } else if (token === "and") {
+      var andt = new AndTask();
+      currentIndex++;
+      return;
+  } else if (token === "or") {
+      var ort = new OrTask();
+      currentIndex++;
+      return;
+  } else if (token === "not") {
+      var nott = new NotTask();
+      currentIndex++;
+      return;
+  } else if ((token === "rand") || (token === "random")) {
+      var randt = new RandTask();
+      currentIndex++;
+      return;
+  } else if ((token === "randcrazy") || (token === "randomcrazy")) {
+      var randct = new RandCrazyTask();
+      currentIndex++;
+      return;
   }
 
   console.log("Invalid token: ");

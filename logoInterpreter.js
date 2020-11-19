@@ -7,10 +7,13 @@ var tasksStack=[];			//the stack with all the tasks
 var globalVariables={};		//an object with all the global variables name-value pairs
 var variablesScopeStack=[];	//the stack with the variables scopes
 var procedures={};			//an object with all the functions name-object pairs
+var seed;				    //the seed for a seedable Random Number Generator		
+var seedableRNG;			//a seedable random number generator
 
 
 function initLogoExecution(){
   currentIndex = 0;
+  seedableRNG = new Math.seedrandom(seed);
 }
 
 
@@ -23,6 +26,8 @@ function parseLogo(){
     variablesScopeStack = [];
     variablesScopeStack.push(globalVariables);
     procedures = {};
+    seed = Math.random().toString(36).substring(7);
+    console.log(seed);
 }
 
 function executeLogo(){
