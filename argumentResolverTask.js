@@ -4,7 +4,6 @@
 
 function isArithmeticOperator(token){
   var re = "[-+*/<>=]";
-  var myArray = str.match(re);	
   return (token.match(re) != null || token === "<=" || token === ">=");
 }
 
@@ -46,7 +45,7 @@ class ArgumentResolverTask {
         this.stringArgumentSet = true;
       } else {
       	if (!isNaN(arg)){
-      		this.leftArgument = arg;
+      		this.leftArgument = Number(arg);
       	} else {
       		return false;
       	}
@@ -55,7 +54,7 @@ class ArgumentResolverTask {
       this.canBeResolved = true;
       return true;
     } else if (!this.operatorAvailable){
-      if ((isArithmeticOperator(arg)) && (!stringArgumentSet)){
+      if ((isArithmeticOperator(arg)) && (!this.stringArgumentSet)){
         this.operator = arg;
         this.operatorAvailable = true;
         this.canBeResolved = false;
@@ -66,7 +65,7 @@ class ArgumentResolverTask {
       }
     } else if (!this.rightArgumentAvailable){
       if (!isNaN(arg)){
-      	this.rightArgument = arg;
+      	this.rightArgument = Number(arg);
 	  } else {
 	  	console.log("Invalid right argument: ");
         console.log(arg);
