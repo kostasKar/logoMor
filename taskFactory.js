@@ -40,6 +40,14 @@ function checkTaskFactory(){
       var untilt = new UntilTask();
       currentIndex++;
       return;
+  } else if (token === "to"){
+      var proct = new ProcedureTask();
+      currentIndex++;
+      return;
+  } else if (token in procedures){
+      var proct = new ProcedureTask(procedures[token]);
+      currentIndex++;
+      return;
   }
 
   console.log("Invalid token: ");
