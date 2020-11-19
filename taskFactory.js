@@ -148,6 +148,54 @@ function checkTaskFactory(){
       var randct = new RandCrazyTask();
       currentIndex++;
       return;
+  } else if (token === "sqrt") {
+      var sqrtt = new SqrtTask();
+      currentIndex++;
+      return;
+  } else if ((token === "power") || (token === "pow")) {
+      var powt = new PowTask();
+      currentIndex++;
+      return;
+  } else if ((token === "modulo") || (token === "mod")) {
+      var modt = new ModTask();
+      currentIndex++;
+      return;
+  } else if (token === "cos") {
+      var cost = new CosTask();
+      currentIndex++;
+      return;
+  } else if (token === "sin") {
+      var sint = new SinTask();
+      currentIndex++;
+      return;
+  } else if (token === "tan") {
+      var tant = new TanTask();
+      currentIndex++;
+      return;
+  } else if (token === "arccos") {
+      var acost = new ArcCosTask();
+      currentIndex++;
+      return;
+  } else if (token === "arcsin") {
+      var asint = new ArcSinTask();
+      currentIndex++;
+      return;
+  } else if (token === "arctan") {
+      var atant = new ArcTanTask();
+      currentIndex++;
+      return;
+  } else if (token === "ln") {
+      var lnt = new LnTask();
+      currentIndex++;
+      return;
+  } else if (token === "log") {
+      var logt = new LogTask();
+      currentIndex++;
+      return;
+  } else if (token === "exp") {
+      var expt = new ExpTask();
+      currentIndex++;
+      return;
   }
 
   console.log("Invalid token: ");

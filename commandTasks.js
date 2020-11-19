@@ -114,3 +114,20 @@ class GenericCommandTaskS extends GenericCommandTaskF {
 //Random number generation
  class RandTask extends SingleArgumentCommandTask { run() {return Math.floor(seedableRNG() * this.arguments[0]).toString();}}
  class RandCrazyTask extends SingleArgumentCommandTask { run() {return Math.floor(Math.random() * this.arguments[0]).toString();}}
+
+
+//Mathematical commands
+ class SqrtTask extends SingleArgumentCommandTask { run() {return Math.sqrt(this.arguments[0]).toString();}}
+ class PowTask extends TwoArgumentsCommandTask { run() {return Math.pow(this.arguments[0], this.arguments[1]).toString();}}
+ class ModTask extends TwoArgumentsCommandTask { run() {return (Math.floor(this.arguments[0]) % Math.floor(this.arguments[1])).toString();}}
+ class CosTask extends SingleArgumentCommandTask { run() {return Math.cos(radians(this.arguments[0])).toString();}}
+ class SinTask extends SingleArgumentCommandTask { run() {return Math.sin(radians(this.arguments[0])).toString();}}
+ class TanTask extends SingleArgumentCommandTask { run() {return Math.tan(radians(this.arguments[0])).toString();}}
+ class ArcCosTask extends SingleArgumentCommandTask { run() {return degrees(Math.acos(this.arguments[0])).toString();}}
+ class ArcSinTask extends SingleArgumentCommandTask { run() {return degrees(Math.asin(this.arguments[0])).toString();}}
+ class ArcTanTask extends SingleArgumentCommandTask { run() {return degrees(Math.atan(this.arguments[0])).toString();}}
+ class LnTask extends SingleArgumentCommandTask { run() {return Math.log(this.arguments[0]).toString();}}
+ class LogTask extends SingleArgumentCommandTask { run() {return Math.log10(this.arguments[0]).toString();}}
+ class ExpTask extends SingleArgumentCommandTask { run() {return Math.exp(this.arguments[0]).toString();}}
+
+
