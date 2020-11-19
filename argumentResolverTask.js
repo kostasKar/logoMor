@@ -34,7 +34,7 @@ class ArgumentResolverTask {
       var varscope = variablesScopeStack[variablesScopeStack.length-1];
       if (arg.startsWith(":")){
       	if (arg.replace(":", "") in varscope){
-      		this.leftArgument = varscope.arg.replace(":", "");
+      		this.leftArgument = varscope[arg.replace(":", "")];
       	} else {
       		console.log("Undefined variable: ");
           	console.log(arg.replace(":", ""));

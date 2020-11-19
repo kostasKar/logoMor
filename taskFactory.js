@@ -16,6 +16,10 @@ function checkTaskFactory(){
       var pt = new ParenthesisTask();
       currentIndex++;
       return;
+  } else if (token === "make"){
+      var vmt = new VariableMakerTask();
+      currentIndex++;
+      return;
   }
 
   console.log("Invalid token: ");
