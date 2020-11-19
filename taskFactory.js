@@ -28,6 +28,10 @@ function checkTaskFactory(){
       var ifet = new IfElseTask();
       currentIndex++;
       return;
+  } else if (token === "repeat"){
+      var rept = new RepeatTask();
+      currentIndex++;
+      return;
   }
 
   console.log("Invalid token: ");
