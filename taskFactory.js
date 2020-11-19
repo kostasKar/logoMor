@@ -36,6 +36,10 @@ function checkTaskFactory(){
       var whilet = new WhileTask();
       currentIndex++;
       return;
+  } else if (token === "until"){
+      var untilt = new UntilTask();
+      currentIndex++;
+      return;
   }
 
   console.log("Invalid token: ");
