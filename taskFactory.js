@@ -32,6 +32,10 @@ function checkTaskFactory(){
       var rept = new RepeatTask();
       currentIndex++;
       return;
+  } else if (token === "while"){
+      var whilet = new WhileTask();
+      currentIndex++;
+      return;
   }
 
   console.log("Invalid token: ");
