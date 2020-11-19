@@ -18,6 +18,7 @@ function setup() {
   //labels fonts
   textSize(10);
   //textFont(labelFont);
+
 }
 
 
@@ -27,11 +28,9 @@ function draw() {
   background(0);
   adjustCamera();
   logoStart();
+  initLogoExecution();
 
-  SETXYZ(50, 50, 50);
-  SETZ(10);
-  //LOGO_LABEL("kostas");
-
-
+  executeLogo();
+  
   logoEnd();
 }
