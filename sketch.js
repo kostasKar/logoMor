@@ -9,7 +9,7 @@ function preload() {
 var canvas;
 
 function setup() {
-  canvas = createCanvas(800, 800, WEBGL);
+  canvas = createCanvas(windowWidth, windowHeight, WEBGL);
   canvas.parent('drawCanvas');
   initializeCamera();
   canvas.doubleClicked(resetCamera);

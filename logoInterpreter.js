@@ -18,7 +18,7 @@ function initLogoExecution(){
 
 
 function parseLogo(){
-	var sourceCodeTxt = prepareSourceCodeText(document.getElementById("sourceCode").value);
+	var sourceCodeTxt = prepareSourceCodeText(document.getElementById("sourceCodeTextArea").value);
     sourceTokens = sourceCodeTxt.trim().split(/[ \n]+/);
     console.log(sourceTokens);
     tasksStack = [];

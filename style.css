@@ -5,3 +5,39 @@ html, body {
 canvas {
   display: block;
 }
+
+#drawCanvas{
+	z-index: 1;
+}
+
+#controlsColumn {
+	position: fixed;
+	top: 10px;
+	right: 10px;
+	width: 500px;
+	height: 600px;
+	z-index: 10;
+}
+
+#sourceCodeTextArea{
+	top: 10;
+	right: 10;
+	width: 400px;
+	height: 400px;
+	background-color: #111111;
+	color: #eeeeee;
+	border: 3px solid #333333;
+}
+
+#playButton {
+  background-color: #222222;
+  border: 3px solid #333333;
+  color: white;
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
