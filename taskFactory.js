@@ -20,10 +20,14 @@ function checkTaskFactory(){
       var vmt = new VariableMakerTask();
       currentIndex++;
       return;
+  } else if (token === "if"){
+      var ift = new IfTask();
+      currentIndex++;
+      return;
   }
 
   console.log("Invalid token: ");
   console.log(token);
-  exit();
+  throw new Error("Something went badly wrong!");
 
 }
