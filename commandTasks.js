@@ -79,5 +79,23 @@ class GenericCommandTaskS extends GenericCommandTaskF {
  class ThreeArgumentsCommandTask extends GenericCommandTaskF{constructor() {super(3);}}
 
 
- class FdTask extends SingleArgumentCommandTask {run() { LOGO_FORWARD(this.arguments[0]); return "";}}
- class RtTask extends SingleArgumentCommandTask {run() { LOGO_RIGHT(this.arguments[0]); return "";}}
+ class FdTask extends SingleArgumentCommandTask {run() { FORWARD(this.arguments[0]); return "";}}
+ class BkTask extends SingleArgumentCommandTask {run() { BACKWARD(this.arguments[0]); return "";}}
+ class RtTask extends SingleArgumentCommandTask {run() { RIGHTTURN(this.arguments[0]); return "";}}
+ class LtTask extends SingleArgumentCommandTask { run() { LEFT(this.arguments[0]); return "";}}
+ class UpTask extends SingleArgumentCommandTask { run() { UP(this.arguments[0]); return "";}}
+ class DnTask extends SingleArgumentCommandTask { run() { DOWN(this.arguments[0]); return "";}}
+ class RrTask extends SingleArgumentCommandTask { run() { ROLLRIGHT(this.arguments[0]); return "";}}
+ class RlTask extends SingleArgumentCommandTask { run() { ROLLLEFT(this.arguments[0]); return "";}}
+ class SpsTask extends SingleArgumentCommandTask { run() { SETPENSIZE(int(this.arguments[0])); return "";}}
+ class ColorTask extends ThreeArgumentsCommandTask { run() { COLOR(parseInt(this.arguments[0]), parseInt(this.arguments[1]), parseInt(this.arguments[2])); return "";}}
+ class PdTask extends NoArgumentCommandTask { run() { PENDOWN(); return "";}}
+ class PuTask extends NoArgumentCommandTask { run() { PENUP(); return "";}}
+ class HmTask extends NoArgumentCommandTask { run() { HOME(); return "";}}
+ class GetXTask extends NoArgumentCommandTask { run() { return GETX();}}
+ class GetYTask extends NoArgumentCommandTask { run() { return GETY();}}
+ class GetZTask extends NoArgumentCommandTask { run() { return GETZ();}}
+ class SetXTask extends SingleArgumentCommandTask { run() {SETX(this.arguments[0]); return "";}}
+ class SetYTask extends SingleArgumentCommandTask { run() {SETY(this.arguments[0]); return "";}}
+ class SetZTask extends SingleArgumentCommandTask { run() {SETZ(this.arguments[0]); return "";}}
+ class SetXYZTask extends ThreeArgumentsCommandTask { run() {SETXYZ(this.arguments[0], this.arguments[1], this.arguments[2]); return "";}}

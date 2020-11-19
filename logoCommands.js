@@ -16,7 +16,7 @@ function logoEnd(){
   pop();
 }
 
- function LOGO_FORWARD(length){
+ function FORWARD(length){
    if (penDown){
      line(0, 0, 0, 0, -length, 0);
    }
@@ -24,7 +24,7 @@ function logoEnd(){
    logoTranslate(0, -length, 0);
  }
  
-  function LOGO_BACKWARD(length){
+  function BACKWARD(length){
    if (penDown){
      line(0, 0, 0, 0, length, 0);
    }
@@ -32,53 +32,53 @@ function logoEnd(){
    logoTranslate(0, length, 0);
  }
  
- function LOGO_RIGHT(angle){
+ function RIGHTTURN(angle){
    rotateZ(radians(angle));
    logoRotateZ(radians(angle));
  }
  
-  function LOGO_LEFT(angle){
+  function LEFT(angle){
    rotateZ(radians(-angle));
    logoRotateZ(radians(-angle));
  }
  
- function LOGO_UP(angle){
+ function UP(angle){
    rotateX(radians(-angle));
    logoRotateX(radians(-angle));
  }
  
-  function LOGO_DOWN(angle){
+  function DOWN(angle){
    rotateX(radians(angle));
    logoRotateX(radians(angle));
  }
  
-  function LOGO_ROLLRIGHT(angle){
+  function ROLLRIGHT(angle){
    rotateY(radians(angle));
    logoRotateY(radians(angle));
  }
  
-   function LOGO_ROLLLEFT(angle){
+   function ROLLLEFT(angle){
    rotateY(radians(-angle));
    logoRotateY(radians(-angle));
  }
  
- function LOGO_PENDOWN(){
+ function PENDOWN(){
   penDown = true;
  }
  
-  function LOGO_PENUP(){
+  function PENUP(){
   penDown = false;
  }
  
- function LOGO_SETPENSIZE(n){
+ function SETPENSIZE(n){
    strokeWeight(n);
  }
  
- function LOGO_COLOR(r, g, b){
+ function COLOR(r, g, b){
    stroke(r, g, b);
  } 
 
- function LOGO_LABEL(word){
+ function LABEL(word){
    fill(255);
    text(word, 0, 0);
  }
