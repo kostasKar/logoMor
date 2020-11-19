@@ -39,7 +39,8 @@ function disableCamera(){ cameraEnabled = false;}
 
 function mouseWheel(event) {
   if (cameraEnabled){	
-	  fov += event.delta / 6000;
+
+	  fov += (event.delta > 0) ? 1/60 : -1/60;
 	  if (fov < fov_min){
 	    fov = fov_min;
 	  }
