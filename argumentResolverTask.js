@@ -46,6 +46,14 @@ class ArgumentResolverTask {
       } else {
       	if (!isNaN(arg)){
       		this.leftArgument = Number(arg);
+      	} else if (arg === "-") { //negative number input with a space between '-' and the number
+      		this.leftArgument = 0;
+      		this.leftArgumentAvailable = true;
+      		this.operator = "-";
+      		this.operatorAvailable = true;
+      		this.canBeResolved = false;
+      		var art = new ArgumentResolverTask();
+      		return true;
       	} else {
       		return false;
       	}

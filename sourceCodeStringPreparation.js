@@ -10,7 +10,8 @@ function prepareSourceCodeText(inputStr){
 	inputStr = inputStr.replace("]", " ] ");
 	inputStr = inputStr.replace("(", " ( ");
 	inputStr = inputStr.replace(")", " ) ");
-	inputStr = inputStr.replace("+", " + "); //TODO -
+	inputStr = inputStr.replace("+", " + ");
+	inputStr = inputStr.replace("-", " - ");
 	inputStr = inputStr.replace("*", " * ");
 	inputStr = inputStr.replace("/", " / ");
 	inputStr = inputStr.replace(/([<|>])([^=])/, " $1 $2"); //separate only standalone < or >
