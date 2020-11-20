@@ -198,8 +198,8 @@ function checkTaskFactory(){
       return;
   }
 
-  console.log("Invalid token: ");
-  console.log(token);
+  consolePrint("Invalid token: ");
+  consolePrintln(token);
   error = true;
 
 }

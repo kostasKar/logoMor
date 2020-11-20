@@ -28,7 +28,7 @@ class ArgumentResolverTask {
     
     if (!this.leftArgumentAvailable){
       if (arg === ""){
-        console.log("Error: Arithmetic resolver was fed with the result of a non-number returning task");
+        consolePrintln("Error: Arithmetic resolver was fed with the result of a non-number returning task");
         return false;
       }
       var varscope = variablesScopeStack[variablesScopeStack.length-1];
@@ -36,9 +36,9 @@ class ArgumentResolverTask {
       	if (arg.replace(":", "") in varscope){
       		this.leftArgument = varscope[arg.replace(":", "")];
       	} else {
-      		console.log("Undefined variable: ");
-          	console.log(arg.replace(":", ""));
-          	return false;
+      		consolePrint("Undefined variable: ");
+          consolePrintln(arg.replace(":", ""));
+          return false;
       	}
       } else if (arg.startsWith("\"")){
         this.stringArgument = arg;
@@ -75,8 +75,8 @@ class ArgumentResolverTask {
       if (!isNaN(arg)){
       	this.rightArgument = Number(arg);
 	  } else {
-	  	console.log("Invalid right argument: ");
-        console.log(arg);
+	  	consolePrint("Invalid right argument: ");
+      consolePrintln(arg);
 	  }	
       this.rightArgumentAvailable = true;
       this.canBeResolved = true;
@@ -114,8 +114,8 @@ class ArgumentResolverTask {
       } else if (this.operator === "="){
         return (this.leftArgument == this.rightArgument) ? "1" : "0";
       } else {
-        console.log("Arithmetic resolver cannot resolve operator: ");
-        console.log(this.operator);
+        consolePrint("Arithmetic resolver cannot resolve operator: ");
+        consolePrintln(this.operator);
         return "";
       }
     }

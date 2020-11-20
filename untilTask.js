@@ -23,8 +23,8 @@ class UntilTask {
         currentIndex = this.trueCaseIndex;
         this.canBeResolved = true;
       } else {
-        console.log("While Statement invalid condition: ");
-        console.log(arg);
+        consolePrint("While Statement invalid condition: ");
+        consolePrintln(arg);
       }
       this.conditionSet = true;
       return true;

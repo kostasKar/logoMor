@@ -52,8 +52,8 @@ class GenericCommandTaskF  {
   
   saveArgument(i, arg){
   	if (isNaN(arg)){
-  	  console.log("Invalid command argument: ");
-      console.log(arg);
+  	  consolePrint("Invalid command argument: ");
+      consolePrintln(arg);
       return;
   	}
     this.arguments[i] = arg;
@@ -102,7 +102,7 @@ class GenericCommandTaskS extends GenericCommandTaskF {
 
 
 //Output commands:
- class PrintTask extends SingleStringArgumentCommandTask { run(){document.getElementById("consoleTextArea").value += this.arguments[0] + "\n"; return "";}}
+ class PrintTask extends SingleStringArgumentCommandTask { run(){consolePrintln(this.arguments[0]); return "";}}
  class LabelTask extends SingleStringArgumentCommandTask { run(){LABEL(this.arguments[0]); return "";}}
 
 

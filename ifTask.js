@@ -40,8 +40,8 @@ class IfTask{
       } else if (arg == 0){
         currentIndex = this.falseCaseIndex;
       } else {
-        console.log("If Statement invalid condition: ");
-        console.log(arg);
+        consolePrint("If Statement invalid condition: ");
+        consolePrintln(arg);
       }
       this.conditionSet = true;
       return true;

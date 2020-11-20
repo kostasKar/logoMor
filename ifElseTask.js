@@ -23,8 +23,8 @@ class IfElseTask {
       } else if (arg == 0){
         currentIndex = this.trueBlockClosingBracket + 1;
       } else {
-        console.log("IfElse Statement invalid condition: ");
-        console.log(arg);
+        consolePrint("IfElse Statement invalid condition: ");
+        consolePrintln(arg);
       }
       this.conditionSet = true;
       return true;

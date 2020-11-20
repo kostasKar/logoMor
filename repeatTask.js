@@ -24,8 +24,8 @@ class RepeatTask{
           currentIndex = this.noRepeatsEndIndex;
         }
       } else {
-        console.log("Repeat block invalid execution times: ");
-        console.log(arg);
+        consolePrint("Repeat block invalid execution times: ");
+        consolePrintln(arg);
       }
       this.totalExecutionsSet = true;
       return true;

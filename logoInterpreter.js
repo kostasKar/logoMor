@@ -11,11 +11,22 @@ var seed;				    //the seed for a seedable Random Number Generator
 var seedableRNG;			//a seedable random number generator
 var error;
 
+function consolePrintln(text){
+  document.getElementById("consoleTextArea").value += text + "\n";
+}
+
+function consolePrint(text){
+  document.getElementById("consoleTextArea").value += text;
+}
+
+function consoleClear(){
+  document.getElementById("consoleTextArea").value = "";
+}
 
 function initLogoExecution(){
   currentIndex = 0;
   seedableRNG = new Math.seedrandom(seed);
-  document.getElementById("consoleTextArea").value = "";
+  consoleClear();
   error = false;
 }
 
@@ -57,7 +68,7 @@ function checkNextToken(){
   
   //Here only new tokens should arrive
   if (currentIndex >= sourceTokens.length){
-    console.log("Error. Task remains unresolved");
+    consolePrintln("Error. Task remains unresolved");
     error = true;
     return;
   }
