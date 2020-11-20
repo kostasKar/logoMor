@@ -15,6 +15,8 @@ var error;
 function initLogoExecution(){
   currentIndex = 0;
   seedableRNG = new Math.seedrandom(seed);
+  document.getElementById("consoleTextArea").value = "";
+  error = false;
 }
 
 
@@ -28,7 +30,6 @@ function parseLogo(){
     variablesScopeStack.push(globalVariables);
     procedures = {};
     seed = Math.random().toString(36).substring(7);
-    error = false;
 }
 
 function executeLogo(){

@@ -102,7 +102,7 @@ class GenericCommandTaskS extends GenericCommandTaskF {
 
 
 //Output commands:
- class PrintTask extends SingleStringArgumentCommandTask { run(){console.log(this.arguments[0]); return "";}}
+ class PrintTask extends SingleStringArgumentCommandTask { run(){document.getElementById("consoleTextArea").value += this.arguments[0] + "\n"; return "";}}
  class LabelTask extends SingleStringArgumentCommandTask { run(){LABEL(this.arguments[0]); return "";}}
 
 

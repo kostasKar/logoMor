@@ -19,7 +19,7 @@ canvas {
 	z-index: 10;
 }
 
-#sourceCodeTextArea{
+#controlsColumn textarea{
 	top: 10;
 	right: 10;
 	width: 400px;
@@ -31,12 +31,22 @@ canvas {
 	font-size: 16px;
 }
 
-#playButton {
+#controlsColumn button {
   background-color: #222222;
   border: 3px solid #333333;
   color: white;
   padding: 10px 10px;
   text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+#controlsColumn label {
+  font-family: Courier New, monospace;	
+  color: #eeeeee;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
