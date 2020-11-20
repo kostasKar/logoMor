@@ -1,11 +1,26 @@
 var penDown;
+var strokeR, strokeG, strokeB, strokeWght;
 
+
+
+function initStrokeStyle(){
+  strokeWght = 1
+  strokeR = 255;
+  strokeG = 255;
+  strokeB = 255;
+  stroke(255);
+  strokeWeight(1);
+}
+
+function restoreStrokeStyle(){
+  strokeWeight(strokeWght);
+  stroke(strokeR, strokeG, strokeB);
+}
 
 function logoStart(){
   drawCoordinates(25);
   penDown = true;
-  strokeWeight(1);
-  stroke(255);
+  initStrokeStyle();
   push();
   resetLogoTransformationMatrix();
 }
@@ -72,10 +87,14 @@ function logoEnd(){
  
  function SETPENSIZE(n){
    strokeWeight(n);
+   strokeWght = n;
  }
  
  function COLOR(r, g, b){
    stroke(r, g, b);
+   strokeR = r;
+   strokeG = g;
+   strokeB = b;
  } 
 
  function LABEL(word){
@@ -89,6 +108,7 @@ function logoEnd(){
   function HOME(){
    pop();
    push();
+   restoreStrokeStyle();
    if (penDown){
      line(0, 0, 0, getlmX(), getlmY(), getlmZ());
    }
@@ -110,6 +130,7 @@ function logoEnd(){
   function SETX(newX){
    pop();
    push();
+   restoreStrokeStyle();
    if (penDown){
      line(getlmX(), getlmY(), getlmZ(), newX, getlmY(), getlmZ());
    } 
@@ -120,6 +141,7 @@ function logoEnd(){
 function SETY(newY){
    pop();
    push();
+   restoreStrokeStyle();
   if (penDown){
      line(getlmX(), getlmY(), getlmZ(), getlmX(), -newY, getlmZ());
    }
@@ -130,6 +152,7 @@ function SETY(newY){
 function SETZ(newZ){
    pop();
    push();
+   restoreStrokeStyle();
    if (penDown){
      line(getlmX(), getlmY(), getlmZ(), getlmX(), getlmY(), newZ);
    }
@@ -141,6 +164,7 @@ function SETZ(newZ){
 function SETXYZ(newX, newY, newZ){
    pop();
    push();
+   restoreStrokeStyle();
    if (penDown){
      line(getlmX(), getlmY(), getlmZ(), newX, -newY, newZ);
    }
