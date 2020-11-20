@@ -12,10 +12,11 @@ canvas {
 
 #controlsColumn {
 	position: fixed;
+  overflow: auto;
 	top: 30px;
 	right: 10px;
 	width: 420px;
-	height: 400px;
+	height: 100%;
 	z-index: 10;
 }
 
@@ -63,7 +64,7 @@ canvas {
 
 
 
-#controlsColumn label {
+.areaTitle {
   font-family: Lucida Console, Verdana, monospace;	
   color: #eeeeee;
   text-decoration: none;
@@ -79,4 +80,59 @@ canvas {
   top: 20px;
   left: 20px;
   font-size: 14px;
+}
+
+
+
+
+
+.sliderContainer {
+  width: 90%; /* Width of the outside container */
+  margin: 10px;
+  padding: 5px;
+}
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 70%; /* Full-width */
+  height: 10px; /* Specified height */
+  background: #333333; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+  border-radius: 3px;
+  float:right;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #666666; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+  border-radius: 50%; 
+}
+
+.slider::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #666666 ; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+  border-radius: 50%; 
+}
+
+.sliderVarName{
+  font-family: Consolas;
+  color: #888888;
+  font-size: 18px;
 }

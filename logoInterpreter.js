@@ -43,6 +43,10 @@ function parseLogo(){
     variablesScopeStack.push(globalVariables);
     procedures = {};
     seed = Math.random().toString(36).substring(7);
+    var sliderContainers = document.getElementsByClassName('sliderContainer');
+    while(sliderContainers[0]) {
+      sliderContainers[0].parentNode.removeChild(sliderContainers[0]);
+    }
 }
 
 function executeLogo(){

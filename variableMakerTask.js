@@ -48,14 +48,21 @@ class VariableMakerTask{
     var existingSlider = document.getElementById(this.name);
     if (existingSlider == null){
       var container = document.getElementById("controlsColumn");
+      var sliderContainer = document.createElement("div");
+      sliderContainer.className  = "sliderContainer";
+      var varNameLabel = document.createElement("label");
+      varNameLabel.className = "sliderVarName";
+      varNameLabel.innerText = this.name;
       var newSlider = document.createElement("input");
       newSlider.id = this.name;
       newSlider.type = "range";
       newSlider.min = "0";
       newSlider.max = 10*value;
       newSlider.value = value;
-      newSlider.class = "slider";
-      container.appendChild(newSlider);
+      newSlider.className  = "slider";
+      container.appendChild(sliderContainer);
+      sliderContainer.appendChild(varNameLabel);
+      sliderContainer.appendChild(newSlider);
       return value;
     } else {
       return existingSlider.value;

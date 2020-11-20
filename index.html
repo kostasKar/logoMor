@@ -33,7 +33,7 @@
     <div id="CameraInstructions">Left Click: Rotate <br> Middle Click: Pan <br> Scroll Wheel: Zoom <br> Double click: Reset view</div>
     <div id="drawCanvas"></div>
     <div id="controlsColumn">
-        <label>SOURCE CODE</label>
+        <label class="areaTitle">SOURCE CODE</label>
         <textarea id="sourceCodeTextArea" spellcheck="false"></textarea>
         <div id = "buttonDiv">
             <button id="playButton" onclick="parseLogo()">Run</button> 
@@ -41,8 +41,9 @@
             <button onclick="openFile()">Load</button>
             <input id="inp" type='file' style="visibility:hidden;" onchange="readFile(event)" />
         </div>
-        <label>CONSOLE</label>
+        <label class="areaTitle">CONSOLE</label>
         <textarea readonly id="consoleTextArea"></textarea>
+        <label class="areaTitle">VARIABLES</label>
     </div>
   
 
