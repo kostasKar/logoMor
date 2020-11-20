@@ -27,6 +27,7 @@
 
     <script src="taskFactory.js"></script>
     <script src="sketch.js"></script>
+    <script src="localFileSourceCode.js"></script>
 
 
     <div id="drawCanvas"></div>
@@ -35,6 +36,7 @@
         <textarea id="sourceCodeTextArea"></textarea>
         <div id = "buttonDiv">
             <button id="playButton" onclick="parseLogo()">Run</button> 
+            <button type="button" id="saveButton" onclick="download()">Save</button>
         </div>
         <label>Console</label>
         <textarea readonly id="consoleTextArea"></textarea>
