@@ -200,6 +200,6 @@ function checkTaskFactory(){
 
   console.log("Invalid token: ");
   console.log(token);
-  throw new Error("Something went badly wrong!");
+  error = true;
 
 }

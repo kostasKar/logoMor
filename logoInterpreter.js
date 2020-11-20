@@ -9,6 +9,7 @@ var variablesScopeStack=[];	//the stack with the variables scopes
 var procedures={};			//an object with all the functions name-object pairs
 var seed;				    //the seed for a seedable Random Number Generator		
 var seedableRNG;			//a seedable random number generator
+var error;
 
 
 function initLogoExecution(){
@@ -27,10 +28,11 @@ function parseLogo(){
     variablesScopeStack.push(globalVariables);
     procedures = {};
     seed = Math.random().toString(36).substring(7);
+    error = false;
 }
 
 function executeLogo(){
-  while ((currentIndex < sourceTokens.length) || (tasksStack.length > 0)){
+  while (((currentIndex < sourceTokens.length) || (tasksStack.length > 0)) && (!error)){
     checkNextToken();
   }
 }
@@ -55,6 +57,7 @@ function checkNextToken(){
   //Here only new tokens should arrive
   if (currentIndex >= sourceTokens.length){
     console.log("Error. Task remains unresolved");
+    error = true;
     return;
   }
   
