@@ -71,3 +71,12 @@ canvas {
   font-size: 16px;
   margin: 4px 2px;
 }
+
+#CameraInstructions {
+  font-family: Lucida Console;
+  color: #888888;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 14px;
+}
