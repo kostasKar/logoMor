@@ -17,7 +17,6 @@ var fov_min;
 var fov_max;
 var cameraEnabled;
 
-
 function initializeCamera(){
   fov_min = radians(1);
   fov_max = radians(90);
@@ -63,6 +62,10 @@ function adjustCamera(){
   if (cameraEnabled && mouseIsPressed && (mouseButton == CENTER)) {
     centerX += (mouseX - pmouseX) * (fov / 1.2);
     centerY += (mouseY - pmouseY) * (fov / 1.2);
+  }
+
+  if (document.getElementById("myonoffswitch").checked){
+    yRotation = frameCount * 0.015;
   }
   
   translate(centerX, centerY, 0);

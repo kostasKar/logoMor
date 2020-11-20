@@ -15,7 +15,6 @@ function setup() {
   canvas.doubleClicked(resetCamera);
   canvas.mouseOver(enableCamera);
   canvas.mouseOut(disableCamera);
-  stroke(255);
 
   //labels fonts
   textSize(10);

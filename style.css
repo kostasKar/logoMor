@@ -159,3 +159,47 @@ output{
 ::selection {
   background: #aaaaaa;
 }
+
+
+
+    .onoffswitch {
+        position: fixed;
+        width: 30px;
+        top: 95px;
+        left: 20px;
+        -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+    }
+.onoffswitch-checkbox {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    height: 11px; padding: 0; line-height: 11px;
+    border: 0px solid #FFFFFF; border-radius: 18px;
+    background-color: #5E5D5D;
+}
+.onoffswitch-label:before {
+    content: "";
+    display: block; width: 18px; margin: -3.5px;
+    background: #737373;
+    position: absolute; top: 0; bottom: 0;
+    right: 15px;
+    border-radius: 18px;
+    box-shadow: 0 6px 12px 0px #757575;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label {
+    background-color: #5E5D5D;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
+   border-color: #5E5D5D;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label:before {
+    right: 0px; 
+    background-color: #A3A3A3; 
+    box-shadow: 3px 6px 18px 0px rgba(0, 0, 0, 0.2);
+}
