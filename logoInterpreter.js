@@ -26,6 +26,7 @@ function consoleClear(){
 function initLogoExecution(){
   currentIndex = 0;
   seedableRNG = new Math.seedrandom(seed);
+  variablesScopeStack[0] = {};
   consoleClear();
   error = false;
 }
