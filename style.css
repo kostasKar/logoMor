@@ -15,7 +15,7 @@ canvas {
   overflow: auto;
 	top: 5px;
 	right: 10px;
-	width: 420px;
+	width: 450px;
 	height: 100%;
 	z-index: 10;
 }
@@ -90,10 +90,6 @@ canvas {
   left: 15px;
   font-size: 12px;
 }
-
-
-
-
 
 .sliderContainer {
   width: 90%; /* Width of the outside container */
