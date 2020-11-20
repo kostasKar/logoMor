@@ -11,3 +11,17 @@ function download(){
     anchor.click();
     document.body.removeChild(anchor);
  }
+
+
+function openFile() {
+  document.getElementById('inp').click();
+}
+function readFile(e) {
+  var file = e.target.files[0];
+  if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    document.getElementById('sourceCodeTextArea').value = e.target.result;
+  }
+  reader.readAsText(file)
+}

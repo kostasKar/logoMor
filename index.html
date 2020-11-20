@@ -37,6 +37,8 @@
         <div id = "buttonDiv">
             <button id="playButton" onclick="parseLogo()">Run</button> 
             <button type="button" id="saveButton" onclick="download()">Save</button>
+            <button onclick="openFile()">Load</button>
+            <input id="inp" type='file' style="visibility:hidden;" onchange="readFile(event)" />
         </div>
         <label>Console</label>
         <textarea readonly id="consoleTextArea"></textarea>
