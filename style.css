@@ -29,6 +29,17 @@ canvas {
 	border: 3px solid #333333;
 	font-family: Courier New, monospace;
 	font-size: 16px;
+	resize: none;
+}
+
+#sourceCodeTextArea:focus{
+	outline: none !important;
+	border-color: #444444;
+	outline-color: #444444;
+}
+
+#controlsColumn :focus{
+	outline: none !important;
 }
 
 #controlsColumn button {
@@ -42,7 +53,14 @@ canvas {
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
+  border-radius: 6px;
 }
+
+#controlsColumn button:hover {
+  background-color: #333333;
+}
+
+
 
 #controlsColumn label {
   font-family: Courier New, monospace;	

@@ -34,6 +34,7 @@ function initLogoExecution(){
 function parseLogo(){
 	var sourceCodeTxt = prepareSourceCodeText(document.getElementById("sourceCodeTextArea").value);
     sourceTokens = sourceCodeTxt.trim().split(/[ \n]+/);
+    sourceTokens = sourceTokens.filter(function (el) {return el != "";});
     console.log(sourceTokens);
     tasksStack = [];
     globalVariables = {};
