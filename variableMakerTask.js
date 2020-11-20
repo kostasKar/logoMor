@@ -56,8 +56,8 @@ class VariableMakerTask{
       var newSlider = document.createElement("input");
       newSlider.id = this.name;
       newSlider.type = "range";
-      newSlider.min = "0";
-      newSlider.max = 10*value;
+      newSlider.min = Math.min(0, 10*value);
+      newSlider.max = (value != 0)? Math.max(0, 10*value) : 10;
       newSlider.value = value;
       newSlider.className  = "slider";
       newSlider.oninput= function(){this.nextElementSibling.value = this.value;};
