@@ -60,9 +60,13 @@ class VariableMakerTask{
       newSlider.max = 10*value;
       newSlider.value = value;
       newSlider.className  = "slider";
+      newSlider.oninput= function(){this.nextElementSibling.value = this.value;};
+      var sliderValue = document.createElement("output");
+      sliderValue.value = value;
       container.appendChild(sliderContainer);
       sliderContainer.appendChild(varNameLabel);
       sliderContainer.appendChild(newSlider);
+      sliderContainer.appendChild(sliderValue);
       return value;
     } else {
       return existingSlider.value;

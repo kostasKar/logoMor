@@ -82,6 +82,15 @@ canvas {
   font-size: 14px;
 }
 
+#copyright{
+  font-family: Consolas;
+  color: #555555;
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  font-size: 12px;
+}
+
 
 
 
@@ -135,4 +144,22 @@ canvas {
   font-family: Consolas;
   color: #888888;
   font-size: 18px;
+}
+
+output{
+  padding-right: 10px;
+  color: #888888;
+  font-family: Consolas;
+  font-size: 18px;
+  float:right;
+
+}
+
+
+::-moz-selection { /* Code for Firefox */
+  background: #aaaaaa;
+}
+
+::selection {
+  background: #aaaaaa;
 }
