@@ -21,7 +21,8 @@ class VariableMakerTask{
       return true;
     } else if (!this.canBeResolved){
       if (!isNaN(arg)){
-      	globalVariables[this.name] = Number(arg);
+        var varscope = variablesScopeStack[variablesScopeStack.length-1];
+      	varscope[this.name] = Number(arg);
       }else {
         console.log("Variable maker value invalid argument: ");
         console.log(arg);
@@ -38,5 +39,5 @@ class VariableMakerTask{
     tasksStack.pop();
     return "";
   }
-  
+
 }
