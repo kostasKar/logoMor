@@ -16,6 +16,8 @@ var fov;
 var fov_min;
 var fov_max;
 var cameraEnabled;
+var autoRotation_lastFrameCount;
+var autoRotation_lastYRotation;
 
 function initializeCamera(){
   fov_min = radians(1);
@@ -65,7 +67,12 @@ function adjustCamera(){
   }
 
   if (document.getElementById("myonoffswitch").checked){
-    yRotation = frameCount * 0.015;
+    yRotation = autoRotation_lastYRotation + (frameCount - autoRotation_lastFrameCount) * 0.015;
+  }
+
+  if (!document.getElementById("myonoffswitch").checked){
+    autoRotation_lastFrameCount = frameCount;
+    autoRotation_lastYRotation = yRotation;
   }
   
   translate(centerX, centerY, 0);
