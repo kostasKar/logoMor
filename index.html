@@ -26,6 +26,7 @@
     <script src="procedureTask.js"></script>
 
     <script src="taskFactory.js"></script>
+    <script src="demoProgram.js"></script>
     <script src="sketch.js"></script>
     <script src="localFileSourceCode.js"></script>
 
@@ -54,6 +55,7 @@
             <button onclick="openFile()">Load</button>
             <button onclick=" window.open('assets/Documentation.pdf','_blank')" type="button">Help</button>
             <input id="inp" type='file' style="visibility:hidden;" onchange="readFile(event)" />
+            <button type="button" id="DemoButton" onclick="document.getElementById('sourceCodeTextArea').value = demoProgram;parseLogo();">Demo</button>
         </div>
         <label class="areaTitle">CONSOLE</label>
         <textarea readonly id="consoleTextArea"></textarea>
