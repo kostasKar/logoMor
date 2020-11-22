@@ -32,10 +32,13 @@ class ArgumentResolverTask {
         return false;
       }
       var varscope = variablesScopeStack[variablesScopeStack.length-1];
+      var globalScope = variablesScopeStack[0];
       if (arg.startsWith(":")){
       	if (arg.replace(":", "") in varscope){
       		this.leftArgument = varscope[arg.replace(":", "")];
-      	} else {
+      	} else if (arg.replace(":", "") in globalScope){
+          this.leftArgument = globalScope[arg.replace(":", "")];
+        } else {
       		consolePrint("Undefined variable: ");
           consolePrintln(arg.replace(":", ""));
           return false;
