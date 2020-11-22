@@ -20,11 +20,14 @@ canvas {
 	z-index: 10;
 }
 
+#controlsColumn :focus{
+  outline: none !important;
+}
+
 #controlsColumn textarea{
 	top: 10px
 	right: 10px;
 	width: 400px;
-	height: 400px;
 	background-color: #111111;
 	color: #eeeeee;
 	border: 3px solid #333333;
@@ -33,17 +36,21 @@ canvas {
 	resize: none;
 }
 
+#sourceCodeTextArea{
+  height: 400px;
+}
+
 #sourceCodeTextArea:focus{
-	outline: none !important;
-	border-color: #444444;
-	outline-color: #444444;
+  outline: none !important;
+  border-color: #444444;
+  outline-color: #444444;
 }
 
-#controlsColumn :focus{
-	outline: none !important;
+#consoleTextArea{
+  height: 150px;
 }
 
-#controlsColumn button {
+#buttonDiv button {
   background-color: #222222;
   border: 3px solid #333333;
   color: white;
@@ -58,11 +65,13 @@ canvas {
   font-family: Lucida Console;
 }
 
-#controlsColumn button:hover {
+#buttonDiv button:hover {
   background-color: #333333;
 }
 
-
+#buttonDiv input{
+  float:right;
+}
 
 .areaTitle {
   font-family: Lucida Console, Verdana, monospace;	
@@ -71,6 +80,76 @@ canvas {
   display: inline-block;
   font-size: 16px;
   margin: 4px 2px;
+}
+
+.sliderContainer {
+  width: 90%; /* Width of the outside container */
+  margin: 10px;
+  padding: 5px;
+}
+
+/* The slider itself */
+.sliderContainer .slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 65%; /* Full-width */
+  height: 10px; /* Specified height */
+  background: #333333; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+  border-radius: 3px;
+  float:right;
+  transform: translate(0, 40%);
+}
+
+/* Mouse-over effects */
+.sliderContainer .slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.sliderContainer .slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #666666; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+  border-radius: 50%; 
+}
+
+.sliderContainer .slider::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #666666 ; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+  border-radius: 50%; 
+}
+
+.sliderContainer .sliderVarName{
+  font-family: Consolas;
+  color: #888888;
+  font-size: 18px;
+  padding-right: 10px;
+}
+
+.sliderContainer output{
+  padding-right: 10px;
+  color: #888888;
+  font-family: Consolas;
+  font-size: 18px;
+  float:right;
+
+}
+
+::-moz-selection { /* Code for Firefox */
+  background: #aaaaaa;
+}
+
+::selection {
+  background: #aaaaaa;
 }
 
 #CameraInstructions {
@@ -90,77 +169,6 @@ canvas {
   left: 15px;
   font-size: 12px;
 }
-
-.sliderContainer {
-  width: 90%; /* Width of the outside container */
-  margin: 10px;
-  padding: 5px;
-}
-
-/* The slider itself */
-.slider {
-  -webkit-appearance: none;  /* Override default CSS styles */
-  appearance: none;
-  width: 70%; /* Full-width */
-  height: 10px; /* Specified height */
-  background: #333333; /* Grey background */
-  outline: none; /* Remove outline */
-  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
-  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
-  transition: opacity .2s;
-  border-radius: 3px;
-  float:right;
-}
-
-/* Mouse-over effects */
-.slider:hover {
-  opacity: 1; /* Fully shown on mouse-over */
-}
-
-/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Override default look */
-  appearance: none;
-  width: 25px; /* Set a specific slider handle width */
-  height: 25px; /* Slider handle height */
-  background: #666666; /* Green background */
-  cursor: pointer; /* Cursor on hover */
-  border-radius: 50%; 
-}
-
-.slider::-moz-range-thumb {
-  width: 25px; /* Set a specific slider handle width */
-  height: 25px; /* Slider handle height */
-  background: #666666 ; /* Green background */
-  cursor: pointer; /* Cursor on hover */
-  border-radius: 50%; 
-}
-
-.sliderVarName{
-  font-family: Consolas;
-  color: #888888;
-  font-size: 18px;
-}
-
-output{
-  padding-right: 10px;
-  color: #888888;
-  font-family: Consolas;
-  font-size: 18px;
-  float:right;
-
-}
-
-
-::-moz-selection { /* Code for Firefox */
-  background: #aaaaaa;
-}
-
-::selection {
-  background: #aaaaaa;
-}
-
-
 
 .onoffswitch {
     position: fixed;
