@@ -25,8 +25,6 @@ canvas {
 }
 
 #controlsColumn textarea{
-	top: 10px
-	right: 10px;
 	width: 400px;
 	background-color: #111111;
 	color: #eeeeee;
@@ -48,6 +46,29 @@ canvas {
 
 #consoleTextArea{
   height: 150px;
+}
+
+#movesLimitDiv {
+  font-family: Lucida Console;
+  width:400px;
+  height: 25px;
+}
+
+#movesLimitDiv label{
+  font-size: 12px;
+  padding: 5px;
+  color: #666666;
+  float: right;
+}
+
+#movesLimitDiv input {
+  background-color: #222222;
+  font-size:14px;
+  width: 55px;
+  padding: 2px;
+  color: #888888;
+  position: relative;
+  float: right;
 }
 
 #buttonDiv button {

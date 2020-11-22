@@ -44,6 +44,10 @@
     <div id="controlsColumn">
         <label class="areaTitle">SOURCE CODE</label>
         <textarea id="sourceCodeTextArea" spellcheck="false"></textarea>
+        <div id="movesLimitDiv">
+            <input  id="movesLimitInput" type="number" name="quantity" min="0" value="1000">
+            <label>Moves Limit:</label>
+        </div>
         <div id = "buttonDiv">
             <button id="playButton" onclick="parseLogo()">Run</button> 
             <button type="button" id="saveButton" onclick="download()">Save</button>

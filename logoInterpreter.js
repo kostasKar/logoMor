@@ -25,8 +25,13 @@ function consoleClear(){
 
 function initLogoExecution(){
   currentIndex = 0;
+  movesCount = 0;
   seedableRNG = new Math.seedrandom(seed);
-  variablesScopeStack[0] = {};
+  tasksStack = [];
+  globalVariables = {};
+  variablesScopeStack = [];
+  variablesScopeStack.push(globalVariables);
+  procedures = {};
   consoleClear();
   error = false;
 }
@@ -37,11 +42,6 @@ function parseLogo(){
     sourceTokens = sourceCodeTxt.trim().split(/[ \n]+/);
     sourceTokens = sourceTokens.filter(function (el) {return el != "";});
     console.log(sourceTokens);
-    tasksStack = [];
-    globalVariables = {};
-    variablesScopeStack = [];
-    variablesScopeStack.push(globalVariables);
-    procedures = {};
     seed = Math.random().toString(36).substring(7);
     var sliderContainers = document.getElementsByClassName('sliderContainer');
     while(sliderContainers[0]) {
@@ -50,8 +50,12 @@ function parseLogo(){
 }
 
 function executeLogo(){
-  while (((currentIndex < sourceTokens.length) || (tasksStack.length > 0)) && (!error)){
+  var movesLimit = document.getElementById("movesLimitInput").value;
+  while (((currentIndex < sourceTokens.length) || (tasksStack.length > 0)) && (!error) && (movesCount < movesLimit)){
     checkNextToken();
+  }
+  if (movesCount >= movesLimit){
+    consolePrintln("Stopped: Reached Moves Limit");
   }
 }
 
