@@ -33,6 +33,8 @@ function resetCamera(){
   fov = radians(30);
   xRotation = 0;
   yRotation = 0;
+  autoRotation_lastFrameCount = frameCount;
+  autoRotation_lastYRotation = 0;
 }
 
 function enableCamera(){ cameraEnabled = true;}
