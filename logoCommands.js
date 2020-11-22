@@ -52,7 +52,7 @@ function logoEnd(){
    logoRotateZ(radians(angle));
  }
  
-  function LEFT(angle){
+  function LEFTTURN(angle){
    rotateZ(radians(-angle));
    logoRotateZ(radians(-angle));
  }

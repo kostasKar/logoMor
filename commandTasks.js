@@ -82,7 +82,7 @@ class GenericCommandTaskS extends GenericCommandTaskF {
  class FdTask extends SingleArgumentCommandTask {run() { FORWARD(this.arguments[0]); return "";}}
  class BkTask extends SingleArgumentCommandTask {run() { BACKWARD(this.arguments[0]); return "";}}
  class RtTask extends SingleArgumentCommandTask {run() { RIGHTTURN(this.arguments[0]); return "";}}
- class LtTask extends SingleArgumentCommandTask { run() { LEFT(this.arguments[0]); return "";}}
+ class LtTask extends SingleArgumentCommandTask { run() { LEFTTURN(this.arguments[0]); return "";}}
  class UpTask extends SingleArgumentCommandTask { run() { UP(this.arguments[0]); return "";}}
  class DnTask extends SingleArgumentCommandTask { run() { DOWN(this.arguments[0]); return "";}}
  class RrTask extends SingleArgumentCommandTask { run() { ROLLRIGHT(this.arguments[0]); return "";}}
