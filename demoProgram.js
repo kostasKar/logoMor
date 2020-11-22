@@ -4,10 +4,10 @@ var demoProgram =
 ';------Function-----------------------\n'+
 'TO drawRandomCurve :n\n'+
 '  repeat :n [ \n'+
-'  right rand :maxangle \n'+
-'  up rand :maxangle\n'+
-'  roll_right rand :maxangle\n'+
-'  forward rand :maxsize \n'+
+'    right rand :maxangle \n'+
+'    up rand :maxangle\n'+
+'    roll_right rand :maxangle\n'+
+'    forward rand :maxsize \n'+
 '  ]\n'+
 'END\n'+
 '\n'+
