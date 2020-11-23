@@ -167,13 +167,13 @@ var demoProgram5 =
 ' \n' + 
 'To square  :x \n' + 
 '  repeat 4 [ \n' + 
-'  setpensize randcrazy 10 \n' + 
-'  color randcrazy 255 randcrazy 255 randcrazy 255 \n' + 
 '  forward :x \n' + 
 '  right 90] \n' + 
 'END \n' + 
 ' \n' + 
 'TO cube :x \n' + 
+'  setpensize randcrazy 10 \n' + 
+'  color randcrazy 255 randcrazy 255 randcrazy 255 \n' + 
 '  repeat 4[ \n' + 
 '    square :x \n' + 
 '  forward :x \n' + 
