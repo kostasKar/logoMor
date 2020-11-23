@@ -153,7 +153,12 @@ var demoProgram4 =
 'make "depth 4 \n' + 
 ' \n' + 
 ';----drawing----------------------- \n' + 
-'SierpinskiFractal :length :depth \n';
+'SierpinskiFractal :length :depth \n' +
+'penup \n' +
+'setxyz :length*(sqrt 3)/6 :length/2 0 \n' +
+'label :depth \n' +
+'home \n' +
+'pendown';
 
 var demoProgram5 = 
 ';---------Demo Crazy Cubes------------- \n' + 
