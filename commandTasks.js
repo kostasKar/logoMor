@@ -135,5 +135,5 @@ class GenericCommandTaskS extends GenericCommandTaskF {
  class LnTask extends SingleArgumentCommandTask { run() {return Math.log(this.arguments[0]).toString();}}
  class LogTask extends SingleArgumentCommandTask { run() {return Math.log10(this.arguments[0]).toString();}}
  class ExpTask extends SingleArgumentCommandTask { run() {return Math.exp(this.arguments[0]).toString();}}
-
+ class PiTask extends NoArgumentCommandTask { run() {return Math.PI.toString();}}
 

@@ -196,6 +196,10 @@ function checkTaskFactory(){
       var expt = new ExpTask();
       currentIndex++;
       return;
+  } else if (token === "pi") {
+      var pit = new PiTask();
+      currentIndex++;
+      return;
   }
 
   consolePrint("Invalid token: ");

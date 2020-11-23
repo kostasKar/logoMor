@@ -69,6 +69,8 @@ canvas {
   color: #888888;
   position: relative;
   float: right;
+  border-width: 2px;
+  border-color: #333;
 }
 
 #buttonDiv button {
