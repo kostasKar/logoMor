@@ -1,7 +1,7 @@
 
 
 function getRandomDemoProgram(){
-	var demoPrograms = [demoProgram1, demoProgram2, demoProgram3, demoProgram4];
+	var demoPrograms = [demoProgram1, demoProgram2, demoProgram3, demoProgram4, demoProgram5];
 	var i = Math.floor(Math.random()*demoPrograms.length);
 	return demoPrograms[i];
 }
@@ -150,3 +150,42 @@ var demoProgram4 =
 ' \n' + 
 ';----drawing----------------------- \n' + 
 'SierpinskiFractal :length :depth \n';
+
+var demoProgram5 = 
+';---------Demo Crazy Cubes------------- \n' + 
+';Rand produces random numbers for each run \n' + 
+';Randcrazy does the same but for each frame! \n' + 
+' \n' + 
+'To square  :x \n' + 
+'  repeat 4 [ \n' + 
+'  setpensize randcrazy 10 \n' + 
+'  color randcrazy 255 randcrazy 255 randcrazy 255 \n' + 
+'  forward :x \n' + 
+'  right 90] \n' + 
+'END \n' + 
+' \n' + 
+'TO cube :x \n' + 
+'  repeat 4[ \n' + 
+'    square :x \n' + 
+'  forward :x \n' + 
+'  down 90 ] \n' + 
+'end  \n' + 
+' \n' + 
+'rl 15  \n' + 
+'up 15 \n' + 
+' \n' + 
+'repeat 4 [ \n' + 
+' repeat 4 [ \n' + 
+'  cube 50 + rand 50 \n' + 
+'  penup \n' + 
+'  setx getx -150  \n' + 
+'  pendown \n' + 
+' ]  \n' + 
+' penup \n' + 
+' setx 0 \n' + 
+' sety gety - 150 \n' + 
+' pendown \n' + 
+'] \n' + 
+' \n' + 
+'print rand 500 \n' + 
+'print randcrazy 500';
