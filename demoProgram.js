@@ -1,7 +1,7 @@
 
 
 function getRandomDemoProgram(){
-	var demoPrograms = [demoProgram1, demoProgram2, demoProgram3];
+	var demoPrograms = [demoProgram1, demoProgram2, demoProgram3, demoProgram4];
 	var i = Math.floor(Math.random()*demoPrograms.length);
 	return demoPrograms[i];
 }
@@ -131,3 +131,22 @@ var demoProgram3 =
 ' fdWithSphere 2*pi*:radius/:jewels :segs \n' + 
 ' rt 360/:jewels  \n' + 
 '] \n';
+
+var demoProgram4 = 
+';---------Demo Fractal---------------- \n' + 
+' \n' + 
+';------Recursive Function------------- \n' + 
+'to SierpinskiFractal :l :n \n' + 
+'ifelse :n=0 [repeat 3[fd :l rt 120]] \n' + 
+'[SierpinskiFractal :l/2 :n-1 fd :l/2 \n' + 
+' SierpinskiFractal :l/2 :n-1 rt 120 fd :l/2 lt 120 \n' + 
+' SierpinskiFractal :l/2 :n-1 lt 120 fd :l/2 rt 120] \n' + 
+'end \n' + 
+' \n' + 
+';-----Global Variables-------------  \n' + 
+';-see auto generated sliders below- \n' + 
+'make "length 100 \n' + 
+'make "depth 4 \n' + 
+' \n' + 
+';----drawing----------------------- \n' + 
+'SierpinskiFractal :length :depth \n';
