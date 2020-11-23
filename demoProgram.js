@@ -1,8 +1,12 @@
 
+var previousi = -1
 
 function getRandomDemoProgram(){
 	var demoPrograms = [demoProgram1, demoProgram2, demoProgram3, demoProgram4, demoProgram5];
-	var i = Math.floor(Math.random()*demoPrograms.length);
+	var i;
+	do {i = Math.floor(Math.random()*demoPrograms.length);}
+	while(i == previousi);
+	previousi = i;
 	return demoPrograms[i];
 }
 
