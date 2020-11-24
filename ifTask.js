@@ -7,13 +7,25 @@ function indexOfClosingBracket(startIndex){
   var bracketDepth = 1;
   var i = startIndex;
   
-  while(sourceTokens[i] !== "[") {i++;}
+  while(sourceTokens[i] !== "[") {
+    i++;
+    if (i == sourceTokens.length){
+      error = true;
+      consolePrintln("Error: Missing '['");
+      return 0;
+    }
+  }
   i++;
   
   while (bracketDepth > 0){
     if (sourceTokens[i] === "[") {bracketDepth++;}
     else if (sourceTokens[i] === "]") {bracketDepth--;}
     i++;
+    if (i == sourceTokens.length){
+      error = true;
+      consolePrintln("Error: Missing ']'");
+      return 0;
+    }
   }
   return i - 1;
 }

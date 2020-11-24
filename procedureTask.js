@@ -15,6 +15,11 @@ class ProcedureTask {
       }
       while (sourceTokens[currentIndex] !== "end"){
         currentIndex++;
+        if (currentIndex == sourceTokens.length){
+          error = true;
+          consolePrintln("Error: Missing 'end'");
+          return 0;
+        }
       }
     } else {//CCtor. Called every time the function name is found in the code and we want to call it, based on the prototype object found in procedures list
       this.startIndex = copyFromProcedure.startIndex;
