@@ -10,6 +10,7 @@ var procedures={};			//an object with all the functions name-object pairs
 var seed;				    //the seed for a seedable Random Number Generator		
 var seedableRNG;			//a seedable random number generator
 var error;
+var startTime;
 
 function consolePrintln(text){
   document.getElementById("consoleTextArea").value += text + "\n";
@@ -47,6 +48,7 @@ function parseLogo(){
     while(sliderContainers[0]) {
       sliderContainers[0].parentNode.removeChild(sliderContainers[0]);
     }
+    startTime = millis();
 }
 
 function executeLogo(){

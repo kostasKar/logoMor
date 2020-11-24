@@ -200,6 +200,10 @@ function checkTaskFactory(){
       var pit = new PiTask();
       currentIndex++;
       return;
+  } else if (token === "time") {
+      var tit = new TimeTask();
+      currentIndex++;
+      return;
   }
 
   consolePrint("Invalid token: ");
