@@ -101,8 +101,7 @@ function logoEnd(){
  } 
 
  function LABEL(word){
-   fill(255);
-   text(word, 0, 0);
+   text(word, 3, 0); //next to the avatars radius
  }
 
 
