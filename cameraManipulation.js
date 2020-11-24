@@ -18,6 +18,8 @@ var fov_max;
 var cameraEnabled;
 var autoRotation_lastFrameCount;
 var autoRotation_lastYRotation;
+var fps;
+var previousMillis;
 
 function initializeCamera(){
   fov_min = radians(1);
@@ -80,5 +82,9 @@ function adjustCamera(){
   translate(centerX, centerY, 0);
   rotateX(xRotation);
   rotateY(yRotation);
+
+  fps = 1000 / (millis()-previousMillis);
+  previousMillis = millis();
+  document.getElementById("fpsValue").innerText = Math.round(fps*10)/10;
   
 }

@@ -184,6 +184,19 @@ canvas {
   font-size: 14px;
 }
 
+.CameraInstructions label{
+  display:block;
+}
+
+#fpsLabel{
+  position:relative;
+  display:inline-block;
+}
+
+#fpsValue{
+  display:inline-block;
+}
+
 #copyright{
   font-family: Consolas;
   color: #222222;
@@ -194,10 +207,10 @@ canvas {
 }
 
 .onoffswitch {
-    position: fixed;
+    position: relative;
     width: 30px;
-    top: 95px;
-    left: 20px;
+    top: 10px;
+    left: 0px;
     -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
 }
 .onoffswitch-checkbox {
