@@ -56,7 +56,6 @@ function executeLogo(){
   }
   if (movesCount >= movesLimit){
     consolePrintln("Stopped: Reached Moves Limit");
-    document.getElementById("movesLimitInput").focus();
   }
 }
 
