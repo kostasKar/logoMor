@@ -3,6 +3,11 @@ class ProcedureTask {
   
   constructor(copyFromProcedure){
     if (copyFromProcedure === undefined){ //called by the word "TO" - local manipulation of currentIndex to navigate out of the procedure definition
+      if(sourceTokens.length < currentIndex + 3){//there should be at least a token for function name and a token for 'end'
+        error = true;
+        consolePrintln("Error: Incomplete function definition");
+        return;
+      }
       procedures[sourceTokens[++currentIndex]] = this;
       this.startIndex = currentIndex++; //start index at name of procedure
       this.localVariables = {};
@@ -18,7 +23,7 @@ class ProcedureTask {
         if (currentIndex == sourceTokens.length){
           error = true;
           consolePrintln("Error: Missing 'end'");
-          return 0;
+          return;
         }
       }
     } else {//CCtor. Called every time the function name is found in the code and we want to call it, based on the prototype object found in procedures list
