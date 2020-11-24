@@ -139,3 +139,4 @@ class GenericCommandTaskS extends GenericCommandTaskF {
 
 //Timing 
 class TimeTask extends NoArgumentCommandTask{run(){return (millis()-startTime).toString();}}
+class FrameTask extends NoArgumentCommandTask{run(){return (frameCount-startFrame).toString();}}

@@ -11,6 +11,7 @@ var seed;				    //the seed for a seedable Random Number Generator
 var seedableRNG;			//a seedable random number generator
 var error;
 var startTime;
+var startFrame;
 
 function consolePrintln(text){
   document.getElementById("consoleTextArea").value += text + "\n";
@@ -49,6 +50,7 @@ function parseLogo(){
       sliderContainers[0].parentNode.removeChild(sliderContainers[0]);
     }
     startTime = millis();
+    startFrame = frameCount;
 }
 
 function executeLogo(){

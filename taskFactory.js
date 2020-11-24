@@ -204,6 +204,10 @@ function checkTaskFactory(){
       var tit = new TimeTask();
       currentIndex++;
       return;
+  } else if (token === "frame") {
+      var frt = new FrameTask();
+      currentIndex++;
+      return;
   }
 
   consolePrint("Invalid token: ");
