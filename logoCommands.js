@@ -10,11 +10,13 @@ function initStrokeStyle(){
   strokeB = 255;
   stroke(255);
   strokeWeight(1);
+  fill(255);
 }
 
 function restoreStrokeStyle(){
   strokeWeight(strokeWght);
   stroke(strokeR, strokeG, strokeB);
+  fill(strokeR, strokeG, strokeB);
 }
 
 function logoStart(){
@@ -92,6 +94,7 @@ function logoEnd(){
  
  function COLOR(r, g, b){
    stroke(r, g, b);
+   fill(r, g, b);
    strokeR = r;
    strokeG = g;
    strokeB = b;
