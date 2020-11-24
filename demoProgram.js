@@ -2,7 +2,7 @@
 var previousi = -1
 
 function getRandomDemoProgram(){
-	var demoPrograms = [demoProgram1, demoProgram2, demoProgram3, demoProgram4, demoProgram5, demoProgram6];
+	var demoPrograms = [demoProgram1, demoProgram2, demoProgram3, demoProgram4, demoProgram5, demoProgram6, demoProgram7];
 	var i;
 	do {i = Math.floor(Math.random()*demoPrograms.length);}
 	while(i == previousi);
@@ -246,3 +246,13 @@ var demoProgram6 =
 'sphere :radius :segs \n' + 
 'print gety \n' + 
 'print getx \n';
+
+var demoProgram7 = 
+';----Demo Flying Avatars----------- \n' + 
+'rr frame \n' + 
+'rt frame \n' + 
+'up frame \n' + 
+'pu \n' + 
+' \n' + 
+'make "speed 1 \n' + 
+'fd mod :speed*frame 300 \n';
