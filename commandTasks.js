@@ -138,5 +138,5 @@ class GenericCommandTaskS extends GenericCommandTaskF {
  class PiTask extends NoArgumentCommandTask { run() {return Math.PI.toString();}}
 
 //Timing 
-class TimeTask extends NoArgumentCommandTask{run(){return (millis()-startTime).toString();}}
+class TimeTask extends NoArgumentCommandTask{run(){return ((millis()-startTime)/1000).toString();}}
 class FrameTask extends NoArgumentCommandTask{run(){return (frameCount-startFrame).toString();}}
