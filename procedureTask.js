@@ -20,7 +20,7 @@ class ProcedureTask {
       }
       while (sourceTokens[currentIndex] !== "end"){
         currentIndex++;
-        if (currentIndex == sourceTokens.length){
+        if ((currentIndex == sourceTokens.length) || (sourceTokens[currentIndex] === "to")){
           error = true;
           consolePrintln("Error: Missing 'end'");
           return;
