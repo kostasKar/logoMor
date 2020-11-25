@@ -17,8 +17,14 @@ class ProcedureTask {
         this.localVariables[sourceTokens[currentIndex].replace(":", "")] = 0.0;
         this.numOfParameters++;
         currentIndex++;
+        if (currentIndex == sourceTokens.length){
+          error = true;
+          consolePrintln("Error: Missing 'end'");
+          return;
+        }
       }
       while (sourceTokens[currentIndex] !== "end"){
+
         currentIndex++;
         if ((currentIndex == sourceTokens.length) || (sourceTokens[currentIndex] === "to")){
           error = true;
