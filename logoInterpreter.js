@@ -41,7 +41,7 @@ function initLogoExecution(){
 
 function parseLogo(){
 	var sourceCodeTxt = prepareSourceCodeText(document.getElementById("sourceCodeTextArea").value);
-    sourceTokens = sourceCodeTxt.trim().split(/[ \r\n\t]+/);
+    sourceTokens = sourceCodeTxt.trim().split(/[\s]+/);
     sourceTokens = sourceTokens.filter(function (el) {return el != "";});
     console.log(sourceTokens);
     seed = Math.random().toString(36).substring(7);
