@@ -64,7 +64,8 @@ var TasksConstructors = {
   "exp":ExpTask,
   "pi":PiTask,
   "time":TimeTask,
-  "frame":FrameTask
+  "frame":FrameTask,
+  "int":IntTask
 }
 
 
