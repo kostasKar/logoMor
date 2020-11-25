@@ -18,14 +18,14 @@ function indexOfClosingBracket(startIndex){
   i++;
   
   while (bracketDepth > 0){
-    if (sourceTokens[i] === "[") {bracketDepth++;}
-    else if (sourceTokens[i] === "]") {bracketDepth--;}
-    i++;
     if (i == sourceTokens.length){
       error = true;
       consolePrintln("Error: Missing ']'");
       return 0;
     }
+    if (sourceTokens[i] === "[") {bracketDepth++;}
+    else if (sourceTokens[i] === "]") {bracketDepth--;}
+    i++;
   }
   return i - 1;
 }
