@@ -25,20 +25,6 @@ function consoleClear(){
   document.getElementById("consoleTextArea").value = "";
 }
 
-function initLogoExecution(){
-  currentIndex = 0;
-  movesCount = 0;
-  seedableRNG = new Math.seedrandom(seed);
-  tasksStack = [];
-  globalVariables = {};
-  variablesScopeStack = [];
-  variablesScopeStack.push(globalVariables);
-  procedures = {};
-  consoleClear();
-  error = false;
-}
-
-
 function parseLogo(){
 	var sourceCodeTxt = prepareSourceCodeText(document.getElementById("sourceCodeTextArea").value);
     sourceTokens = sourceCodeTxt.trim().split(/[\s]+/);
@@ -51,6 +37,19 @@ function parseLogo(){
     }
     startTime = millis();
     startFrame = frameCount;
+}
+
+function initLogoExecution(){
+  currentIndex = 0;
+  movesCount = 0;
+  seedableRNG = new Math.seedrandom(seed);
+  tasksStack = [];
+  globalVariables = {};
+  variablesScopeStack = [];
+  variablesScopeStack.push(globalVariables);
+  procedures = {};
+  consoleClear();
+  error = false;
 }
 
 function executeLogo(){
