@@ -35,14 +35,8 @@ function parseLogo(sourceCode){
   sourceTokens = sourceTokens.filter(function (el) {return el != "";});
   console.log(sourceTokens);
   seed = Math.random().toString(36).substring(7);
-  var sliderContainers = document.getElementsByClassName('sliderContainer');
-  while(sliderContainers[0]) {
-    sliderContainers[0].parentNode.removeChild(sliderContainers[0]);
-  }
-  var variablesListItems = document.getElementsByClassName('listItems');
-  while(variablesListItems[0]) {
-    variablesListItems[0].parentNode.removeChild(variablesListItems[0]);
-  }
+  clearSliders();
+  clearListItems();
 
   startTime = millis();
   startFrame = frameCount;

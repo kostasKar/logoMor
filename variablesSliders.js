@@ -22,9 +22,6 @@ window.onclick = function(event) {
 }
 
 
-
-
-
 function createSliderForVar(name, value){
 	if (document.getElementById(name) != null){
 		return;
@@ -51,6 +48,15 @@ function createSliderForVar(name, value){
 	sliderContainer.appendChild(sliderValue);
 }
 
+function clearSliders(){
+  var sliderContainers = document.getElementsByClassName('sliderContainer');
+  while(sliderContainers[0]) {
+    sliderContainers[0].parentNode.removeChild(sliderContainers[0]);
+  }
+}
+
+
+
 function createListItemForVar(name, initialValue){
 	var container = document.getElementById("variablesNamesDropdown");
 	var liElement = document.createElement("li");
@@ -60,4 +66,11 @@ function createListItemForVar(name, initialValue){
 	liElement.className = "listItems";
 	liElement.onclick = function() {createSliderForVar(this.innerText, this.value);}
 	container.appendChild(liElement);
+}
+
+function clearListItems(){
+  var variablesListItems = document.getElementsByClassName('listItems');
+  while(variablesListItems[0]) {
+    variablesListItems[0].parentNode.removeChild(variablesListItems[0]);
+  }
 }
