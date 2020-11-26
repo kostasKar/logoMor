@@ -137,6 +137,9 @@ class GenericCommandTaskS extends GenericCommandTaskF {
  class ExpTask extends SingleArgumentCommandTask { run() {return Math.exp(this.arguments[0]).toString();}}
  class PiTask extends NoArgumentCommandTask { run() {return Math.PI.toString();}}
  class IntTask extends SingleArgumentCommandTask { run() {return Math.round(this.arguments[0]).toString();}}
+ class AbsTask extends SingleArgumentCommandTask { run() {return Math.abs(this.arguments[0]).toString();}}
+ class MinTask extends TwoArgumentsCommandTask { run() {return Math.min(this.arguments[0], this.arguments[1]).toString();}}
+ class MaxTask extends TwoArgumentsCommandTask { run() {return Math.max(this.arguments[0], this.arguments[1]).toString();}}
 
 //Timing 
 class TimeTask extends NoArgumentCommandTask{run(){return ((millis()-startTime)/1000).toString();}}

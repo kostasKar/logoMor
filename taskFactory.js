@@ -65,7 +65,10 @@ var TasksConstructors = {
   "pi":PiTask,
   "time":TimeTask,
   "frame":FrameTask,
-  "int":IntTask
+  "int":IntTask,
+  "abs":AbsTask,
+  "min":MinTask,
+  "max":MaxTask
 }
 
 
