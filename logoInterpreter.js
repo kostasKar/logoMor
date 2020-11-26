@@ -39,6 +39,11 @@ function parseLogo(sourceCode){
   while(sliderContainers[0]) {
     sliderContainers[0].parentNode.removeChild(sliderContainers[0]);
   }
+  var variablesListItems = document.getElementsByClassName('listItems');
+  while(variablesListItems[0]) {
+    variablesListItems[0].parentNode.removeChild(variablesListItems[0]);
+  }
+
   startTime = millis();
   startFrame = frameCount;
 }

@@ -45,28 +45,14 @@ class VariableMakerTask{
 
 
   checkSliders(value){
+
+    var existingListItem = document.getElementById(this.name+"li");
+    if (existingListItem == null){
+      createListItemForVar(this.name, value);
+    }
+
     var existingSlider = document.getElementById(this.name);
     if (existingSlider == null){
-      var container = document.getElementById("controlsColumn");
-      var sliderContainer = document.createElement("div");
-      sliderContainer.className  = "sliderContainer";
-      var varNameLabel = document.createElement("label");
-      varNameLabel.className = "sliderVarName";
-      varNameLabel.innerText = this.name;
-      var newSlider = document.createElement("input");
-      newSlider.id = this.name;
-      newSlider.type = "range";
-      newSlider.min = Math.min(0, 10*value);
-      newSlider.max = (value != 0)? Math.max(0, 10*value) : 10;
-      newSlider.value = value;
-      newSlider.className  = "slider";
-      newSlider.oninput= function(){this.nextElementSibling.value = this.value;};
-      var sliderValue = document.createElement("output");
-      sliderValue.value = value;
-      container.appendChild(sliderContainer);
-      sliderContainer.appendChild(varNameLabel);
-      sliderContainer.appendChild(newSlider);
-      sliderContainer.appendChild(sliderValue);
       return value;
     } else {
       return existingSlider.value;
