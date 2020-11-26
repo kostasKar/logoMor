@@ -1,17 +1,17 @@
 
 
 
-var sourceTokens=[];		//the array of tokens
-var currentIndex=0;			//the int index of current token
-var tasksStack=[];			//the stack with all the tasks
-var globalVariables={};		//an object with all the global variables name-value pairs
-var variablesScopeStack=[];	//the stack with the variables scopes
-var procedures={};			//an object with all the functions name-object pairs
-var seed;				    //the seed for a seedable Random Number Generator		
-var seedableRNG;			//a seedable random number generator
-var error;
-var startTime;
-var startFrame;
+var sourceTokens = {};  //the array of tokens
+var currentIndex;			  //the int index of current token
+var tasksStack;			    //the stack with all the tasks
+var globalVariables;	  //an object with all the global variables name-value pairs
+var variablesScopeStack;//the stack with the variables scopes
+var procedures;		      //an object with all the functions name-object pairs
+var seed;				        //the seed for a seedable Random Number Generator		
+var seedableRNG;			  //a seedable random number generator
+var error;              //boolean indicating error in execution
+var startTime;          //used for time command
+var startFrame;         //used for frame command
 
 function consolePrintln(text){
   document.getElementById("consoleTextArea").value += text + "\n";
