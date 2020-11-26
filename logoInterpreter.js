@@ -25,18 +25,22 @@ function consoleClear(){
   document.getElementById("consoleTextArea").value = "";
 }
 
-function parseLogo(){
-	var sourceCodeTxt = prepareSourceCodeText(document.getElementById("sourceCodeTextArea").value);
-    sourceTokens = sourceCodeTxt.trim().split(/[\s]+/);
-    sourceTokens = sourceTokens.filter(function (el) {return el != "";});
-    console.log(sourceTokens);
-    seed = Math.random().toString(36).substring(7);
-    var sliderContainers = document.getElementsByClassName('sliderContainer');
-    while(sliderContainers[0]) {
-      sliderContainers[0].parentNode.removeChild(sliderContainers[0]);
-    }
-    startTime = millis();
-    startFrame = frameCount;
+function parseLogo(sourceCode){
+  
+  if (sourceCode === undefined){
+	  sourceCode = document.getElementById("sourceCodeTextArea").value;
+  }
+  var sourceCodeTxt = prepareSourceCodeText(sourceCode);
+  sourceTokens = sourceCodeTxt.trim().split(/[\s]+/);
+  sourceTokens = sourceTokens.filter(function (el) {return el != "";});
+  console.log(sourceTokens);
+  seed = Math.random().toString(36).substring(7);
+  var sliderContainers = document.getElementsByClassName('sliderContainer');
+  while(sliderContainers[0]) {
+    sliderContainers[0].parentNode.removeChild(sliderContainers[0]);
+  }
+  startTime = millis();
+  startFrame = frameCount;
 }
 
 function initLogoExecution(){
