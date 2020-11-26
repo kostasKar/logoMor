@@ -82,7 +82,7 @@ function checkNextToken(){
   
   //Here only new tokens should arrive
   if (currentIndex >= sourceTokens.length){
-    consolePrintln("Error. Task remains unresolved");
+    consolePrintln("Error. Unresolved task expects argument");
     error = true;
     return;
   }
