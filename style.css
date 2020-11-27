@@ -265,8 +265,13 @@ canvas {
   font-family: Lucida Console;
 }
 
-.dropbtn:hover {
+.dropbtn:hover:not([disabled]) {
   background-color: #333333;
+}
+
+.dropbtn:disabled {
+  color: #555555;
+  cursor: auto ;
 }
 
 .dropdown {

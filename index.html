@@ -67,8 +67,8 @@
         <textarea readonly id="consoleTextArea"></textarea>
         <label class="areaTitle">VARIABLES MANIPULATORS</label>
         <div class="dropdown">
-          <button onclick="showVariablesNames()" class="dropbtn">Add</button>
-          <button onclick="clearSliders()" class="dropbtn">Clear</button>
+          <button id="slidersAddButton" onclick="showVariablesNames()" class="dropbtn" disabled>Add</button>
+          <button id="slidersClearButton" onclick="clearSliders()" class="dropbtn" disabled>Clear</button>
           <div id="variablesNamesDropdown" class="dropdown-content">
           </div>
         </div>

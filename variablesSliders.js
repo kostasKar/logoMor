@@ -26,6 +26,7 @@ function createSliderForVar(name, value){
 	if (document.getElementById(name) != null){
 		return;
 	}
+	document.getElementById("slidersClearButton").disabled = false;
 	var container = document.getElementById("controlsColumn");
 	var sliderContainer = document.createElement("div");
 	sliderContainer.className  = "sliderContainer";
@@ -49,6 +50,7 @@ function createSliderForVar(name, value){
 }
 
 function clearSliders(){
+  document.getElementById("slidersClearButton").disabled = true;	
   var sliderContainers = document.getElementsByClassName('sliderContainer');
   while(sliderContainers[0]) {
     sliderContainers[0].parentNode.removeChild(sliderContainers[0]);
@@ -58,6 +60,7 @@ function clearSliders(){
 
 
 function createListItemForVar(name, initialValue){
+	document.getElementById("slidersAddButton").disabled = false;
 	var container = document.getElementById("variablesNamesDropdown");
 	var liElement = document.createElement("li");
 	liElement.id = name + "li";
@@ -69,6 +72,8 @@ function createListItemForVar(name, initialValue){
 }
 
 function clearListItems(){
+  document.getElementById("slidersClearButton").disabled = true;
+  document.getElementById("slidersAddButton").disabled = true;
   var variablesListItems = document.getElementsByClassName('listItems');
   while(variablesListItems[0]) {
     variablesListItems[0].parentNode.removeChild(variablesListItems[0]);
