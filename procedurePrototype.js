@@ -6,7 +6,7 @@ class ProcedurePrototype {
       consolePrintln("Error: Incomplete function definition");
       return;
     }
-    proceduresPrototypes[sourceTokens[++currentIndex]] = this;
+    procedurePrototypes[sourceTokens[++currentIndex]] = this;
     this.startIndex = currentIndex++; //start index at name of procedure
     this.localVariables = {};
     this.numOfParameters = 0;
