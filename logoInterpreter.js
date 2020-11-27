@@ -35,6 +35,7 @@ function parseLogo(sourceCode){
   sourceTokens = sourceTokens.filter(function (el) {return el != "";});
   console.log(sourceTokens);
   seed = Math.random().toString(36).substring(7);
+  procedurePrototypes = {};
   clearSliders();
   clearListItems();
 
@@ -50,7 +51,6 @@ function initLogoExecution(){
   globalVariables = {};
   variablesScopeStack = [];
   variablesScopeStack.push(globalVariables);
-  procedurePrototypes = {};
   consoleClear();
   error = false;
 }

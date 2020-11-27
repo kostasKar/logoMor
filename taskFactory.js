@@ -80,7 +80,6 @@ function checkTaskFactory(){
     currentIndex++;
   } else if (token === "to"){
     new ProcedurePrototype();
-    currentIndex++;
   } else if (token in procedurePrototypes){
     new ProcedureTask(procedurePrototypes[token]);
     currentIndex++;

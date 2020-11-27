@@ -1,33 +1,36 @@
 class ProcedurePrototype {
   
   constructor(){
-    if(sourceTokens.length < currentIndex + 3){//there should be at least a token for function name and a token for 'end'
+    let i = currentIndex;
+    if(sourceTokens.length < i + 3){//there should be at least a token for function name and a token for 'end'
       error = true;
       consolePrintln("Error: Incomplete function definition");
       return;
     }
-    procedurePrototypes[sourceTokens[++currentIndex]] = this;
-    this.startIndex = currentIndex++; //start index at name of procedure
+    sourceTokens.splice(i, 1);
+    procedurePrototypes[sourceTokens[i]] = this;
+    let startIndex = i++; //start index at name of procedure
     this.localVariables = {};
     this.numOfParameters = 0;
-    while (sourceTokens[currentIndex].match(":.*")){
-      this.localVariables[sourceTokens[currentIndex].replace(":", "")] = 0.0;
+    while (sourceTokens[i].match(":.*")){
+      this.localVariables[sourceTokens[i].replace(":", "")] = 0.0;
       this.numOfParameters++;
-      currentIndex++;
-      if (currentIndex == sourceTokens.length){
+      i++;
+      if (i == sourceTokens.length){
         error = true;
         consolePrintln("Error: Missing 'end'");
         return;
       }
     }
-    while (sourceTokens[currentIndex] !== "end"){
-
-      currentIndex++;
-      if ((currentIndex == sourceTokens.length) || (sourceTokens[currentIndex] === "to")){
+    while (sourceTokens[i] !== "end"){
+      i++;
+      if ((i == sourceTokens.length) || (sourceTokens[i] === "to")){
         error = true;
         consolePrintln("Error: Missing 'end'");
         return;
       }
     }
+    let endIndex = i;
+    this.body = sourceTokens.splice(startIndex, (endIndex+1)-startIndex);
   }
 }

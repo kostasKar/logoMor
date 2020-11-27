@@ -2,9 +2,8 @@
 class ProcedureTask {
   
   constructor(procedurePrototype){
-    this.startIndex = procedurePrototype.startIndex;
+    this.body = procedurePrototype.body;
     this.numOfParameters = procedurePrototype.numOfParameters;
-    this.localVariables = {};
     this.localVariables = Object.assign({}, procedurePrototype.localVariables);
     this.returnValue = "";
     
@@ -14,7 +13,9 @@ class ProcedureTask {
     } else {
       variablesScopeStack.push(this.localVariables);
       this.returnIndex = currentIndex + 1;
-      currentIndex = this.startIndex;
+      this.returnSourceTokens = sourceTokens;
+      sourceTokens = this.body;
+      currentIndex = 0;
     }
     this.numOfParametersSet = 0;
     this.canBeResolved = false;
@@ -26,12 +27,14 @@ class ProcedureTask {
       return false;
     }
     if (this.numOfParametersSet < this.numOfParameters){
-      this.localVariables[sourceTokens[this.startIndex + this.numOfParametersSet + 1].replace(":", "")]  = Number(arg); 
+      this.localVariables[this.body[this.numOfParametersSet + 1].replace(":", "")]  = Number(arg); 
       this.numOfParametersSet++;
       if (this.numOfParametersSet == this.numOfParameters){
-        this.returnIndex = currentIndex;
-        currentIndex = this.startIndex + this.numOfParametersSet + 1;
         variablesScopeStack.push(this.localVariables);
+        this.returnIndex = currentIndex;
+        this.returnSourceTokens = sourceTokens;
+        sourceTokens = this.body;
+        currentIndex = this.numOfParametersSet + 1;
       } else {
         var art = new ArgumentResolverTask();
       }
@@ -57,6 +60,7 @@ class ProcedureTask {
   resolve(){
     tasksStack.pop();
     variablesScopeStack.pop();
+    sourceTokens = this.returnSourceTokens;
     currentIndex = this.returnIndex;
     return this.returnValue;
   }
