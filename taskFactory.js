@@ -9,7 +9,6 @@ var TasksConstructors = {
   "repeat":RepeatTask,
   "while":WhileTask,
   "until":UntilTask,
-  "to":ProcedureTask,
   "forward":FdTask,
   "fd":FdTask,
   "back":BkTask,
@@ -78,6 +77,9 @@ function checkTaskFactory(){
 
   if (token in TasksConstructors){
     new TasksConstructors[token];
+    currentIndex++;
+  } else if (token === "to"){
+    new ProcedurePrototype();
     currentIndex++;
   } else if (token in procedures){
     new ProcedureTask(procedures[token]);
