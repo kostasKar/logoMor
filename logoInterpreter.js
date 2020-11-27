@@ -6,7 +6,7 @@ var currentIndex;			  //the int index of current token
 var tasksStack;			    //the stack with all the tasks
 var globalVariables;	  //an object with all the global variables name-value pairs
 var variablesScopeStack;//the stack with the variables scopes
-var procedures;		      //an object with all the functions name-object pairs
+var proceduresPrototypes;//an object with all the functions name-object pairs
 var seed;				        //the seed for a seedable Random Number Generator		
 var seedableRNG;			  //a seedable random number generator
 var error;              //boolean indicating error in execution
@@ -50,7 +50,7 @@ function initLogoExecution(){
   globalVariables = {};
   variablesScopeStack = [];
   variablesScopeStack.push(globalVariables);
-  procedures = {};
+  proceduresPrototypes = {};
   consoleClear();
   error = false;
 }
