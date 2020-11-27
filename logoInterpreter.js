@@ -1,7 +1,8 @@
 
 
 
-var sourceTokens = {};  //the array of tokens
+var initialSourceTokens = {};  //the array of tokens fro the wole program
+var sourceTokens        //the array of the tokens for the currently executed code body
 var currentIndex;			  //the int index of current token
 var tasksStack;			    //the stack with all the tasks
 var globalVariables;	  //an object with all the global variables name-value pairs
@@ -31,9 +32,9 @@ function parseLogo(sourceCode){
 	  sourceCode = document.getElementById("sourceCodeTextArea").value;
   }
   var sourceCodeTxt = prepareSourceCodeText(sourceCode);
-  sourceTokens = sourceCodeTxt.trim().split(/[\s]+/);
-  sourceTokens = sourceTokens.filter(function (el) {return el != "";});
-  console.log(sourceTokens);
+  initialSourceTokens = sourceCodeTxt.trim().split(/[\s]+/);
+  initialSourceTokens = initialSourceTokens.filter(function (el) {return el != "";});
+  console.log(initialSourceTokens);
   seed = Math.random().toString(36).substring(7);
   procedurePrototypes = {};
   clearSliders();
@@ -44,6 +45,7 @@ function parseLogo(sourceCode){
 }
 
 function initLogoExecution(){
+  sourceTokens = initialSourceTokens;
   currentIndex = 0;
   movesCount = 0;
   seedableRNG = new Math.seedrandom(seed);
