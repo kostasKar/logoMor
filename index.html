@@ -47,14 +47,19 @@
     </div>
 
     <div id="copyright">&copy; 2020 Kostas Karouzos ck.karouzos@gmail.com</div> 
+
     <div id="drawCanvas"></div>
+
     <div id="controlsColumn">
+
         <label class="areaTitle">SOURCE CODE</label>
         <textarea id="sourceCodeTextArea" spellcheck="false"></textarea>
+
         <div id="movesLimitDiv">
             <input  id="movesLimitInput" type="number" name="quantity" min="0" value="1000">
             <label>Moves Limit:</label>
         </div>
+
         <div id = "buttonDiv">
             <button id="playButton" onclick="parseLogo()">Run</button> 
             <button id="stopButton" onclick="parseLogo('')">Stop</button> 
@@ -64,15 +69,32 @@
             <input id="inp" type='file' style="visibility:hidden;" onchange="readFile(event)" />
             <button type="button" id="DemoButton" onclick="document.getElementById('sourceCodeTextArea').value = getRandomDemoProgram();parseLogo();">Demo</button>
         </div>
+
         <label class="areaTitle">CONSOLE</label>
         <textarea readonly id="consoleTextArea"></textarea>
-        <label class="areaTitle">VARIABLES MANIPULATORS</label>
-        <div class="dropdown">
-          <button id="slidersAddButton" onclick="showVariablesNames()" class="dropbtn" disabled>Add</button>
-          <button id="slidersClearButton" onclick="clearSliders()" class="dropbtn" disabled>Clear</button>
-          <div id="variablesNamesDropdown" class="dropdown-content">
-          </div>
+
+        <div id="variablesDiv">
+            <label class="areaTitle">VARIABLES MANIPULATORS</label>
+            <div class="dropdown">
+              <button id="slidersAddButton" onclick="showVariablesNames()" class="dropbtn" disabled>Add</button>
+              <button id="slidersClearButton" onclick="clearSliders()" class="dropbtn" disabled>Clear</button>
+              <div id="variablesNamesDropdown" class="dropdown-content">
+              </div>
+            </div>
         </div>
+
+    <!--
+        <div id="functionsDiv">
+            <label class="areaTitle">FUNCTIONS</label>
+            <div class="dropdown">
+              <button id="functionsAddButton" onclick="showFunctionsNames()" class="dropbtn" >Add</button>
+              <button id="functionsClearButton" onclick="clearFunctions()" class="dropbtn" >Clear</button>
+              <div id="functionsNamesDropdown" class="dropdown-content">
+              </div>
+            </div>
+        </div>
+    -->
+
     </div>
   
 

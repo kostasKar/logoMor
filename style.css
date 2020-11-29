@@ -105,14 +105,14 @@ canvas {
   margin: 4px 2px;
 }
 
-.sliderContainer {
+.sliderContainer, .functionParamSliderContainer {
   width: 90%; /* Width of the outside container */
   margin: 10px;
   padding: 5px;
 }
 
 /* The slider itself */
-.sliderContainer .slider {
+.slider {
   -webkit-appearance: none;  /* Override default CSS styles */
   appearance: none;
   width: 65%; /* Full-width */
@@ -128,12 +128,12 @@ canvas {
 }
 
 /* Mouse-over effects */
-.sliderContainer .slider:hover {
+.slider:hover {
   opacity: 1; /* Fully shown on mouse-over */
 }
 
 /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
-.sliderContainer .slider::-webkit-slider-thumb {
+.slider::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
   appearance: none;
   width: 25px; /* Set a specific slider handle width */
@@ -143,28 +143,34 @@ canvas {
   border-radius: 50%; 
 }
 
-.sliderContainer .slider::-moz-range-thumb {
+.slider::-moz-range-thumb {
   width: 25px; /* Set a specific slider handle width */
   height: 25px; /* Slider handle height */
   background: #666666 ; /* Green background */
   cursor: pointer; /* Cursor on hover */
   border-radius: 50%; 
 }
-
-.sliderContainer .sliderVarName{
+.sliderVarName{
   font-family: Consolas;
   color: #888888;
   font-size: 18px;
   padding-right: 10px;
 }
 
-.sliderContainer output{
+output{
   padding-right: 10px;
   color: #888888;
   font-family: Consolas;
   font-size: 18px;
   float:right;
 
+}
+
+.functionName{
+  color: #aaaaaa;
+  font-family: Consolas;
+  font-size: 18px;
+  padding: 5px;
 }
 
 ::-moz-selection { /* Code for Firefox */

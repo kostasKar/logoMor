@@ -10,6 +10,7 @@ function showVariablesNames() {
 // Close the dropdown if the user clicks outside of it
 window.onclick = function(event) {
   if (!event.target.matches('.dropbtn')) {
+  	clearFunctionListItems();
     var dropdowns = document.getElementsByClassName("dropdown-content");
     var i;
     for (i = 0; i < dropdowns.length; i++) {
@@ -27,7 +28,7 @@ function createSliderForVar(name, value){
 		return;
 	}
 	document.getElementById("slidersClearButton").disabled = false;
-	var container = document.getElementById("controlsColumn");
+	var container = document.getElementById("variablesDiv");
 	var sliderContainer = document.createElement("div");
 	sliderContainer.className  = "sliderContainer";
 	var varNameLabel = document.createElement("label");
@@ -78,4 +79,94 @@ function clearListItems(){
   while(variablesListItems[0]) {
     variablesListItems[0].parentNode.removeChild(variablesListItems[0]);
   }
+}
+
+
+
+
+
+function createFunctionListItems(){
+	for (procName in procedurePrototypes){
+		addFunctionListItemName(procName);
+	}
+}
+
+function clearFunctionListItems(){
+	var functionListItems = document.getElementsByClassName('functionListItems');
+	while(functionListItems[0]){
+		functionListItems[0].parentNode.removeChild(functionListItems[0]);
+	}
+}
+
+function addFunctionListItemName(name){
+	var container = document.getElementById("functionsNamesDropdown");
+	var liElement = document.createElement("li");
+	liElement.innerText = name;
+	liElement.className = "functionListItems";
+	liElement.onclick = function() {createManipulatorForFunc(this.innerText);}
+	container.appendChild(liElement);
+}
+
+function showFunctionsNames(){
+	createFunctionListItems();
+	document.getElementById("functionsNamesDropdown").classList.toggle("show");
+}
+
+function clearFunctions(){
+  var functionContainers = document.getElementsByClassName('functionManipulatorContainer');
+  while(functionContainers[0]) {
+    functionContainers[0].parentNode.removeChild(functionContainers[0]);
+  }
+}
+
+
+function createManipulatorForFunc(name){
+	if (document.getElementById(name) != null){
+		return;
+	}
+	var proc = procedurePrototypes[name];
+	var container = document.getElementById("functionsDiv");
+	var functionManipulatorContainer = document.createElement("div");
+	functionManipulatorContainer.id = name;
+	functionManipulatorContainer.className = "functionManipulatorContainer";
+	var functionNameLabel = document.createElement("label");
+	functionNameLabel.innerText = name;
+	functionNameLabel.className = "functionName"
+	functionManipulatorContainer.appendChild(functionNameLabel);
+	var functionRunButton = document.createElement("button");
+	functionRunButton.innerText = "Run";
+	functionRunButton.className = "dropbtn";
+	functionRunButton.onclick = function (){runFunction(name);}
+	functionManipulatorContainer.appendChild(functionRunButton);
+	for (var paramName in proc.localVariables){
+		var parameterDiv = document.createElement("div");
+		parameterDiv.className ="functionParamSliderContainer";
+		var parameterLabel = document.createElement("label");
+		parameterLabel.className = "sliderVarName";
+		parameterLabel.innerText = paramName;
+		var newSlider = document.createElement("input");
+		newSlider.id = name + paramName;
+		newSlider.type = "range";
+		newSlider.className  = "slider";
+		newSlider.oninput= function(){this.nextElementSibling.value = this.value;};
+		var sliderValue = document.createElement("output");
+		functionManipulatorContainer.appendChild(parameterDiv);
+		parameterDiv.appendChild(parameterLabel);
+		parameterDiv.appendChild(newSlider);
+		parameterDiv.appendChild(sliderValue);
+	}
+	container.appendChild(functionManipulatorContainer);
+
+}
+
+function runFunction(name){
+	var sC = name + " ";
+	var proc = procedurePrototypes[name];
+	for (paramName in proc.localVariables){
+		sC += document.getElementById(name+paramName).value + " ";
+	}
+	var temp = procedurePrototypes;
+	parseLogo(sC);
+	procedurePrototypes = temp;
+
 }
