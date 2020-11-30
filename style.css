@@ -36,6 +36,31 @@ canvas {
   color:white;
 }
 
+#record {
+  position:fixed;
+  right: 470px;
+  top: 80px;
+  background-color: #222222;
+  border: 3px solid #333333;
+  color: #aaaaaa;
+  padding: 12px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 50%;
+  font-family: Lucida Console;
+  outline: none !important;
+}
+
+/* Darker background on mouse-over */
+#record:hover {
+  background-color: #333333;
+  color:white;
+}
+
 #controlsColumn {
 	position: fixed;
   overflow: auto;

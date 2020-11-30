@@ -47,3 +47,51 @@ function saveScreenshot(){
   anchor.click();
   document.body.removeChild(anchor);
 }
+
+
+var chunks;
+var videoStream;
+var mediaRecorder;
+function startRecording(){
+  chunks = [];
+  var canvas = document.getElementById("defaultCanvas0");
+  videoStream = canvas.captureStream(/*fps e.g.25*/);
+  mediaRecorder = new MediaRecorder(videoStream);
+
+  mediaRecorder.ondataavailable = function(e) {
+    chunks.push(e.data);
+  };
+
+  mediaRecorder.onstop = function(e){
+    var blob = new Blob(chunks, { 'type' : 'video/mp4' });
+    var videoURL = URL.createObjectURL(blob);
+    var anchor = document.createElement("a");
+    anchor.download = "LogoVideo.mp4";
+    anchor.href = videoURL;
+    anchor.target ="_blank";
+    anchor.style.display = "none"; // just to be safe!
+    document.body.appendChild(anchor);
+    anchor.click();
+    document.body.removeChild(anchor);
+  };
+
+  mediaRecorder.start();
+}
+
+
+function stopRecording(){
+  mediaRecorder.stop();
+}
+
+var recording = false;
+function toggleRecording(){
+  if (!recording){
+    startRecording();
+    document.getElementById("record").innerHTML = '<i class="fa fa-stop" aria-hidden="true" style="color:red"></i>';
+    recording = true;
+  } else {
+    stopRecording();
+    recording = false;
+    document.getElementById("record").innerHTML = '<i class="fa fa-video-camera" aria-hidden="true"></i>';
+  }
+}
