@@ -55,7 +55,7 @@ var mediaRecorder;
 function startRecording(){
   chunks = [];
   var canvas = document.getElementById("defaultCanvas0");
-  videoStream = canvas.captureStream(/*fps e.g.25*/);
+  videoStream = canvas.captureStream(60);
   mediaRecorder = new MediaRecorder(videoStream);
 
   mediaRecorder.ondataavailable = function(e) {
@@ -73,6 +73,7 @@ function startRecording(){
     document.body.appendChild(anchor);
     anchor.click();
     document.body.removeChild(anchor);
+    videoStream.getTracks().forEach( track => track.stop() ); // stop each of streams
   };
 
   mediaRecorder.start();
