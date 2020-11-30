@@ -1,6 +1,26 @@
 var penDown;
 var strokeR, strokeG, strokeB, strokeWght;
+var shapeBegan;
+var vertices;
 
+
+function makeShape(){
+  pop();
+  push();
+  restoreStrokeStyle(); //for the stroke color
+  fill(strokeR, strokeG, strokeB, 230); //like restoreStrokeStyle but with transparency
+  beginShape();
+  for (let i = 0; i < vertices.length; i++) {
+    vertex(vertices[i][0], vertices[i][1], vertices[i][2]);
+  } 
+  endShape();
+  applyLogoTransformationMatrix();
+  restoreStrokeStyle();
+}
+
+function addVertex(){
+  vertices.push([getlmX(), getlmY(), getlmZ()]);
+}
 
 
 function initStrokeStyle(){
@@ -22,23 +42,43 @@ function restoreStrokeStyle(){
 function logoStart(){
   drawCoordinates(25);
   penDown = true;
+  shapeBegan = false;
+  vertices = [];
   initStrokeStyle();
   push();
   resetLogoTransformationMatrix();
 }
 
 function logoEnd(){
+  if (shapeBegan){
+    makeShape();
+  }
   drawCoordinates(10);  
   drawAvatar();
   pop();
 }
 
+function BEGINSHAPE(){
+  shapeBegan = true;
+  vertices = [];
+  addVertex();
+}
+
+function ENDSHAPE(){
+  shapeBegan = false;
+  makeShape();
+  vertices = [];
+}
+
  function FORWARD(length){
    if (penDown){
-     line(0, 0, 0, 0, -length, 0);
+    line(0, 0, 0, 0, -length, 0);
    }
    translate(0, -length, 0);
    logoTranslate(0, -length, 0);
+   if (penDown && shapeBegan){
+    addVertex();
+   }
  }
  
   function BACKWARD(length){
@@ -47,6 +87,9 @@ function logoEnd(){
    }
    translate(0, length, 0);
    logoTranslate(0, length, 0);
+   if (penDown && shapeBegan){
+    addVertex();
+   }
  }
  
  function RIGHTTURN(angle){
@@ -114,7 +157,10 @@ function logoEnd(){
    if (penDown){
      line(0, 0, 0, getlmX(), getlmY(), getlmZ());
    }
-  resetLogoTransformationMatrix(); 
+   resetLogoTransformationMatrix(); 
+   if (penDown && shapeBegan){
+    addVertex();
+   }
  }
  
   function GETX(){
@@ -138,6 +184,9 @@ function logoEnd(){
    } 
    setlmX(newX);
    applyLogoTransformationMatrix(); 
+   if (penDown && shapeBegan){
+    addVertex();
+   }
  }
 
 function SETY(newY){
@@ -149,6 +198,9 @@ function SETY(newY){
    }
    setlmY(-newY);
    applyLogoTransformationMatrix(); 
+   if (penDown && shapeBegan){
+    addVertex();
+   }
  }
 
 function SETZ(newZ){
@@ -160,6 +212,9 @@ function SETZ(newZ){
    }
    setlmZ(newZ);
    applyLogoTransformationMatrix(); 
+   if (penDown && shapeBegan){
+    addVertex();
+   }
  }
  
 
@@ -174,5 +229,8 @@ function SETXYZ(newX, newY, newZ){
    setlmY(-newY);
    setlmZ(newZ);
    applyLogoTransformationMatrix(); 
+   if (penDown && shapeBegan){
+    addVertex();
+   }
  }
 

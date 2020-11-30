@@ -144,3 +144,7 @@ class GenericCommandTaskS extends GenericCommandTaskF {
 //Timing 
 class TimeTask extends NoArgumentCommandTask{run(){return ((millis()-startTime)/1000).toString();}}
 class FrameTask extends NoArgumentCommandTask{run(){return (frameCount-startFrame).toString();}}
+
+//3d solids
+class BeginShapeTask extends NoArgumentCommandTask{run(){BEGINSHAPE(); return "";}}
+class EndShapeTask extends NoArgumentCommandTask{run(){ENDSHAPE(); return "";}}

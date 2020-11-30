@@ -67,7 +67,9 @@ var TasksConstructors = {
   "int":IntTask,
   "abs":AbsTask,
   "min":MinTask,
-  "max":MaxTask
+  "max":MaxTask,
+  "beginface":BeginShapeTask,
+  "endface":EndShapeTask
 }
 
 
