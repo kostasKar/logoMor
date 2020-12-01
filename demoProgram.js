@@ -2,7 +2,7 @@
 var previousi = -1
 
 function getRandomDemoProgram(){
-	var demoPrograms = [demoProgram1, demoProgram2, demoProgram3, demoProgram4, demoProgram5, demoProgram6, demoProgram7];
+	var demoPrograms = [demoProgram1, demoProgram2, demoProgram3, demoProgram4, demoProgram5, demoProgram6, demoProgram7, demoProgram8];
 	var i;
 	do {i = Math.floor(Math.random()*demoPrograms.length);}
 	while(i == previousi);
@@ -256,3 +256,47 @@ var demoProgram7 =
 ' \n' + 
 'make "speed 1 \n' + 
 'fd mod :speed*frame 300 \n';
+
+var demoProgram8 = 
+';----Demo Colorfull Starfish--------- \n' + 
+';Using beginface endface we can solids \n' + 
+' \n' + 
+';-----Function to dray one leg------- \n' + 
+'to leg :s :d \n' + 
+' up 90 \n' + 
+' fd :d/2 \n' + 
+' dn 90 \n' + 
+' make "a arctan :d/(2*:s) \n' + 
+' make "l sqrt (pow :d/2 2)+(pow :s 2) \n' + 
+' dn :a \n' + 
+' beginface \n' + 
+' fd :l \n' + 
+' up :a \n' + 
+' lt :a \n' + 
+' bk :l \n' + 
+' endface \n' + 
+' rt :a \n' + 
+' rr 90 \n' + 
+' dn 90 \n' + 
+' fd :d/2 \n' + 
+' up 90 \n' + 
+'end \n' + 
+' \n' + 
+' \n' + 
+';Variables.play with size, number of legs \n' + 
+';and color. Check variables manipulators \n' + 
+'make "diameter 30 \n' + 
+'make "length 100 \n' + 
+'make "legs 5 \n' + 
+'make "r 26 \n' + 
+'make "g 26 \n' + 
+'make "b 26 \n' + 
+' \n' + 
+';---Actual drawing----------------- \n' + 
+'color :r :g :b \n' + 
+'repeat :legs [ \n' + 
+' repeat 4 [ \n' + 
+'  leg :length :diameter \n' + 
+' ] \n' + 
+' rt 360/:legs \n' + 
+'] \n';
