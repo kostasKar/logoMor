@@ -7,9 +7,9 @@ class ProcedurePrototype {
       consolePrintln("Error: Incomplete function definition");
       return;
     }
-    sourceTokens.splice(i, 1);
-    procedurePrototypes[sourceTokens[i]] = this;
-    let startIndex = i++; //start index at name of procedure
+    i++;//skip the 'to'
+    let startIndex = i; //start index at procedure name
+    i++;//skip the procedure name
     this.localVariables = {};
     this.numOfParameters = 0;
     while (sourceTokens[i].match(":.*")){
@@ -31,6 +31,8 @@ class ProcedurePrototype {
       }
     }
     let endIndex = i;
-    this.body = sourceTokens.splice(startIndex, (endIndex+1)-startIndex);
+    procedurePrototypes[sourceTokens[startIndex]] = this;
+    this.body = sourceTokens.splice(startIndex, (endIndex+1)-startIndex);//cut the body from sourceTokens and put it in body
+    sourceTokens.splice(currentIndex, 1); //remove 'to'
   }
 }
