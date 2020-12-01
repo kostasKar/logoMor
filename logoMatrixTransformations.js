@@ -12,37 +12,37 @@ function resetLogoTransformationMatrix(){
 
 
 function logoTranslate(x, y, z){
-  multiplyToLogoMatrix(  [1.0, 0.0, 0.0, 0.0,
-                         0.0, 1.0, 0.0, 0.0,
-                         0.0, 0.0, 1.0, 0.0,
-                         x, y, z,  1.0]);
-}
+  multiplyToLogoMatrix( [1, 0, 0, 0,
+                         0, 1, 0, 0,
+                         0, 0, 1, 0,
+                         x, y, z, 1] );
+  }
 
 function logoRotateX(rad){
-  let ct = cos(rad);
-  let st = sin(rad);
-  multiplyToLogoMatrix( [ 1.0, 0.0, 0.0,  0.0,
-                         0.0, ct, st,  0.0,
-                         0.0, -st, ct,  0.0,
-                         0.0, 0.0, 0.0,  1.0]);
+  let c = cos(rad);
+  let s = sin(rad);
+  multiplyToLogoMatrix( [1, 0, 0, 0,
+                         0, c, s, 0,
+                         0,-s, c, 0,
+                         0, 0, 0, 1] );
 }
 
 function logoRotateY(rad){
-  let ct = cos(rad);
-  let st = sin(rad);
-  multiplyToLogoMatrix( [ct, 0.0,  -st,  0.0,
-                         0.0, 1.0, 0.0,  0.0,
-                         st, 0.0,  ct,  0.0,
-                         0.0, 0.0, 0.0,  1.0]);
+  let c = cos(rad);
+  let s = sin(rad);
+  multiplyToLogoMatrix( [c, 0,-s, 0,
+                         0, 1, 0, 0,
+                         s, 0, c, 0,
+                         0, 0, 0, 1] );
 }
 
 function logoRotateZ(rad){
-  let ct = cos(rad);
-  let st = sin(rad);
-  multiplyToLogoMatrix( [ ct, st, 0.0,  0.0,
-                         -st, ct, 0.0,  0.0,
-                         0.0, 0.0, 1.0,  0.0,
-                         0.0, 0.0, 0.0,  1.0]);
+  let c = cos(rad);
+  let s = sin(rad);
+  multiplyToLogoMatrix( [ c, s, 0, 0,
+                         -s, c, 0, 0,
+                          0, 0, 1, 0,
+                          0, 0, 0, 1] );
 }
 
 
