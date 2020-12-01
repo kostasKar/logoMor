@@ -80,11 +80,11 @@ function checkTaskFactory(){
   if (token in TasksConstructors){
     new TasksConstructors[token];
     currentIndex++;
-  } else if (token === "to"){
-    new ProcedurePrototype();
   } else if (token in procedurePrototypes){
     new ProcedureTask(procedurePrototypes[token]);
     currentIndex++;
+  } else if (token === "to"){
+    new ProcedurePrototype();
   } else {
     consolePrint("Invalid token: ");
     consolePrintln(token);
