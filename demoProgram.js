@@ -258,7 +258,7 @@ var demoProgram7 =
 'fd mod :speed*frame 300 \n';
 
 var demoProgram8 = 
-';----Demo Colorfull Starfish--------- \n' + 
+';----Demo Colorful Starfish--------- \n' + 
 ';Using beginface endface we can solids \n' + 
 ' \n' + 
 ';-----Function to dray one leg------- \n' + 
