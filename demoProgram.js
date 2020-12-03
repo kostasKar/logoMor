@@ -2,7 +2,7 @@
 var previousi = -1
 
 function getRandomDemoProgram(){
-	var demoPrograms = [demoProgram1, demoProgram2, demoProgram3, demoProgram4, demoProgram5, demoProgram6, demoProgram7, demoProgram8];
+	var demoPrograms = [demoProgram1, demoProgram2, demoProgram3, demoProgram4, demoProgram5, demoProgram6, demoProgram7, demoProgram8, demoProgram9];
 	var i;
 	do {i = Math.floor(Math.random()*demoPrograms.length);}
 	while(i == previousi);
@@ -300,3 +300,39 @@ var demoProgram8 =
 ' ] \n' + 
 ' rt 360/:legs \n' + 
 '] \n';
+
+var demoProgram9 = 
+';---Demo Bouncing Ball--------------- \n' + 
+';---using static variables we can make \n' + 
+';---any kind of animation!----------- \n' + 
+' \n' + 
+'static "locationX 0 \n' + 
+'static "locationY 200 \n' + 
+'static "velocityX 1.5 \n' + 
+'static "velocityY 2.1 \n' + 
+'static "gravity 0.2 \n' + 
+' \n' + 
+'make "locationX :locationX + :velocityX \n' + 
+'make "locationY :locationY + :velocityY \n' + 
+'make "velocityY :velocityY - :gravity \n' + 
+' \n' + 
+' \n' + 
+'make "width 300 \n' + 
+' \n' + 
+'if or (:locationX>:width) (:locationX<0)[ \n' + 
+'  make "velocityX :velocityX * -1  \n' + 
+'] \n' + 
+' \n' + 
+'if :locationY<0[ \n' + 
+' make "velocityY :velocityY*-0.95 \n' + 
+' make "locationY 0 \n' + 
+'] \n' + 
+' \n' + 
+'to circle \n' + 
+'repeat 20[fd 10 rt 18] \n' + 
+'end \n' + 
+' \n' + 
+'penup \n' + 
+'setxyz :locationX :locationY 0 \n' + 
+'pendown \n' + 
+'circle  \n';
