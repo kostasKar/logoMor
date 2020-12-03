@@ -401,7 +401,7 @@ var demoProgram10 =
 ']     \n' + 
 '   \n' + 
 'if (:locationY>:height)[     \n' + 
-' make "velocityY :velocityY*-0.95     \n' + 
+' make "velocityY -:velocityY     \n' + 
 ' make "locationY :height    \n' + 
 ']     \n' + 
 '     \n' + 
