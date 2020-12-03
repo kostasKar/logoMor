@@ -20,7 +20,7 @@ class StaticVariableMakerTask{
     } else if (!this.canBeResolved){
       if (!isNaN(arg)){
         if (this.name in staticVariables === false){
-          staticVariables[this.name] = arg;
+          staticVariables[this.name] = Number(arg);
         }
       }else {
         console.log("Static Variable maker invalid argument: ");
