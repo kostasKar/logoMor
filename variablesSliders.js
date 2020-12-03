@@ -66,9 +66,9 @@ function createListItemForVar(name, initialValue){
 	var liElement = document.createElement("li");
 	liElement.id = name + "li";
 	liElement.innerText = name;
-	liElement.value = initialValue;
+	liElement.initValue = initialValue;
 	liElement.className = "listItems";
-	liElement.onclick = function() {createSliderForVar(this.innerText, this.value);}
+	liElement.onclick = function() {createSliderForVar(this.innerText, this.initValue);}
 	container.appendChild(liElement);
 }
 
