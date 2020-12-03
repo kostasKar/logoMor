@@ -23,8 +23,9 @@ class StaticVariableMakerTask{
           staticVariables[this.name] = Number(arg);
         }
       }else {
-        console.log("Static Variable maker invalid argument: ");
-        console.log(arg);
+        error = true;
+        consolePrint("Static Variable maker invalid argument: ");
+        consolePrintln(arg);
         return false;
       }
       this.canBeResolved = true;
