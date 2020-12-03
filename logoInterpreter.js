@@ -95,7 +95,12 @@ function checkNextToken(){
   
   //Return occurred inside another task inside a proc. So several pops are needed for the proc to 'see' the return command
   if (sourceTokens[currentIndex] === "return"){ 
-      tasksStack.pop();
+      if (tasksStack.length > 1){
+        tasksStack.pop();
+      } else {
+        error = true;
+        consolePrintln("Returned from execution");
+      }
       return;
   } 
   
