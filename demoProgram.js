@@ -2,7 +2,7 @@
 var previousi = -1
 
 function getRandomDemoProgram(){
-	var demoPrograms = [demoProgram1, demoProgram2, demoProgram3, demoProgram4, demoProgram5, demoProgram6, demoProgram7, demoProgram8, demoProgram9];
+	var demoPrograms = [demoProgram1, demoProgram2, demoProgram3, demoProgram4, demoProgram5, demoProgram6, demoProgram7, demoProgram8, demoProgram9, demoProgram10];
 	var i;
 	do {i = Math.floor(Math.random()*demoPrograms.length);}
 	while(i == previousi);
@@ -358,3 +358,71 @@ var demoProgram9 =
 'fd :height+:radius*2 rt 90   \n' + 
 'fd :width+:radius*2 rt 90   \n' + 
 'fd :radius   \n';
+
+var demoProgram10 = 
+';---Demo pinball game---------------     \n' + 
+';---grab the barpos slider fast and play    \n' + 
+'     \n' + 
+'make "width 300    \n' + 
+'make "height 500 \n' + 
+'make "radius 30    \n' + 
+'make "barpos :width/10 \n' + 
+'    \n' + 
+'static "locationX rand :width     \n' + 
+'static "locationY 0     \n' + 
+'static "velocityX 2   \n' + 
+'static "velocityY 8 \n' + 
+'static "lose 0 \n' + 
+'static "score 0 \n' + 
+' \n' + 
+'     \n' + 
+'make "locationX :locationX + :velocityX     \n' + 
+'make "locationY :locationY + :velocityY     \n' + 
+' \n' + 
+'if :lose [pu  setxyz :width/2 :height/2 0 label "youlost home return] \n' + 
+'     \n' + 
+' \n' + 
+'if (:locationX<0)[     \n' + 
+'  make "velocityX -:velocityX  \n' + 
+'  make "locationX 0     \n' + 
+']     \n' + 
+'  \n' + 
+'if (:locationX>:width) [     \n' + 
+'  make "velocityX -:velocityX       \n' + 
+'  make "locationX :width     \n' + 
+']   \n' + 
+'     \n' + 
+'if (:locationY<0)[     \n' + 
+' make "velocityY :velocityY*-1   \n' + 
+' make "locationY 0   \n' + 
+' ifelse (abs (:locationx+:radius-(:barpos+25)))> 50  \n' + 
+'  [ make "lose 1]  \n' + 
+'  [ make "score :score+1] \n' + 
+']     \n' + 
+'   \n' + 
+'if (:locationY>:height)[     \n' + 
+' make "velocityY :velocityY*-0.95     \n' + 
+' make "locationY :height    \n' + 
+']     \n' + 
+'     \n' + 
+'to circle :r     \n' + 
+'make "l 2*pi*:r/50    \n' + 
+'bk :l/2    \n' + 
+'repeat 50[fd :l rt 360/50]     \n' + 
+'end     \n' + 
+'     \n' + 
+'penup     \n' + 
+'setxyz :locationX :locationY 0     \n' + 
+'pendown     \n' + 
+'circle :radius    \n' + 
+'penup    \n' + 
+'home     \n' + 
+'pendown    \n' + 
+'fd :height+:radius rt 90    \n' + 
+'fd :width+:radius*2 rt 90    \n' + 
+'fd :height+:radius*2 rt 90   \n' + 
+'pu fd :width+:radius*2 rt 90    pd \n' + 
+'fd :radius bk :radius \n' + 
+'rt 90 pu fd :barpos pd fd 50  \n' + 
+'print "score \n' + 
+'print :score \n';
