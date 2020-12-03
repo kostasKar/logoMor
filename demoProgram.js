@@ -301,48 +301,54 @@ var demoProgram8 =
 ' rt 360/:legs \n' + 
 '] \n';
 
-var demoProgram9 = 
-';---Demo Bouncing Ball---------------  \n' + 
-';---using static variables we can make  \n' + 
-';---any kind of animation!-----------  \n' + 
+var demoProgram9 =
+';---Demo Bouncing Ball---------------   \n' + 
+';---using static variables we can make   \n' + 
+';---any kind of animation!-----------   \n' + 
+'   \n' + 
+'make "width 300  \n' + 
+'make "height 200  \n' + 
+'make "radius 30  \n' + 
 '  \n' + 
-'make "width 300 \n' + 
-'make "height 200 \n' + 
-'make "radius 30 \n' + 
-' \n' + 
-'static "locationX 0  \n' + 
-'static "locationY :height  \n' + 
-'static "velocityX 1.5  \n' + 
-'static "velocityY 0  \n' + 
-'static "gravity 0.2 \n' + 
-'  \n' + 
-'make "locationX :locationX + :velocityX  \n' + 
-'make "locationY :locationY + :velocityY  \n' + 
-'make "velocityY :velocityY - :gravity  \n' + 
-'  \n' + 
-'if or (:locationX>:width) (:locationX<0)[  \n' + 
-'  make "velocityX :velocityX * -1   \n' + 
-']  \n' + 
-'  \n' + 
-'if or (:locationY>:height) (:locationY<0)[  \n' + 
+'static "locationX 0   \n' + 
+'static "locationY :height   \n' + 
+'static "velocityX 1.5   \n' + 
+'static "velocityY 0   \n' + 
+'static "gravity 0.2  \n' + 
+'   \n' + 
+'make "locationX :locationX + :velocityX   \n' + 
+'make "locationY :locationY + :velocityY   \n' + 
+'make "velocityY :velocityY - :gravity   \n' + 
+'   \n' + 
+'if or (:locationX>:width) (:locationX<0)[   \n' + 
+'  make "velocityX :velocityX * -1    \n' + 
+']   \n' + 
+'   \n' + 
+'if (:locationY<0)[   \n' + 
 ' make "velocityY :velocityY*-0.95  \n' + 
-']  \n' + 
-'  \n' + 
-'to circle :r  \n' + 
-'make "l 2*pi*:r/50 \n' + 
-'bk :l/2 \n' +
-'repeat 50[fd :l rt 360/50]  \n' + 
-'end  \n' + 
-'  \n' + 
+' make "locationY 0  \n' + 
+']   \n' + 
+' \n' + 
+'if or (:locationY>:height) (:locationY<0)[   \n' + 
+' make "velocityY :velocityY*-0.95   \n' + 
+' make "locationY :height  \n' + 
+']   \n' + 
+'   \n' + 
+'to circle :r   \n' + 
+'make "l 2*pi*:r/50  \n' + 
+'bk :l/2  \n' + 
+'repeat 50[fd :l rt 360/50]   \n' + 
+'end   \n' + 
+'   \n' + 
+'penup   \n' + 
+'setxyz :locationX :locationY 0   \n' + 
+'pendown   \n' + 
+'circle :radius  \n' + 
 'penup  \n' + 
-'setxyz :locationX :locationY 0  \n' + 
+'home   \n' + 
 'pendown  \n' + 
-'circle :radius \n' + 
-'penup \n' + 
-'home  \n' + 
-'pendown \n' + 
-'fd :height+:radius rt 90 \n' + 
-'fd :width+:radius*2 rt 90 \n' + 
-'fd :height+:radius*2 rt 90 \n' + 
-'fd :width+:radius*2 rt 90 \n' + 
-'fd :radius \n';
+'fd :height+:radius rt 90  \n' + 
+'fd :width+:radius*2 rt 90  \n' + 
+'fd :height+:radius*2 rt 90  \n' + 
+'fd :width+:radius*2 rt 90  \n' + 
+'fd :radius  \n';
