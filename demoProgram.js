@@ -259,7 +259,7 @@ var demoProgram7 =
 
 var demoProgram8 = 
 ';----Demo Colorful Starfish--------- \n' + 
-';Using beginface endface we can solids \n' + 
+';Using beginface endface we can create solids \n' + 
 ' \n' + 
 ';-----Function to dray one leg------- \n' + 
 'to leg :s :d \n' + 

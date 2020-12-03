@@ -38,6 +38,8 @@ class ArgumentResolverTask {
       		this.leftArgument = varscope[arg.replace(":", "")];
       	} else if (arg.replace(":", "") in globalScope){
           this.leftArgument = globalScope[arg.replace(":", "")];
+        } else if (arg.replace(":", "") in staticVariables){
+          this.leftArgument = staticVariables[arg.replace(":", "")];
         } else {
       		consolePrint("Undefined variable: ");
           consolePrintln(arg.replace(":", ""));

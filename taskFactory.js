@@ -4,6 +4,7 @@
 var TasksConstructors = {
   "(":ParenthesisTask,
   "make":VariableMakerTask,
+  "static":StaticVariableMakerTask,
   "if":IfTask,
   "ifelse":IfElseTask,
   "repeat":RepeatTask,

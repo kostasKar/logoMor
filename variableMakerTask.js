@@ -21,11 +21,15 @@ class VariableMakerTask{
       return true;
     } else if (!this.canBeResolved){
       if (!isNaN(arg)){
-        var varscope = variablesScopeStack[variablesScopeStack.length-1];
-        if ((variablesScopeStack.length == 1) && (this.name in varscope === false)){
-          arg = this.checkSliders(arg);
+        if (this.name in staticVariables){
+          staticVariables[this.name] = Number(arg);
+        } else {
+          var varscope = variablesScopeStack[variablesScopeStack.length-1];
+          if ((variablesScopeStack.length == 1) && (this.name in varscope === false)){
+            arg = this.checkSliders(arg);
+          }
+        	varscope[this.name] = Number(arg);
         }
-      	varscope[this.name] = Number(arg);
       }else {
         console.log("Variable maker value invalid argument: ");
         console.log(arg);

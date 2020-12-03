@@ -7,6 +7,7 @@ var currentIndex;			  //the int index of current token
 var tasksStack;			    //the stack with all the tasks
 var globalVariables;	  //an object with all the global variables name-value pairs
 var variablesScopeStack;//the stack with the variables scopes
+var staticVariables;    //an object with all ste static variables name-vlue pairs
 var procedurePrototypes;//an object with all the functions name-object pairs
 var seed;				        //the seed for a seedable Random Number Generator		
 var seedableRNG;			  //a seedable random number generator
@@ -37,6 +38,7 @@ function parseLogo(sourceCode){
   console.log(initialSourceTokens);
   seed = Math.random().toString(36).substring(7);
   procedurePrototypes = {};
+  staticVariables = {};
   clearSliders();
   clearListItems();
 
