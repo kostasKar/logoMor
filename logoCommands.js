@@ -1,4 +1,5 @@
 var penDown;
+var showTurtle;
 var strokeR, strokeG, strokeB, strokeWght;
 var shapeBegan;
 var vertices;
@@ -42,6 +43,7 @@ function restoreStrokeStyle(){
 function logoStart(){
   drawCoordinates(25);
   penDown = true;
+  showTurtle = true;
   shapeBegan = false;
   vertices = [];
   initStrokeStyle();
@@ -53,9 +55,19 @@ function logoEnd(){
   if (shapeBegan){
     makeShape();
   }
-  drawCoordinates(10);  
-  drawAvatar();
+  if (showTurtle){
+    drawCoordinates(10);
+    drawAvatar();
+  }
   pop();
+}
+
+function SHOWTURTLE(){
+  showTurtle = true;
+}
+
+function HIDETURTLE(){
+  showTurtle = false;
 }
 
 function BEGINSHAPE(){

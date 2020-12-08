@@ -97,6 +97,8 @@ class GenericCommandTaskS extends GenericCommandTaskF {
  class ColorTask extends ThreeArgumentsCommandTask { run() { COLOR(parseInt(this.arguments[0]), parseInt(this.arguments[1]), parseInt(this.arguments[2])); return "";}}
  class PdTask extends NoArgumentCommandTask { run() { PENDOWN(); return "";}}
  class PuTask extends NoArgumentCommandTask { run() { PENUP(); return "";}}
+ class ShowTurtleTask extends NoArgumentCommandTask { run() { SHOWTURTLE(); return "";}} 
+ class HideTurtleTask extends NoArgumentCommandTask { run() { HIDETURTLE(); return "";}} 
  class HmTask extends NoArgumentMove { run() { HOME(); return "";}}
  class GetXTask extends NoArgumentCommandTask { run() { return GETX().toString();}}
  class GetYTask extends NoArgumentCommandTask { run() { return GETY().toString();}}
