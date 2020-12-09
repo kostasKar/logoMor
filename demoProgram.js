@@ -361,12 +361,11 @@ var demoProgram9 =
 
 var demoProgram10 = 
 ';---Demo pinball game---------------     \n' + 
-';---grab the barpos slider fast and play    \n' + 
 '     \n' + 
 'make "width 300    \n' + 
 'make "height 500 \n' + 
 'make "radius 30    \n' + 
-'make "barpos :width/10 \n' + 
+'make "barpos mousex \n' + 
 '    \n' + 
 'static "locationX rand :width     \n' + 
 'static "locationY 0     \n' + 
