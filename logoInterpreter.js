@@ -1,15 +1,15 @@
 
 
 
-var initialSourceTokens = {};  //the array of tokens fro the wole program
+var initialSourceTokens = {};  //the array of tokens fot the whole program
 var sourceTokens        //the array of the tokens for the currently executed code body
 var currentIndex;			  //the int index of current token
 var tasksStack;			    //the stack with all the tasks
 var globalVariables;	  //an object with all the global variables name-value pairs
 var variablesScopeStack;//the stack with the variables scopes
-var staticVariables;    //an object with all ste static variables name-vlue pairs
+var staticVariables;    //an object with all ste static variables name-value pairs
 var procedurePrototypes;//an object with all the functions name-object pairs
-var seed;				        //the seed for a seedable Random Number Generator		
+var seed;				        //the seed for the seedable Random Number Generator		
 var seedableRNG;			  //a seedable random number generator
 var error;              //boolean indicating error in execution
 var startTime;          //used for time command
@@ -98,7 +98,7 @@ function checkNextToken(){
       if (tasksStack.length > 1){
         tasksStack.pop();
       } else {
-        error = true;
+        error = true; //This is either an error, or we can use return to exit execution. So no 'error' printed
         consolePrintln("Returned from execution");
       }
       return;

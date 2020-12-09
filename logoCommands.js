@@ -246,3 +246,14 @@ function SETXYZ(newX, newY, newZ){
    }
  }
 
+function MOUSEX(){
+  return  (mouseX - width/2)*(fov / 1.2) - centerX ;
+}
+
+function MOUSEY(){
+  return -((mouseY - height/2)*(fov / 1.2) - centerY);
+}
+
+function MOUSEPRESSED(){
+  return mouseIsPressed;
+}

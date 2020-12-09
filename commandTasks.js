@@ -150,3 +150,8 @@ class FrameTask extends NoArgumentCommandTask{run(){return (frameCount-startFram
 //3d solids
 class BeginShapeTask extends NoArgumentCommandTask{run(){BEGINSHAPE(); return "";}}
 class EndShapeTask extends NoArgumentCommandTask{run(){ENDSHAPE(); return "";}}
+
+//mouse tasks
+class MouseXTask extends NoArgumentCommandTask{run(){return MOUSEX().toString();}}
+class MouseYTask extends NoArgumentCommandTask{run(){return MOUSEY().toString();}}
+class MousePressedTask extends NoArgumentCommandTask{run(){return MOUSEPRESSED()? "1" : "0";}}

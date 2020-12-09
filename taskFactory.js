@@ -74,7 +74,10 @@ var TasksConstructors = {
   "min":MinTask,
   "max":MaxTask,
   "beginface":BeginShapeTask,
-  "endface":EndShapeTask
+  "endface":EndShapeTask,
+  "mousex":MouseXTask,
+  "mousey":MouseYTask,
+  "mousepressed":MousePressedTask
 }
 
 
