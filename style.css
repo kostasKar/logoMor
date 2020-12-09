@@ -235,7 +235,7 @@ output{
 
 #CameraInstructions {
   font-family: Lucida Console;
-  color: #333333;
+  color: #555555;
   position: fixed;
   top: 20px;
   left: 20px;
@@ -257,7 +257,7 @@ output{
 
 #copyright{
   font-family: Consolas;
-  color: #222222;
+  color: #444444;
   position: fixed;
   bottom: 15px;
   left: 15px;
