@@ -19,9 +19,9 @@ class WhileTask {
     }
     if (!this.conditionSet){
       if (arg != 0){
-        new InstructionsListTask(); 
+        new InstructionsBlockTask(); 
       } else if (arg == 0){
-        new InstructionsListTask(true);
+        new InstructionsBlockTask(true);
         this.canBeResolved = true;
       }
       this.conditionSet = true;

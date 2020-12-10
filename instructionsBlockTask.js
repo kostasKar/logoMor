@@ -38,7 +38,7 @@ function indexOfClosingBracket(startIndex){
 
 
 
-class InstructionsListTask {
+class InstructionsBlockTask {
 
   constructor(skip = false){
 		tasksStack.push(this);

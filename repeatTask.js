@@ -20,11 +20,11 @@ class RepeatTask{
       if (!isNaN(arg)){
         this.totalExecutions = parseInt(arg);
         if (this.totalExecutions <= 0){
-          new InstructionsListTask(true);
+          new InstructionsBlockTask(true);
           this.canBeResolved = true;
         } else {
           this.startIndex = currentIndex;
-          new InstructionsListTask();
+          new InstructionsBlockTask();
         }
       } else {
         error = true;
@@ -39,7 +39,7 @@ class RepeatTask{
         this.canBeResolved = true;
       } else {
         currentIndex = this.startIndex;
-        new InstructionsListTask();
+        new InstructionsBlockTask();
       }
       return false;
     }

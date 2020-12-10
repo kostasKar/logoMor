@@ -18,17 +18,17 @@ class IfElseTask {
     if (!this.conditionSet){
       if (arg != 0){
         this.conditionValue = true;
-        new InstructionsListTask();
+        new InstructionsBlockTask();
       } else if (arg == 0){
         this.conditionValue = false;
-        new InstructionsListTask(true);
-        new InstructionsListTask();
+        new InstructionsBlockTask(true);
+        new InstructionsBlockTask();
       }
       this.conditionSet = true;
       return true;
     } else {
       if (this.conditionValue){
-        new InstructionsListTask(true);
+        new InstructionsBlockTask(true);
       }
       this.canBeResolved = true;
       return false;

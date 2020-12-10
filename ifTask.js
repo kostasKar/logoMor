@@ -16,9 +16,9 @@ class IfTask{
 
     if (!this.conditionSet){
       if (arg != 0){
-        new InstructionsListTask();
+        new InstructionsBlockTask();
       } else if (arg == 0){
-        new InstructionsListTask(true);
+        new InstructionsBlockTask(true);
       }
       this.conditionSet = true;
       return true;
