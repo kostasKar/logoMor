@@ -6,11 +6,10 @@ class RepeatTask{
 
   constructor(){
     tasksStack.push(this);
-    var art = new ArgumentResolverTask();
+    new ArgumentResolverTask();
     this.totalExecutionsSet = false;
     this.canBeResolved = false;
     this.executionsMade = 0;
-    this.noRepeatsEndIndex = indexOfClosingBracket(currentIndex);
   }  
 
   tryToTakeInput(arg){
@@ -21,27 +20,28 @@ class RepeatTask{
       if (!isNaN(arg)){
         this.totalExecutions = parseInt(arg);
         if (this.totalExecutions <= 0){
-          currentIndex = this.noRepeatsEndIndex;
+          new InstructionsListTask(true);
+          this.canBeResolved = true;
+        } else {
+          this.startIndex = currentIndex;
+          new InstructionsListTask();
         }
       } else {
+        error = true;
         consolePrint("Repeat block invalid execution times: ");
         consolePrintln(arg);
       }
       this.totalExecutionsSet = true;
       return true;
-    } else if (arg === "["){
-      this.startIndex = currentIndex;
-      return true;
-    } else if (arg === "]"){
+    } else {
       this.executionsMade++;
       if (this.executionsMade >= this.totalExecutions){
         this.canBeResolved = true;
       } else {
         currentIndex = this.startIndex;
+        new InstructionsListTask();
       }
-      return true;
-    } else {
-      return false;  
+      return false;
     }
   }
   
@@ -51,6 +51,15 @@ class RepeatTask{
   }
   
 } 
+
+
+
+
+
+
+
+
+
 
 
 

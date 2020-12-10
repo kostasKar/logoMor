@@ -1,15 +1,16 @@
 
 
 
+
+
 class UntilTask {
 
   constructor(){
     tasksStack.push(this);
-    var art = new ArgumentResolverTask();
+    new ArgumentResolverTask();
     this.canBeResolved = false;
     this.conditionSet = false;
-    this.conditionIndex = currentIndex;
-    this.trueCaseIndex = indexOfClosingBracket(currentIndex) + 1;
+    this.conditionIndex = currentIndex + 1;
   }
   
   tryToTakeInput(arg){
@@ -18,24 +19,17 @@ class UntilTask {
     }
     if (!this.conditionSet){
       if (arg == 0){
-        //nothing to do 
+        new InstructionsListTask(); 
       } else if (arg != 0){
-        currentIndex = this.trueCaseIndex;
+        new InstructionsListTask(true);
         this.canBeResolved = true;
-      } else {
-        consolePrint("While Statement invalid condition: ");
-        consolePrintln(arg);
       }
       this.conditionSet = true;
       return true;
-    } else if (arg === "["){
-      return true;
-    } else if (arg === "]"){
-      currentIndex = this.conditionIndex;
-      var art = new ArgumentResolverTask();
-      this.conditionSet = false;
-      return true;
     } else {
+      currentIndex = this.conditionIndex;
+      new ArgumentResolverTask();
+      this.conditionSet = false;
       return false;
     }
   }

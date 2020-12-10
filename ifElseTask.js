@@ -6,11 +6,9 @@ class IfElseTask {
 
   constructor(){
     tasksStack.push(this);
-    var art = new ArgumentResolverTask();
+    new ArgumentResolverTask();
     this.canBeResolved = false;
     this.conditionSet = false;
-    this.trueBlockClosingBracket = indexOfClosingBracket(currentIndex);
-    this.falseBlockClosingBracket = indexOfClosingBracket(this.trueBlockClosingBracket);
   }
   
   tryToTakeInput(arg){
@@ -19,22 +17,20 @@ class IfElseTask {
     }
     if (!this.conditionSet){
       if (arg != 0){
-        //nothing
+        this.conditionValue = true;
+        new InstructionsListTask();
       } else if (arg == 0){
-        currentIndex = this.trueBlockClosingBracket + 1;
-      } else {
-        consolePrint("IfElse Statement invalid condition: ");
-        consolePrintln(arg);
+        this.conditionValue = false;
+        new InstructionsListTask(true);
+        new InstructionsListTask();
       }
       this.conditionSet = true;
       return true;
-    } else if (arg === "["){
-      return true;
-    } else if (arg === "]"){
-      currentIndex = this.falseBlockClosingBracket;
-      this.canBeResolved = true;
-      return true;
     } else {
+      if (this.conditionValue){
+        new InstructionsListTask(true);
+      }
+      this.canBeResolved = true;
       return false;
     }
   }
