@@ -28,7 +28,8 @@ class ArgumentResolverTask {
     
     if (!this.leftArgumentAvailable){
       if (arg === ""){
-        consolePrintln("Error: Arithmetic resolver was fed with the result of a non-number returning task");
+        error = true;
+        consolePrintln("Error: Argument resolver was fed with the result of a non-number returning task");
         return false;
       }
       var varscope = variablesScopeStack[variablesScopeStack.length-1];

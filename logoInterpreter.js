@@ -27,6 +27,18 @@ function consoleClear(){
   document.getElementById("consoleTextArea").value = "";
 }
 
+function stackTrace(){
+  consolePrintln("Stack trace (most recent task last):");
+  for (let i=0; i<tasksStack.length; i++){
+    consolePrint("-" + tasksStack[i].constructor.name);
+    if (tasksStack[i].constructor.name === 'ProcedureTask'){
+      consolePrintln(" " + tasksStack[i].body[0]);
+    } else {
+      consolePrintln("");
+    }
+  }
+}
+
 function parseLogo(sourceCode){
   
   if (sourceCode === undefined){
@@ -67,6 +79,10 @@ function executeLogo(){
   if (movesCount >= movesLimit){
     consolePrintln("Stopped: Reached Moves Limit");
   }
+
+  if(error){
+    stackTrace();
+  }
 }
 
 function checkNextToken(){
@@ -88,7 +104,7 @@ function checkNextToken(){
   
   //Here only new tokens should arrive
   if (currentIndex >= sourceTokens.length){
-    consolePrintln("Error. Unresolved task expects argument");
+    consolePrintln("Error: Unresolved task expects argument");
     error = true;
     return;
   }
