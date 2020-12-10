@@ -56,3 +56,24 @@ class RepeatTask{
 
 
 
+class RepCountTask{
+  constructor(){
+    tasksStack.push(this);
+    this.canBeResolved = true;
+  }
+
+  tryToTakeInput(){
+    return false;
+  }
+
+  resolve(){
+    tasksStack.pop();
+    for (let i = tasksStack.length-1; i>=0; i--){
+      if ('executionsMade' in tasksStack[i]){
+        return (tasksStack[i].executionsMade+1).toString();
+      }
+    }
+    return "0";
+  }
+
+}

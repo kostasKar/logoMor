@@ -8,6 +8,7 @@ var TasksConstructors = {
   "if":IfTask,
   "ifelse":IfElseTask,
   "repeat":RepeatTask,
+  "repcount":RepCountTask,
   "while":WhileTask,
   "until":UntilTask,
   "forward":FdTask,
