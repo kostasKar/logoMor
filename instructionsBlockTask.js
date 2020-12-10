@@ -50,6 +50,7 @@ class InstructionsBlockTask {
         error = true;
         consolePrintln("Error: Missing '['");
       }
+      this.opened = false;
 			this.canBeResolved = false;
 		}
 	}
@@ -57,7 +58,8 @@ class InstructionsBlockTask {
 	tryToTakeInput(arg){
     if (this.canBeResolved){ 
       return false;
-    } else if (arg === "["){
+    } else if ((!this.opened) && (arg === "[")){
+      this.opened = true;
       return true;
     } else if (arg === "]"){
       this.canBeResolved = true;
