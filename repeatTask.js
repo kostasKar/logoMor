@@ -17,19 +17,18 @@ class RepeatTask{
       return false;
     }
     if (!this.totalExecutionsSet){
-      if (!isNaN(arg)){
-        this.totalExecutions = parseInt(arg);
-        if (this.totalExecutions <= 0){
-          new InstructionsBlockTask(true);
-          this.canBeResolved = true;
-        } else {
-          this.startIndex = currentIndex;
-          new InstructionsBlockTask();
-        }
-      } else {
+      if (isNaN(arg)){
         error = true;
-        consolePrint("Repeat block invalid execution times: ");
-        consolePrintln(arg);
+        consolePrintln("Error: Invalid repeat execution times: " + arg);
+        return false;
+      }
+      this.totalExecutions = parseInt(arg);
+      if (this.totalExecutions <= 0){
+        new InstructionsBlockTask(true);
+        this.canBeResolved = true;
+      } else {
+        this.startIndex = currentIndex;
+        new InstructionsBlockTask();
       }
       this.totalExecutionsSet = true;
       return true;

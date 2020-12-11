@@ -16,6 +16,11 @@ class IfElseTask {
       return false;
     }
     if (!this.conditionSet){
+      if (isNaN(arg)){
+        error = true;
+        consolePrintln("Error: Invalid ifelse condition: " + arg);
+        return false;
+      }
       if (arg != 0){
         this.conditionValue = true;
         new InstructionsBlockTask();

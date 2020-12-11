@@ -3,8 +3,8 @@
 
 
 function isArithmeticOperator(token){
-  var re = "[-+*/<>=]";
-  return (token.match(re) != null || token === "<=" || token === ">=");
+  var arithmeticOperators = ["+", "-", "*", "/", "<", ">", "<=", ">=", "="];
+  return arithmeticOperators.includes(token);
 }
 
 
@@ -42,7 +42,8 @@ class ArgumentResolverTask {
         } else if (arg.replace(":", "") in staticVariables){
           this.leftArgument = staticVariables[arg.replace(":", "")];
         } else {
-      		consolePrint("Undefined variable: ");
+          error = true;
+      		consolePrint("Error: Undefined variable: ");
           consolePrintln(arg.replace(":", ""));
           return false;
       	}
@@ -81,7 +82,8 @@ class ArgumentResolverTask {
       if (!isNaN(arg)){
       	this.rightArgument = Number(arg);
 	  } else {
-	  	consolePrint("Invalid right argument: ");
+      error = true;
+	  	consolePrint("Error: Invalid right argument: ");
       consolePrintln(arg);
 	  }	
       this.rightArgumentAvailable = true;
@@ -120,7 +122,8 @@ class ArgumentResolverTask {
       } else if (this.operator === "="){
         return (this.leftArgument == this.rightArgument) ? "1" : "0";
       } else {
-        consolePrint("Arithmetic resolver cannot resolve operator: ");
+        error = true;
+        consolePrint("Error: Arithmetic resolver cannot resolve operator: ");
         consolePrintln(this.operator);
         return "";
       }

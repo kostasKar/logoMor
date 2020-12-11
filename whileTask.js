@@ -18,6 +18,11 @@ class WhileTask {
       return false;
     }
     if (!this.conditionSet){
+      if (isNaN(arg)){
+        error = true;
+        consolePrintln("Error: Invalid while condition: " + arg);
+        return false;
+      }
       if (arg != 0){
         new InstructionsBlockTask(); 
       } else if (arg == 0){
