@@ -16,8 +16,7 @@ class IfTask{
 
     if (!this.conditionSet){
       if (isNaN(arg)){
-        error = true;
-        consolePrintln("Error: Invalid if condition: " + arg);
+        throwError("Invalid if condition: " + arg);
         return false;
       }
       if (arg != 0){

@@ -31,9 +31,7 @@ class VariableMakerTask{
         	varscope[this.name] = Number(arg);
         }
       }else {
-        error = true;
-        consolePrint("Variable maker value invalid argument: ");
-        consolePrintln(arg);
+        throwError("Variable maker value invalid argument: " + arg);
         return false;
       }
       this.canBeResolved = true;

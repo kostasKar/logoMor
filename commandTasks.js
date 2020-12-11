@@ -50,9 +50,7 @@ class GenericCommandTaskF  {
   
   saveArgument(i, arg){
   	if (isNaN(arg)){
-      error = true;
-  	  consolePrint("Error: Invalid command argument: ");
-      consolePrintln(arg);
+  	  throwError("Invalid command argument: " + arg);
       return;
   	}
     this.arguments[i] = arg;

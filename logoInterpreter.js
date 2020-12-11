@@ -39,6 +39,12 @@ function stackTrace(){
   }
 }
 
+function throwError(text){
+  error = true;
+  consolePrintln("Error: " + text);
+  stackTrace();
+}
+
 function parseLogo(sourceCode){
   
   if (sourceCode === undefined){
@@ -79,10 +85,6 @@ function executeLogo(){
   if (movesCount >= movesLimit){
     consolePrintln("Stopped: Reached Moves Limit");
   }
-
-  if(error){
-    stackTrace();
-  }
 }
 
 function checkNextToken(){
@@ -104,8 +106,7 @@ function checkNextToken(){
   
   //Here only new tokens should arrive
   if (currentIndex >= sourceTokens.length){
-    consolePrintln("Error: Unresolved task expects argument");
-    error = true;
+    throwError("Unresolved task expects argument");
     return;
   }
   
@@ -114,7 +115,7 @@ function checkNextToken(){
       if (tasksStack.length > 1){
         tasksStack.pop();
       } else {
-        error = true; //This is either an error, or we can use return to exit execution. So no 'error' printed
+        error = true; //This is either an error, or we can use return to exit execution. So no actual error thrown
         consolePrintln("Returned from execution");
       }
       return;

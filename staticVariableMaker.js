@@ -23,9 +23,7 @@ class StaticVariableMakerTask{
           staticVariables[this.name] = Number(arg);
         }
       }else {
-        error = true;
-        consolePrint("Static Variable maker invalid argument: ");
-        consolePrintln(arg);
+        throwError("Static Variable maker invalid argument: " + arg);
         return false;
       }
       this.canBeResolved = true;

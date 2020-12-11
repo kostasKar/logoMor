@@ -11,8 +11,7 @@ function indexOfClosingBracket(startIndex){
   while(sourceTokens[i] !== "[") {
     i++;
     if (i == sourceTokens.length){
-      error = true;
-      consolePrintln("Error: Missing '['");
+      throwError("Missing '['");
       return 0;
     }
   }
@@ -20,8 +19,7 @@ function indexOfClosingBracket(startIndex){
   
   while (bracketDepth > 0){
     if (i == sourceTokens.length){
-      error = true;
-      consolePrintln("Error: Missing ']'");
+      throwError("Missing ']'");
       return 0;
     }
     if (sourceTokens[i] === "[") {bracketDepth++;}
@@ -47,8 +45,7 @@ class InstructionsBlockTask {
 			this.canBeResolved = true;
 		} else {
       if (sourceTokens[currentIndex] !== "["){
-        error = true;
-        consolePrintln("Error: Missing '['");
+        throwError("Missing '['");
       }
       this.opened = false;
 			this.canBeResolved = false;

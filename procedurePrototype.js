@@ -3,8 +3,7 @@ class ProcedurePrototype {
   constructor(){
     let i = currentIndex;
     if(sourceTokens.length < i + 3){//there should be at least a token for function name and a token for 'end'
-      error = true;
-      consolePrintln("Error: Incomplete function definition");
+      throwError("Incomplete function definition");
       return;
     }
     i++;//skip the 'to'
@@ -17,16 +16,14 @@ class ProcedurePrototype {
       this.numOfParameters++;
       i++;
       if (i == sourceTokens.length){
-        error = true;
-        consolePrintln("Error: Missing 'end'");
+        throwError("Missing 'end'");
         return;
       }
     }
     while (sourceTokens[i] !== "end"){
       i++;
       if ((i == sourceTokens.length) || (sourceTokens[i] === "to")){
-        error = true;
-        consolePrintln("Error: Missing 'end'");
+        throwError("Missing 'end'");
         return;
       }
     }

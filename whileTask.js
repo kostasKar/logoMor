@@ -19,8 +19,7 @@ class WhileTask {
     }
     if (!this.conditionSet){
       if (isNaN(arg)){
-        error = true;
-        consolePrintln("Error: Invalid while condition: " + arg);
+        throwError("Invalid while condition: " + arg);
         return false;
       }
       if (arg != 0){

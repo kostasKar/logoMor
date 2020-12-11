@@ -18,8 +18,7 @@ class RepeatTask{
     }
     if (!this.totalExecutionsSet){
       if (isNaN(arg)){
-        error = true;
-        consolePrintln("Error: Invalid repeat execution times: " + arg);
+        throwError("Invalid repeat execution times: " + arg);
         return false;
       }
       this.totalExecutions = parseInt(arg);

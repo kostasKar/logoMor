@@ -19,8 +19,7 @@ class UntilTask {
     }
     if (!this.conditionSet){
       if (isNaN(arg)){
-        error = true;
-        consolePrintln("Error: Invalid until condition: " + arg);
+        throwError("Invalid until condition: " + arg);
         return false;
       }
       if (arg == 0){

@@ -95,9 +95,7 @@ function checkTaskFactory(){
   } else if (token === "to"){
     new ProcedurePrototype();
   } else {
-    consolePrint("Invalid token: ");
-    consolePrintln(token);
-    error = true;
+    throwError("Invalid token: " + token);
   }
   
 }
