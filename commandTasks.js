@@ -9,8 +9,7 @@ class GenericCommandTaskF  {
    constructor( numOfArgs, countMove = false){
     this.numOfArguments = numOfArgs;
     this.arguments = new Array(this.numOfArguments);
-    this.argumentsSet = new Array(this.numOfArguments);
-    this.argumentsSet.fill(false);
+    this.currentArgument = 0;
     this.countMove = countMove;
     tasksStack.push(this);
     if (this.numOfArguments == 0){
@@ -22,20 +21,18 @@ class GenericCommandTaskF  {
   }
   
   tryToTakeInput(arg){
-  	var i;
-    for (i = 0; i < this.numOfArguments; i++){
-      if (this.argumentsSet[i] == false){
-        this.saveArgument(i, arg);
-        this.argumentsSet[i] = true;
-        if (i == this.numOfArguments - 1){
-          this.canBeResolved = true;
-        } else {
-          new ArgumentResolverTask();
-        }
-        return true;
+    if (this.currentArgument < this.numOfArguments){
+      this.saveArgument(arg);
+      this.currentArgument++;
+      if (this.currentArgument == this.numOfArguments){
+        this.canBeResolved = true;
+      } else {
+        new ArgumentResolverTask();
       }
+      return true;
+    } else {
+      return false;
     }
-    return false;
   }
   
   resolve(){
@@ -45,15 +42,16 @@ class GenericCommandTaskF  {
   }
   
   run(){
+    throwError("command task run() method not implemented");
     return "";
   }
   
-  saveArgument(i, arg){
+  saveArgument(arg){
   	if (isNaN(arg)){
   	  throwError("Invalid command argument: " + arg);
       return;
   	}
-    this.arguments[i] = arg;
+    this.arguments[this.currentArgument] = arg;
   }
 }
 
@@ -62,8 +60,8 @@ class GenericCommandTaskF  {
 //The generic task for commands that accept String arguments
 class GenericCommandTaskS extends GenericCommandTaskF {
   constructor(numOfArgs){super(numOfArgs);}
-  saveArgument(i, arg){
-    this.arguments[i] = arg.replace("\"", "");
+  saveArgument(arg){
+    this.arguments[this.currentArgument] = arg.replace("\"", "");
   } 
 }
 
