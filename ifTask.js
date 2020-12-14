@@ -22,7 +22,7 @@ class IfTask{
       if (arg != 0){
         new InstructionsBlockTask();
       } else if (arg == 0){
-        new InstructionsBlockTask(true);
+        InstructionsBlockTask.skipBlock();
       }
       this.conditionSet = true;
       return true;

@@ -25,7 +25,7 @@ class WhileTask {
       if (arg != 0){
         new InstructionsBlockTask(); 
       } else if (arg == 0){
-        new InstructionsBlockTask(true);
+        InstructionsBlockTask.skipBlock();
         this.canBeResolved = true;
       }
       this.conditionSet = true;

@@ -25,14 +25,14 @@ class IfElseTask {
         new InstructionsBlockTask();
       } else if (arg == 0){
         this.conditionValue = false;
-        new InstructionsBlockTask(true);
+        InstructionsBlockTask.skipBlock();
         new InstructionsBlockTask();
       }
       this.conditionSet = true;
       return true;
     } else {
       if (this.conditionValue){
-        new InstructionsBlockTask(true);
+        InstructionsBlockTask.skipBlock();
       }
       this.canBeResolved = true;
       return false;

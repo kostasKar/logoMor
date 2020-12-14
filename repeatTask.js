@@ -23,7 +23,7 @@ class RepeatTask{
       }
       this.totalExecutions = parseInt(arg);
       if (this.totalExecutions <= 0){
-        new InstructionsBlockTask(true);
+        InstructionsBlockTask.skipBlock();
         this.canBeResolved = true;
       } else {
         this.startIndex = currentIndex;

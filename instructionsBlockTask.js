@@ -38,18 +38,13 @@ function indexOfClosingBracket(startIndex){
 
 class InstructionsBlockTask {
 
-  constructor(skip = false){
-		tasksStack.push(this);
-		if (skip){
-			currentIndex = indexOfClosingBracket(currentIndex) + 1;
-			this.canBeResolved = true;
-		} else {
-      if (sourceTokens[currentIndex] !== "["){
-        throwError("Missing '['");
-      }
-      this.opened = false;
-			this.canBeResolved = false;
-		}
+  constructor(){		
+    tasksStack.push(this);
+    if (sourceTokens[currentIndex] !== "["){
+      throwError("Missing '['");
+    }
+    this.opened = false;
+		this.canBeResolved = false;
 	}
 
 	tryToTakeInput(arg){
@@ -69,5 +64,9 @@ class InstructionsBlockTask {
   resolve(){
   	tasksStack.pop();
   	return "";
+  }
+
+  static skipBlock(){
+    currentIndex = indexOfClosingBracket(currentIndex) + 1;
   }
 }
