@@ -8,14 +8,12 @@ class IfElseTask {
     tasksStack.push(this);
     new ArgumentResolverTask();
     this.canBeResolved = false;
-    this.conditionSet = false;
   }
   
   tryToTakeInput(arg){
     if (this.canBeResolved){
       return false;
-    }
-    if (!this.conditionSet){
+    } else {
       if (isNaN(arg)){
         throwError("Invalid ifelse condition: " + arg);
         return false;
@@ -23,24 +21,21 @@ class IfElseTask {
       if (arg != 0){
         this.conditionValue = true;
         new InstructionsBlockTask();
-      } else if (arg == 0){
+      } else {
         this.conditionValue = false;
         InstructionsBlockTask.skipBlock();
         new InstructionsBlockTask();
       }
-      this.conditionSet = true;
-      return true;
-    } else {
-      if (this.conditionValue){
-        InstructionsBlockTask.skipBlock();
-      }
       this.canBeResolved = true;
-      return false;
+      return true;
     }
   }
   
   
   resolve(){
+    if (this.conditionValue){
+      InstructionsBlockTask.skipBlock();
+    }
     tasksStack.pop();
     return "";
   }
