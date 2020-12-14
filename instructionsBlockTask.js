@@ -1,44 +1,8 @@
 
 
-
-
-
-function indexOfClosingBracket(startIndex){
-  
-  var bracketDepth = 1;
-  var i = startIndex;
-  
-  while(sourceTokens[i] !== "[") {
-    i++;
-    if (i == sourceTokens.length){
-      throwError("Missing '['");
-      return 0;
-    }
-  }
-  i++;
-  
-  while (bracketDepth > 0){
-    if (i == sourceTokens.length){
-      throwError("Missing ']'");
-      return 0;
-    }
-    if (sourceTokens[i] === "[") {bracketDepth++;}
-    else if (sourceTokens[i] === "]") {bracketDepth--;}
-    i++;
-  }
-  return i - 1;
-}
-
-
-
-
-
-
-
-
 class InstructionsBlockTask {
 
-  constructor(){		
+  constructor(){
     tasksStack.push(this);
     if (sourceTokens[currentIndex] !== "["){
       throwError("Missing '['");
@@ -67,6 +31,23 @@ class InstructionsBlockTask {
   }
 
   static skipBlock(){
-    currentIndex = indexOfClosingBracket(currentIndex) + 1;
+    var bracketDepth = 0;
+    
+    if(sourceTokens[currentIndex] !== "[") {
+      throwError("Skippig Instruction Block: Missing '['");
+      return;
+    }
+    
+    do {
+      if (currentIndex == sourceTokens.length){
+        throwError("Skippig Instruction Block: Missing ']'");
+        return;
+      }
+      if (sourceTokens[currentIndex] === "[") {bracketDepth++;}
+      else if (sourceTokens[currentIndex] === "]") {bracketDepth--;}
+      currentIndex++;
+    } 
+    while (bracketDepth > 0);
   }
+
 }
