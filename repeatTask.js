@@ -76,7 +76,7 @@ class RepCountTask{
   resolve(){
     tasksStack.pop();
     for (let i = tasksStack.length-1; i>=0; i--){
-      if ('executionsMade' in tasksStack[i]){
+      if (tasksStack[i].constructor.name === 'RepeatTask'){
         return (tasksStack[i].executionsMade+1).toString();
       }
     }
