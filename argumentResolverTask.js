@@ -33,11 +33,8 @@ class ArgumentResolverTask {
     this.operatorAvailable = false;
     this.rightArgumentAvailable = false;
     this.stringArgumentSet = false;
-    this.stringArgument = "";
     this.leftArgument = 0;
-    this.rightArgument = "";
     tasksStack.push(this);
-    
   }
   
   tryToTakeInput(arg){
@@ -50,7 +47,7 @@ class ArgumentResolverTask {
       if (arg.startsWith(":")){
       	this.leftArgument = resolveVariable(arg.replace(":", ""));
       } else if (arg.startsWith("\"")){
-        this.stringArgument = arg;
+        this.leftArgument = arg;
         this.stringArgumentSet = true;
       } else if (!isNaN(arg)){
       	this.leftArgument = Number(arg);
@@ -64,7 +61,7 @@ class ArgumentResolverTask {
       if ((isArithmeticOperator(arg)) && (!this.stringArgumentSet)){
         this.operator = arg;
         this.operatorAvailable = true;
-        this.leftArgumentAvailable = true;
+        this.leftArgumentAvailable = true; //for the case of negative number
         this.canBeResolved = false;
         new ArgumentResolverTask();
         return true;
@@ -88,11 +85,7 @@ class ArgumentResolverTask {
   resolve(){
     tasksStack.pop();
     if (!this.operatorAvailable){
-      if (this.stringArgumentSet){
-        return this.stringArgument;
-      } else {
-        return this.leftArgument.toString();
-      }
+      return this.leftArgument.toString();
     } else {
       if (this.operator === "+"){
         return (this.leftArgument + this.rightArgument).toString();
