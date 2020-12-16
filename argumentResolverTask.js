@@ -34,7 +34,7 @@ class ArgumentResolverTask {
     this.rightArgumentAvailable = false;
     this.stringArgumentSet = false;
     this.stringArgument = "";
-    this.leftArgument = "";
+    this.leftArgument = 0;
     this.rightArgument = "";
     tasksStack.push(this);
     
@@ -42,41 +42,20 @@ class ArgumentResolverTask {
   
   tryToTakeInput(arg){
     
-    if (!this.leftArgumentAvailable){
+    if ((!this.leftArgumentAvailable) && (arg !== "-")){
       if (arg === ""){
         throwError("Argument resolver was fed with the result of a no return value task");
         return false;
       }
-      var varscope = variablesScopeStack[variablesScopeStack.length-1];
-      var globalScope = variablesScopeStack[0];
       if (arg.startsWith(":")){
-      	if (arg.replace(":", "") in varscope){
-      		this.leftArgument = varscope[arg.replace(":", "")];
-      	} else if (arg.replace(":", "") in globalScope){
-          this.leftArgument = globalScope[arg.replace(":", "")];
-        } else if (arg.replace(":", "") in staticVariables){
-          this.leftArgument = staticVariables[arg.replace(":", "")];
-        } else {
-          throwError("Undefined variable: " + arg.replace(":", ""));
-          return false;
-      	}
+      	this.leftArgument = resolveVariable(arg.replace(":", ""));
       } else if (arg.startsWith("\"")){
         this.stringArgument = arg;
         this.stringArgumentSet = true;
+      } else if (!isNaN(arg)){
+      	this.leftArgument = Number(arg);
       } else {
-      	if (!isNaN(arg)){
-      		this.leftArgument = Number(arg);
-      	} else if (arg === "-") { //negative number input
-      		this.leftArgument = 0;
-      		this.leftArgumentAvailable = true;
-      		this.operator = "-";
-      		this.operatorAvailable = true;
-      		this.canBeResolved = false;
-      		new ArgumentResolverTask();
-      		return true;
-      	} else {
-      		return false;
-      	}
+      	return false;
       }
       this.leftArgumentAvailable = true;
       this.canBeResolved = true;
@@ -85,6 +64,7 @@ class ArgumentResolverTask {
       if ((isArithmeticOperator(arg)) && (!this.stringArgumentSet)){
         this.operator = arg;
         this.operatorAvailable = true;
+        this.leftArgumentAvailable = true;
         this.canBeResolved = false;
         new ArgumentResolverTask();
         return true;
@@ -94,9 +74,9 @@ class ArgumentResolverTask {
     } else if (!this.rightArgumentAvailable){
       if (!isNaN(arg)){
       	this.rightArgument = Number(arg);
-	  } else {
-	  	throwError("Invalid right argument: " + arg);
-	  }	
+	    } else {
+	  	  throwError("Invalid right argument: " + arg);
+	    }	
       this.rightArgumentAvailable = true;
       this.canBeResolved = true;
       return true;
@@ -137,6 +117,23 @@ class ArgumentResolverTask {
         return "";
       }
     }
+  }
+
+}
+
+
+function resolveVariable(name){
+
+  var localVariables = variablesScopeStack[variablesScopeStack.length-1];
+  if (name in localVariables){
+    return localVariables[name];
+  } else if (name in globalVariables){
+    return globalVariables[name];
+  } else if (name in staticVariables){
+    return staticVariables[name];
+  } else {
+    throwError("Undefined variable: " + name);
+    return "";
   }
 
 }
