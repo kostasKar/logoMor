@@ -34,8 +34,7 @@ class ArgumentResolverTask {
     this.canBeResolved = false;
     this.stringArgumentSet = false;
     this.stringArgumentCanBeSet = true;
-    this.negative = false;
-    this.operator = "";
+    this.expression = "";
     tasksStack.push(this);
   }
 
@@ -48,25 +47,28 @@ class ArgumentResolverTask {
         return false;
       }
       if (arg.startsWith(":")){
-        this.operand = this.evaluateInput(resolveVariable(arg.replace(":", "")));
+        this.expression += resolveVariable(arg.replace(":", "")).toString();
       } else if (!isNaN(arg)){
-        this.operand = this.evaluateInput(Number(arg));
+        this.expression += arg.toString();
       } else if ((arg.startsWith("\"")) && (this.stringArgumentCanBeSet)){
-        this.operand = arg;
+        this.expression = arg;
         this.stringArgumentSet = true;
       } else if (arg === "-"){
-        this.negative = !this.negative;
-        this.stringArgumentCanBeSet = false;
+        this.expression += arg.toString();
         return true;
       } else {
         return false;
       }
-      this.stringArgumentCanBeSet = false;
       this.canBeResolved = true;
+      this.stringArgumentCanBeSet = false;
       return true;
     } else{
       if ((isArithmeticOperator(arg)) && (!this.stringArgumentSet)){
-        this.operator = arg;
+        if (arg === "="){
+          this.expression += "==";
+        } else {
+          this.expression += arg.toString();
+        }
         this.canBeResolved = false;
         return true;
       } else {
@@ -77,41 +79,21 @@ class ArgumentResolverTask {
   
   resolve(){
     tasksStack.pop();
-    return this.operand.toString();      
+    return this.evaluate().toString();      
   }
 
 
-  evaluateInput(input){
-    if (this.negative){
-      input = -input;
-      this.negative = false;
+  evaluate(){
+    if (this.stringArgumentSet){
+      return this.expression;
     }
 
-    if (this.operator === ""){
-      return input;
-    }
-
-    if (this.operator === "+"){
-      return (this.operand + input);
-    } else if (this.operator === "-"){
-      return (this.operand - input);
-    } else if (this.operator === "*"){
-      return (this.operand * input);
-    } else if (this.operator === "/"){
-      return (this.operand / input);
-    } else if (this.operator === ">"){
-      return (this.operand > input) ? 1 : 0;
-    } else if (this.operator === "<"){
-      return (this.operand < input) ? 1 : 0;
-    } else if (this.operator === ">="){
-      return (this.operand >= input) ? 1 : 0;
-    } else if (this.operator === "<="){
-      return (this.operand <= input) ? 1 : 0;
-    } else if (this.operator === "="){
-      return (this.operand == input) ? 1 : 0;
+    console.log(this.expression);
+    var ret = eval(this.expression);
+    if (!isNaN(ret)){
+      return Number(ret)
     } else {
-      throwError("Arithmetic resolver cannot resolve operator: " + this.operator);
-      return "";
+      throwError("Invalid argument expression: " + this.expression);
     }
   }
 

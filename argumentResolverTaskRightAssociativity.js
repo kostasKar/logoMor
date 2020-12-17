@@ -25,93 +25,90 @@ function isArithmeticOperator(token){
  */
 
 
-
-
-
 class ArgumentResolverTask {
   
   constructor(){
     this.canBeResolved = false;
+    this.leftArgumentAvailable = false;
+    this.operatorAvailable = false;
+    this.rightArgumentAvailable = false;
     this.stringArgumentSet = false;
-    this.stringArgumentCanBeSet = true;
-    this.negative = false;
-    this.operator = "";
+    this.leftArgument = 0;
     tasksStack.push(this);
   }
-
   
   tryToTakeInput(arg){
     
-    if (!this.canBeResolved){
+    if ((!this.leftArgumentAvailable) && (arg !== "-")){
       if (arg === ""){
         throwError("Argument resolver was fed with the result of a no return value task");
         return false;
       }
       if (arg.startsWith(":")){
-        this.operand = this.evaluateInput(resolveVariable(arg.replace(":", "")));
-      } else if (!isNaN(arg)){
-        this.operand = this.evaluateInput(Number(arg));
-      } else if ((arg.startsWith("\"")) && (this.stringArgumentCanBeSet)){
-        this.operand = arg;
+      	this.leftArgument = resolveVariable(arg.replace(":", ""));
+      } else if (arg.startsWith("\"")){
+        this.leftArgument = arg;
         this.stringArgumentSet = true;
-      } else if (arg === "-"){
-        this.negative = !this.negative;
-        this.stringArgumentCanBeSet = false;
-        return true;
+      } else if (!isNaN(arg)){
+      	this.leftArgument = Number(arg);
       } else {
-        return false;
+      	return false;
       }
-      this.stringArgumentCanBeSet = false;
+      this.leftArgumentAvailable = true;
       this.canBeResolved = true;
       return true;
-    } else{
+    } else if (!this.operatorAvailable){
       if ((isArithmeticOperator(arg)) && (!this.stringArgumentSet)){
         this.operator = arg;
+        this.operatorAvailable = true;
+        this.leftArgumentAvailable = true; //for the case of negative number
         this.canBeResolved = false;
+        new ArgumentResolverTask();
         return true;
       } else {
         return false;
       }
+    } else if (!this.rightArgumentAvailable){
+      if (!isNaN(arg)){
+      	this.rightArgument = Number(arg);
+	    } else {
+	  	  throwError("Invalid right argument: " + arg);
+	    }	
+      this.rightArgumentAvailable = true;
+      this.canBeResolved = true;
+      return true;
+    } else {
+      return false;
     }
   }
   
   resolve(){
     tasksStack.pop();
-    return this.operand.toString();      
-  }
-
-
-  evaluateInput(input){
-    if (this.negative){
-      input = -input;
-      this.negative = false;
-    }
-
-    if (this.operator === ""){
-      return input;
-    }
-
-    if (this.operator === "+"){
-      return (this.operand + input);
-    } else if (this.operator === "-"){
-      return (this.operand - input);
-    } else if (this.operator === "*"){
-      return (this.operand * input);
-    } else if (this.operator === "/"){
-      return (this.operand / input);
-    } else if (this.operator === ">"){
-      return (this.operand > input) ? 1 : 0;
-    } else if (this.operator === "<"){
-      return (this.operand < input) ? 1 : 0;
-    } else if (this.operator === ">="){
-      return (this.operand >= input) ? 1 : 0;
-    } else if (this.operator === "<="){
-      return (this.operand <= input) ? 1 : 0;
-    } else if (this.operator === "="){
-      return (this.operand == input) ? 1 : 0;
+    if (!this.operatorAvailable){
+      return this.leftArgument.toString();
     } else {
-      throwError("Arithmetic resolver cannot resolve operator: " + this.operator);
-      return "";
+      if (this.operator === "+"){
+        return (this.leftArgument + this.rightArgument).toString();
+      } else if (this.operator === "-"){
+        return (this.leftArgument - this.rightArgument).toString();
+      } else if (this.operator === "*"){
+        return (this.leftArgument * this.rightArgument).toString();
+      } else if (this.operator === "/"){
+        return (this.leftArgument / this.rightArgument).toString();
+      } else if (this.operator === ">"){
+        return (this.leftArgument > this.rightArgument) ? "1" : "0";
+      } else if (this.operator === "<"){
+        return (this.leftArgument < this.rightArgument) ? "1" : "0";
+      } else if (this.operator === ">="){
+        return (this.leftArgument >= this.rightArgument) ? "1" : "0";
+      } else if (this.operator === "<="){
+        return (this.leftArgument <= this.rightArgument) ? "1" : "0";
+      } else if (this.operator === "="){
+        return (this.leftArgument == this.rightArgument) ? "1" : "0";
+      } else {
+        throwError("Arithmetic resolver cannot resolve operator: " + this.operator);
+        return "";
+      }
     }
   }
 
