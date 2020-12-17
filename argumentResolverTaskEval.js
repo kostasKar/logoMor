@@ -54,7 +54,7 @@ class ArgumentResolverTask {
         this.expression = arg;
         this.stringArgumentSet = true;
       } else if (arg === "-"){
-        this.expression += arg.toString();
+        this.expression += "- ";
         return true;
       } else {
         return false;
@@ -62,7 +62,7 @@ class ArgumentResolverTask {
       this.canBeResolved = true;
       this.stringArgumentCanBeSet = false;
       return true;
-    } else{
+    } else {
       if ((isArithmeticOperator(arg)) && (!this.stringArgumentSet)){
         if (arg === "="){
           this.expression += "==";
@@ -88,12 +88,15 @@ class ArgumentResolverTask {
       return this.expression;
     }
 
-    console.log(this.expression);
-    var ret = eval(this.expression);
-    if (!isNaN(ret)){
-      return Number(ret)
-    } else {
-      throwError("Invalid argument expression: " + this.expression);
+    try{
+      var ret = eval(this.expression);
+      if (isNaN(ret)){
+        throw "is NaN: ";
+      }
+      return Number(ret);
+    } catch (err){
+      throwError("Invalid argument expression: " + err + this.expression);
+      return"";
     }
   }
 
