@@ -33,7 +33,6 @@ class ArgumentResolverTask {
   constructor(){
     this.canBeResolved = false;
     this.stringArgumentSet = false;
-    this.stringArgumentCanBeSet = true;
     this.expression = "";
     tasksStack.push(this);
   }
@@ -50,7 +49,7 @@ class ArgumentResolverTask {
         this.expression += resolveVariable(arg.replace(":", "")).toString();
       } else if (!isNaN(arg)){
         this.expression += arg.toString();
-      } else if ((arg.startsWith("\"")) && (this.stringArgumentCanBeSet)){
+      } else if ((arg.startsWith("\"")) && (this.expression === "")){
         this.expression = arg;
         this.stringArgumentSet = true;
       } else if (arg === "-"){
@@ -60,14 +59,13 @@ class ArgumentResolverTask {
         return false;
       }
       this.canBeResolved = true;
-      this.stringArgumentCanBeSet = false;
       return true;
     } else {
       if ((isArithmeticOperator(arg)) && (!this.stringArgumentSet)){
         if (arg === "="){
           this.expression += "==";
         } else {
-          this.expression += arg.toString();
+          this.expression += arg + " ";
         }
         this.canBeResolved = false;
         return true;
@@ -79,7 +77,7 @@ class ArgumentResolverTask {
   
   resolve(){
     tasksStack.pop();
-    return this.evaluate().toString();      
+    return this.evaluate();      
   }
 
 
@@ -93,7 +91,7 @@ class ArgumentResolverTask {
       if (isNaN(ret)){
         throw "is NaN: ";
       }
-      return Number(ret);
+      return Number(ret).toString();
     } catch (err){
       throwError("Invalid argument expression: " + err + this.expression);
       return"";
