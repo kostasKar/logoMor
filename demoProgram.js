@@ -354,9 +354,9 @@ var demoProgram9 =
 'home    \n' + 
 'pendown   \n' + 
 'fd :height+:radius rt 90   \n' + 
-'fd :width+:radius*2 rt 90   \n' + 
-'fd :height+:radius*2 rt 90   \n' + 
-'fd :width+:radius*2 rt 90   \n' + 
+'fd :width+(:radius*2) rt 90   \n' + 
+'fd :height+(:radius*2) rt 90   \n' + 
+'fd :width+(:radius*2) rt 90   \n' + 
 'fd :radius   \n';
 
 var demoProgram10 = 
@@ -418,9 +418,9 @@ var demoProgram10 =
 'home     \n' + 
 'pendown    \n' + 
 'fd :height+:radius rt 90    \n' + 
-'fd :width+:radius*2 rt 90    \n' + 
-'fd :height+:radius*2 rt 90   \n' + 
-'pu fd :width+:radius*2 rt 90    pd \n' + 
+'fd :width+(:radius*2) rt 90    \n' + 
+'fd :height+(:radius*2) rt 90   \n' + 
+'pu fd :width+(:radius*2) rt 90    pd \n' + 
 'fd :radius bk :radius \n' + 
 'rt 90 pu fd :barpos pd fd 50  \n' + 
 'print "score \n' + 

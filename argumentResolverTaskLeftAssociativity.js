@@ -15,13 +15,14 @@ function isArithmeticOperator(token){
    Once the task has a left hand operand, it can be resolved, returning its value.
    However, the interpreter will first make sure that the argumentResolverTask can not consume any more inputs before it resolves it
    After the left hand operand, argumentResolverTask can accept an operator (arithmetic or comparison)
-   Note: The minus operator is also acceptable as the first argument, for negative values. In that case '0' is considered as left-hand operand and '-' as operator
-   After accepting an operator, the argumentResolverTask recursively opens another ArgumentResolverTask, 
-   whose return value will be considered it's right hand operand and the task will again be resolvable
-   This way, an arbitrary number of chained operations can be performed before the initial resolver returns a value to the calling task
+   Note: The minus operator is also acceptable as the first argument, for negative values.
+   After accepting an operator, the argumentResolverTask becomes non-resolvable, unless it receives another operand
+   whose return value will be considered it's right hand operand the value of the initial operand will be updated with the result of the operation
+   This process can continue for an arbitrary chained succession of operands and operators, before the initial resolver returns a value to the calling task
    If the task is expecting an operand and the token it receives is not one of the directly consumable cases, it does not consume it and it remains unresolvable
    That token will probably trigger the creation of a command task that produces a return value. Once that task is resolved, 
    it's return value will be then be consumable by the argumentResolverTask.
+   This implementation of the argument resolver yields left-to-right associativity for all operators. There is no operation precedence!
  */
 
 
@@ -47,10 +48,10 @@ class ArgumentResolverTask {
         throwError("Argument resolver was fed with the result of a no return value task");
         return false;
       }
-      if (arg.startsWith(":")){
-        this.operand = this.evaluateInput(resolveVariable(arg.replace(":", "")));
-      } else if (!isNaN(arg)){
+      if (!isNaN(arg)){
         this.operand = this.evaluateInput(Number(arg));
+      } else if (arg.startsWith(":")){
+        this.operand = this.evaluateInput(resolveVariable(arg.replace(":", "")));
       } else if ((arg.startsWith("\"")) && (this.stringArgumentCanBeSet)){
         this.operand = arg;
         this.stringArgumentSet = true;

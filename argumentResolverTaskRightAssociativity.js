@@ -22,6 +22,8 @@ function isArithmeticOperator(token){
    If the task is expecting an operand and the token it receives is not one of the directly consumable cases, it does not consume it and it remains unresolvable
    That token will probably trigger the creation of a command task that produces a return value. Once that task is resolved, 
    it's return value will be then be consumable by the argumentResolverTask.
+   This implementation of the argument resolver yields right-to-left associativity for all operators. There is no operation precedence!
+
  */
 
 
