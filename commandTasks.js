@@ -94,6 +94,7 @@ class GenericCommandTaskS extends GenericCommandTaskF {
  class RrTask extends SingleArgumentMove { run() { ROLLRIGHT(this.arguments[0]); return "";}}
  class RlTask extends SingleArgumentMove { run() { ROLLLEFT(this.arguments[0]); return "";}}
  class SpsTask extends SingleArgumentCommandTask { run() { SETPENSIZE(int(this.arguments[0])); return "";}}
+ class StsTask extends SingleArgumentCommandTask { run() { SETTEXTSIZE(int(this.arguments[0])); return "";}}
  class ColorTask extends ThreeArgumentsCommandTask { run() { COLOR(parseInt(this.arguments[0]), parseInt(this.arguments[1]), parseInt(this.arguments[2])); return "";}}
  class PdTask extends NoArgumentCommandTask { run() { PENDOWN(); return "";}}
  class PuTask extends NoArgumentCommandTask { run() { PENUP(); return "";}}

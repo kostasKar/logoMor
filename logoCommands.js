@@ -1,6 +1,6 @@
 var penDown;
 var showTurtle;
-var strokeR, strokeG, strokeB, strokeWght;
+var strokeR, strokeG, strokeB, strokeWght, labelTextSize;
 var shapeBegan;
 var vertices;
 
@@ -29,15 +29,19 @@ function initStrokeStyle(){
   strokeR = 255;
   strokeG = 255;
   strokeB = 255;
+  labelTextSize = 10;
+
   stroke(255);
   strokeWeight(1);
   fill(255);
+  textSize(10);
 }
 
 function restoreStrokeStyle(){
   strokeWeight(strokeWght);
   stroke(strokeR, strokeG, strokeB);
   fill(strokeR, strokeG, strokeB);
+  textSize(labelTextSize);
 }
 
 function logoStart(){
@@ -145,6 +149,11 @@ function ENDSHAPE(){
  function SETPENSIZE(n){
    strokeWeight(n);
    strokeWght = n;
+ }
+
+ function SETTEXTSIZE(n){
+  textSize(n);
+  labelTextSize = n;
  }
  
  function COLOR(r, g, b){
