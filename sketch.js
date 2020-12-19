@@ -17,7 +17,6 @@ function setup() {
   canvas.mouseOut(disableCamera);
 
   //labels fonts
-  textSize(10);
   //textFont(labelFont);
 
 }
