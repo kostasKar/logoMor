@@ -258,7 +258,7 @@ output{
 #fullscreenButton {
   position: relative;
   top: 20px;
-  background-color: black;
+  background: none;
   border: none;
   padding: 2px 3px;
   color: #555555;
