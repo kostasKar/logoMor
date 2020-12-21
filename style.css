@@ -255,6 +255,19 @@ output{
   display:inline-block;
 }
 
+#fullscreenButton {
+  position: relative;
+  top: 20px;
+  background-color: black;
+  border: none;
+  padding: 2px 3px;
+  color: #555555;
+  font-size: 15px;
+  cursor: pointer;
+  font-family: Lucida Console;
+  outline: none !important;
+}
+
 #copyright{
   font-family: Consolas;
   color: #444444;

@@ -34,3 +34,8 @@ function draw() {
   
   logoEnd();
 }
+
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
