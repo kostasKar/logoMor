@@ -6,11 +6,7 @@ canvas {
   display: block;
 }
 
-#drawCanvas{
-	z-index: 1;
-}
-
-/* Style buttons */
+/* Screenshot and video record buttons */
 #saveScreenshot {
   position:fixed;
   right: 470px;
@@ -30,7 +26,6 @@ canvas {
   outline: none !important;
 }
 
-/* Darker background on mouse-over */
 #saveScreenshot:hover {
   background-color: #333333;
   color:white;
@@ -55,12 +50,14 @@ canvas {
   outline: none !important;
 }
 
-/* Darker background on mouse-over */
 #record:hover {
   background-color: #333333;
   color:white;
 }
 
+
+
+/*Source code and execution control column*/
 #controlsColumn {
 	position: fixed;
   overflow: auto;
@@ -68,7 +65,6 @@ canvas {
 	right: 10px;
 	width: 450px;
 	height: 100%;
-	z-index: 10;
 }
 
 #controlsColumn :focus{
@@ -219,13 +215,6 @@ output{
 
 }
 
-.functionName{
-  color: #aaaaaa;
-  font-family: Consolas;
-  font-size: 18px;
-  padding: 5px;
-}
-
 ::-moz-selection { /* Code for Firefox */
   background: #aaaaaa;
 }
@@ -234,6 +223,62 @@ output{
   background: #aaaaaa;
 }
 
+/*Variables Sliders*/
+.dropbtn {
+  background-color: #222222;
+  border: 3px solid #333333;
+  color: white;
+  padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-family: Lucida Console;
+}
+
+.dropbtn:hover:not([disabled]) {
+  background-color: #333333;
+}
+
+.dropbtn:disabled {
+  color: #555555;
+  cursor: auto ;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #222222;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content li {
+  color: white;
+  font-family: Lucida Console;
+  padding: 5px 10px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown li:hover {
+  background-color: #333333;
+  cursor: pointer;
+}
+
+.show {display: block;}
+
+
+/*View control column*/
 #CameraInstructions {
   font-family: Lucida Console;
   color: #555555;
@@ -267,15 +312,6 @@ output{
   cursor: pointer;
   font-family: Lucida Console;
   outline: none !important;
-}
-
-#copyright{
-  font-family: Consolas;
-  color: #444444;
-  position: fixed;
-  bottom: 15px;
-  left: 15px;
-  font-size: 12px;
 }
 
 .onoffswitch {
@@ -319,88 +355,38 @@ output{
     box-shadow: 5px 5px 18px 0px rgba(120, 120, 120, 0.5);
 }
 
-
-
-/*Variables Sliders*/
-.dropbtn {
-  background-color: #222222;
-  border: 3px solid #333333;
-  color: white;
-  padding: 5px 5px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 6px;
-  font-family: Lucida Console;
-}
-
-.dropbtn:hover:not([disabled]) {
-  background-color: #333333;
-}
-
-.dropbtn:disabled {
-  color: #555555;
-  cursor: auto ;
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #222222;
-  min-width: 160px;
-  overflow: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content li {
-  color: white;
-  font-family: Lucida Console;
-  padding: 5px 10px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown li:hover {
-  background-color: #333333;
-  cursor: pointer;
-}
-
-.show {display: block;}
-
-
+/*Tooltips*/
 .tooltip .tooltiptext {
   visibility: hidden;
   width: 120px;
-  background-color: #111111;
+  background-color: #222222;
   color: #666666;
   text-align: center;
-  border-radius: 6px;
+  border-radius: 15px;
   padding: 2px 2px; 
   font-size: 14px;
   font-family: Lucida Console;
   position: absolute;
-  z-index: 20;
 }
 
 .tooltip .tooltiptext.right {
-  top: -5px;
-  left: 110%;
+  left: 120%;
 }
 
 .tooltip .tooltiptext.left {
-  top: -5px;
-  right: 110%;
+  right: 120%;
 }
 
 .tooltip:hover .tooltiptext {
   visibility: visible;
+}
+
+/*Footer*/
+#copyright{
+  font-family: Consolas;
+  color: #444444;
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  font-size: 12px;
 }
