@@ -101,6 +101,7 @@ canvas {
   font-family: Lucida Console;
   width:400px;
   height: 28px;
+  margin-top: 4px;
 }
 
 #movesLimitDiv label{
