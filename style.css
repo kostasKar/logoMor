@@ -82,12 +82,12 @@ canvas {
 	border: 3px solid #333333;
 	font-family: Consolas, monospace;
 	font-size: 14px;
-	resize: none;
   white-space: pre;
 }
 
 #sourceCodeTextArea{
-  height: 400px;
+  min-height: 400px;
+  resize: vertical;
 }
 
 #sourceCodeTextArea:focus{
@@ -98,6 +98,7 @@ canvas {
 
 #consoleTextArea{
   height: 150px;
+  resize: none;
 }
 
 #movesLimitDiv {
