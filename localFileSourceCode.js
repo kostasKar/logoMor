@@ -88,11 +88,13 @@ var recording = false;
 function toggleRecording(){
   if (!recording){
     startRecording();
-    document.getElementById("record").innerHTML = '<i class="fa fa-stop" aria-hidden="true" style="color:red"></i>';
+    document.getElementById("record").firstElementChild.className = "fa fa-stop";
+    document.getElementById("record").firstElementChild.style.color = "red";
     recording = true;
   } else {
     stopRecording();
     recording = false;
-    document.getElementById("record").innerHTML = '<i class="fa fa-video-camera" aria-hidden="true"></i>';
+    document.getElementById("record").firstElementChild.className = "fa fa-video-camera";
+    document.getElementById("record").firstElementChild.style.removeProperty("color");
   }
 }
