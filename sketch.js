@@ -38,4 +38,5 @@ function draw() {
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
+  document.getElementById("fullscreenButton").firstElementChild.className = fullscreen()? "fa fa-compress" : "fa fa-expand";
 }

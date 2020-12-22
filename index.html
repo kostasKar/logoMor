@@ -41,14 +41,18 @@
         <label>Left Click: Rotate <br> Middle Click: Pan <br> Scroll Wheel: Zoom <br> Double click: Reset view<br></label>
         <label id="fpsLabel">Fps:</label>
         <label id="fpsValue"></label>
-        <div class="onoffswitch">
+        <div class="onoffswitch tooltip">
+        <span class="tooltiptext">Auto-Rotate</span>    
         <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" tabindex="0">
         <label class="onoffswitch-label" for="myonoffswitch">
             <span class="onoffswitch-inner"></span>
             <span class="onoffswitch-switch"></span>
         </label>
         </div>
-        <button id="fullscreenButton" onclick="fullscreen(!fullscreen());this.firstElementChild.classList.toggle('fa-compress')"><i class="fa fa-expand" aria-hidden="true"></i></button>
+        <button class="tooltip" id="fullscreenButton" onclick="fullscreen(!fullscreen())">
+            <i class="fa fa-expand" aria-hidden="true"></i>
+            <span class="tooltiptext">Fullscreen</span>
+        </button>
     </div>
 
     <button id="saveScreenshot" onclick="saveScreenshot()"><i class="fa fa-camera" aria-hidden="true"></i></button>
