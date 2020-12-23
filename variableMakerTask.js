@@ -20,17 +20,22 @@ class VariableMakerTask{
       var art = new ArgumentResolverTask();
       return true;
     } else if (!this.canBeResolved){
-      if (!isNaN(arg)){
-        if (this.name in staticVariables){
-          staticVariables[this.name] = Number(arg);
-        } else {
-          var varscope = variablesScopeStack[variablesScopeStack.length-1];
-          if ((variablesScopeStack.length == 1) && (this.name in varscope === false)){
+      if (!isNaN(arg) || arg.startsWith("\"")){
+        var localVariables = variablesScopeStack[variablesScopeStack.length-1];
+        //Already existing variable name
+        if (this.name in localVariables){
+          localVariables[this.name] = arg;
+        } else if (this.name in globalVariables){
+          globalVariables[this.name] = arg;
+        } else if (this.name in staticVariables){
+          staticVariables[this.name] = arg;
+        } else { //we will define a new variable in the local scope
+          if (variablesScopeStack.length == 1){ //Check the sliders first if local scope is global scope
             arg = this.checkSliders(arg);
           }
-        	varscope[this.name] = Number(arg);
+        	localVariables[this.name] = arg;
         }
-      }else {
+      } else {
         throwError("Variable maker value invalid argument: " + arg);
         return false;
       }

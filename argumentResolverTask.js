@@ -48,10 +48,13 @@ class ArgumentResolverTask {
         throwError("Argument resolver was fed with the result of a no return value task");
         return false;
       }
+
+      if (arg.startsWith(":")){
+        arg = resolveVariable(arg.replace(":", ""));
+      }
+
       if (!isNaN(arg)){
         this.operand = this.evaluateInput(Number(arg));
-      } else if (arg.startsWith(":")){
-        this.operand = this.evaluateInput(resolveVariable(arg.replace(":", "")));
       } else if ((arg.startsWith("\"")) && (this.stringArgumentCanBeSet)){
         this.operand = arg;
         this.stringArgumentSet = true;

@@ -153,3 +153,55 @@ class EndShapeTask extends NoArgumentCommandTask{run(){ENDSHAPE(); return "";}}
 class MouseXTask extends NoArgumentCommandTask{run(){return MOUSEX();}}
 class MouseYTask extends NoArgumentCommandTask{run(){return MOUSEY();}}
 class MousePressedTask extends NoArgumentCommandTask{run(){return MOUSEPRESSED()? "1" : "0";}}
+
+//Variable manipulation tasks
+class ValueOfTask extends SingleStringArgumentCommandTask{
+  run(){
+    var name = this.arguments[0];
+    var localVariables = variablesScopeStack[variablesScopeStack.length-1];
+    if (name in localVariables){
+      return localVariables[name];
+    } else if (name in globalVariables){
+      return globalVariables[name];
+    } else if (name in staticVariables){
+      return staticVariables[name];
+    } else {
+      throwError("Invalid variable name: " + name);
+      return ""
+    }
+  }
+}
+
+class IncrementTask extends SingleStringArgumentCommandTask{
+  run(){
+    var name = this.arguments[0];
+    var localVariables = variablesScopeStack[variablesScopeStack.length-1];
+    if (name in localVariables){
+      return ++localVariables[name];
+    } else if (name in globalVariables){
+      return ++globalVariables[name];
+    } else if (name in staticVariables){
+      return ++staticVariables[name];
+    } else {
+      throwError("Invalid variable name: " + name);
+      return ""
+    }
+  }
+}
+
+class DecrementTask extends SingleStringArgumentCommandTask{
+  run(){
+    var name = this.arguments[0];
+    var localVariables = variablesScopeStack[variablesScopeStack.length-1];
+    if (name in localVariables){
+      return --localVariables[name];
+    } else if (name in globalVariables){
+      return --globalVariables[name];
+    } else if (name in staticVariables){
+      return --staticVariables[name];
+    } else {
+      throwError("Invalid variable name: " + name);
+      return ""
+    }
+  }
+}

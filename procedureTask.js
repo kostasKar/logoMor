@@ -27,7 +27,7 @@ class ProcedureTask {
       return false;
     }
     if (this.numOfParametersSet < this.numOfParameters){
-      this.localVariables[this.body[this.numOfParametersSet + 1].replace(":", "")]  = Number(arg); 
+      this.localVariables[this.body[this.numOfParametersSet + 1].replace(":", "")]  = arg; 
       this.numOfParametersSet++;
       if (this.numOfParametersSet == this.numOfParameters){
         variablesScopeStack.push(this.localVariables);

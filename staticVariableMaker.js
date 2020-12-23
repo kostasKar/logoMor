@@ -18,9 +18,9 @@ class StaticVariableMakerTask{
       var art = new ArgumentResolverTask();
       return true;
     } else if (!this.canBeResolved){
-      if (!isNaN(arg)){
+      if (!isNaN(arg) || arg.startsWith("\"")){
         if (this.name in staticVariables === false){
-          staticVariables[this.name] = Number(arg);
+          staticVariables[this.name] = arg;
         }
       }else {
         throwError("Static Variable maker invalid argument: " + arg);

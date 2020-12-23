@@ -81,7 +81,11 @@ var TasksConstructors = {
   "endface":EndShapeTask,
   "mousex":MouseXTask,
   "mousey":MouseYTask,
-  "mousepressed":MousePressedTask
+  "mousepressed":MousePressedTask,
+  "thing":ValueOfTask,
+  "valueof":ValueOfTask,
+  "increment":IncrementTask,
+  "decrement":DecrementTask
 }
 
 
