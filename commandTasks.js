@@ -155,53 +155,7 @@ class MouseYTask extends NoArgumentCommandTask{run(){return MOUSEY();}}
 class MousePressedTask extends NoArgumentCommandTask{run(){return MOUSEPRESSED()? "1" : "0";}}
 
 //Variable manipulation tasks
-class ValueOfTask extends SingleStringArgumentCommandTask{
-  run(){
-    var name = this.arguments[0];
-    var localVariables = variablesScopeStack[variablesScopeStack.length-1];
-    if (name in localVariables){
-      return localVariables[name];
-    } else if (name in globalVariables){
-      return globalVariables[name];
-    } else if (name in staticVariables){
-      return staticVariables[name];
-    } else {
-      throwError("Invalid variable name: " + name);
-      return ""
-    }
-  }
-}
+class ValueOfTask extends SingleStringArgumentCommandTask{run(){return getVariableValue(this.arguments[0]);}}
+class IncrementTask extends SingleStringArgumentCommandTask{run(){setVariableValue(this.arguments[0], Number(getVariableValue(this.arguments[0])) + 1); return "";}}
+class DecrementTask extends SingleStringArgumentCommandTask{run(){setVariableValue(this.arguments[0], Number(getVariableValue(this.arguments[0])) - 1); return "";}}
 
-class IncrementTask extends SingleStringArgumentCommandTask{
-  run(){
-    var name = this.arguments[0];
-    var localVariables = variablesScopeStack[variablesScopeStack.length-1];
-    if (name in localVariables){
-      return ++localVariables[name];
-    } else if (name in globalVariables){
-      return ++globalVariables[name];
-    } else if (name in staticVariables){
-      return ++staticVariables[name];
-    } else {
-      throwError("Invalid variable name: " + name);
-      return ""
-    }
-  }
-}
-
-class DecrementTask extends SingleStringArgumentCommandTask{
-  run(){
-    var name = this.arguments[0];
-    var localVariables = variablesScopeStack[variablesScopeStack.length-1];
-    if (name in localVariables){
-      return --localVariables[name];
-    } else if (name in globalVariables){
-      return --globalVariables[name];
-    } else if (name in staticVariables){
-      return --staticVariables[name];
-    } else {
-      throwError("Invalid variable name: " + name);
-      return ""
-    }
-  }
-}

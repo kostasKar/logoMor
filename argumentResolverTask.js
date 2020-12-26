@@ -50,7 +50,7 @@ class ArgumentResolverTask {
       }
 
       if (arg.startsWith(":")){
-        arg = resolveVariable(arg.replace(":", ""));
+        arg = getVariableValue(arg.replace(":", ""));
       }
 
       if (!isNaN(arg)){
@@ -117,23 +117,6 @@ class ArgumentResolverTask {
       throwError("Arithmetic resolver cannot resolve operator: " + this.operator);
       return "";
     }
-  }
-
-}
-
-
-function resolveVariable(name){
-
-  var localVariables = variablesScopeStack[variablesScopeStack.length-1];
-  if (name in localVariables){
-    return localVariables[name];
-  } else if (name in globalVariables){
-    return globalVariables[name];
-  } else if (name in staticVariables){
-    return staticVariables[name];
-  } else {
-    throwError("Undefined variable: " + name);
-    return "";
   }
 
 }
