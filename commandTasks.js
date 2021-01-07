@@ -85,34 +85,34 @@ class GenericCommandTaskS extends GenericCommandTaskF {
  */
 
 //Basic Logo commands
- class FdTask extends SingleArgumentMove {run() { FORWARD(this.arguments[0]); return "";}}
- class BkTask extends SingleArgumentMove {run() { BACKWARD(this.arguments[0]); return "";}}
- class RtTask extends SingleArgumentMove {run() { RIGHTTURN(this.arguments[0]); return "";}}
- class LtTask extends SingleArgumentMove { run() { LEFTTURN(this.arguments[0]); return "";}}
- class UpTask extends SingleArgumentMove { run() { UP(this.arguments[0]); return "";}}
- class DnTask extends SingleArgumentMove { run() { DOWN(this.arguments[0]); return "";}}
- class RrTask extends SingleArgumentMove { run() { ROLLRIGHT(this.arguments[0]); return "";}}
- class RlTask extends SingleArgumentMove { run() { ROLLLEFT(this.arguments[0]); return "";}}
- class SpsTask extends SingleArgumentCommandTask { run() { SETPENSIZE(int(this.arguments[0])); return "";}}
- class StsTask extends SingleArgumentCommandTask { run() { SETTEXTSIZE(int(this.arguments[0])); return "";}}
- class ColorTask extends ThreeArgumentsCommandTask { run() { COLOR(parseInt(this.arguments[0]), parseInt(this.arguments[1]), parseInt(this.arguments[2])); return "";}}
- class PdTask extends NoArgumentCommandTask { run() { PENDOWN(); return "";}}
- class PuTask extends NoArgumentCommandTask { run() { PENUP(); return "";}}
- class ShowTurtleTask extends NoArgumentCommandTask { run() { SHOWTURTLE(); return "";}} 
- class HideTurtleTask extends NoArgumentCommandTask { run() { HIDETURTLE(); return "";}} 
- class HmTask extends NoArgumentMove { run() { HOME(); return "";}}
- class GetXTask extends NoArgumentCommandTask { run() { return GETX();}}
- class GetYTask extends NoArgumentCommandTask { run() { return GETY();}}
- class GetZTask extends NoArgumentCommandTask { run() { return GETZ();}}
- class SetXTask extends SingleArgumentMove { run() {SETX(this.arguments[0]); return "";}}
- class SetYTask extends SingleArgumentMove { run() {SETY(this.arguments[0]); return "";}}
- class SetZTask extends SingleArgumentMove { run() {SETZ(this.arguments[0]); return "";}}
- class SetXYZTask extends ThreeArgumentsMove { run() {SETXYZ(this.arguments[0], this.arguments[1], this.arguments[2]); return "";}}
- class PointTask extends NoArgumentCommandTask{ run() {POINT(); return "";}}
+ class FdTask extends SingleArgumentMove {run() { L_FORWARD(this.arguments[0]); return "";}}
+ class BkTask extends SingleArgumentMove {run() { L_BACKWARD(this.arguments[0]); return "";}}
+ class RtTask extends SingleArgumentMove {run() { L_RIGHT(this.arguments[0]); return "";}}
+ class LtTask extends SingleArgumentMove { run() { L_LEFT(this.arguments[0]); return "";}}
+ class UpTask extends SingleArgumentMove { run() { L_UP(this.arguments[0]); return "";}}
+ class DnTask extends SingleArgumentMove { run() { L_DOWN(this.arguments[0]); return "";}}
+ class RrTask extends SingleArgumentMove { run() { L_ROLLRIGHT(this.arguments[0]); return "";}}
+ class RlTask extends SingleArgumentMove { run() { L_ROLLLEFT(this.arguments[0]); return "";}}
+ class SpsTask extends SingleArgumentCommandTask { run() { L_SETPENSIZE(int(this.arguments[0])); return "";}}
+ class StsTask extends SingleArgumentCommandTask { run() { L_SETTEXTSIZE(int(this.arguments[0])); return "";}}
+ class ColorTask extends ThreeArgumentsCommandTask { run() { L_COLOR(parseInt(this.arguments[0]), parseInt(this.arguments[1]), parseInt(this.arguments[2])); return "";}}
+ class PdTask extends NoArgumentCommandTask { run() { L_PENDOWN(); return "";}}
+ class PuTask extends NoArgumentCommandTask { run() { L_PENUP(); return "";}}
+ class ShowTurtleTask extends NoArgumentCommandTask { run() { L_SHOWTURTLE(); return "";}} 
+ class HideTurtleTask extends NoArgumentCommandTask { run() { L_HIDETURTLE(); return "";}} 
+ class HmTask extends NoArgumentMove { run() { L_HOME(); return "";}}
+ class GetXTask extends NoArgumentCommandTask { run() { return L_GETX();}}
+ class GetYTask extends NoArgumentCommandTask { run() { return L_GETY();}}
+ class GetZTask extends NoArgumentCommandTask { run() { return L_GETZ();}}
+ class SetXTask extends SingleArgumentMove { run() {L_SETX(this.arguments[0]); return "";}}
+ class SetYTask extends SingleArgumentMove { run() {L_SETY(this.arguments[0]); return "";}}
+ class SetZTask extends SingleArgumentMove { run() {L_SETZ(this.arguments[0]); return "";}}
+ class SetXYZTask extends ThreeArgumentsMove { run() {L_SETXYZ(this.arguments[0], this.arguments[1], this.arguments[2]); return "";}}
+ class PointTask extends NoArgumentCommandTask{ run() {L_POINT(); return "";}}
 
 //Output commands:
  class PrintTask extends SingleStringArgumentCommandTask { run(){consolePrintln(this.arguments[0]); return "";}}
- class LabelTask extends SingleStringArgumentCommandTask { run(){LABEL(this.arguments[0]); return "";}}
+ class LabelTask extends SingleStringArgumentCommandTask { run(){L_LABEL(this.arguments[0]); return "";}}
 
 //Logical commands
  class AndTask extends TwoArgumentsCommandTask { run() {return ((this.arguments[0] != 0) && (this.arguments[1] != 0))? "1" : "0";}}
@@ -147,13 +147,13 @@ class TimeTask extends NoArgumentCommandTask{run(){return ((millis()-startTime)/
 class FrameTask extends NoArgumentCommandTask{run(){return (frameCount-startFrame);}}
 
 //3d solids
-class BeginShapeTask extends NoArgumentCommandTask{run(){BEGINSHAPE(); return "";}}
-class EndShapeTask extends NoArgumentCommandTask{run(){ENDSHAPE(); return "";}}
+class BeginShapeTask extends NoArgumentCommandTask{run(){L_BEGINSHAPE(); return "";}}
+class EndShapeTask extends NoArgumentCommandTask{run(){L_ENDSHAPE(); return "";}}
 
 //mouse tasks
-class MouseXTask extends NoArgumentCommandTask{run(){return MOUSEX();}}
-class MouseYTask extends NoArgumentCommandTask{run(){return MOUSEY();}}
-class MousePressedTask extends NoArgumentCommandTask{run(){return MOUSEPRESSED()? "1" : "0";}}
+class MouseXTask extends NoArgumentCommandTask{run(){return L_MOUSEX();}}
+class MouseYTask extends NoArgumentCommandTask{run(){return L_MOUSEY();}}
+class MousePressedTask extends NoArgumentCommandTask{run(){return L_MOUSEPRESSED()? "1" : "0";}}
 
 //Variable manipulation tasks
 class ValueOfTask extends SingleStringArgumentCommandTask{run(){return getVariableValue(this.arguments[0]);}}

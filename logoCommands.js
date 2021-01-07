@@ -66,27 +66,27 @@ function logoEnd(){
   pop();
 }
 
-function SHOWTURTLE(){
+function L_SHOWTURTLE(){
   showTurtle = true;
 }
 
-function HIDETURTLE(){
+function L_HIDETURTLE(){
   showTurtle = false;
 }
 
-function BEGINSHAPE(){
+function L_BEGINSHAPE(){
   shapeBegan = true;
   vertices = [];
   addVertex();
 }
 
-function ENDSHAPE(){
+function L_ENDSHAPE(){
   shapeBegan = false;
   makeShape();
   vertices = [];
 }
 
- function FORWARD(length){
+ function L_FORWARD(length){
    if (penDown){
     line(0, 0, 0, 0, -length, 0);
    }
@@ -97,7 +97,7 @@ function ENDSHAPE(){
    }
  }
  
-  function BACKWARD(length){
+  function L_BACKWARD(length){
    if (penDown){
      line(0, 0, 0, 0, length, 0);
    }
@@ -108,55 +108,55 @@ function ENDSHAPE(){
    }
  }
  
- function RIGHTTURN(angle){
+ function L_RIGHT(angle){
    rotateZ(radians(angle));
    logoRotateZ(radians(angle));
  }
  
-  function LEFTTURN(angle){
+  function L_LEFT(angle){
    rotateZ(radians(-angle));
    logoRotateZ(radians(-angle));
  }
  
- function UP(angle){
+ function L_UP(angle){
    rotateX(radians(-angle));
    logoRotateX(radians(-angle));
  }
  
-  function DOWN(angle){
+  function L_DOWN(angle){
    rotateX(radians(angle));
    logoRotateX(radians(angle));
  }
  
-  function ROLLRIGHT(angle){
+  function L_ROLLRIGHT(angle){
    rotateY(radians(angle));
    logoRotateY(radians(angle));
  }
  
-   function ROLLLEFT(angle){
+   function L_ROLLLEFT(angle){
    rotateY(radians(-angle));
    logoRotateY(radians(-angle));
  }
  
- function PENDOWN(){
+ function L_PENDOWN(){
   penDown = true;
  }
  
-  function PENUP(){
+  function L_PENUP(){
   penDown = false;
  }
  
- function SETPENSIZE(n){
+ function L_SETPENSIZE(n){
    strokeWeight(n);
    strokeWght = n;
  }
 
- function SETTEXTSIZE(n){
+ function L_SETTEXTSIZE(n){
   textSize(n);
   labelTextSize = n;
  }
  
- function COLOR(r, g, b){
+ function L_COLOR(r, g, b){
    stroke(r, g, b);
    fill(r, g, b);
    strokeR = r;
@@ -164,16 +164,16 @@ function ENDSHAPE(){
    strokeB = b;
  } 
 
- function LABEL(word){
+ function L_LABEL(word){
    text(word, 0, 0);
  }
 
- function POINT(){
+ function L_POINT(){
   point(0,0,0);
  }
 
  
-  function HOME(){
+  function L_HOME(){
    pop();
    push();
    restoreStrokeStyle();
@@ -186,19 +186,19 @@ function ENDSHAPE(){
    }
  }
  
-  function GETX(){
+  function L_GETX(){
    return getlmX();
  }
  
-  function GETY(){
+  function L_GETY(){
    return - getlmY();
  }
  
-  function GETZ(){
+  function L_GETZ(){
    return getlmZ();
  }
 
-  function SETX(newX){
+  function L_SETX(newX){
    pop();
    push();
    restoreStrokeStyle();
@@ -212,7 +212,7 @@ function ENDSHAPE(){
    }
  }
 
-function SETY(newY){
+function L_SETY(newY){
    pop();
    push();
    restoreStrokeStyle();
@@ -226,7 +226,7 @@ function SETY(newY){
    }
  }
 
-function SETZ(newZ){
+function L_SETZ(newZ){
    pop();
    push();
    restoreStrokeStyle();
@@ -241,7 +241,7 @@ function SETZ(newZ){
  }
  
 
-function SETXYZ(newX, newY, newZ){
+function L_SETXYZ(newX, newY, newZ){
    pop();
    push();
    restoreStrokeStyle();
@@ -257,14 +257,14 @@ function SETXYZ(newX, newY, newZ){
    }
  }
 
-function MOUSEX(){
+function L_MOUSEX(){
   return  (mouseX - width/2)*(fov / 1.2) - centerX ;
 }
 
-function MOUSEY(){
+function L_MOUSEY(){
   return -((mouseY - height/2)*(fov / 1.2) - centerY);
 }
 
-function MOUSEPRESSED(){
+function L_MOUSEPRESSED(){
   return mouseIsPressed;
 }
