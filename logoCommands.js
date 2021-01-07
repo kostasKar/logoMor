@@ -168,7 +168,9 @@ function ENDSHAPE(){
    text(word, 0, 0);
  }
 
-
+ function POINT(){
+  point(0,0,0);
+ }
 
  
   function HOME(){

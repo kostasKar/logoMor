@@ -85,7 +85,8 @@ var TasksConstructors = {
   "thing":ValueOfTask,
   "valueof":ValueOfTask,
   "increment":IncrementTask,
-  "decrement":DecrementTask
+  "decrement":DecrementTask,
+  "point":PointTask
 }
 
 
