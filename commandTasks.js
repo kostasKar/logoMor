@@ -137,7 +137,8 @@ class GenericCommandTaskS extends GenericCommandTaskF {
  class LogTask extends SingleArgumentCommandTask { run() {return Math.log10(this.arguments[0]);}}
  class ExpTask extends SingleArgumentCommandTask { run() {return Math.exp(this.arguments[0]);}}
  class PiTask extends NoArgumentCommandTask { run() {return Math.PI;}}
- class IntTask extends SingleArgumentCommandTask { run() {return Math.round(this.arguments[0]);}}
+ class RoundTask extends SingleArgumentCommandTask { run() {return Math.round(this.arguments[0]);}}
+ class TruncTask extends SingleArgumentCommandTask { run() {return Math.trunc(this.arguments[0]);}} 
  class AbsTask extends SingleArgumentCommandTask { run() {return Math.abs(this.arguments[0]);}}
  class MinTask extends TwoArgumentsCommandTask { run() {return Math.min(this.arguments[0], this.arguments[1]);}}
  class MaxTask extends TwoArgumentsCommandTask { run() {return Math.max(this.arguments[0], this.arguments[1]);}}
