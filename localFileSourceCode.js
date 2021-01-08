@@ -98,3 +98,20 @@ function toggleRecording(){
     document.getElementById("record").firstElementChild.style.removeProperty("color");
   }
 }
+
+
+
+
+
+
+
+
+function togglePause(){
+  if (isLooping()){
+    document.getElementById("pause").firstElementChild.className = "fa fa-play";
+    noLoop();
+  } else {
+    document.getElementById("pause").firstElementChild.className = "fa fa-pause";
+    loop();
+  }
+}

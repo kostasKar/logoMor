@@ -41,7 +41,12 @@ function createSliderForVar(name, value){
 	newSlider.step = (Math.round(value)==value)? 1 : 0.1;
 	newSlider.value = Number(value);
 	newSlider.className  = "slider";
-	newSlider.oninput= function(){this.nextElementSibling.value = this.value;};
+	newSlider.oninput= function(){
+		this.nextElementSibling.value = this.value;
+		if (!isLooping()){
+			redraw();
+		}
+	};
 	var sliderValue = document.createElement("output");
 	sliderValue.value = value;
 	container.appendChild(sliderContainer);

@@ -62,6 +62,10 @@ function parseLogo(sourceCode){
 
   startTime = millis();
   startFrame = frameCount;
+
+  if(!isLooping()){
+    redraw();
+  }
 }
 
 function initLogoExecution(){
