@@ -109,9 +109,11 @@ function toggleRecording(){
 function togglePause(){
   if (isLooping()){
     document.getElementById("pause").firstElementChild.className = "fa fa-play";
+    document.getElementById("pause").firstElementChild.style.color = "lime";
     noLoop();
   } else {
     document.getElementById("pause").firstElementChild.className = "fa fa-pause";
+    document.getElementById("pause").firstElementChild.style.removeProperty("color");
     loop();
   }
 }

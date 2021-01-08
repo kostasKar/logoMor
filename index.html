@@ -56,18 +56,20 @@
         </button>
     </div>
 
-    <button class="tooltip pictureControl" id="saveScreenshot" onclick="saveScreenshot()">
-        <i class="fa fa-camera" aria-hidden="true"></i>
-        <span class="tooltiptext left">Screenshot</span>
-    </button>
-    <button class="tooltip pictureControl" id="record" onclick="toggleRecording()">
-        <i class="fa fa-video-camera" aria-hidden="true"></i>
-        <span class="tooltiptext left">Video</span>
-    </button>
-    <button class="tooltip pictureControl" id="pause" onclick="togglePause()">
-        <i class="fa fa-pause" aria-hidden="true"></i>
-        <span class="tooltiptext left">Redrawing</span>
-    </button>
+    <div id="pictureControl">
+        <button class="tooltip" id="saveScreenshot" onclick="saveScreenshot()">
+            <i class="fa fa-camera" aria-hidden="true"></i>
+            <span class="tooltiptext left">Screenshot</span>
+        </button>
+        <button class="tooltip" id="record" onclick="toggleRecording()">
+            <i class="fa fa-video-camera" aria-hidden="true"></i>
+            <span class="tooltiptext left">Video</span>
+        </button>
+        <button class="tooltip" id="pause" onclick="togglePause()">
+            <i class="fa fa-pause" aria-hidden="true"></i>
+            <span class="tooltiptext left">Redrawing</span>
+        </button>
+    </div>
 
     <div id="copyright">&copy; 2020 Kostas Karouzos ck.karouzos@gmail.com</div> 
 
