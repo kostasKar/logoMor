@@ -12,44 +12,58 @@ function resetLogoTransformationMatrix(){
 
 
 function logoTranslate(x, y, z){
+  //anyway we are only tranlating on y axis, so just using that
+  translateYLogoMatrix(y);
+  /*
   multiplyToLogoMatrix( [1, 0, 0, 0,
                          0, 1, 0, 0,
                          0, 0, 1, 0,
                          x, y, z, 1] );
+  */
   }
 
 function logoRotateX(rad){
+  rotateXLogoMatrix(rad);
+  /*
   let c = cos(rad);
   let s = sin(rad);
   multiplyToLogoMatrix( [1, 0, 0, 0,
                          0, c, s, 0,
                          0,-s, c, 0,
                          0, 0, 0, 1] );
+  */
 }
 
 function logoRotateY(rad){
+  rotateYLogoMatrix(rad);
+  /*
   let c = cos(rad);
   let s = sin(rad);
   multiplyToLogoMatrix( [c, 0,-s, 0,
                          0, 1, 0, 0,
                          s, 0, c, 0,
                          0, 0, 0, 1] );
+  */
 }
 
 function logoRotateZ(rad){
+  rotateZLogoMatrix(rad);
+  /*
   let c = cos(rad);
   let s = sin(rad);
   multiplyToLogoMatrix( [ c, s, 0, 0,
                          -s, c, 0, 0,
                           0, 0, 1, 0,
                           0, 0, 0, 1] );
+  */
 }
 
 
-
+/*
 function multiplyToLogoMatrix(m){
   lm = multiply4x4Matrices(lm, m);
 }
+*/
 
 function applyLogoTransformationMatrix(){
   applyMatrix(lm[0],lm[1],lm[2],lm[3],lm[4],lm[5],lm[6],lm[7],lm[8],lm[9],lm[10],lm[11],lm[12],lm[13],lm[14],lm[15]);
@@ -102,4 +116,77 @@ function multiply4x4Matrices(a, b){
     b[12]*a[2]+b[13]*a[6]+b[14]*a[10]+b[15]*a[14], 
     b[12]*a[3]+b[13]*a[7]+b[14]*a[11]+b[15]*a[15]
   ]
+}
+
+
+//Faster shortcuts for specific tranformations
+//Only calculates the affected cells of lm for a Y-translation
+function translateYLogoMatrix(y){
+  lm[12]=y*lm[4]+lm[12];
+  lm[13]=y*lm[5]+lm[13];
+  lm[14]=y*lm[6]+lm[14];
+  lm[15]=y*lm[7]+lm[15];
+}
+
+//Only calculates the affected cells of lm for a X rotation
+function rotateXLogoMatrix(rad){
+  let c = cos(rad);
+  let s = sin(rad);
+
+  let lm4 = lm[4];
+  let lm5 = lm[5];
+  let lm6 = lm[6];
+  let lm7 = lm[7];
+
+  lm[4]=c*lm4+s*lm[8];
+  lm[5]=c*lm5+s*lm[9];
+  lm[6]=c*lm6+s*lm[10];
+  lm[7]=c*lm7+s*lm[11];
+
+  lm[8]=-s*lm4+c*lm[8];
+  lm[9]=-s*lm5+c*lm[9];
+  lm[10]=-s*lm6+c*lm[10];
+  lm[11]=-s*lm7+c*lm[11];
+}
+
+//Only calculates the affected cells of lm for a Y rotation
+function rotateYLogoMatrix(rad){
+  let c = cos(rad);
+  let s = sin(rad);
+
+  let lm0 = lm[0];
+  let lm1 = lm[1];
+  let lm2 = lm[2];
+  let lm3 = lm[3];
+
+  lm[0]=c*lm0-s*lm[8];
+  lm[1]=c*lm1-s*lm[9];
+  lm[2]=c*lm2-s*lm[10];
+  lm[3]=c*lm3-s*lm[11];
+
+  lm[8]=s*lm0+c*lm[8];
+  lm[9]=s*lm1+c*lm[9];
+  lm[10]=s*lm2+c*lm[10];
+  lm[11]=s*lm3+c*lm[11];
+}
+
+//Only calculates the affected cells of lm for a Z rotation
+function rotateZLogoMatrix(rad){
+  let c = cos(rad);
+  let s = sin(rad);
+
+  let lm0 = lm[0];
+  let lm1 = lm[1];
+  let lm2 = lm[2];
+  let lm3 = lm[3];
+
+  lm[0]=c*lm0+s*lm[4];
+  lm[1]=c*lm1+s*lm[5];
+  lm[2]=c*lm2+s*lm[6];
+  lm[3]=c*lm3+s*lm[7];
+
+  lm[4]=-s*lm0+c*lm[4];
+  lm[5]=-s*lm1+c*lm[5];
+  lm[6]=-s*lm2+c*lm[6];
+  lm[7]=-s*lm3+c*lm[7];
 }
