@@ -51,7 +51,7 @@ class GenericCommandTaskF  {
   	  throwError("Invalid command argument: " + arg);
       return;
   	}
-    this.arguments[this.currentArgument] = arg;
+    this.arguments[this.currentArgument] = Number(arg);
   }
 }
 
