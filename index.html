@@ -81,7 +81,7 @@
         <textarea id="sourceCodeTextArea" spellcheck="false"></textarea>
 
         <div id="movesLimitDiv">
-            <input  id="movesLimitInput" type="number" name="quantity" min="0" value="1000">
+            <input  id="movesLimitInput" type="number" name="quantity" min="0" value="1000" onchange="redrawIfPaused()">
             <label>Moves Limit:</label>
         </div>
 

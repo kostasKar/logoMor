@@ -102,7 +102,11 @@ function toggleRecording(){
 
 
 
-
+function redrawIfPaused(){
+  if (!isLooping()){
+    redraw();
+  }
+}
 
 
 

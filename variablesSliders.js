@@ -43,9 +43,7 @@ function createSliderForVar(name, value){
 	newSlider.className  = "slider";
 	newSlider.oninput= function(){
 		this.nextElementSibling.value = this.value;
-		if (!isLooping()){
-			redraw();
-		}
+		redrawIfPaused();
 	};
 	var sliderValue = document.createElement("output");
 	sliderValue.value = value;

@@ -134,7 +134,7 @@ canvas {
   margin: 4px 2px;
 }
 
-.sliderContainer, .functionParamSliderContainer {
+.sliderContainer {
   width: 90%; /* Width of the outside container */
   margin: 10px;
   padding: 5px;
