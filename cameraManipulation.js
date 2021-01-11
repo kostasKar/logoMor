@@ -43,7 +43,7 @@ function enableCamera(){ cameraEnabled = true;}
 function disableCamera(){ cameraEnabled = false;}
 
 function mouseWheel(event) {
-  if (cameraEnabled){	
+  if (cameraEnabled && isLooping()){	
 
 	  fov += (event.delta > 0) ? 1/60 : -1/60;
 	  if (fov < fov_min){
