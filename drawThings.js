@@ -46,4 +46,57 @@
    stroke(255);
  }
  
+function drawHelpArrows(r){
+   strokeWeight(1);
+   textSize(5);
+
+   push();
+   noFill();
+   stroke('#0000ff');
+   arc(0, 0, 2*r, 2*r, -HALF_PI, 0);
+   fill('#0000ff');
+   text('rt', 0.75*r, -0.75*r);
+   noStroke();
+   fill('#0000ff88');
+   arc(0, 0, 2*r-2, 2*r-2, -TWO_PI, 0);
+   translate(r, 0, 0);
+   stroke('#0000ff');
+   fill('#0000ff');
+   cone(1, 2, 20, 1,  true);
+   pop();
+
+   push();
+   rotateY(-HALF_PI);  
+   noFill();
+   stroke('#ff0000');
+   arc(0, 0, 2*r, 2*r, -HALF_PI, 0);
+   fill('#ff0000');
+   text('up', 0.75*r, -0.75*r);
+   noStroke();
+   fill('#ff000088');
+   arc(0, 0, 2*r-2, 2*r-2, -TWO_PI, 0);
+   translate(r, 0, 0);
+   stroke('#ff0000');
+   fill('#ff0000');
+   cone(1, 2, 20, 1,  true);
+   pop();
+
+   push();
+   rotateX(HALF_PI); 
+   noFill(); 
+   stroke('#00ff00');
+   arc(0, 0, 2*r, 2*r, -HALF_PI, 0);
+   fill('#00ff00');
+   text('rr', 0.75*r, -0.75*r);
+   noStroke();
+   fill('#00ff0088');
+   arc(0, 0, 2*r-2, 2*r-2, -TWO_PI, 0);
+   translate(0, -r, 0);
+   rotateZ(HALF_PI);
+   stroke('#00ff00');
+   fill('#00ff00');
+   cone(1, 2, 20, 1,  true);
+   pop();
+
+}
  

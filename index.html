@@ -43,12 +43,20 @@
         <label id="fpsLabel">Fps:</label>
         <label id="fpsValue"></label>
         <div class="onoffswitch tooltip">
-        <span class="tooltiptext right">Auto-Rotate</span>    
-        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" tabindex="0">
-        <label class="onoffswitch-label" for="myonoffswitch">
-            <span class="onoffswitch-inner"></span>
-            <span class="onoffswitch-switch"></span>
-        </label>
+            <span class="tooltiptext right">Auto-Rotate</span>    
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="autoRotate" tabindex="0">
+            <label class="onoffswitch-label" for="autoRotate">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+            </label>
+        </div>
+        <div class="onoffswitch tooltip">
+            <span class="tooltiptext right">Orientation help</span>    
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="turnsHelpArrows" tabindex="0">
+            <label class="onoffswitch-label" for="turnsHelpArrows">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+            </label>
         </div>
         <button class="tooltip" id="fullscreenButton" onclick="fullscreen(!fullscreen())">
             <i class="fa fa-expand" aria-hidden="true"></i>

@@ -70,11 +70,9 @@ function adjustCamera(){
     centerY += (mouseY - pmouseY) * (fov / 1.2);
   }
 
-  if (document.getElementById("myonoffswitch").checked){
+  if (document.getElementById("autoRotate").checked){
     yRotation = autoRotation_lastYRotation + (frameCount - autoRotation_lastFrameCount) * 0.015;
-  }
-
-  if (!document.getElementById("myonoffswitch").checked){
+  } else {
     autoRotation_lastFrameCount = frameCount;
     autoRotation_lastYRotation = yRotation;
   }

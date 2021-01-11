@@ -60,8 +60,12 @@ function logoEnd(){
     makeShape();
   }
   if (showTurtle){
-    drawCoordinates(10);
     drawAvatar();
+    if (document.getElementById("turnsHelpArrows").checked){
+      drawHelpArrows(15);
+    } else {
+      drawCoordinates(10);
+    }
   }
   pop();
 }

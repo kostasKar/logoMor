@@ -283,7 +283,7 @@ output{
 
 #fullscreenButton {
   position: relative;
-  top: 20px;
+  top: 5px;
   background: none;
   border: none;
   padding: 2px 3px;
@@ -296,6 +296,7 @@ output{
 
 .onoffswitch {
     position: relative;
+    margin-bottom: 15px;
     width: 30px;
     top: 10px;
     left: 0px;
