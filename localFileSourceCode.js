@@ -114,10 +114,14 @@ function togglePause(){
   if (isLooping()){
     document.getElementById("pause").firstElementChild.className = "fa fa-play";
     document.getElementById("pause").firstElementChild.style.color = "lime";
+    document.getElementById("autoRotate").disabled = true;
+    document.getElementById("turnsHelpArrows").disabled = true;
     noLoop();
   } else {
     document.getElementById("pause").firstElementChild.className = "fa fa-pause";
     document.getElementById("pause").firstElementChild.style.removeProperty("color");
+    document.getElementById("autoRotate").disabled = false;
+    document.getElementById("turnsHelpArrows").disabled = false;
     loop();
   }
 }
