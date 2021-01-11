@@ -1,6 +1,7 @@
 let labelFont;
 
 function preload() {
+  //uncomment to deploy online
   //labelFont = loadFont('assets/Inconsolata.otf');
 }
 
@@ -9,6 +10,7 @@ function preload() {
 var canvas;
 
 function setup() {
+  setAttributes('antialias', true);
   canvas = createCanvas(windowWidth, windowHeight, WEBGL);
   canvas.parent('drawCanvas');
   initializeCamera();
@@ -17,6 +19,7 @@ function setup() {
   canvas.mouseOut(disableCamera);
 
   //labels fonts
+  //uncomment to deploy online
   //textFont(labelFont);
 
 }
