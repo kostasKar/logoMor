@@ -109,6 +109,7 @@ class GenericCommandTaskS extends GenericCommandTaskF {
  class SetZTask extends SingleArgumentMove { run() {L_SETZ(this.arguments[0]); return "";}}
  class SetXYZTask extends ThreeArgumentsMove { run() {L_SETXYZ(this.arguments[0], this.arguments[1], this.arguments[2]); return "";}}
  class PointTask extends NoArgumentCommandTask{ run() {L_POINT(); return "";}}
+ class DistTask extends ThreeArgumentsCommandTask{ run() {return L_DIST(this.arguments[0], this.arguments[1], this.arguments[2]);}}
 
 //Output commands:
  class PrintTask extends SingleStringArgumentCommandTask { run(){consolePrintln(this.arguments[0]); return "";}}

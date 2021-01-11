@@ -198,6 +198,10 @@ function L_ENDSHAPE(){
    return getlmZ();
  }
 
+ function L_DIST(x, y, z){
+  return sqrt(pow(x-getlmX(), 2) + pow(y-(-getlmY()), 2) + pow(z-getlmZ(), 2));
+ }
+
   function L_SETX(newX){
    pop();
    push();
