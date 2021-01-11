@@ -1,6 +1,6 @@
 var penDown;
 var showTurtle;
-var strokeR, strokeG, strokeB, strokeWght, labelTextSize;
+var strokeR, strokeG, strokeB, strokeWght, strokeAlpha, labelTextSize;
 var shapeBegan;
 var vertices;
 
@@ -9,14 +9,12 @@ function makeShape(){
   pop();
   push();
   restoreStrokeStyle(); //for the stroke color
-  fill(strokeR, strokeG, strokeB, 230); //like restoreStrokeStyle but with transparency
   beginShape();
   for (let i = 0; i < vertices.length; i++) {
     vertex(vertices[i][0], vertices[i][1], vertices[i][2]);
   } 
   endShape();
   applyLogoTransformationMatrix();
-  restoreStrokeStyle();
 }
 
 function addVertex(){
@@ -29,6 +27,7 @@ function initStrokeStyle(){
   strokeR = 255;
   strokeG = 255;
   strokeB = 255;
+  strokeAlpha = 255;
   labelTextSize = 10;
 
   stroke(255);
@@ -39,8 +38,8 @@ function initStrokeStyle(){
 
 function restoreStrokeStyle(){
   strokeWeight(strokeWght);
-  stroke(strokeR, strokeG, strokeB);
-  fill(strokeR, strokeG, strokeB);
+  stroke(strokeR, strokeG, strokeB, strokeAlpha);
+  fill(strokeR, strokeG, strokeB, strokeAlpha);
   textSize(labelTextSize);
 }
 
@@ -161,11 +160,17 @@ function L_ENDSHAPE(){
  }
  
  function L_COLOR(r, g, b){
-   stroke(r, g, b);
-   fill(r, g, b);
+   stroke(r, g, b, strokeAlpha);
+   fill(r, g, b, strokeAlpha);
    strokeR = r;
    strokeG = g;
    strokeB = b;
+ } 
+
+ function L_COLORALPHA(a){
+   stroke(strokeR, strokeG, strokeB, a);
+   fill(strokeR, strokeG, strokeB, a);
+   strokeAlpha = a;
  } 
 
  function L_LABEL(word){

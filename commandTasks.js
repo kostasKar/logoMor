@@ -96,6 +96,7 @@ class GenericCommandTaskS extends GenericCommandTaskF {
  class SpsTask extends SingleArgumentCommandTask { run() { L_SETPENSIZE(int(this.arguments[0])); return "";}}
  class StsTask extends SingleArgumentCommandTask { run() { L_SETTEXTSIZE(int(this.arguments[0])); return "";}}
  class ColorTask extends ThreeArgumentsCommandTask { run() { L_COLOR(parseInt(this.arguments[0]), parseInt(this.arguments[1]), parseInt(this.arguments[2])); return "";}}
+ class ColorAlphaTask extends SingleArgumentCommandTask{ run() {L_COLORALPHA(parseInt(this.arguments[0])); return "";}}
  class PdTask extends NoArgumentCommandTask { run() { L_PENDOWN(); return "";}}
  class PuTask extends NoArgumentCommandTask { run() { L_PENUP(); return "";}}
  class ShowTurtleTask extends NoArgumentCommandTask { run() { L_SHOWTURTLE(); return "";}} 
