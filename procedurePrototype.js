@@ -25,11 +25,11 @@ class ProcedurePrototype {
       }
     }
     while (sourceTokens[i] !== "end"){
-      i++;
       if ((i == sourceTokens.length) || (sourceTokens[i] === "to")){
         throwError("Missing 'end'");
         return;
       }
+      i++;
     }
     let endIndex = i;
     procedurePrototypes[sourceTokens[startIndex]] = this;
