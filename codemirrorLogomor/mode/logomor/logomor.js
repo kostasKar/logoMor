@@ -25,7 +25,7 @@ CodeMirror.defineMode("logomorMode", function() {
         return "operator";
       }
 
-      if (stream.match(/[0-9]+(.[0-9]+)?/)){
+      if (stream.match(/[0-9]+(\.[0-9]+)?/)){
         return "number";
       }
 
