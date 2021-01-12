@@ -8,6 +8,12 @@
     <meta charset="utf-8">
     <!-- Icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="codemirror/lib/codemirror.js"></script>
+    <link href="codemirror/lib/codemirror.css" rel="stylesheet">
+    <script src="codemirror/addon/mode/simple.js"></script>
+    <script src="codemirrorLogomor/logomor/logomor.js"></script>
+    <link href="codemirror/theme/gruvbox-dark.css" rel="stylesheet">
+
 
   </head>
   <body>
@@ -100,7 +106,7 @@
             <button onclick="openFile()">Load</button>
             <button onclick=" window.open('assets/Documentation.pdf','_blank')" type="button">Help</button>
             <input id="inp" type='file' style="visibility:hidden;" onchange="readFile(event)" />
-            <button type="button" id="DemoButton" onclick="document.getElementById('sourceCodeTextArea').value = getRandomDemoProgram();parseLogo();">Demo</button>
+            <button type="button" id="DemoButton" onclick="myCodeMirror.setValue(getRandomDemoProgram());parseLogo();">Demo</button>
         </div>
 
         <label class="areaTitle">CONSOLE</label>
@@ -117,6 +123,16 @@
         </div>
 
     </div>
+
+    <script>
+        var myCodeMirror = CodeMirror.fromTextArea
+        (document.getElementById("sourceCodeTextArea"), {
+            mode: "logomorMode",
+            theme: "gruvbox-dark",
+            lineNumbers: false
+         });
+        myCodeMirror.setSize("402", null);
+    </script>
   
 
 </body></html>

@@ -60,16 +60,26 @@ canvas {
   white-space: pre;
 }
 
-#sourceCodeTextArea{
+#sourceCodeTextArea, .CodeMirror{
   min-height: 400px;
   resize: vertical;
+  border: 3px solid #333333;
 }
 
-#sourceCodeTextArea:focus{
+.CodeMirror:focus{
   outline: none !important;
   border-color: #444444;
   outline-color: #444444;
 }
+
+.CodeMirror-vscrollbar{
+  bottom: 15px !important;
+}
+
+.CodeMirror-hscrollbar{
+  right: 15px !important;
+}
+
 
 #consoleTextArea{
   height: 150px;

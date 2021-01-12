@@ -48,7 +48,7 @@ function throwError(text){
 function parseLogo(sourceCode){
   
   if (sourceCode === undefined){
-	  sourceCode = document.getElementById("sourceCodeTextArea").value;
+	  sourceCode = myCodeMirror.getValue();
   }
   var sourceCodeTxt = prepareSourceCodeText(sourceCode);
   initialSourceTokens = sourceCodeTxt.trim().split(/[\s]+/);
