@@ -1,7 +1,7 @@
 
 
 
-var initialSourceTokens = {};  //the array of tokens fot the whole program
+var initialSourceTokens = {};  //the array of tokens for the whole program
 var sourceTokens        //the array of the tokens for the currently executed code body
 var currentIndex;			  //the int index of current token
 var tasksStack;			    //the stack with all the tasks
@@ -42,7 +42,23 @@ function stackTrace(){
 function throwError(text){
   error = true;
   consolePrintln("Error: " + text);
+  consolePrintln("Line number: " + sourceCodeLineOfCurrentIndex());
   stackTrace();
+}
+
+
+function sourceCodeLineOfCurrentIndex(){
+
+  var sourceCode = myCodeMirror.getValue().toLowerCase();
+  var tokenIndex = 0;
+  var sourceCodeIndex = 0;
+  while (tokenIndex < currentIndex){
+    sourceCodeIndex = sourceCode.indexOf(sourceTokens[tokenIndex], sourceCodeIndex);
+    tokenIndex++;
+  }
+  sourceCodeIndex = sourceCode.indexOf(sourceTokens[currentIndex], sourceCodeIndex);
+  sourceCode = sourceCode.substring(0, sourceCodeIndex);
+  return (sourceCode.match(/\n/g)||[]).length + 1;
 }
 
 function parseLogo(sourceCode){
