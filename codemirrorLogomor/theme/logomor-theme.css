@@ -1,0 +1,37 @@
+/*
+
+    Name:       logomor-theme
+    Author:     kRkk (https://github.com/krkk)
+
+    Original gruvbox color scheme by Pavel Pertsev (https://github.com/morhetz/gruvbox)
+
+*/
+
+.cm-s-logomor-theme.CodeMirror, .cm-s-logomor-theme .CodeMirror-gutters { background-color: #111111; color: #bdae93; }
+.cm-s-logomor-theme .CodeMirror-gutters {background: #151515; border-right: 0px;}
+.cm-s-logomor-theme .CodeMirror-linenumber {color: #7c6f64;}
+.cm-s-logomor-theme .CodeMirror-cursor { border-left: 1px solid #ebdbb2; }
+.cm-s-logomor-theme div.CodeMirror-selected { background: #928374; }
+.cm-s-logomor-theme span.cm-meta { color: #83a598; }
+
+.cm-s-logomor-theme span.cm-comment { color: #928374; }
+.cm-s-logomor-theme span.cm-number, span.cm-atom { color: #d3869b; }
+.cm-s-logomor-theme span.cm-keyword { color: #f84934; }
+
+.cm-s-logomor-theme span.cm-variable { color: #ebdbb2; }
+.cm-s-logomor-theme span.cm-variable-2 { color: #ebdbb2; }
+.cm-s-logomor-theme span.cm-variable-3, .cm-s-logomor-theme span.cm-type { color: #fabd2f; }
+.cm-s-logomor-theme span.cm-operator { color: #ebdbb2; }
+.cm-s-logomor-theme span.cm-callee { color: #ebdbb2; }
+.cm-s-logomor-theme span.cm-def { color: #ebdbb2; }
+.cm-s-logomor-theme span.cm-property { color: #ebdbb2; }
+.cm-s-logomor-theme span.cm-string { color: #b8bb26; }
+.cm-s-logomor-theme span.cm-string-2 { color: #8ec07c; }
+.cm-s-logomor-theme span.cm-qualifier { color: #8ec07c; }
+.cm-s-logomor-theme span.cm-attribute { color: #8ec07c; }
+
+.cm-s-logomor-theme .CodeMirror-activeline-background { background: #3c3836; }
+.cm-s-logomor-theme .CodeMirror-matchingbracket { background: #928374; color:#282828 !important; }
+
+.cm-s-logomor-theme span.cm-builtin { color: #fe8019; }
+.cm-s-logomor-theme span.cm-tag { color: #fe8019; }

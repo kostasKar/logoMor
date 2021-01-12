@@ -11,7 +11,7 @@
     <script src="codemirrorLogomor/lib/codemirror.js"></script>
     <link href="codemirrorLogomor/lib/codemirror.css" rel="stylesheet">
     <script src="codemirrorLogomor/mode/logomor/logomor.js"></script>
-    <link href="codemirrorLogomor/theme/gruvbox-dark.css" rel="stylesheet">
+    <link href="codemirrorLogomor/theme/logomor-theme.css" rel="stylesheet">
 
 
   </head>
@@ -127,7 +127,7 @@
         var myCodeMirror = CodeMirror.fromTextArea
         (document.getElementById("sourceCodeTextArea"), {
             mode: "logomorMode",
-            theme: "gruvbox-dark",
+            theme: "logomor-theme",
             lineNumbers: true
          });
         myCodeMirror.setSize("402", null);
