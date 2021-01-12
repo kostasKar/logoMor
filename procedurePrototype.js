@@ -7,6 +7,10 @@ class ProcedurePrototype {
       return;
     }
     i++;//skip the 'to'
+    if(sourceTokens[i] in procedurePrototypes){//we cannot declare another procedure with the same name
+      throwError("Redefinition of function with name: " + sourceTokens[i]);
+      return;
+    }
     let startIndex = i; //start index at procedure name
     i++;//skip the procedure name
     this.localVariables = {};
