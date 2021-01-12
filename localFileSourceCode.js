@@ -1,5 +1,5 @@
 function download(){
-    var text = document.getElementById("sourceCodeTextArea").value;
+    var text = myCodeMirror.getValue();
     text = text.replace(/\n/g, "\r\n"); // To retain the Line breaks.
     var blob = new Blob([text], { type: "text/plain"});
     var anchor = document.createElement("a");
@@ -21,7 +21,7 @@ function readFile(e) {
   if (!file) return;
   var reader = new FileReader();
   reader.onload = function(e) {
-    document.getElementById('sourceCodeTextArea').value = e.target.result;
+    myCodeMirror.setValue(e.target.result);
   }
   reader.readAsText(file)
 }
