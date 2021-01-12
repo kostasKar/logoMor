@@ -56,7 +56,9 @@ function sourceCodeLineOfCurrentIndex(){
     sourceCodeIndex = sourceCode.indexOf(sourceTokens[tokenIndex], sourceCodeIndex);
     tokenIndex++;
   }
-  sourceCodeIndex = sourceCode.indexOf(sourceTokens[currentIndex], sourceCodeIndex);
+  if (currentIndex <  sourceTokens.length){
+    sourceCodeIndex = sourceCode.indexOf(sourceTokens[currentIndex], sourceCodeIndex);
+  }
   sourceCode = sourceCode.substring(0, sourceCodeIndex);
   return (sourceCode.match(/\n/g)||[]).length + 1;
 }
