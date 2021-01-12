@@ -1,7 +1,7 @@
 
 
-var keywords = ["make","static","repcount","forward","fd","back","bk","right","rt","left","lt","up","down","dn","roll_right","rr","roll_left","rl","penup","pu","pendown","pd","showturtle","st","hideturtle","ht","setpensize","sps","settextsize","sts","color","coloralpha","home","getx","gety","getz","setx","sety","setz","setxyz","print","label","and","or","not","rand","random","randcrazy","randomcrazy","sqrt","power","pow","modulo","mod","cos","sin","tan","arccos","arcsin","arctan","ln","log","exp","pi","time","frame","int","round","trunc","abs","min","max","beginface","endface","mousex","mousey","mousepressed","thing","valueof","increment","decrement","point","dist"];
-var builtins = ["if","ifelse","repeat","while","until","to","end","return"];
+var keywords = ["forward","fd","back","bk","right","rt","left","lt","up","down","dn","roll_right","rr","roll_left","rl","penup","pu","pendown","pd","showturtle","st","hideturtle","ht","setpensize","sps","settextsize","sts","color","coloralpha","home","getx","gety","getz","setx","sety","setz","setxyz","print","label","and","or","not","rand","random","randcrazy","randomcrazy","sqrt","power","pow","modulo","mod","cos","sin","tan","arccos","arcsin","arctan","ln","log","exp","pi","time","frame","int","round","trunc","abs","min","max","beginface","endface","mousex","mousey","mousepressed","thing","valueof","increment","decrement","point","dist"];
+var builtins = ["make","static","if","ifelse","repeat","repcount","while","until","to","end","return"];
 
 CodeMirror.defineMode("logomorMode", function() {
 
