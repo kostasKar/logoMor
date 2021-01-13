@@ -18,6 +18,8 @@
     <script src="codemirrorLogomor/addon/search/match-highlighter.js"></script>
     <script src="codemirrorLogomor/addon/search/matchesonscrollbar.js"></script>
     <script src="codemirrorLogomor/addon/scroll/annotatescrollbar.js"></script>
+    <script src="codemirrorLogomor/addon/scroll/simplescrollbars.js"></script>
+    <link href="codemirrorLogomor/addon/scroll/simplescrollbars.css" rel="stylesheet">
     <script src="codemirrorLogomor/addon/search/searchcursor.js"></script>
 
 
@@ -139,7 +141,8 @@
             matchBrackets: true,
             autoCloseBrackets: true,
             styleActiveLine: true,
-            highlightSelectionMatches: { showToken: false, annotateScrollbar: true }
+            highlightSelectionMatches: { showToken: false, annotateScrollbar: true },
+            scrollbarStyle: "overlay"
          });
         myCodeMirror.setSize("402", null);
     </script>
