@@ -12,6 +12,10 @@
     <link href="codemirrorLogomor/lib/codemirror.css" rel="stylesheet">
     <script src="codemirrorLogomor/mode/logomor/logomor.js"></script>
     <link href="codemirrorLogomor/theme/logomor-theme.css" rel="stylesheet">
+    <script src="codemirrorLogomor/addon/edit/matchbrackets.js"></script>
+    <script src="codemirrorLogomor/addon/edit/closebrackets.js"></script>
+    <script src="codemirrorLogomor/addon/selection/active-line.js"></script>
+    <script src="codemirrorLogomor/addon/search/match-highlighter.js"></script>
 
 
   </head>
@@ -128,7 +132,11 @@
         (document.getElementById("sourceCodeTextArea"), {
             mode: "logomorMode",
             theme: "logomor-theme",
-            lineNumbers: true
+            lineNumbers: true,
+            matchBrackets: true,
+            autoCloseBrackets: true,
+            styleActiveLine: true,
+            highlightSelectionMatches: { showToken: false, annotateScrollbar: true }
          });
         myCodeMirror.setSize("402", null);
     </script>

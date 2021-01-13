@@ -26,3 +26,10 @@
   color: white !important;
 }
 
+.cm-s-logomor-theme span.cm-matchhighlight {
+	outline: 1px solid #d0d0d0;
+	/*border-radius: 2px;*/
+	/*background: rgba(73, 72, 62, .99);*/
+}
+
+
