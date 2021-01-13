@@ -1,6 +1,6 @@
 
 
-
+var wholeSourceTokens;   //an array to keep the complete source tokens for reference
 var mainSourceTokens = {};  //the array of tokens for the whole program
 var sourceTokens        //the array of the tokens for the currently executed code body
 var currentIndex;			  //the int index of current token
@@ -51,11 +51,14 @@ function sourceCodeLineOfCurrentIndex(){
 
   var sourceCode = myCodeMirror.getValue().toLowerCase();
   var tokenIndex = 0;
+  var wholeSourceTokenIndex = indexOfSubArray(wholeSourceTokens, sourceTokens);
   var sourceCodeIndex = 0;
-  while (tokenIndex < currentIndex){
-    sourceCodeIndex = sourceCode.indexOf(sourceTokens[tokenIndex], sourceCodeIndex);
+
+  while (tokenIndex < wholeSourceTokenIndex + currentIndex){
+    sourceCodeIndex = sourceCode.indexOf(wholeSourceTokens[tokenIndex], sourceCodeIndex);
     tokenIndex++;
   }
+
   if (currentIndex <  sourceTokens.length){
     sourceCodeIndex = sourceCode.indexOf(sourceTokens[currentIndex], sourceCodeIndex);
   }
@@ -72,6 +75,7 @@ function parseLogo(sourceCode){
   mainSourceTokens = sourceCodeTxt.trim().split(/[\s]+/);
   mainSourceTokens = mainSourceTokens.filter(function (el) {return el != "";});
   console.log(mainSourceTokens);
+  wholeSourceTokens = [...mainSourceTokens];
   seed = Math.random().toString(36).substring(7);
   procedurePrototypes = {};
   staticVariables = {};
