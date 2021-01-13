@@ -15,57 +15,6 @@ var error;              //boolean indicating error in execution
 var startTime;          //used for time command
 var startFrame;         //used for frame command
 
-function consolePrintln(text){
-  document.getElementById("consoleTextArea").value += text + "\n";
-}
-
-function consolePrint(text){
-  document.getElementById("consoleTextArea").value += text;
-}
-
-function consoleClear(){
-  document.getElementById("consoleTextArea").value = "";
-}
-
-function stackTrace(){
-  consolePrintln("Stack trace (most recent task last):");
-  for (let i=0; i<tasksStack.length; i++){
-    consolePrint("-" + tasksStack[i].constructor.name);
-    if (tasksStack[i].constructor.name === 'ProcedureTask'){
-      consolePrintln(" " + tasksStack[i].body[0]);
-    } else {
-      consolePrintln("");
-    }
-  }
-}
-
-function throwError(text){
-  error = true;
-  consolePrintln("Error: " + text);
-  consolePrintln("Line number: " + sourceCodeLineOfCurrentIndex());
-  stackTrace();
-}
-
-
-function sourceCodeLineOfCurrentIndex(){
-
-  var sourceCode = myCodeMirror.getValue().toLowerCase();
-  var tokenIndex = 0;
-  var wholeSourceTokenIndex = indexOfSubArray(wholeSourceTokens, sourceTokens);
-  var sourceCodeIndex = 0;
-
-  while (tokenIndex < wholeSourceTokenIndex + currentIndex){
-    sourceCodeIndex = sourceCode.indexOf(wholeSourceTokens[tokenIndex], sourceCodeIndex);
-    tokenIndex++;
-  }
-
-  if (currentIndex <  sourceTokens.length){
-    sourceCodeIndex = sourceCode.indexOf(sourceTokens[currentIndex], sourceCodeIndex);
-  }
-  sourceCode = sourceCode.substring(0, sourceCodeIndex);
-  return (sourceCode.match(/\n/g)||[]).length + 1;
-}
-
 function parseLogo(sourceCode){
   
   if (sourceCode === undefined){
