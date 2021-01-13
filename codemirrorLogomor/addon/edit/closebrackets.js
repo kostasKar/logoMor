@@ -10,8 +10,8 @@
     mod(CodeMirror);
 })(function(CodeMirror) {
   var defaults = {
-    pairs: "()[]{}''\"\"",
-    closeBefore: ")]}'\":;>",
+    pairs: "()[]{}",
+    closeBefore: ")]}",
     triples: "",
     explode: "[]{}"
   };
