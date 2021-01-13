@@ -32,4 +32,7 @@
 	/*background: rgba(73, 72, 62, .99);*/
 }
 
+.CodeMirror-selection-highlight-scrollbar {background-color: yellow}
 
+.cm-s-logomor-theme .CodeMirror-line::selection, .cm-s-logomor-theme .CodeMirror-line > span::selection, .cm-s-logomor-theme .CodeMirror-line > span > span::selection { background: rgba(255, 255, 255, 0.10); }
+.cm-s-logomor-theme .CodeMirror-line::-moz-selection, .cm-s-logomor-theme .CodeMirror-line > span::-moz-selection, .cm-s-logomor-theme .CodeMirror-line > span > span::-moz-selection { background: rgba(255, 255, 255, 0.10); }
