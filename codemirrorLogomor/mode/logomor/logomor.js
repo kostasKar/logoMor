@@ -1,6 +1,6 @@
 
-
-var keywords = ["forward","fd","back","bk","right","rt","left","lt","up","down","dn","roll_right","rr","roll_left","rl","penup","pu","pendown","pd","showturtle","st","hideturtle","ht","setpensize","sps","settextsize","sts","color","coloralpha","home","getx","gety","getz","setx","sety","setz","setxyz","print","label","and","or","not","rand","random","randcrazy","randomcrazy","sqrt","power","pow","modulo","mod","cos","sin","tan","arccos","arcsin","arctan","ln","log","exp","pi","time","frame","int","round","trunc","abs","min","max","beginface","endface","mousex","mousey","mousepressed","thing","valueof","increment","decrement","point","dist"];
+var moves = ["forward","fd","back","bk","right","rt","left","lt","up","down","dn","roll_right","rr","roll_left","rl","home","setx","sety","setz","setxyz"];
+var keywords = ["penup","pu","pendown","pd","showturtle","st","hideturtle","ht","setpensize","sps","settextsize","sts","color","coloralpha","getx","gety","getz","print","label","and","or","not","rand","random","randcrazy","randomcrazy","sqrt","power","pow","modulo","mod","cos","sin","tan","arccos","arcsin","arctan","ln","log","exp","pi","time","frame","int","round","trunc","abs","min","max","beginface","endface","mousex","mousey","mousepressed","thing","valueof","increment","decrement","point","dist"];
 var builtins = ["make","static","if","ifelse","repeat","repcount","while","until","to","end","return"];
 
 CodeMirror.defineMode("logomorMode", function() {
@@ -29,13 +29,14 @@ CodeMirror.defineMode("logomorMode", function() {
         return "number";
       }
 
-
       stream.eatWhile(/\w/);
 
-      if (keywords.includes(stream.current().toLowerCase())) {
-        return "keyword";
+      if (moves.includes(stream.current().toLowerCase())){
+        return "move";
+      } else if (keywords.includes(stream.current().toLowerCase())) {
+        return "command";
       } else if (builtins.includes(stream.current().toLowerCase())){
-        return "builtin";
+        return "keyword";
       }
 
 

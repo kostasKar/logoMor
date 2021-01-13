@@ -1,7 +1,7 @@
 
 
 
-var initialSourceTokens = {};  //the array of tokens for the whole program
+var mainSourceTokens = {};  //the array of tokens for the whole program
 var sourceTokens        //the array of the tokens for the currently executed code body
 var currentIndex;			  //the int index of current token
 var tasksStack;			    //the stack with all the tasks
@@ -69,9 +69,9 @@ function parseLogo(sourceCode){
 	  sourceCode = myCodeMirror.getValue();
   }
   var sourceCodeTxt = prepareSourceCodeText(sourceCode);
-  initialSourceTokens = sourceCodeTxt.trim().split(/[\s]+/);
-  initialSourceTokens = initialSourceTokens.filter(function (el) {return el != "";});
-  console.log(initialSourceTokens);
+  mainSourceTokens = sourceCodeTxt.trim().split(/[\s]+/);
+  mainSourceTokens = mainSourceTokens.filter(function (el) {return el != "";});
+  console.log(mainSourceTokens);
   seed = Math.random().toString(36).substring(7);
   procedurePrototypes = {};
   staticVariables = {};
@@ -87,7 +87,7 @@ function parseLogo(sourceCode){
 }
 
 function initLogoExecution(){
-  sourceTokens = initialSourceTokens;
+  sourceTokens = mainSourceTokens;
   currentIndex = 0;
   movesCount = 0;
   seedableRNG = new Math.seedrandom(seed);
