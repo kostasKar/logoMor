@@ -32,18 +32,21 @@ CodeMirror.defineMode("logomorMode", function() {
         return "number";
       }
 
-      stream.eatWhile(/\w/);
-
-      if (moves.includes(stream.current().toLowerCase())){
-        return "move";
-      } else if (keywords.includes(stream.current().toLowerCase())) {
-        return "command";
-      } else if (builtins.includes(stream.current().toLowerCase())){
-        return "keyword";
+      if (ch.match(/\w/)){
+        stream.eatWhile(/\w/);
+        if (moves.includes(stream.current().toLowerCase())){
+          return "move";
+        } else if (keywords.includes(stream.current().toLowerCase())) {
+          return "command";
+        } else if (builtins.includes(stream.current().toLowerCase())){
+          return "keyword";
+        }
+      } else {
+        stream.next();
       }
 
+      return null;
 
-      stream.next();
     }
   };
 
