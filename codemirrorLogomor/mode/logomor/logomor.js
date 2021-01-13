@@ -23,6 +23,9 @@ CodeMirror.defineMode("logomorMode", function() {
       } else if (ch.match(/[-+\/*=<>]/)){
         stream.next();
         return "operator";
+      } else if (ch.match(/[\[\]\(\)]/)){
+        stream.next();
+        return "enclosing";
       }
 
       if (stream.match(/[0-9]+(\.[0-9]+)?/)){

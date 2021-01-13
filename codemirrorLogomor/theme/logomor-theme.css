@@ -14,6 +14,7 @@
 .cm-s-logomor-theme span.cm-variable { color: #a6e22e; }
 .cm-s-logomor-theme span.cm-string { color: #e6db74; }
 .cm-s-logomor-theme span.cm-operator { color: #d0d0d0; }
+.cm-s-logomor-theme span.cm-enclosing { color: #d0d0d0; }
 .cm-s-logomor-theme span.cm-number, span.cm-atom { color: #ae81ff; }
 .cm-s-logomor-theme span.cm-move { color: #fd971f; }
 .cm-s-logomor-theme span.cm-command { color: #66d9ef; }
@@ -24,3 +25,4 @@
   text-decoration: underline;
   color: white !important;
 }
+
