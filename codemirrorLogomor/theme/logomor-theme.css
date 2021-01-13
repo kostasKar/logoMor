@@ -9,7 +9,6 @@
 .cm-s-logomor-theme .CodeMirror-cursor { border-left: 1px solid #f8f8f0; }
 .cm-s-logomor-theme div.CodeMirror-selected { background: #49483E; }
 
-
 .cm-s-logomor-theme span.cm-comment { color: #75715e; }
 .cm-s-logomor-theme span.cm-variable { color: #a6e22e; }
 .cm-s-logomor-theme span.cm-string { color: #e6db74; }
@@ -27,12 +26,11 @@
 }
 
 .cm-s-logomor-theme span.cm-matchhighlight {
-	outline: 1px solid #d0d0d0;
-	/*border-radius: 2px;*/
-	/*background: rgba(73, 72, 62, .99);*/
+	/*outline: 1px solid #d0d0d0;*/
+	background: rgba(255, 255, 0, .2);
 }
 
-.CodeMirror-selection-highlight-scrollbar {background-color: yellow}
+.CodeMirror-selection-highlight-scrollbar {background: rgba(255, 255, 0, 0.50);}
 
 .cm-s-logomor-theme .CodeMirror-line::selection, .cm-s-logomor-theme .CodeMirror-line > span::selection, .cm-s-logomor-theme .CodeMirror-line > span > span::selection { background: rgba(255, 255, 255, 0.10); }
 .cm-s-logomor-theme .CodeMirror-line::-moz-selection, .cm-s-logomor-theme .CodeMirror-line > span::-moz-selection, .cm-s-logomor-theme .CodeMirror-line > span > span::-moz-selection { background: rgba(255, 255, 255, 0.10); }
