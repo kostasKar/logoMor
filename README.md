@@ -31,7 +31,8 @@ The interpreter accepts the basic UCBLogo commands with many additions:
 - Pause mode is available, that executes the code only once and produces a still image
 - For each global variable of the program, a 'variable manipulator' is automatically generated. The user can enable it and use a slider to manipulate the variables initial value while seeing its effect on the drawing in real time
 - Using timing commands and static variables, the programmer can create any kind of animation
-- Mouse tracking commands enable the creation of interactive sketches  
+- Mouse tracking commands enable the creation of interactive sketches
+- Solid objects can be created by drawing faces with the plain movement commands to indicate edges
 - The user can check various pre-loaded demos by pressing the 'Demo' button  
 - Complete documentation about all supported commands and Logo syntax is available by pressing the 'Help' button
 - The programmer can run the program partially or step-by-step by using the 'Moves Limit' field
