@@ -43,5 +43,10 @@ The interpreter accepts the basic UCBLogo commands with many additions:
 - The user can enable an orientation and turning assistant that is displayed on the drawing avatar to help during programming
 - The editor has many IDE features as keyword highlighting (also distinguishing plain commands from move commands), search highlighting, auto bracket closing etc
 
+## Contributing
+I would love to be sent any LogoMor sketches and include them to the Demos
+Feel free to submit issues and enhancement requests.
+
+
 ## License
 [GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/)
