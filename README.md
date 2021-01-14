@@ -4,11 +4,11 @@ LogoMor is a JavaScript interpreter and visualizer for the Logo programming lang
 
 [Check it online](https://logomor.com/)
 
-[Documentation](https://logomor.com/assets/Documentation.pdf)
+[Logomor Documentation](https://logomor.com/assets/Documentation.pdf)
 
 ## Technologies
 
-The whole interpreter is written in vanilla JavaScript  
+The interpreter is written in vanilla JavaScript  
 UI in HTML5 and CSS3  
 P5.js and WebGl is used for 3D rendering  
 Code editor uses CodeMirror with custom mode for the Logo language
@@ -27,7 +27,7 @@ The interpreter accepts the basic UCBLogo commands with many additions:
 
 - The web interface provides tools for editing, running and debugging Logo code  
 - The output 3D drawing is visualized on a canvas and can be manipulated with the mouse  
-- The whole Logo program is interpreted and produces a drawing for each frame.  
+- The whole Logo program is interpreted and produces a drawing for each display frame.  
 - Optionally, the interpreter can be run in a single-frame mode to produce a still image  
 - For each global variable of the program, a 'variable manipulator' is automatically generated. The user can enable it and use a slider to manipulate the variables initial value while seeing its effect on the drawing in real time
 - Using timing commands and static variables, the programmer can also create any kind of animation
@@ -41,6 +41,7 @@ The interpreter accepts the basic UCBLogo commands with many additions:
 - The drawing can be viewed in auto-rotating mode
 - The user can enable an orientation and turning assistant that is displayed on the drawing avatar to help during programming
 - The editor has many IDE features as keyword highlighting (also distinguishing plain commands from move commands), search highlighting, auto bracket closing etc
+- Default frame rate is 60 fps, but this is affected by the program size. Fps indication on screen to help determining execution load. Pause mode is available, that executes the code only once and produces a still image
 
 ## License
 [GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/)
