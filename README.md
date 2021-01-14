@@ -27,10 +27,10 @@ The interpreter accepts the basic UCBLogo commands with many additions:
 
 - The web interface provides tools for editing, running and debugging Logo code  
 - The output 3D drawing is visualized on a canvas and can be manipulated with the mouse  
-- The whole Logo program is interpreted and produces a drawing for each display frame.Default frame rate is 60 fps, but this is affected by the program size. Fps indication on screen to help determining execution load. 
+- The whole Logo program is interpreted and produces a drawing for each display frame. Default frame rate is 60 fps, but this is affected by the program size. Fps indication on screen to help determining execution load. 
 - Pause mode is available, that executes the code only once and produces a still image
 - For each global variable of the program, a 'variable manipulator' is automatically generated. The user can enable it and use a slider to manipulate the variables initial value while seeing its effect on the drawing in real time
-- Using timing commands and static variables, the programmer can also create any kind of animation
+- Using timing commands and static variables, the programmer can create any kind of animation
 - Mouse tracking commands enable the creation of interactive sketches  
 - The user can check various pre-loaded demos by pressing the 'Demo' button  
 - Complete documentation about all supported commands and Logo syntax is available by pressing the 'Help' button
