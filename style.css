@@ -95,7 +95,7 @@ canvas {
 
 #movesLimitDiv label{
   font-size: 12px;
-  padding: 5px;
+  margin: 7px 5px 0px 0px;
   color: #666666;
   float: right;
 }
@@ -289,17 +289,13 @@ output{
   font-size: 14px;
 }
 
-.CameraInstructions label{
+#CameraInstructions label{
   display:block;
+  margin: 1px;
 }
 
-#fpsLabel{
-  position:relative;
-  display:inline-block;
-}
-
-#fpsValue{
-  display:inline-block;
+#fpsLabel, #fpsValue{
+  margin: 1px;
 }
 
 #fullscreenButton {
