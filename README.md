@@ -17,7 +17,7 @@ Code editor uses CodeMirror with custom mode for the Logo language
 
 The interpreter accepts the basic UCBLogo commands with many additions:
 * 3-Dimentional moves
-* Random generators (per run and per frame modes available)
+* Random number generator (per run and per frame modes available)
 * Timing commands, returning current time and frame
 * Static variables with not frame-limited lifetime
 * Mouse movements tracking commands
