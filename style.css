@@ -4,7 +4,13 @@ html, body {
   background-color: #000000;
 }
 canvas {
+  position:fixed;
   display: block;
+  z-index: -5;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 /* Screenshot and video record buttons */
@@ -36,61 +42,55 @@ canvas {
   color:white;
 }
 
+#controlsColumnContainer {
+  position: absolute;
+  height: 100vh;
+  right: 10px;
+  width: 450px;
+  min-width: 450px;
+}
+
 /*Source code and execution control column*/
 #controlsColumn {
-	position: fixed;
-  overflow: auto;
-	top: 5px;
-	right: 10px;
-	width: 450px;
-	height: 100%;
+  width: 92%;
+	position: absolute;
+  top: 5px;
 }
 
 #controlsColumn :focus{
   outline: none !important;
 }
 
-#controlsColumn textarea{
-	width: 402px;
+#consoleTextArea{
+  position:relative;
+  width: 100%;
+  left: 3px;
 	background-color: #111111;
 	color: #eeeeee;
 	border: 3px solid #333333;
 	font-family: Consolas, monospace;
 	font-size: 14px;
   white-space: pre;
+  height: 150px;
+  resize: none;
 }
 
+
 #sourceCodeTextArea, .CodeMirror{
+  direction:ltr;
+  left: 3px;
+  position:relative;
+  width: 100%;
   min-height: 400px;
   resize: vertical;
   border: 3px solid #333333;
 }
 
-.CodeMirror:focus{
-  outline: none !important;
-  border-color: #444444;
-  outline-color: #444444;
-}
-
-.CodeMirror-vscrollbar{
-  bottom: 15px !important;
-}
-
-.CodeMirror-hscrollbar{
-  right: 15px !important;
-}
-
-
-#consoleTextArea{
-  height: 150px;
-  resize: none;
-}
-
 #movesLimitDiv {
   font-family: Lucida Console;
-  width:400px;
+  width: 100%;
   height: 28px;
-  margin-top: 4px;
+  margin: 5px 0px 2px 0px;
 }
 
 #movesLimitDiv label{
@@ -103,13 +103,19 @@ canvas {
 #movesLimitDiv input {
   background-color: #222222;
   font-size:14px;
-  width: 55px;
+  width: 80px;
   padding: 2px;
   color: #888888;
   position: relative;
   float: right;
   border-width: 2px;
   border-color: #333;
+}
+
+#buttonDiv {
+  width: 100%;
+  position: relative;
+  left: 3px;
 }
 
 #buttonDiv button {
@@ -139,9 +145,13 @@ canvas {
   font-family: Lucida Console, Verdana, monospace;	
   color: #eeeeee;
   text-decoration: none;
-  display: inline-block;
+  display: block;
   font-size: 16px;
   margin: 4px 2px;
+}
+
+#variablesTitle {
+  display: inline-block;
 }
 
 .sliderContainer {

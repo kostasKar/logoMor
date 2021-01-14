@@ -99,6 +99,7 @@
 
     <div id="drawCanvas"></div>
 
+    <div id="controlsColumnContainer">
     <div id="controlsColumn">
 
         <label class="areaTitle">SOURCE CODE</label>
@@ -115,7 +116,7 @@
             <button type="button" id="saveButton" onclick="download()">Save</button>
             <button onclick="openFile()">Load</button>
             <button onclick=" window.open('assets/Documentation.pdf','_blank')" type="button">Help</button>
-            <input id="inp" type='file' style="visibility:hidden;" onchange="readFile(event)" />
+            <input id="inp" type='file' style="display:none;" onchange="readFile(event)" />
             <button type="button" id="DemoButton" onclick="myCodeMirror.setValue(getRandomDemoProgram());parseLogo();">Demo</button>
         </div>
 
@@ -123,7 +124,7 @@
         <textarea readonly id="consoleTextArea"></textarea>
 
         <div id="variablesDiv">
-            <label class="areaTitle">VARIABLES MANIPULATORS</label>
+            <label class="areaTitle" id="variablesTitle">VARIABLES MANIPULATORS</label>
             <div class="dropdown">
               <button id="slidersAddButton" onclick="showVariablesNames()" class="dropbtn" disabled>Add</button>
               <button id="slidersClearButton" onclick="clearSliders()" class="dropbtn" disabled>Clear</button>
@@ -133,6 +134,11 @@
         </div>
 
     </div>
+    </div>
+
+    
+
+
 
     <script>
         var myCodeMirror = CodeMirror.fromTextArea
@@ -146,7 +152,6 @@
             highlightSelectionMatches: { showToken: false, annotateScrollbar: true },
             scrollbarStyle: "overlay"
          });
-        myCodeMirror.setSize("402", null);
     </script>
   
 
