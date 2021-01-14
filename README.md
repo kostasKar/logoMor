@@ -1,12 +1,15 @@
 # LogoMor
 
-LogoMor is a javascript interpreter and visualizer for the Logo programming language
+LogoMor is a JavaScript interpreter and visualizer for the Logo programming language
 
-[Test it online](https://logomor.com/)
+[Check it online](https://logomor.com/)
+
+[Documentation](https://logomor.com/assets/Documentation.pdf)
 
 ## Technologies
 
 The whole interpreter is written in vanilla JavaScript  
+UI in HTML5 and CSS3  
 P5.js and WebGl is used for 3D rendering  
 Code editor uses CodeMirror with custom mode for the Logo language
 
@@ -30,7 +33,7 @@ The interpreter accepts the basic UCBLogo commands with many additions:
 - Using timing commands and static variables, the programmer can also create any kind of animation
 - Mouse tracking commands enable the creation of interactive sketches  
 - The user can check various pre-loaded demos by pressing the 'Demo' button  
-- Complete documentation about all supported commands and Logo syntax is available by pressing the Help button
+- Complete documentation about all supported commands and Logo syntax is available by pressing the 'Help' button
 - The programmer can run the program partially or step-by-step by using the 'Moves Limit' field
 - If an execution error occurs, a verbose error message will be shown on the console, including error line number and a complete stack trace
 - The user can capture snapshots or video of the drawing 
