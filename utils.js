@@ -22,7 +22,7 @@ function indexOfSubArray(array, subArray){
 }
 
 
-function sourceCodeLineOfCurrentIndex(){
+function sourceCodeLineOfTokenIndex(index){
 
   var sourceCode = myCodeMirror.getValue().toLowerCase();
   var tokenIndex = 0;
@@ -30,19 +30,19 @@ function sourceCodeLineOfCurrentIndex(){
   var sourceCodeIndex = 0;
 
   if (wholeSourceTokenIndex !== -1){
-    while (tokenIndex < wholeSourceTokenIndex + currentIndex){
+    while (tokenIndex < wholeSourceTokenIndex + index){
       sourceCodeIndex = sourceCode.indexOf(wholeSourceTokens[tokenIndex], sourceCodeIndex);
       tokenIndex++;
     }
   } else {
-    while (tokenIndex < currentIndex){
+    while (tokenIndex < index){
       sourceCodeIndex = sourceCode.indexOf(sourceTokens[tokenIndex], sourceCodeIndex);
       tokenIndex++;
     }
   }
 
-  if (currentIndex <  sourceTokens.length){
-    sourceCodeIndex = sourceCode.indexOf(sourceTokens[currentIndex], sourceCodeIndex);
+  if (index <  sourceTokens.length){
+    sourceCodeIndex = sourceCode.indexOf(sourceTokens[index], sourceCodeIndex);
   }
   
   sourceCode = sourceCode.substring(0, sourceCodeIndex);

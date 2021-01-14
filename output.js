@@ -28,6 +28,6 @@ function stackTrace(){
 function throwError(text){
   error = true;
   consolePrintln("Error: " + text);
-  consolePrintln("Line number: " + sourceCodeLineOfCurrentIndex());
+  consolePrintln("Line number: " + sourceCodeLineOfTokenIndex(currentIndex));
   stackTrace();
 }

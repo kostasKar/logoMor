@@ -59,6 +59,7 @@ function executeLogo(){
   }
   if (movesCount >= movesLimit){
     consolePrintln("Stopped: Reached Moves Limit");
+    consolePrintln("On line: " + sourceCodeLineOfTokenIndex((currentIndex)? currentIndex - 1 : 0));
   }
 }
 
