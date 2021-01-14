@@ -1,159 +1,161 @@
-<!DOCTYPE html><html lang="en"><head>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inconsolata&amp;display=swap" rel="stylesheet"> 
-    <!--<script src="p5.js"></script>-->
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.min.js"></script>
-    <script src="seedrandom.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <meta charset="utf-8">
-    <!-- Icon library -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="codemirrorLogomor/lib/codemirror.js"></script>
-    <link href="codemirrorLogomor/lib/codemirror.css" rel="stylesheet">
-    <script src="codemirrorLogomor/mode/logomor/logomor.js"></script>
-    <link href="codemirrorLogomor/theme/logomor-theme.css" rel="stylesheet">
-    <script src="codemirrorLogomor/addon/edit/matchbrackets.js"></script>
-    <script src="codemirrorLogomor/addon/edit/closebrackets.js"></script>
-    <script src="codemirrorLogomor/addon/selection/active-line.js"></script>
-    <script src="codemirrorLogomor/addon/search/match-highlighter.js"></script>
-    <script src="codemirrorLogomor/addon/search/matchesonscrollbar.js"></script>
-    <script src="codemirrorLogomor/addon/scroll/annotatescrollbar.js"></script>
-    <script src="codemirrorLogomor/addon/scroll/simplescrollbars.js"></script>
-    <link href="codemirrorLogomor/addon/scroll/simplescrollbars.css" rel="stylesheet">
-    <script src="codemirrorLogomor/addon/search/searchcursor.js"></script>
+<!DOCTYPE html><html lang="en">
+<head>
+  <title>LogoMor</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata&amp;display=swap" rel="stylesheet"> 
+  <!--<script src="p5.js"></script>-->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.min.js"></script>
+  <script src="seedrandom.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <meta charset="utf-8">
+  <!-- Icon library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="codemirrorLogomor/lib/codemirror.js"></script>
+  <link href="codemirrorLogomor/lib/codemirror.css" rel="stylesheet">
+  <script src="codemirrorLogomor/mode/logomor/logomor.js"></script>
+  <link href="codemirrorLogomor/theme/logomor-theme.css" rel="stylesheet">
+  <script src="codemirrorLogomor/addon/edit/matchbrackets.js"></script>
+  <script src="codemirrorLogomor/addon/edit/closebrackets.js"></script>
+  <script src="codemirrorLogomor/addon/selection/active-line.js"></script>
+  <script src="codemirrorLogomor/addon/search/match-highlighter.js"></script>
+  <script src="codemirrorLogomor/addon/search/matchesonscrollbar.js"></script>
+  <script src="codemirrorLogomor/addon/scroll/annotatescrollbar.js"></script>
+  <script src="codemirrorLogomor/addon/scroll/simplescrollbars.js"></script>
+  <link href="codemirrorLogomor/addon/scroll/simplescrollbars.css" rel="stylesheet">
+  <script src="codemirrorLogomor/addon/search/searchcursor.js"></script>
 
-    <script src="cameraManipulation.js"></script>
-    <script src="drawThings.js"></script>
-    <script src="logoMatrixTransformations.js"></script>
-    <script src="logoCommands.js"></script>
-    <script src="commandTasks.js"></script>
-    <script src= "sourceCodeStringPreparation.js"></script>
-    <script src="logoInterpreter.js"></script>
-    <script src="argumentResolverTask.js"></script>
-    <script src="parenthesisTask.js"></script>
-    <script src="variableMakerTask.js"></script>
-    <script src="staticVariableMaker.js"></script>
-    <script src="instructionsBlockTask.js"></script>
-    <script src="ifTask.js"></script>
-    <script src="ifElseTask.js"></script>
-    <script src="repeatTask.js"></script>
-    <script src="whileTask.js"></script>
-    <script src="untilTask.js"></script>
-    <script src="procedurePrototype.js"></script>
-    <script src="procedureTask.js"></script>
-    <script src="variablesSliders.js"></script>
+  <script src="cameraManipulation.js"></script>
+  <script src="drawThings.js"></script>
+  <script src="logoMatrixTransformations.js"></script>
+  <script src="logoCommands.js"></script>
+  <script src="commandTasks.js"></script>
+  <script src= "sourceCodeStringPreparation.js"></script>
+  <script src="logoInterpreter.js"></script>
+  <script src="argumentResolverTask.js"></script>
+  <script src="parenthesisTask.js"></script>
+  <script src="variableMakerTask.js"></script>
+  <script src="staticVariableMaker.js"></script>
+  <script src="instructionsBlockTask.js"></script>
+  <script src="ifTask.js"></script>
+  <script src="ifElseTask.js"></script>
+  <script src="repeatTask.js"></script>
+  <script src="whileTask.js"></script>
+  <script src="untilTask.js"></script>
+  <script src="procedurePrototype.js"></script>
+  <script src="procedureTask.js"></script>
+  <script src="variablesSliders.js"></script>
 
-    <script src="taskFactory.js"></script>
-    <script src="demoProgram.js"></script>
-    <script src="sketch.js"></script>
-    <script src="localFileSourceCode.js"></script>
-    <script src="utils.js"></script>
-    <script src="output.js"></script>
+  <script src="taskFactory.js"></script>
+  <script src="demoProgram.js"></script>
+  <script src="sketch.js"></script>
+  <script src="localFileSourceCode.js"></script>
+  <script src="utils.js"></script>
+  <script src="output.js"></script>
 
-  </head>
-  <body>
+</head>
+<body>
 
-    <div id="p5_loading"></div>
-    <div id="CameraInstructions">
-        <label>Left Click: Rotate <br> Middle Click: Pan <br> Scroll Wheel: Zoom <br> Double click: Reset view<br></label>
-        <label id="fpsLabel">Fps:</label>
-        <label id="fpsValue"></label>
-        <div class="onoffswitch tooltip">
-            <span class="tooltiptext right">Auto-Rotate</span>    
-            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="autoRotate" tabindex="0">
-            <label class="onoffswitch-label" for="autoRotate">
-                <span class="onoffswitch-inner"></span>
-                <span class="onoffswitch-switch"></span>
-            </label>
-        </div>
-        <div class="onoffswitch tooltip">
-            <span class="tooltiptext right">Rotation arrows</span>    
-            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="turnsHelpArrows" tabindex="0">
-            <label class="onoffswitch-label" for="turnsHelpArrows">
-                <span class="onoffswitch-inner"></span>
-                <span class="onoffswitch-switch"></span>
-            </label>
-        </div>
-        <button class="tooltip" id="fullscreenButton" onclick="fullscreen(!fullscreen())">
-            <i class="fa fa-expand" aria-hidden="true"></i>
-            <span class="tooltiptext right">Fullscreen</span>
-        </button>
+  <div id="p5_loading"></div>
+  <div id="CameraInstructions">
+    <label>Left Click: Rotate <br> Middle Click: Pan <br> Scroll Wheel: Zoom <br> Double click: Reset view<br></label>
+    <label id="fpsLabel">Fps:</label>
+    <label id="fpsValue"></label>
+    <div class="onoffswitch tooltip">
+      <span class="tooltiptext right">Auto-Rotate</span>    
+      <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="autoRotate" tabindex="0">
+      <label class="onoffswitch-label" for="autoRotate">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+      </label>
     </div>
-
-    <div id="pictureControl">
-        <button class="tooltip" id="saveScreenshot" onclick="saveScreenshot()">
-            <i class="fa fa-camera" aria-hidden="true"></i>
-            <span class="tooltiptext left">Screenshot</span>
-        </button>
-        <button class="tooltip" id="record" onclick="toggleRecording()">
-            <i class="fa fa-video-camera" aria-hidden="true"></i>
-            <span class="tooltiptext left">Video</span>
-        </button>
-        <button class="tooltip" id="pause" onclick="togglePause()">
-            <i class="fa fa-pause" aria-hidden="true"></i>
-            <span class="tooltiptext left">Redrawing</span>
-        </button>
+    <div class="onoffswitch tooltip">
+      <span class="tooltiptext right">Rotation arrows</span>    
+      <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="turnsHelpArrows" tabindex="0">
+      <label class="onoffswitch-label" for="turnsHelpArrows">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+      </label>
     </div>
+    <button class="tooltip" id="fullscreenButton" onclick="fullscreen(!fullscreen())">
+      <i class="fa fa-expand" aria-hidden="true"></i>
+      <span class="tooltiptext right">Fullscreen</span>
+    </button>
+  </div>
 
-    <div id="copyright">&copy; 2020 Kostas Karouzos ck.karouzos@gmail.com</div> 
+  <div id="pictureControl">
+    <button class="tooltip" id="saveScreenshot" onclick="saveScreenshot()">
+      <i class="fa fa-camera" aria-hidden="true"></i>
+      <span class="tooltiptext left">Screenshot</span>
+    </button>
+    <button class="tooltip" id="record" onclick="toggleRecording()">
+      <i class="fa fa-video-camera" aria-hidden="true"></i>
+      <span class="tooltiptext left">Video</span>
+    </button>
+    <button class="tooltip" id="pause" onclick="togglePause()">
+      <i class="fa fa-pause" aria-hidden="true"></i>
+      <span class="tooltiptext left">Redrawing</span>
+    </button>
+  </div>
 
-    <div id="drawCanvas"></div>
+  <div id="copyright">&copy; 2020 Kostas Karouzos ck.karouzos@gmail.com</div> 
 
-    <div id="controlsColumnContainer">
+  <div id="drawCanvas"></div>
+
+  <div id="controlsColumnContainer">
     <div id="controlsColumn">
 
-        <label class="areaTitle">SOURCE CODE</label>
-        <textarea id="sourceCodeTextArea" spellcheck="false"></textarea>
+      <label class="areaTitle">SOURCE CODE</label>
+      <textarea id="sourceCodeTextArea" spellcheck="false"></textarea>
 
-        <div id="movesLimitDiv">
-            <input  id="movesLimitInput" type="number" name="quantity" min="0" value="1000" onchange="redrawIfPaused()">
-            <label>Moves Limit:</label>
+      <div id="movesLimitDiv">
+        <input  id="movesLimitInput" type="number" name="quantity" min="0" value="1000" onchange="redrawIfPaused()">
+        <label>Moves Limit:</label>
+      </div>
+
+      <div id = "buttonDiv">
+        <button id="playButton" onclick="parseLogo()">Run</button> 
+        <button id="stopButton" onclick="parseLogo('')">Stop</button> 
+        <button type="button" id="saveButton" onclick="download()">Save</button>
+        <button onclick="openFile()">Load</button>
+        <button onclick=" window.open('assets/Documentation.pdf','_blank')" type="button">Help</button>
+        <input id="inp" type='file' style="display:none;" onchange="readFile(event)" />
+        <button type="button" id="DemoButton" onclick="myCodeMirror.setValue(getRandomDemoProgram());parseLogo();">Demo</button>
+      </div>
+
+      <label class="areaTitle">CONSOLE</label>
+      <textarea readonly id="consoleTextArea"></textarea>
+
+      <div id="variablesDiv">
+        <label class="areaTitle" id="variablesTitle">VARIABLES MANIPULATORS</label>
+        <div class="dropdown">
+          <button id="slidersAddButton" onclick="showVariablesNames()" class="dropbtn" disabled>Add</button>
+          <button id="slidersClearButton" onclick="clearSliders()" class="dropbtn" disabled>Clear</button>
+          <div id="variablesNamesDropdown" class="dropdown-content">
+          </div>
         </div>
-
-        <div id = "buttonDiv">
-            <button id="playButton" onclick="parseLogo()">Run</button> 
-            <button id="stopButton" onclick="parseLogo('')">Stop</button> 
-            <button type="button" id="saveButton" onclick="download()">Save</button>
-            <button onclick="openFile()">Load</button>
-            <button onclick=" window.open('assets/Documentation.pdf','_blank')" type="button">Help</button>
-            <input id="inp" type='file' style="display:none;" onchange="readFile(event)" />
-            <button type="button" id="DemoButton" onclick="myCodeMirror.setValue(getRandomDemoProgram());parseLogo();">Demo</button>
-        </div>
-
-        <label class="areaTitle">CONSOLE</label>
-        <textarea readonly id="consoleTextArea"></textarea>
-
-        <div id="variablesDiv">
-            <label class="areaTitle" id="variablesTitle">VARIABLES MANIPULATORS</label>
-            <div class="dropdown">
-              <button id="slidersAddButton" onclick="showVariablesNames()" class="dropbtn" disabled>Add</button>
-              <button id="slidersClearButton" onclick="clearSliders()" class="dropbtn" disabled>Clear</button>
-              <div id="variablesNamesDropdown" class="dropdown-content">
-              </div>
-            </div>
-        </div>
+      </div>
 
     </div>
-    </div>
-
-    
+  </div>
 
 
 
-    <script>
-        var myCodeMirror = CodeMirror.fromTextArea
-        (document.getElementById("sourceCodeTextArea"), {
-            mode: "logomorMode",
-            theme: "logomor-theme",
-            lineNumbers: true,
-            matchBrackets: true,
-            autoCloseBrackets: true,
-            styleActiveLine: true,
-            highlightSelectionMatches: { showToken: false, annotateScrollbar: true },
-            scrollbarStyle: "overlay"
-         });
-    </script>
-  
+
+
+  <script>
+    var myCodeMirror = CodeMirror.fromTextArea
+    (document.getElementById("sourceCodeTextArea"), {
+      mode: "logomorMode",
+      theme: "logomor-theme",
+      lineNumbers: true,
+      matchBrackets: true,
+      autoCloseBrackets: true,
+      styleActiveLine: true,
+      highlightSelectionMatches: { showToken: false, annotateScrollbar: true },
+      scrollbarStyle: "overlay"
+    });
+  </script>
+
 
 </body>
 </html>
