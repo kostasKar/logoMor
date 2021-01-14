@@ -73,6 +73,7 @@ canvas {
   white-space: pre;
   height: 150px;
   resize: none;
+  border-radius: 4px;
 }
 
 
@@ -84,6 +85,7 @@ canvas {
   min-height: 400px;
   resize: vertical;
   border: 3px solid #333333;
+  border-radius: 4px;
 }
 
 #movesLimitDiv {
@@ -110,6 +112,7 @@ canvas {
   float: right;
   border-width: 2px;
   border-color: #333;
+  border-radius: 4px;
 }
 
 #buttonDiv {
