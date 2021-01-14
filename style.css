@@ -303,12 +303,17 @@ output{
   top: 5px;
   background: none;
   border: none;
-  padding: 2px 3px;
+  padding: 2px 4px;
+  width: 25;
+  height:25;
   color: #555555;
   font-size: 15px;
   cursor: pointer;
   font-family: Lucida Console;
   outline: none !important;
+  border: 1px solid #555555;
+  border-radius: 7px;
+  margin-top: 3px;
 }
 
 .onoffswitch {
