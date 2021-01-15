@@ -173,7 +173,7 @@
         while (end < currentLine.length && /[":\w$]+/.test(currentLine.charAt(end))) ++end;
         while (start && /[":\w$]+/.test(currentLine.charAt(start - 1))) --start;
         var curWord = start != end && currentLine.slice(start, end);
-        var regex = new RegExp('^' + curWord, 'i');
+        var regex = new RegExp('^' + curWord + '.', 'i');
         var result = {
             list: (!curWord ? [] : list.filter(function (item) {
                 return item.match(regex);
