@@ -24,6 +24,8 @@
   <script src="codemirrorLogomor/addon/scroll/simplescrollbars.js"></script>
   <link href="codemirrorLogomor/addon/scroll/simplescrollbars.css" rel="stylesheet">
   <script src="codemirrorLogomor/addon/search/searchcursor.js"></script>
+  <script src="codemirrorLogomor/addon/hint/show-hint.js"></script>
+  <link rel="stylesheet" href="codemirrorLogomor/addon/hint/show-hint.css">
 
   <script src="cameraManipulation.js"></script>
   <script src="drawThings.js"></script>
@@ -157,8 +159,48 @@
       styleActiveLine: true,
       highlightSelectionMatches: { showToken: false, annotateScrollbar: true },
       scrollbarStyle: "overlay",
-      indentUnit: 2
+      indentUnit: 2,
+      extraKeys: {"Ctrl-Space": "autocomplete"}
     });
+
+
+    CodeMirror.hint.logomor = function (editor) {
+        var list = [...logomorMoves, ...logomorKeywords, ...logomorBuiltins];
+        var cursor = editor.getCursor();
+        var currentLine = editor.getLine(cursor.line);
+        var start = cursor.ch;
+        var end = start;
+        while (end < currentLine.length && /[":\w$]+/.test(currentLine.charAt(end))) ++end;
+        while (start && /[":\w$]+/.test(currentLine.charAt(start - 1))) --start;
+        var curWord = start != end && currentLine.slice(start, end);
+        var regex = new RegExp('^' + curWord, 'i');
+        var result = {
+            list: (!curWord ? [] : list.filter(function (item) {
+                return item.match(regex);
+            })).sort(),
+            from: CodeMirror.Pos(cursor.line, start),
+            to: CodeMirror.Pos(cursor.line, end)
+        };
+
+        //do not hint inside comments
+        if (currentLine.includes(";")){
+          result = {list: [], from: CodeMirror.Pos(cursor.line, start), to: CodeMirror.Pos(cursor.line, end) };
+        }
+
+        return result;
+    };
+
+    CodeMirror.commands.autocomplete = function (cm, options) {
+     CodeMirror.showHint(cm, CodeMirror.hint.logomor, options);
+    };
+
+    myCodeMirror.on("keyup", function (cm, event) {
+      if (!cm.state.completionActive && /*Enables keyboard navigation in autocomplete list*/
+          String.fromCharCode(event.keyCode).match(/[a-zA-Z]/)) {
+          CodeMirror.commands.autocomplete(cm, {completeSingle: false});
+      }
+    });
+
   </script>
 
 
