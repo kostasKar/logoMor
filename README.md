@@ -41,7 +41,7 @@ The interpreter accepts the basic UCBLogo commands with many additions:
 - The user can save the Logo code to plain text or load a file from the filesystem. Drag and drop is also supported
 - The drawing can be viewed in auto-rotating mode
 - The user can enable an orientation and turning assistant that is displayed on the drawing avatar to help during programming
-- The editor has many IDE features as auto-complete, auto-indentation, keyword highlighting (also distinguishing plain commands from move commands), search highlighting, auto bracket closing etc
+- The editor has many IDE features as auto-completion, auto-indentation, keyword highlighting (also distinguishing plain commands from move commands), search highlighting, auto bracket closing etc
 
 ## Contributing
 I would love to receive any LogoMor sketches and include them to the Demos  
