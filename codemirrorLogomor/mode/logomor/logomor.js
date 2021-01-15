@@ -23,14 +23,14 @@ CodeMirror.defineMode("logomorMode", function(config) {
   return {
 
 
-    startState: function() {
-        return {
-          indentation: 0,
-        };
-      },
+    startState: function () {
+      var state = {};
+      state.indentation = 0;
+      return state;
+    },
 
     indent: function(state, textAfter){
-      if ((textAfter) && (textAfter.charAt(0) === "]")){
+      if ((textAfter) && ((textAfter.charAt(0) === "]") || (textAfter.match(/\s*end/i)))){
         return state.indentation - indentUnit;
       } else {
         return state.indentation;
@@ -40,7 +40,6 @@ CodeMirror.defineMode("logomorMode", function(config) {
 
     token: function(stream, state) {
 
-      state.indentation = stream.indentation();
 
       var ch = stream.peek();
       if (ch == ";") {
@@ -78,6 +77,11 @@ CodeMirror.defineMode("logomorMode", function(config) {
         } else if (logomorKeywords.includes(stream.current().toLowerCase())) {
           return "command";
         } else if (logomorBuiltins.includes(stream.current().toLowerCase())){
+          if (stream.current().toLowerCase() === "to"){
+            state.indentation += indentUnit;
+          } else if (stream.current().toLowerCase() === "end"){
+            state.indentation -= indentUnit;
+          }
           return "keyword";
         }
       } else {
@@ -86,7 +90,9 @@ CodeMirror.defineMode("logomorMode", function(config) {
 
       return null;
 
-    }
+    },
+
+    electricInput: /^\s*(?:end|\])$/i
 
   };
 
