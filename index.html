@@ -173,11 +173,15 @@
         while (end < currentLine.length && /[":\w$]+/.test(currentLine.charAt(end))) ++end;
         while (start && /[":\w$]+/.test(currentLine.charAt(start - 1))) --start;
         var curWord = start != end && currentLine.slice(start, end);
-        var regex = new RegExp('^' + curWord + '.', 'i');
+        var regex = new RegExp('^' + curWord, 'i');
+
+        var resultList = (!curWord ? [] : list.filter(function (item) { return item.match(regex);})).sort();
+        if ((resultList.length === 1) && (resultList[0].length === curWord.length)){
+          resultList = [];
+        } 
+
         var result = {
-            list: (!curWord ? [] : list.filter(function (item) {
-                return item.match(regex);
-            })).sort(),
+            list: resultList,
             from: CodeMirror.Pos(cursor.line, start),
             to: CodeMirror.Pos(cursor.line, end)
         };
