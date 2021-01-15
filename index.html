@@ -152,10 +152,12 @@
       theme: "logomor-theme",
       lineNumbers: true,
       matchBrackets: true,
-      autoCloseBrackets: true,
+      autoCloseBrackets: {pairs: "()[]", explode: "[]"},
+      tabSize: 2,
       styleActiveLine: true,
       highlightSelectionMatches: { showToken: false, annotateScrollbar: true },
-      scrollbarStyle: "overlay"
+      scrollbarStyle: "overlay",
+      indentUnit: 2
     });
   </script>
 
