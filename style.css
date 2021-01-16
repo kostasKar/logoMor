@@ -418,3 +418,15 @@ output{
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+/*#editorFullscreen{
+  position: fixed;
+  right: 22px;
+  top: 13px;
+  background-color: #272822;
+  color: #707165;
+  border: 3px solid #333333;
+  border-radius: 4px;
+  padding: 0px 3px;
+  cursor: pointer;
+}   */
