@@ -30,7 +30,7 @@ CodeMirror.defineMode("logomorMode", function(config) {
     },
 
     indent: function(state, textAfter){
-      if ((textAfter) && ((textAfter.charAt(0) === "]") || (textAfter.match(/\s*end/i)))){
+      if ((textAfter) && ((textAfter.charAt(0) === "]") || (textAfter.match(/\s*end$/i)))){
         return state.indentation - indentUnit;
       } else {
         return state.indentation;
@@ -92,7 +92,7 @@ CodeMirror.defineMode("logomorMode", function(config) {
 
     },
 
-    electricInput: /^\s*(?:end|\])$/i
+    electricInput: /^\s*(?:end|end[^\s]|\])$/i
 
   };
 
