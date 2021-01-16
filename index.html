@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="codemirrorLogomor/addon/hint/show-hint.css">
   <script src="codemirrorLogomor/addon/display/fullscreen.js"></script>
   <link rel="stylesheet" href="codemirrorLogomor/addon/display/fullscreen.css">
+  <script src="codemirrorLogomor/addon/display/placeholder.js"></script>
 
   <script src="cameraManipulation.js"></script>
   <script src="drawThings.js"></script>
@@ -112,7 +113,7 @@
     <div id="controlsColumn">
 
       <label class="areaTitle">SOURCE CODE</label>
-      <textarea id="sourceCodeTextArea" spellcheck="false"></textarea>
+      <textarea id="sourceCodeTextArea" spellcheck="false" placeholder="Logo code here...&#13;&#10;(F11 for fullscreen editor)"></textarea>
 
       <div id="movesLimitDiv">
         <input  id="movesLimitInput" type="number" name="quantity" min="0" value="1000" onchange="redrawIfPaused()">

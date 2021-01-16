@@ -8,6 +8,7 @@
 .cm-s-logomor-theme .CodeMirror-linenumber {color: #90918b;}
 .cm-s-logomor-theme .CodeMirror-cursor { border-left: 1px solid #f8f8f0; }
 .cm-s-logomor-theme div.CodeMirror-selected { background: #49483E; }
+.cm-s-logomor-theme.CodeMirror-empty {color: #707165;}
 
 .cm-s-logomor-theme span.cm-comment { color: #75715e; }
 .cm-s-logomor-theme span.cm-variable { color: #a6e22e; }
