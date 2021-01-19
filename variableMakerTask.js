@@ -49,7 +49,7 @@ class VariableMakerTask{
   checkSliders(value){
 
     var existingListItem = document.getElementById(this.name+"li");
-    if (existingListItem == null){
+    if ((existingListItem == null) && !(value.includes("\""))){
       createListItemForVar(this.name, value);
     }
 
