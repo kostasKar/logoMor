@@ -53,7 +53,7 @@ class VariableMakerTask{
       createListItemForVar(this.name, value);
     }
 
-    var existingSlider = document.getElementById(this.name);
+    var existingSlider = document.getElementById(this.name + "slider");
     if (existingSlider == null){
       return value;
     } else {

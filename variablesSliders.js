@@ -23,7 +23,7 @@ window.onclick = function(event) {
 
 
 function createSliderForVar(name, value){
-	if (document.getElementById(name) != null){
+	if (document.getElementById(name + "slider") != null){
 		return;
 	}
 	document.getElementById("slidersClearButton").disabled = false;
@@ -34,7 +34,7 @@ function createSliderForVar(name, value){
 	varNameLabel.className = "sliderVarName";
 	varNameLabel.innerText = name;
 	var newSlider = document.createElement("input");
-	newSlider.id = name;
+	newSlider.id = name + "slider";
 	newSlider.type = "range";
 	newSlider.min = Math.min(0, 10*value);
 	newSlider.max = (value != 0)? Math.max(0, 10*value) : 10;
