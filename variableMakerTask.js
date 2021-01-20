@@ -15,6 +15,10 @@ class VariableMakerTask{
   
   tryToTakeInput(arg){
     if (!this.nameAvailable){
+      if(!arg.startsWith("\"")){
+        throwError("Variable maker invalid variable name literal: " + arg);
+        return false;
+      }
       this.name = arg.replace("\"", "");
       this.nameAvailable = true;
       var art = new ArgumentResolverTask();

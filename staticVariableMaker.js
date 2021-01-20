@@ -13,6 +13,10 @@ class StaticVariableMakerTask{
   
   tryToTakeInput(arg){
     if (!this.nameAvailable){
+      if(!arg.startsWith("\"")){
+        throwError("Static variable maker invalid variable name literal: " + arg);
+        return false;
+      }
       this.name = arg.replace("\"", "");
       this.nameAvailable = true;
       var art = new ArgumentResolverTask();
@@ -23,7 +27,7 @@ class StaticVariableMakerTask{
           staticVariables[this.name] = arg;
         }
       }else {
-        throwError("Static Variable maker invalid argument: " + arg);
+        throwError("Static variable maker invalid argument: " + arg);
         return false;
       }
       this.canBeResolved = true;
