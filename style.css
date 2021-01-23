@@ -21,9 +21,10 @@ canvas {
 
 /* Screenshot and video record buttons */
 #pictureControl{
-  position:fixed;
-  right: 470px;
-  top: 25px;
+  display: inline-block;
+  float : right;
+  margin-right: 12px;
+  margin-top: 30px;
 }
 
 #pictureControl button{
@@ -47,19 +48,12 @@ canvas {
   color:white;
 }
 
-#controlsColumnContainer {
-  position: absolute;
-  height: 100vh;
-  right: 10px;
-  width: 450px;
-  min-width: 450px;
-}
-
 /*Source code and execution control column*/
 #controlsColumn {
-  width: 92%;
-	position: absolute;
-  top: 5px;
+  margin-right: 25px;
+  margin-top: 10px;
+  display: inline-block;
+	float: right;
 }
 
 #controlsColumn :focus{
@@ -81,17 +75,31 @@ canvas {
   border-radius: 4px;
 }
 
+#sourceCodeContainer {
+  direction: rtl;
+  resize: both;
+  overflow: auto;
+  min-height: 400px;
+  min-width: 415px;
+  width: 100%;
+  right: 20px;
+
+}
 
 #sourceCodeTextArea, .CodeMirror {
-  left: 3px;
   position:relative;
   width: 100%;
+  height: inherit !important;
   min-height: 400px;
-  resize: vertical;
   border: 3px solid #333333;
   border-radius: 4px;
   font-size: 14px;
   font-family: Consolas, monospace !important;
+  overflow: auto;
+}
+
+.CodeMirror-scroll{
+  min-height: 400px !important;
 }
 
 #movesLimitDiv {

@@ -26,7 +26,6 @@
   <script src="codemirrorLogomor/addon/search/searchcursor.js"></script>
   <script src="codemirrorLogomor/addon/hint/show-hint.js"></script>
   <link rel="stylesheet" href="codemirrorLogomor/addon/hint/show-hint.css">
-  <script src="codemirrorLogomor/addon/display/fullscreen.js"></script>
   <link rel="stylesheet" href="codemirrorLogomor/addon/display/fullscreen.css">
   <script src="codemirrorLogomor/addon/display/placeholder.js"></script>
 
@@ -90,30 +89,16 @@
     </button>
   </div>
 
-  <div id="pictureControl">
-    <button class="tooltip" id="saveScreenshot" onclick="saveScreenshot()">
-      <i class="fa fa-camera" aria-hidden="true"></i>
-      <span class="tooltiptext left">Screenshot</span>
-    </button>
-    <button class="tooltip" id="record" onclick="toggleRecording()">
-      <i class="fa fa-video-camera" aria-hidden="true"></i>
-      <span class="tooltiptext left">Video</span>
-    </button>
-    <button class="tooltip" id="pause" onclick="togglePause()">
-      <i class="fa fa-pause" aria-hidden="true"></i>
-      <span class="tooltiptext left">Redrawing</span>
-    </button>
-  </div>
-
   <div id="copyright">&copy; 2020 Kostas Karouzos ck.karouzos@gmail.com</div> 
 
   <div id="drawCanvas"></div>
 
-  <div id="controlsColumnContainer">
     <div id="controlsColumn">
 
       <label class="areaTitle">SOURCE CODE EDITOR</label>
-      <textarea id="sourceCodeTextArea" spellcheck="false" placeholder="Logo code here...&#13;&#10;(F11 when in focus for fullscreen)"></textarea>
+      <div id="sourceCodeContainer">
+        <textarea id="sourceCodeTextArea" spellcheck="false" placeholder="Logo code here..."></textarea>
+      </div>
 
       <div id="movesLimitDiv">
         <input  id="movesLimitInput" type="number" name="quantity" min="0" value="1000" onchange="redrawIfPaused()">
@@ -143,8 +128,31 @@
         </div>
       </div>
 
-    </div>
   </div>
+
+
+  <div id="pictureControl">
+    <button class="tooltip" id="saveScreenshot" onclick="saveScreenshot()">
+      <i class="fa fa-camera" aria-hidden="true"></i>
+      <span class="tooltiptext left">Screenshot</span>
+    </button>
+    <button class="tooltip" id="record" onclick="toggleRecording()">
+      <i class="fa fa-video-camera" aria-hidden="true"></i>
+      <span class="tooltiptext left">Video</span>
+    </button>
+    <button class="tooltip" id="pause" onclick="togglePause()">
+      <i class="fa fa-pause" aria-hidden="true"></i>
+      <span class="tooltiptext left">Redrawing</span>
+    </button>
+  </div>
+
+
+
+
+
+
+
+
 
 <!--   <button id="editorFullscreen" onclick="myCodeMirror.setOption('fullScreen', !myCodeMirror.getOption('fullScreen'))">
     <i class="fa fa-expand" aria-hidden="true"></i>
@@ -166,54 +174,46 @@
       styleActiveLine: true,
       highlightSelectionMatches: { showToken: false, annotateScrollbar: true },
       scrollbarStyle: "overlay",
-      indentUnit: 2,
-      extraKeys: {
-        "F11": function(cm) {
-          cm.setOption("fullScreen", !cm.getOption("fullScreen"));
-        },
-        "Esc": function(cm) {
-          if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
-        }
-      }
+      indentUnit: 2
     });
 
 
     CodeMirror.hint.logomor = function (editor) {
-        var list = [...logomorMoves, ...logomorKeywords, ...logomorBuiltins];
-        var cursor = editor.getCursor();
-        var currentLine = editor.getLine(cursor.line);
-        var start = cursor.ch;
-        var end = start;
-        while (end < currentLine.length && /[":\w$]+/.test(currentLine.charAt(end))) ++end;
-        while (start && /[":\w$]+/.test(currentLine.charAt(start - 1))) --start;
-        var curWord = start != end && currentLine.slice(start, end);
-        var regex = new RegExp('^' + curWord, 'i');
+      var list = [...logomorMoves, ...logomorKeywords, ...logomorBuiltins];
+      var cursor = editor.getCursor();
+      var currentLine = editor.getLine(cursor.line);
+      var start = cursor.ch;
+      var end = start;
+      while (end < currentLine.length && /[":\w$]+/.test(currentLine.charAt(end))) ++end;
+      while (start && /[":\w$]+/.test(currentLine.charAt(start - 1))) --start;
+      var curWord = start != end && currentLine.slice(start, end);
+      var regex = new RegExp('^' + curWord, 'i');
 
-        var resultList = (!curWord ? [] : list.filter(function (item) { return item.match(regex);})).sort();
-        if ((resultList.length === 1) && (resultList[0].length === curWord.length)){
-          resultList = [];
-        } 
+      var resultList = (!curWord ? [] : list.filter(function (item) { return item.match(regex);})).sort();
+      if ((resultList.length === 1) && (resultList[0].length === curWord.length)){
+        resultList = [];
+      } 
 
-        var result = {
-            list: resultList,
-            from: CodeMirror.Pos(cursor.line, start),
-            to: CodeMirror.Pos(cursor.line, end)
+      var result = {
+        list: resultList,
+        from: CodeMirror.Pos(cursor.line, start),
+        to: CodeMirror.Pos(cursor.line, end)
+      };
+
+          //do not hint inside comments
+          if (currentLine.includes(";")){
+            result = {list: [], from: CodeMirror.Pos(cursor.line, start), to: CodeMirror.Pos(cursor.line, end) };
+          }
+
+          return result;
         };
 
-        //do not hint inside comments
-        if (currentLine.includes(";")){
-          result = {list: [], from: CodeMirror.Pos(cursor.line, start), to: CodeMirror.Pos(cursor.line, end) };
-        }
+        CodeMirror.commands.autocomplete = function (cm, options) {
+         CodeMirror.showHint(cm, CodeMirror.hint.logomor, options);
+       };
 
-        return result;
-    };
-
-    CodeMirror.commands.autocomplete = function (cm, options) {
-     CodeMirror.showHint(cm, CodeMirror.hint.logomor, options);
-    };
-
-    myCodeMirror.on("keyup", function (cm, event) {
-      if (!cm.state.completionActive && /*Enables keyboard navigation in autocomplete list*/
+       myCodeMirror.on("keyup", function (cm, event) {
+        if (!cm.state.completionActive && /*Enables keyboard navigation in autocomplete list*/
           String.fromCharCode(event.keyCode).match(/[a-zA-Z]/)) {
           CodeMirror.commands.autocomplete(cm, {completeSingle: false});
       }
