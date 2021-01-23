@@ -63,7 +63,6 @@ canvas {
 #consoleTextArea{
   position:relative;
   width: 100%;
-  left: 3px;
 	background-color: #111111;
 	color: #eeeeee;
 	border: 3px solid #333333;
@@ -91,7 +90,7 @@ canvas {
   position:relative;
   width: 100%;
   height: inherit !important;
-  min-height: 400px;
+  min-height: 415px;
   border: 3px solid #333333;
   border-radius: 4px;
   font-size: 14px;
@@ -132,7 +131,6 @@ canvas {
 #buttonDiv {
   width: 100%;
   position: relative;
-  left: 3px;
 }
 
 #buttonDiv button {
