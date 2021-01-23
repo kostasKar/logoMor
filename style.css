@@ -79,9 +79,10 @@ canvas {
   direction: rtl;
   resize: both;
   overflow: auto;
-  min-height: 400px;
+  min-height: 415px;
   min-width: 415px;
-  width: 100%;
+  width: 415px;
+  height: 415px;
   right: 20px;
 
 }
