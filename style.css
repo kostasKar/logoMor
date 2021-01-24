@@ -367,7 +367,7 @@ output{
 
 /*Tooltips*/
 .tooltip .tooltiptext {
-  visibility: hidden;
+  display: none;
   white-space: nowrap;
   padding: 2px 15px 2px 15px;
   background-color: #222222;
@@ -383,11 +383,12 @@ output{
 }
 
 .tooltip .tooltiptext.left {
-  right: 120%;
+  position: absolute;
+  margin-left: -141px;
 }
 
 .tooltip:hover .tooltiptext {
-  visibility: visible;
+  display: inline-block;
 }
 
 /*Footer*/
