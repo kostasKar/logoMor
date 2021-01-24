@@ -80,6 +80,8 @@ var TasksConstructors = {
   "abs":AbsTask,
   "min":MinTask,
   "max":MaxTask,
+  "radtodeg":RadToDegTask,
+  "degtorad":DegToRadTask,
   "beginface":BeginShapeTask,
   "endface":EndShapeTask,
   "mousex":MouseXTask,

@@ -144,6 +144,8 @@ class GenericCommandTaskS extends GenericCommandTaskF {
  class AbsTask extends SingleArgumentCommandTask { run() {return Math.abs(this.arguments[0]);}}
  class MinTask extends TwoArgumentsCommandTask { run() {return Math.min(this.arguments[0], this.arguments[1]);}}
  class MaxTask extends TwoArgumentsCommandTask { run() {return Math.max(this.arguments[0], this.arguments[1]);}}
+ class RadToDegTask extends SingleArgumentCommandTask { run() {return degrees(this.arguments[0]);}}
+ class DegToRadTask extends SingleArgumentCommandTask { run() {return radians(this.arguments[0]);}}
 
 //Timing 
 class TimeTask extends NoArgumentCommandTask{run(){return ((millis()-startTime)/1000);}}
