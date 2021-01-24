@@ -404,8 +404,12 @@ output{
 
 #copyright a, a:visited{
   color: #444444;
-  font-size: 14px;
   text-decoration: none;
+}
+
+#copyright a:hover{
+  color: #777777;
+  cursor: pointer;
 }
 
 #p5_loading {
