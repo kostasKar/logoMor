@@ -88,13 +88,14 @@ function checkNextToken(){
   
   //Return occurred inside another task inside a proc. So several pops are needed for the proc to 'see' the return command
   if (sourceTokens[currentIndex] === "return"){ 
-      if (tasksStack.length > 1){
-        tasksStack.pop();
-      } else {
-        error = true; //This is either an error, or we can use return to exit execution. So no actual error thrown
-        consolePrintln("Returned from execution");
-      }
-      return;
+    while ((tasksStack.length > 0) && (tasksStack[tasksStack.length-1].constructor.name !== 'ProcedureTask')){
+      tasksStack.pop();
+    } 
+    if (tasksStack.length === 0){
+      error = true; //This is either an error, or we can use return to exit execution. So no actual error thrown
+      consolePrintln("Returned from execution");
+    }
+    return;
   } 
   
   //If we got here, it means that a new task has to be created and pushed in the tasks Stack
