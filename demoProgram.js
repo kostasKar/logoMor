@@ -429,9 +429,10 @@ var demoProgram10 =
 var demoProgram11 = 
 ';--------Demo Fibonacci spiral--------- \n' + 
 ' \n' + 
-';recursive fibonacci just for reference \n' + 
-';very heavy, check fps as :n grows \n' + 
+';Recursive fibonacci just for reference \n' + 
+';Very heavy, observe fps as :n grows \n' + 
 ';print :functioncalls to check num of calls \n' + 
+';Maybe there is another fibonacci sequence there :) \n' +
 'static "functioncalls 0 \n' + 
 'make "functioncalls 0 \n' + 
 ' \n' + 
@@ -442,7 +443,7 @@ var demoProgram11 =
 '  return (fibonaccirec :n-1) + (fibonaccirec :n-2) \n' + 
 'end \n' + 
 ' \n' + 
-';iterative fibonacci, more practical \n' + 
+';Iterative fibonacci, more practical \n' + 
 'to fibonacci :n \n' + 
 '  make "a 0 \n' + 
 '  make "b 1 \n' + 
@@ -453,9 +454,11 @@ var demoProgram11 =
 '  ifelse :n=0 [return :a] [return :b] \n' + 
 'end \n' + 
 ' \n' + 
+';Global variables. Check variables manipulators \n' +
 'make "n 15 \n' + 
 'make "angle 50 \n' + 
 ' \n' + 
+';Actual drawing code \n' +
 'repeat :n [ \n' + 
 '  fd fibonacci repcount \n' + 
 '  rt :angle \n' + 
