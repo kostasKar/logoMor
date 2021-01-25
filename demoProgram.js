@@ -2,7 +2,7 @@
 var previousi = -1
 
 function getRandomDemoProgram(){
-	var demoPrograms = [demoProgram1, demoProgram2, demoProgram3, demoProgram4, demoProgram5, demoProgram6, demoProgram7, demoProgram8, demoProgram9, demoProgram10];
+	var demoPrograms = [demoProgram1, demoProgram2, demoProgram3, demoProgram4, demoProgram5, demoProgram6, demoProgram7, demoProgram8, demoProgram9, demoProgram10, demoProgram11];
 	var i;
 	do {i = Math.floor(Math.random()*demoPrograms.length);}
 	while(i == previousi);
@@ -425,3 +425,39 @@ var demoProgram10 =
 'rt 90 pu fd :barpos pd fd 50  \n' + 
 'print "score \n' + 
 'print :score \n';
+
+var demoProgram11 = 
+';--------Demo Fibonacci spiral--------- \n' + 
+' \n' + 
+';recursive fibonacci just for reference \n' + 
+';very heavy, check fps as :n grows \n' + 
+';print :functioncalls to check num of calls \n' + 
+'static "functioncalls 0 \n' + 
+'make "functioncalls 0 \n' + 
+' \n' + 
+'to fibonaccirec :n \n' + 
+'  increment "functioncalls \n' + 
+'  if :n=0 [return 0] \n' + 
+'  if :n=1 [return 1] \n' + 
+'  return (fibonaccirec :n-1) + (fibonaccirec :n-2) \n' + 
+'end \n' + 
+' \n' + 
+';iterative fibonacci, more practical \n' + 
+'to fibonacci :n \n' + 
+'  make "a 0 \n' + 
+'  make "b 1 \n' + 
+'  repeat :n-1 [ \n' + 
+'    make "b :a+:b \n' + 
+'    make "a :b-:a \n' + 
+'  ] \n' + 
+'  ifelse :n=0 [return :a] [return :b] \n' + 
+'end \n' + 
+' \n' + 
+'make "n 15 \n' + 
+'make "angle 50 \n' + 
+' \n' + 
+'repeat :n [ \n' + 
+'  fd fibonacci repcount \n' + 
+'  rt :angle \n' + 
+'] \n' + 
+';print :functioncalls \n';
