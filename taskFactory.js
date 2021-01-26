@@ -93,7 +93,7 @@ var TasksConstructors = {
   "decrement":DecrementTask,
   "point":PointTask,
   "dist":DistTask,
-  "concat":ConcatTask
+  "word":WordTask
 }
 
 

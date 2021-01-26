@@ -167,4 +167,4 @@ class IncrementTask extends SingleStringArgumentCommandTask{run(){setVariableVal
 class DecrementTask extends SingleStringArgumentCommandTask{run(){setVariableValue(this.arguments[0], Number(getVariableValue(this.arguments[0])) - 1); return "";}}
 
 //Literals concatenation
-class ConcatTask extends TwoStringArgumentsCommandTask{run(){return '"' + this.arguments[0] + this.arguments[1];}}
+class WordTask extends TwoStringArgumentsCommandTask{run(){return '"' + this.arguments[0] + this.arguments[1];}}
