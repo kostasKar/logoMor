@@ -378,7 +378,7 @@ var demoProgram10 =
 'make "locationX :locationX + :velocityX     \n' + 
 'make "locationY :locationY + :velocityY     \n' + 
 ' \n' + 
-'if :lose [pu  setxyz :width/2 :height/2 0 label "youlost home return] \n' + 
+'if :lose [pu  setxyz :width/2 :height/2 0 label "you\\slost home return] \n' + 
 '     \n' + 
 ' \n' + 
 'if (:locationX<0)[     \n' + 

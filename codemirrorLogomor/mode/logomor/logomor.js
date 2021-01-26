@@ -51,7 +51,7 @@ CodeMirror.defineMode("logomorMode", function(config) {
         return "variable";
       } else if (ch == "\""){
         stream.next();
-        stream.eatWhile(/\w/);
+        stream.eatWhile(/\w|\\/);
         return "string";
       } else if (ch.match(/[-+\/*=<>]/)){
         stream.next();
