@@ -71,6 +71,7 @@ class GenericCommandTaskS extends GenericCommandTaskF {
  class NoArgumentCommandTask extends GenericCommandTaskF{constructor() {super(0);}}           // 0 arguments
  class SingleArgumentCommandTask extends GenericCommandTaskF{constructor() {super(1);}}       // 1 argument, number
  class SingleStringArgumentCommandTask extends GenericCommandTaskS{constructor() {super(1);}} // 1 argument, string
+ class TwoStringArgumentsCommandTask extends GenericCommandTaskS{constructor() {super(2);}}   // 2 arguments, string
  class TwoArgumentsCommandTask extends GenericCommandTaskF{constructor() {super(2);}}         // 2 arguments, numbers
  class ThreeArgumentsCommandTask extends GenericCommandTaskF{constructor() {super(3);}}       // 3 arguments, numbers
  class NoArgumentMove extends GenericCommandTaskF{constructor() {super(0, true);}}            // 0 argument, increment movesCount
@@ -165,3 +166,5 @@ class ValueOfTask extends SingleStringArgumentCommandTask{run(){return getVariab
 class IncrementTask extends SingleStringArgumentCommandTask{run(){setVariableValue(this.arguments[0], Number(getVariableValue(this.arguments[0])) + 1); return "";}}
 class DecrementTask extends SingleStringArgumentCommandTask{run(){setVariableValue(this.arguments[0], Number(getVariableValue(this.arguments[0])) - 1); return "";}}
 
+//Literals concatenation
+class ConcatTask extends TwoStringArgumentsCommandTask{run(){return '"' + this.arguments[0] + this.arguments[1];}}
