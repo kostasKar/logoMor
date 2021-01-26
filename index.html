@@ -231,6 +231,7 @@
     const urlParams = new URLSearchParams(queryString);
     if (urlParams.has('code')){
       myCodeMirror.setValue(urlParams.get('code'));
+      window.history.replaceState(null, null, window.location.pathname);
     }
 
 
