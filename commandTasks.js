@@ -114,8 +114,8 @@ class GenericCommandTaskS extends GenericCommandTaskF {
  class DistTask extends ThreeArgumentsCommandTask{ run() {return L_DIST(this.arguments[0], this.arguments[1], this.arguments[2]);}}
 
 //Output commands:
- class PrintTask extends SingleStringArgumentCommandTask { run(){consolePrintln(this.arguments[0].replace("\\s", " ")); return "";}}
- class LabelTask extends SingleStringArgumentCommandTask { run(){L_LABEL(this.arguments[0].replace("\\s", " ")); return "";}}
+ class PrintTask extends SingleStringArgumentCommandTask { run(){consolePrintln(this.arguments[0].replace(/\\s/g, " ")); return "";}}
+ class LabelTask extends SingleStringArgumentCommandTask { run(){L_LABEL(this.arguments[0].replace(/\\s/g, " ")); return "";}}
 
 //Logical commands
  class AndTask extends TwoArgumentsCommandTask { run() {return ((this.arguments[0] != 0) && (this.arguments[1] != 0))? "1" : "0";}}
