@@ -99,6 +99,7 @@
     <div id="controlsColumn">
 
       <label class="areaTitle">SOURCE CODE EDITOR</label>
+      <button id="copyCodeButton" onclick="copySourceCode()">Share</button>
       <div id="sourceCodeContainer">
         <textarea id="sourceCodeTextArea" spellcheck="false" placeholder="Logo code here..."></textarea>
       </div>
@@ -224,6 +225,38 @@
 
   </script>
 
+
+  <script type="text/javascript">
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    if (urlParams.has('code')){
+      myCodeMirror.setValue(urlParams.get('code'));
+    }
+
+
+    function copySourceCode() {
+      var sourceCodeText = myCodeMirror.getValue();
+      var completeURLText = window.location.href.split('?')[0];
+      if (sourceCodeText !== ""){
+        completeURLText = completeURLText + "?code=" + encodeURIComponent(sourceCodeText);
+      }
+      var completeURL = completeURLText;
+      //window.prompt("Copy to clipboard: Ctrl+C, Enter", completeURL);
+
+      var dummy = document.createElement("textarea");
+      //dummy.style.display = 'none'; //this does not allow copying
+      document.body.appendChild(dummy);
+      dummy.value = completeURL;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+      alert("Link with source code copied to clipboard");
+    }
+
+
+
+    </script>
+    
 
 </body>
 </html>
