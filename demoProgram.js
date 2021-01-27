@@ -2,7 +2,7 @@
 var previousi = -1
 
 function getRandomDemoProgram(){
-	var demoPrograms = [demoProgram1, demoProgram2, demoProgram3, demoProgram4, demoProgram5, demoProgram6, demoProgram7, demoProgram8, demoProgram9, demoProgram10, demoProgram11];
+	var demoPrograms = [demoProgram1, demoProgram2, demoProgram3, demoProgram4, demoProgram5, demoProgram6, demoProgram7, demoProgram8, demoProgram9, demoProgram10, demoProgram11, demoProgram12];
 	var i;
 	do {i = Math.floor(Math.random()*demoPrograms.length);}
 	while(i == previousi);
@@ -464,3 +464,125 @@ var demoProgram11 =
 '  rt :angle \n' + 
 '] \n' + 
 ';print :functioncalls \n';
+
+var demoProgram12 = 
+';---------Demo Data structures-------------- \n' + 
+';The commands "word" and "thing" and the ability \n' + 
+';of variables to hold literals as values, enable \n' + 
+';us to create variables dynamically! \n' + 
+';In this example we provide functions to create  \n' + 
+';data structures as arrays, stacks and queues \n' + 
+';We also make trivial demonstration of a static \n' + 
+';array that can be filled interactively \n' + 
+' \n' + 
+' \n' + 
+';----------Array implementation------------- \n' + 
+'to makearray :name :size \n' + 
+'  repeat :size [ \n' + 
+'    static word :name repcount 0 \n' + 
+'    make word :name repcount 0 \n' + 
+'  ] \n' + 
+'end \n' + 
+' \n' + 
+'to staticarray :name :size \n' + 
+'  repeat :size [ \n' + 
+'    static word :name repcount 0 \n' + 
+'  ] \n' + 
+'end \n' + 
+' \n' + 
+'to getitem :name :index \n' + 
+'  return thing word :name :index \n' + 
+'end \n' + 
+' \n' + 
+'to setitem :name :index :value \n' + 
+'  make word :name :index :value \n' + 
+'end \n' + 
+' \n' + 
+' \n' + 
+';----------Stack implementation------------- \n' + 
+'to makestack :name \n' + 
+'  static word :name "index 0 \n' + 
+'  make word :name "index 0 \n' + 
+'end \n' + 
+' \n' + 
+'to staticstack :name \n' + 
+'  static word :name "index 0 \n' + 
+'end \n' + 
+' \n' + 
+'to push :name :value \n' + 
+'  increment word :name "index \n' + 
+'  static word :name thing word :name "index :value \n' + 
+'  make word :name thing word :name "index :value \n' + 
+'end \n' + 
+' \n' + 
+'to pop :name \n' + 
+'  make "ret thing word :name thing word :name "index \n' + 
+'  decrement word :name "index \n' + 
+'  return :ret \n' + 
+'end \n' + 
+' \n' + 
+'to stackpeek :name \n' + 
+'  return thing word :name thing word :name "index \n' + 
+'end \n' + 
+' \n' + 
+'to stacklength :name \n' + 
+'  return thing word :name "index \n' + 
+'end \n' + 
+' \n' + 
+' \n' + 
+';----------Queue implementation------------- \n' + 
+'to makequeue :name \n' + 
+'  static word :name "front 0 \n' + 
+'  make word :name "front 0 \n' + 
+'  static word :name "rear 0 \n' + 
+'  make word :name "rear 0 \n' + 
+'end \n' + 
+' \n' + 
+'to staticqueue :name \n' + 
+'  static word :name "front 0 \n' + 
+'  static word :name "rear 0 \n' + 
+'end \n' + 
+' \n' + 
+'to enqueue :name :value \n' + 
+'  static word :name thing word :name "rear :value \n' + 
+'  make word :name thing word :name "rear :value \n' + 
+'  increment word :name "rear \n' + 
+'end \n' + 
+' \n' + 
+'to dequeue :name  \n' + 
+'  make "ret thing word :name thing word :name "front \n' + 
+'  increment word :name "front \n' + 
+'  return :ret \n' + 
+'end \n' + 
+' \n' + 
+'to queuepeek :name  \n' + 
+'  return thing word :name thing word :name "front \n' + 
+'end \n' + 
+' \n' + 
+'to queuelength :name \n' + 
+'  return thing word :name "rear - thing word :name "front  \n' + 
+'end \n' + 
+' \n' + 
+' \n' + 
+' \n' + 
+' \n' + 
+';------Interactive static array demo-------- \n' + 
+'hideturtle \n' + 
+'penup \n' + 
+'label "click\\sanywhere \n' + 
+' \n' + 
+'static "index 0 \n' + 
+'staticarray "x 500 \n' + 
+'staticarray "y 500 \n' + 
+' \n' + 
+'if mousepressed[ \n' + 
+'  increment "index \n' + 
+'  setitem "x :index mousex \n' + 
+'  setitem "y :index mousey \n' + 
+'] \n' + 
+' \n' + 
+'repeat :index [ \n' + 
+'  setxyz getitem "x repcount getitem "y repcount getz \n' + 
+'  label  word word getitem "x repcount "\\s getitem "x repcount \n' + 
+'  point \n' + 
+'] \n';

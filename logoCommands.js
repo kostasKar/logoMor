@@ -279,5 +279,5 @@ function L_MOUSEY(){
 }
 
 function L_MOUSEPRESSED(){
-  return mouseIsPressed;
+  return (cameraEnabled && mouseIsPressed);
 }
