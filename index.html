@@ -230,7 +230,7 @@
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     if (urlParams.has('code')){
-      myCodeMirror.setValue(urlParams.get('code'));
+      myCodeMirror.setValue(atob(urlParams.get('code')));
       window.history.replaceState(null, null, window.location.pathname);
     }
 
@@ -239,7 +239,7 @@
       var sourceCodeText = myCodeMirror.getValue();
       var completeURLText = window.location.href.split('?')[0];
       if (sourceCodeText !== ""){
-        completeURLText = completeURLText + "?code=" + encodeURIComponent(sourceCodeText);
+        completeURLText = completeURLText + "?code=" + encodeURIComponent(btoa(sourceCodeText));
       }
       var completeURL = completeURLText;
       //window.prompt("Copy to clipboard: Ctrl+C, Enter", completeURL);
