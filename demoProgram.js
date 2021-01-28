@@ -1,8 +1,8 @@
 
+var demoPrograms = [];
 var previousi = -1
 
 function getRandomDemoProgram(){
-	var demoPrograms = [demoProgram1, demoProgram2, demoProgram3, demoProgram4, demoProgram5, demoProgram6, demoProgram7, demoProgram8, demoProgram9, demoProgram10, demoProgram11, demoProgram12];
 	var i;
 	do {i = Math.floor(Math.random()*demoPrograms.length);}
 	while(i == previousi);
@@ -11,7 +11,7 @@ function getRandomDemoProgram(){
 }
 
 
-var demoProgram1 =  
+demoPrograms.push(  
 ';-----------Demo Random curve---------\n'+
 '\n'+
 ';------Function-----------------------\n'+
@@ -31,9 +31,9 @@ var demoProgram1 =
 '\n'+
 ';--Actual Drawing---------------------\n'+
 'setpensize 3\n'+
-'drawRandomCurve 150\n';
+'drawRandomCurve 150\n');
 
-var demoProgram2 = 
+demoPrograms.push( 
 ';----------Demo Spheres--------------- \n' + 
 '\n'+
 ';------Functions----------------------\n'+
@@ -78,9 +78,9 @@ var demoProgram2 =
 'penup \n' + 
 'setxyz 300 200 150 \n' + 
 'pendown \n' + 
-'sphere :radius/4 :segs \n';
+'sphere :radius/4 :segs \n');
 
-var demoProgram3 = 
+demoPrograms.push(
 ';----------Demo Bracelet--------------  \n' + 
 ' \n' + 
 ';------Functions---------------------- \n' + 
@@ -134,9 +134,9 @@ var demoProgram3 =
 'repeat :jewels [ \n' + 
 ' fdWithSphere 2*pi*:radius/:jewels :segs \n' + 
 ' rt 360/:jewels  \n' + 
-'] \n';
+'] \n');
 
-var demoProgram4 = 
+demoPrograms.push( 
 ';---------Demo Fractal---------------- \n' + 
 ' \n' + 
 ';------Recursive Function------------- \n' + 
@@ -158,9 +158,9 @@ var demoProgram4 =
 'setxyz :length*(sqrt 3)/6 :length/2 0 \n' +
 'label :depth \n' +
 'home \n' +
-'pendown';
+'pendown');
 
-var demoProgram5 = 
+demoPrograms.push( 
 ';---------Demo Crazy Cubes------------- \n' + 
 ';Rand produces random numbers for each run \n' + 
 ';Randcrazy does the same but for each frame! \n' + 
@@ -197,9 +197,9 @@ var demoProgram5 =
 '] \n' + 
 ' \n' + 
 'print rand 500 \n' + 
-'print randcrazy 500';
+'print randcrazy 500');
 
-var demoProgram6 = 
+demoPrograms.push( 
 ';-----Demo Accelerating Sphere--------  \n' + 
 ';Using timing commands a sketch can be \n' + 
 ';animated! \n' + 
@@ -245,9 +245,9 @@ var demoProgram6 =
 'pd \n' + 
 'sphere :radius :segs \n' + 
 'print gety \n' + 
-'print getx \n';
+'print getx \n');
 
-var demoProgram7 = 
+demoPrograms.push( 
 ';----Demo Flying Avatars----------- \n' + 
 'rr frame \n' + 
 'rt frame \n' + 
@@ -255,9 +255,9 @@ var demoProgram7 =
 'pu \n' + 
 ' \n' + 
 'make "speed 1 \n' + 
-'fd mod :speed*frame 300 \n';
+'fd mod :speed*frame 300 \n');
 
-var demoProgram8 = 
+demoPrograms.push( 
 ';----Demo Colorful Starfish--------- \n' + 
 ';Using beginface endface we can create solids \n' + 
 ' \n' + 
@@ -299,9 +299,9 @@ var demoProgram8 =
 '  leg :length :diameter \n' + 
 ' ] \n' + 
 ' rt 360/:legs \n' + 
-'] \n';
+'] \n');
 
-var demoProgram9 = 
+demoPrograms.push( 
 ';---Demo Bouncing Ball---------------    \n' + 
 ';---using static variables we can make    \n' + 
 ';---any kind of animation!-----------    \n' + 
@@ -357,9 +357,9 @@ var demoProgram9 =
 'fd :width+(:radius*2) rt 90   \n' + 
 'fd :height+(:radius*2) rt 90   \n' + 
 'fd :width+(:radius*2) rt 90   \n' + 
-'fd :radius   \n';
+'fd :radius   \n');
 
-var demoProgram10 = 
+demoPrograms.push( 
 ';---Demo pinball game---------------     \n' + 
 '     \n' + 
 'make "width 300    \n' + 
@@ -424,9 +424,9 @@ var demoProgram10 =
 'fd :radius bk :radius \n' + 
 'rt 90 pu fd :barpos pd fd 50  \n' + 
 'print "score \n' + 
-'print :score \n';
+'print :score \n');
 
-var demoProgram11 = 
+demoPrograms.push(
 ';--------Demo Fibonacci spiral--------- \n' + 
 ' \n' + 
 ';Recursive fibonacci just for reference \n' + 
@@ -463,9 +463,9 @@ var demoProgram11 =
 '  fd fibonacci repcount \n' + 
 '  rt :angle \n' + 
 '] \n' + 
-';print :functioncalls \n';
+';print :functioncalls \n');
 
-var demoProgram12 = 
+demoPrograms.push( 
 ';---------Demo Data structures-------------- \n' + 
 ';The commands "word" and "thing" and the ability \n' + 
 ';of variables to hold literals as values, enable \n' + 
@@ -585,4 +585,4 @@ var demoProgram12 =
 '  setxyz getitem "x repcount getitem "y repcount getz \n' + 
 '  label  word word getitem "x repcount "\\s getitem "x repcount \n' + 
 '  point \n' + 
-'] \n';
+'] \n');
