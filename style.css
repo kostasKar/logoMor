@@ -75,6 +75,7 @@ canvas {
 }
 
 #sourceCodeContainer {
+  position: relative;
   direction: rtl;
   resize: both;
   overflow: auto;
@@ -82,7 +83,7 @@ canvas {
   min-width: 415px;
   width: 415px;
   height: 415px;
-  right: 20px;
+  z-index: 1;
 }
 
 #sourceCodeTextArea, .CodeMirror {
@@ -110,14 +111,13 @@ canvas {
     border-bottom: 8px solid ;
     border-top-color: transparent;
     border-right-color: transparent;
-    border-left-color: #777777;
-    border-bottom-color: #777777;
-    bottom: -6px;
+    border-left-color: #555555;
+    border-bottom-color: #555555;
     float: left;
     pointer-events: none;
     z-index: 3;
     position:relative;
-    margin: -22px 0px;
+    margin: -16px 0px;
 }
 
 
