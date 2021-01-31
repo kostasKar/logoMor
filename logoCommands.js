@@ -141,6 +141,12 @@ function L_ENDSHAPE(){
    logoRotateY(radians(-angle));
  }
  
+function L_ARC(angle, radius){
+  noFill();
+  arc(0, 0, radius*2, radius*2, -HALF_PI, radians(angle) - HALF_PI);
+  restoreStrokeStyle();
+}
+
  function L_PENDOWN(){
   penDown = true;
  }
