@@ -70,7 +70,8 @@ canvas {
 	font-size: 14px;
   white-space: pre;
   height: 150px;
-  resize: none;
+  min-height: 150px;
+  resize: vertical;
   border-radius: 4px;
 }
 
