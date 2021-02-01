@@ -245,14 +245,18 @@
       var completeURL = completeURLText;
       //window.prompt("Copy to clipboard: Ctrl+C, Enter", completeURL);
 
-      var dummy = document.createElement("textarea");
-      //dummy.style.display = 'none'; //this does not allow copying
-      document.body.appendChild(dummy);
-      dummy.value = completeURL;
-      dummy.select();
-      document.execCommand("copy");
-      document.body.removeChild(dummy);
-      alert("Link with source code copied to clipboard");
+      if (completeURL.length < 5000){
+        var dummy = document.createElement("textarea");
+        //dummy.style.display = 'none'; //this does not allow copying
+        document.body.appendChild(dummy);
+        dummy.value = completeURL;
+        dummy.select();
+        document.execCommand("copy");
+        document.body.removeChild(dummy);
+        alert("Link with source code copied to clipboard");
+      } else {
+        alert("Source code too long to create share link\nSave and share the source code file instead");
+      }
     }
 
 
