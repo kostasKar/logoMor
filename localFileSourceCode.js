@@ -3,7 +3,7 @@ function download(){
     text = text.replace(/\n/g, "\r\n"); // To retain the Line breaks.
     var blob = new Blob([text], { type: "text/plain"});
     var anchor = document.createElement("a");
-    anchor.download = "LogoSourceCode.txt";
+    anchor.download = "LogoMorSourceCode" + getFormattedTime() + ".txt";
     anchor.href = window.URL.createObjectURL(blob);
     anchor.target ="_blank";
     anchor.style.display = "none"; // just to be safe!
@@ -39,7 +39,7 @@ function saveScreenshot(){
     
   var blob = new Blob([asArray.buffer], { type: "image/png"});
   var anchor = document.createElement("a");
-  anchor.download = "LogoScreenshot.png";
+  anchor.download = "LogoMorScreenshot" + getFormattedTime() + ".png";
   anchor.href = window.URL.createObjectURL(blob);
   anchor.target ="_blank";
   anchor.style.display = "none"; // just to be safe!
@@ -66,7 +66,7 @@ function startRecording(){
     var blob = new Blob(chunks, { 'type' : 'video/mp4' });
     var videoURL = URL.createObjectURL(blob);
     var anchor = document.createElement("a");
-    anchor.download = "LogoVideo.mp4";
+    anchor.download = "LogoMorVideo" + getFormattedTime() + ".mp4";
     anchor.href = videoURL;
     anchor.target ="_blank";
     anchor.style.display = "none"; // just to be safe!
@@ -99,6 +99,17 @@ function toggleRecording(){
   }
 }
 
+function getFormattedTime() {
+    var today = new Date();
+    var y = today.getFullYear();
+    // JavaScript months are 0-based.
+    var m = today.getMonth() + 1;
+    var d = today.getDate();
+    var h = today.getHours();
+    var mi = today.getMinutes();
+    var s = today.getSeconds();
+    return y + "-" + m + "-" + d + "-" + h + "-" + mi + "-" + s;
+}
 
 
 
