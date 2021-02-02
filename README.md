@@ -6,6 +6,15 @@ LogoMor is a JavaScript interpreter and visualizer for the Logo programming lang
 
 [LogoMor Documentation](https://logomor.com/assets/Documentation.pdf)
 
+## Screenshots
+
+![image](https://user-images.githubusercontent.com/13304797/106599420-b3572d00-6561-11eb-8243-01a720d94cc0.png)
+
+![image](https://user-images.githubusercontent.com/13304797/106599557-ea2d4300-6561-11eb-87c5-66ad295d0782.png)
+
+![image](https://user-images.githubusercontent.com/13304797/106599718-22cd1c80-6562-11eb-9f80-c06113cd9779.png)
+
+
 ## Technologies
 
 The interpreter is written in vanilla JavaScript  
