@@ -42,6 +42,7 @@ The interpreter accepts the basic UCBLogo commands with many additions:
 - The drawing can be viewed in auto-rotating mode
 - The user can enable an orientation and turning assistant that is displayed on the drawing avatar to help during programming
 - The editor has many IDE features as auto-completion, auto-indentation, keyword highlighting (also distinguishing plain commands from move commands), search highlighting, auto bracket closing etc
+- With the 'Share' button you can create a shareable link that includes the source code in the editor 
 
 ## Contributing
 I would love to receive any LogoMor sketches and include them to the Demos  
