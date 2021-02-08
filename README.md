@@ -6,6 +6,18 @@ LogoMor is a JavaScript interpreter and visualizer for the Logo programming lang
 
 [LogoMor Documentation](https://logomor.com/assets/Documentation.pdf)
 
+## Screenshots
+
+![image](https://user-images.githubusercontent.com/13304797/106599420-b3572d00-6561-11eb-8243-01a720d94cc0.png)
+
+![image](https://user-images.githubusercontent.com/13304797/106599557-ea2d4300-6561-11eb-87c5-66ad295d0782.png)
+
+![image](https://user-images.githubusercontent.com/13304797/106599718-22cd1c80-6562-11eb-9f80-c06113cd9779.png)
+
+![image](https://user-images.githubusercontent.com/13304797/106600231-c9b1b880-6562-11eb-9417-6b662a88c9d5.png)
+
+![image](https://user-images.githubusercontent.com/13304797/106600738-79872600-6563-11eb-840e-a3fd30df03d4.png)
+
 ## Technologies
 
 The interpreter is written in vanilla JavaScript  
@@ -42,6 +54,7 @@ The interpreter accepts the basic UCBLogo commands with many additions:
 - The drawing can be viewed in auto-rotating mode
 - The user can enable an orientation and turning assistant that is displayed on the drawing avatar to help during programming
 - The editor has many IDE features as auto-completion, auto-indentation, keyword highlighting (also distinguishing plain commands from move commands), search highlighting, auto bracket closing etc
+- With the 'Share' button you can create a shareable link that includes the source code in the editor 
 
 ## Contributing
 I would love to receive any LogoMor sketches and include them to the Demos  
