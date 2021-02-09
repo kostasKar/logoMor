@@ -478,16 +478,11 @@ output{
   background-color: #333333;
 }
 
+@keyframes blinkingBorder {
+  from, to  {border-color: #333333;}
+  100% {border-color: #aa8a77;}
+}
 
-/*#editorFullscreen{
-  position: fixed;
-  right: 22px;
-  top: 13px;
-  background-color: #272822;
-  color: #707165;
-  border: 3px solid #333333;
-  border-radius: 4px;
-  padding: 0px 3px;
-  cursor: pointer;
-}   */
-
+.firstVisitBlink {
+  animation: blinkingBorder 1s ease infinite;
+}

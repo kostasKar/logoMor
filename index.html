@@ -116,7 +116,7 @@
         --><button type="button" id="saveButton" onclick="download()">Save</button><!--
         --><button onclick="openFile()">Load</button><!--
         --><button onclick=" window.open('assets/Documentation.pdf','_blank')" type="button">Help</button><!--
-        --><button type="button" id="DemoButton" onclick="myCodeMirror.setValue(getRandomDemoProgram());parseLogo();">Demo</button>
+        --><button type="button" id="DemoButton" onclick="myCodeMirror.setValue(getRandomDemoProgram());parseLogo();localStorage.setItem('demoPressed', true);this.classList.remove('firstVisitBlink');">Demo</button>
         <input id="inp" type='file' style="display:none;" onchange="readFile(event)" />
       </div>
 
@@ -164,7 +164,11 @@
   </button> -->
 
 
-
+  <script>
+    if(localStorage.getItem("demoPressed") === null){
+      document.getElementById("DemoButton").classList.add("firstVisitBlink");
+    }
+  </script>
 
 
   <script>
