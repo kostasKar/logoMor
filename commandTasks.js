@@ -36,9 +36,10 @@ class GenericCommandTaskF  {
   }
   
   resolve(){
-    tasksStack.pop();
     if (this.countMove){movesCount++;}
-    return this.run().toString();
+    var ret =  this.run().toString();
+    tasksStack.pop();
+    return ret;
   }
   
   run(){
