@@ -589,18 +589,14 @@ pushDemo(
 '] \n');
 
 pushDemo(
-';-----Demo Insertion sort algorithm-----\n' + 
+';-------Demo Sorting algorithms----------\n' + 
 '\n' + 
+';----------------------------------------\n' + 
+';----array implementation functions------\n' + 
 'to makearray :name :size \n' + 
 '  repeat :size [ \n' + 
 '    static word :name repcount 0 \n' + 
 '    make word :name repcount 0 \n' + 
-'  ] \n' + 
-'end \n' + 
-' \n' + 
-'to staticarray :name :size \n' + 
-'  repeat :size [ \n' + 
-'    static word :name repcount 0 \n' + 
 '  ] \n' + 
 'end \n' + 
 ' \n' + 
@@ -612,15 +608,16 @@ pushDemo(
 '  make word :name :index :value \n' + 
 'end \n' + 
 '\n' + 
-'to sort :arrayname :size :maxsteps\n' + 
+'\n' + 
+';----------------------------------------\n' + 
+';----------sorting functions-------------\n' + 
+'to insertionsort :arrayname :size :maxsteps\n' + 
 '  make "steps 0\n' + 
 '  repeat :size [\n' + 
 '    make "j repcount\n' + 
 '    while and :j > 1 or :steps < :maxsteps :maxsteps = -1 [\n' + 
 '      if (getitem :arrayname :j) < (getitem :arrayname :j-1) [\n' + 
-'        make "tmp getitem :arrayname :j\n' + 
-'        setitem :arrayname :j getitem :arrayname :j-1\n' + 
-'        setitem :arrayname :j-1 :tmp\n' + 
+'        swap :arrayname :j :j-1\n' + 
 '        increment "steps\n' + 
 '      ]\n' + 
 '      decrement "j\n' + 
@@ -628,17 +625,63 @@ pushDemo(
 '  ]\n' + 
 'end\n' + 
 '  \n' + 
-'  \n' + 
+'to bubblesort :arrayname :size :maxsteps\n' + 
+'  make "steps 0\n' + 
+'  make "swapped 1\n' + 
+'	while :swapped [\n' + 
+'    make "swapped 0\n' + 
+'    repeat :size - 1 [\n' + 
+'      if (getitem :arrayname repcount) > (getitem :arrayname repcount+1) [\n' + 
+'        swap :arrayname repcount repcount+1\n' + 
+'        make "swapped 1\n' + 
+'        increment "steps\n' + 
+'        if and :steps > :maxsteps not :maxsteps = -1 [return 0]\n' + 
+'      ]\n' + 
+'    ]\n' + 
+'  ]\n' + 
+'end\n' + 
+'\n' + 
+'to quicksort :arrayname :start :end :maxsteps\n' + 
+'  static "quicksortsteps 0\n' + 
+'  if :start < :end [\n' + 
+'    make "p qspartition :arrayname :start :end :maxsteps\n' + 
+'    if :quicksortsteps > :maxsteps [make "quicksortsteps 0 return 0]\n' + 
+'    quicksort :arrayname :start :p-1 :maxsteps\n' + 
+'    quicksort :arrayname :p+1 :end :maxsteps\n' + 
+'  ]\n' + 
+'  make "quicksortsteps 0\n' + 
+'end\n' + 
+'\n' + 
+'to qspartition :arrayname :start :end :maxsteps \n' + 
+'  make "pivot getitem :arrayname :end\n' + 
+'  make "i :start\n' + 
+'  make "j :start\n' + 
+'  while :j <= :end [\n' + 
+'    if :quicksortsteps > :maxsteps [swap :arrayname :i :end return :i]\n' + 
+'    if (getitem :arrayname :j) < :pivot [\n' + 
+'      swap :arrayname :j :i\n' + 
+'      increment "i\n' + 
+'      increment "quicksortsteps\n' + 
+'    ]\n' + 
+'    increment "j\n' + 
+'  ]\n' + 
+'  swap :arrayname :i :end\n' + 
+'  return :i \n' + 
+'end\n' + 
+'\n' + 
+';helpful swap function \n' + 
+'to swap :arrayname :i1 :i2\n' + 
+'  make "tmp getitem :arrayname :i1\n' + 
+'  setitem :arrayname :i1 getitem :arrayname :i2\n' + 
+'  setitem :arrayname :i2 :tmp\n' + 
+'end\n' + 
+'\n' + 
+';----------------------------------------\n' + 
+';---------demo help functions------------\n' + 
 'to makerandomarray :name :size :maxn\n' + 
 '  makearray :name :size\n' + 
 '  repeat :size [\n' + 
 '    setitem :name repcount rand :maxn\n' + 
-'  ]\n' + 
-'end\n' + 
-'\n' + 
-'to printarray :name :size\n' + 
-'  repeat :size [\n' + 
-'    print getitem :name repcount\n' + 
 '  ]\n' + 
 'end\n' + 
 '\n' + 
@@ -651,13 +694,17 @@ pushDemo(
 '  ]\n' + 
 'end\n' + 
 '\n' + 
-'\n' + 
+';----------------------------------------\n' + 
+';-------------drawing--------------------\n' + 
 'make "size 50\n' + 
 'make "maxnum 200\n' + 
 'make "delaysecs 0.05\n' + 
-'\n' + 
 'make "steps trunc time / :delaysecs\n' + 
-'\n' + 
+'ht\n' + 
 'makerandomarray "ar :size :maxnum\n' + 
-'sort "ar :size :steps\n' + 
+'\n' + 
+';insertionsort "ar :size :steps\n' + 
+';bubblesort "ar :size :steps\n' + 
+'quicksort "ar 1 :size :steps \n' + 
+'\n' + 
 'drawarraypoints "ar :size\n');
