@@ -587,3 +587,77 @@ pushDemo(
 '  label  word word getitem "x repcount "\\s getitem "x repcount \n' + 
 '  point \n' + 
 '] \n');
+
+pushDemo(
+';-----Demo Insertion sort algorithm-----\n' + 
+'\n' + 
+'to makearray :name :size \n' + 
+'  repeat :size [ \n' + 
+'    static word :name repcount 0 \n' + 
+'    make word :name repcount 0 \n' + 
+'  ] \n' + 
+'end \n' + 
+' \n' + 
+'to staticarray :name :size \n' + 
+'  repeat :size [ \n' + 
+'    static word :name repcount 0 \n' + 
+'  ] \n' + 
+'end \n' + 
+' \n' + 
+'to getitem :name :index \n' + 
+'  return thing word :name :index \n' + 
+'end \n' + 
+' \n' + 
+'to setitem :name :index :value \n' + 
+'  make word :name :index :value \n' + 
+'end \n' + 
+'\n' + 
+'to sort :arrayname :size :maxsteps\n' + 
+'  make "steps 0\n' + 
+'  repeat :size [\n' + 
+'    make "j repcount\n' + 
+'    while and :j > 1 or :steps < :maxsteps :maxsteps = -1 [\n' + 
+'      if (getitem :arrayname :j) < (getitem :arrayname :j-1) [\n' + 
+'        make "tmp getitem :arrayname :j\n' + 
+'        setitem :arrayname :j getitem :arrayname :j-1\n' + 
+'        setitem :arrayname :j-1 :tmp\n' + 
+'        increment "steps\n' + 
+'      ]\n' + 
+'      decrement "j\n' + 
+'    ]\n' + 
+'  ]\n' + 
+'end\n' + 
+'  \n' + 
+'  \n' + 
+'to makerandomarray :name :size :maxn\n' + 
+'  makearray :name :size\n' + 
+'  repeat :size [\n' + 
+'    setitem :name repcount rand :maxn\n' + 
+'  ]\n' + 
+'end\n' + 
+'\n' + 
+'to printarray :name :size\n' + 
+'  repeat :size [\n' + 
+'    print getitem :name repcount\n' + 
+'  ]\n' + 
+'end\n' + 
+'\n' + 
+'to drawarraypoints :name :size\n' + 
+'  pu\n' + 
+'  repeat :size [\n' + 
+'    setxyz repcount * 10 getitem :name repcount 0\n' + 
+'    color 128 0 (getitem :name repcount) * 255 / :maxnum \n' + 
+'    point\n' + 
+'  ]\n' + 
+'end\n' + 
+'\n' + 
+'\n' + 
+'make "size 50\n' + 
+'make "maxnum 200\n' + 
+'make "delaysecs 0.05\n' + 
+'\n' + 
+'make "steps trunc time / :delaysecs\n' + 
+'\n' + 
+'makerandomarray "ar :size :maxnum\n' + 
+'sort "ar :size :steps\n' + 
+'drawarraypoints "ar :size\n');
