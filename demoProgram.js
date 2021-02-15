@@ -611,22 +611,20 @@ pushDemo(
 '\n' + 
 ';----------------------------------------\n' + 
 ';----------sorting functions-------------\n' + 
-'to insertionsort :arrayname :size :maxsteps\n' + 
-'  make "steps 0\n' + 
+'to insertionsort :arrayname :size \n' + 
 '  repeat :size [\n' + 
 '    make "j repcount\n' + 
-'    while and :j > 1 or :steps < :maxsteps :maxsteps = -1 [\n' + 
+'    while :j > 1 [\n' + 
 '      if (getitem :arrayname :j) < (getitem :arrayname :j-1) [\n' + 
 '        swap :arrayname :j :j-1\n' + 
-'        increment "steps\n' + 
+'        if :steps > :maxsteps [return 0]\n' + 
 '      ]\n' + 
 '      decrement "j\n' + 
 '    ]\n' + 
 '  ]\n' + 
 'end\n' + 
 '  \n' + 
-'to bubblesort :arrayname :size :maxsteps\n' + 
-'  make "steps 0\n' + 
+'to bubblesort :arrayname :size\n' + 
 '  make "swapped 1\n' + 
 '	while :swapped [\n' + 
 '    make "swapped 0\n' + 
@@ -634,22 +632,20 @@ pushDemo(
 '      if (getitem :arrayname repcount) > (getitem :arrayname repcount+1) [\n' + 
 '        swap :arrayname repcount repcount+1\n' + 
 '        make "swapped 1\n' + 
-'        increment "steps\n' + 
-'        if and :steps > :maxsteps not :maxsteps = -1 [return 0]\n' + 
+'        if :steps > :maxsteps [return 0]\n' + 
 '      ]\n' + 
 '    ]\n' + 
 '  ]\n' + 
 'end\n' + 
 '\n' + 
-'to quicksort :arrayname :start :end :maxsteps\n' + 
-'  static "quicksortsteps 0\n' + 
+'to quicksort :arrayname :start :end\n' + 
+'  static " 0\n' + 
 '  if :start < :end [\n' + 
 '    make "p qspartition :arrayname :start :end :maxsteps\n' + 
-'    if :quicksortsteps > :maxsteps [make "quicksortsteps 0 return 0]\n' + 
-'    quicksort :arrayname :start :p-1 :maxsteps\n' + 
-'    quicksort :arrayname :p+1 :end :maxsteps\n' + 
+'    if :steps > :maxsteps [return 0]\n' + 
+'    quicksort :arrayname :start :p-1\n' + 
+'    quicksort :arrayname :p+1 :end\n' + 
 '  ]\n' + 
-'  make "quicksortsteps 0\n' + 
 'end\n' + 
 '\n' + 
 'to qspartition :arrayname :start :end :maxsteps \n' + 
@@ -657,11 +653,10 @@ pushDemo(
 '  make "i :start\n' + 
 '  make "j :start\n' + 
 '  while :j <= :end [\n' + 
-'    if :quicksortsteps > :maxsteps [swap :arrayname :i :end return :i]\n' + 
 '    if (getitem :arrayname :j) < :pivot [\n' + 
 '      swap :arrayname :j :i\n' + 
 '      increment "i\n' + 
-'      increment "quicksortsteps\n' + 
+'      if :steps > :maxsteps [swap :arrayname :i :end return 0]\n' + 
 '    ]\n' + 
 '    increment "j\n' + 
 '  ]\n' + 
@@ -674,6 +669,7 @@ pushDemo(
 '  make "tmp getitem :arrayname :i1\n' + 
 '  setitem :arrayname :i1 getitem :arrayname :i2\n' + 
 '  setitem :arrayname :i2 :tmp\n' + 
+'  increment "steps\n' + 
 'end\n' + 
 '\n' + 
 ';----------------------------------------\n' + 
@@ -699,12 +695,17 @@ pushDemo(
 'make "size 50\n' + 
 'make "maxnum 200\n' + 
 'make "delaysecs 0.05\n' + 
-'make "steps trunc time / :delaysecs\n' + 
+'\n' + 
+'make "maxsteps trunc time / :delaysecs\n' + 
+'make "steps 0\n' + 
+'\n' + 
 'ht\n' + 
 'makerandomarray "ar :size :maxnum\n' + 
 '\n' + 
-';insertionsort "ar :size :steps\n' + 
-';bubblesort "ar :size :steps\n' + 
-'quicksort "ar 1 :size :steps \n' + 
+';insertionsort "ar :size \n' + 
+';bubblesort "ar :size \n' + 
+'quicksort "ar 1 :size  \n' + 
 '\n' + 
-'drawarraypoints "ar :size\n');
+'drawarraypoints "ar :size\n' + 
+'print word "steps\\s :steps\n' + 
+'\n');
