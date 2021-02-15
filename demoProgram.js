@@ -639,16 +639,15 @@ pushDemo(
 'end\n' + 
 '\n' + 
 'to quicksort :arrayname :start :end\n' + 
-'  static " 0\n' + 
+'  if :steps > :maxsteps [return 0]\n' + 
 '  if :start < :end [\n' + 
-'    make "p qspartition :arrayname :start :end :maxsteps\n' + 
-'    if :steps > :maxsteps [return 0]\n' + 
+'    make "p qspartition :arrayname :start :end\n' + 
 '    quicksort :arrayname :start :p-1\n' + 
 '    quicksort :arrayname :p+1 :end\n' + 
 '  ]\n' + 
 'end\n' + 
 '\n' + 
-'to qspartition :arrayname :start :end :maxsteps \n' + 
+'to qspartition :arrayname :start :end \n' + 
 '  make "pivot getitem :arrayname :end\n' + 
 '  make "i :start\n' + 
 '  make "j :start\n' + 
