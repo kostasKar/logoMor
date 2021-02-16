@@ -1,19 +1,3 @@
-
-//These are all the allowed operators
-var operators = ["*", "/", "+", "-", "<", "<=", ">", ">=", "="];
-
-//These are the operators arranged in descending precedence groups. Whithin each group all operators have equal precedence
-var operatorsPrecedence = [["*", "/"], 
-                           ["+", "-"], 
-                           ["<", "<=", ">", ">="], 
-                           ["="]];
-
-
-function isOperator(token){
-  return operators.includes(token);
-}
-
-
 /*
    ArgumentResolverTask is the task created by any command that expects argument(s).
    It's tryToTakeInput() method can accept variable values (local, global or static), string literals, numbers and operators
@@ -32,8 +16,14 @@ function isOperator(token){
    Among operators of the same precedence, left-to-right associativity is followed
  */
 
+//These are all the allowed operators
+var operators = ["*", "/", "+", "-", "<", "<=", ">", ">=", "="];
 
-
+//These are the operators arranged in descending precedence groups. Whithin each group all operators have equal precedence
+var operatorsPrecedence = [["*", "/"], 
+                           ["+", "-"], 
+                           ["<", "<=", ">", ">="], 
+                           ["="]];
 
 
 class ArgumentResolverTask {
@@ -76,7 +66,7 @@ class ArgumentResolverTask {
       this.canBeResolved = true;
       return true;
     } else{
-      if ((isOperator(arg)) && (!this.stringArgumentSet)){
+      if ((operators.includes(arg)) && (!this.stringArgumentSet)){
         this.expression.push(arg);
         this.canBeResolved = false;
         return true;
