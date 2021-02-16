@@ -52,6 +52,7 @@ class ArgumentResolverTask {
 
       if (!isNaN(arg)){
         this.expression.push((this.negative)? -Number(arg) : Number(arg));
+        this.negative = false;
       } else if ((arg.startsWith("\"")) && (this.stringArgumentCanBeSet)){
         this.expression.push(arg);
         this.stringArgumentSet = true;
