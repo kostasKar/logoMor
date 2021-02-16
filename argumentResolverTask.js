@@ -93,6 +93,9 @@ class ArgumentResolverTask {
         this.expression.splice(opIndex-1, 3, result);
       }
     }
+    if (this.expression.length !== 1){
+      throwError("Invalid final expression: " + this.expression.toString());
+    }
     return this.expression[0];
   }
 
