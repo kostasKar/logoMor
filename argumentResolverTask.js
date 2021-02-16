@@ -55,8 +55,11 @@ class ArgumentResolverTask {
       } else if ((arg.startsWith("\"")) && (this.stringArgumentCanBeSet)){
         this.expression.push(arg);
         this.stringArgumentSet = true;
-      } else if (arg === "-"){
+      } else if (arg === "-"){ //unary '-'
         this.negative = !this.negative;
+        this.stringArgumentCanBeSet = false;
+        return true;
+      } else if (arg === "+"){ //unary '+'
         this.stringArgumentCanBeSet = false;
         return true;
       } else {
