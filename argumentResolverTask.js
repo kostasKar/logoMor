@@ -1,10 +1,16 @@
 
+//These are all the allowed operators
+var operators = ["*", "/", "+", "-", "<", "<=", ">", ">=", "="];
+
+//These are the operators arranged in descending precedence groups. Whithin each group all operators have equal precedence
+var operatorsPrecedence = [["*", "/"], 
+                           ["+", "-"], 
+                           ["<", "<=", ">", ">="], 
+                           ["="]];
 
 
-
-function isArithmeticOperator(token){
-  var arithmeticOperators = ["+", "-", "*", "/", "<", ">", "<=", ">=", "="];
-  return arithmeticOperators.includes(token);
+function isOperator(token){
+  return operators.includes(token);
 }
 
 
@@ -22,7 +28,8 @@ function isArithmeticOperator(token){
    If the task is expecting an operand and the token it receives is not one of the directly consumable cases, it does not consume it and it remains unresolvable
    That token will probably trigger the creation of a command task that produces a return value. Once that task is resolved, 
    it's return value will be then be consumable by the argumentResolverTask.
-   This implementation of the argument resolver yields left-to-right associativity for all operators. There is no operation precedence!
+   The precedence of the operators (highest to lowest): [["*", "/"], ["+", "-"], ["<", "<=", ">", ">="], ["="]]
+   Among operators of the same precedence, left-to-right associativity is followed
  */
 
 
@@ -36,8 +43,8 @@ class ArgumentResolverTask {
     this.stringArgumentSet = false;
     this.stringArgumentCanBeSet = true;
     this.negative = false;
-    this.operator = "";
     tasksStack.push(this);
+    this.expression = [];
   }
 
   
@@ -54,9 +61,9 @@ class ArgumentResolverTask {
       }
 
       if (!isNaN(arg)){
-        this.operand = this.evaluateInput(Number(arg));
+        this.expression.push((this.negative)? -Number(arg) : Number(arg));
       } else if ((arg.startsWith("\"")) && (this.stringArgumentCanBeSet)){
-        this.operand = arg;
+        this.expression.push(arg);
         this.stringArgumentSet = true;
       } else if (arg === "-"){
         this.negative = !this.negative;
@@ -69,8 +76,8 @@ class ArgumentResolverTask {
       this.canBeResolved = true;
       return true;
     } else{
-      if ((isArithmeticOperator(arg)) && (!this.stringArgumentSet)){
-        this.operator = arg;
+      if ((isOperator(arg)) && (!this.stringArgumentSet)){
+        this.expression.push(arg);
         this.canBeResolved = false;
         return true;
       } else {
@@ -80,42 +87,40 @@ class ArgumentResolverTask {
   }
   
   resolve(){
+    var ret =  this.evaluateExpressionByPrecedence().toString();     
     tasksStack.pop();
-    return this.operand.toString();      
+    return ret; 
   }
 
-
-  evaluateInput(input){
-    if (this.negative){
-      input = -input;
-      this.negative = false;
+  evaluateExpressionByPrecedence(){
+    for(var i = 0; i < operatorsPrecedence.length; i++){
+      var opIndex;
+      while((opIndex = this.expression.findIndex((element) => operatorsPrecedence[i].includes(element))) !== -1){
+        var result = this.doOperation(this.expression[opIndex], this.expression[opIndex-1], this.expression[opIndex+1]);
+        this.expression.splice(opIndex-1, 3, result);
+      }
     }
+    return this.expression[0];
+  }
 
-    if (this.operator === ""){
-      return input;
+  doOperation(operator, left, right){
+    if((isNaN(left)) || (isNaN(right)) || (!operators.includes(operator))){
+      throwError("Could not resolve operation: " + left + " " + operator + " " + right);
+      return 0;
     }
-
-    if (this.operator === "+"){
-      return (this.operand + input);
-    } else if (this.operator === "-"){
-      return (this.operand - input);
-    } else if (this.operator === "*"){
-      return (this.operand * input);
-    } else if (this.operator === "/"){
-      return (this.operand / input);
-    } else if (this.operator === ">"){
-      return (this.operand > input) ? 1 : 0;
-    } else if (this.operator === "<"){
-      return (this.operand < input) ? 1 : 0;
-    } else if (this.operator === ">="){
-      return (this.operand >= input) ? 1 : 0;
-    } else if (this.operator === "<="){
-      return (this.operand <= input) ? 1 : 0;
-    } else if (this.operator === "="){
-      return (this.operand == input) ? 1 : 0;
-    } else {
-      throwError("Arithmetic resolver cannot resolve operator: " + this.operator);
-      return "";
+    switch (operator){
+      case "+":  return left + right;
+      case "-":  return left - right;
+      case "*":  return left * right;
+      case "/":  return left / right;
+      case "<":  return (left < right)?  1 : 0;
+      case ">":  return (left > right)?  1 : 0;
+      case "<=": return (left <= right)? 1 : 0;
+      case ">=": return (left >= right)? 1 : 0;
+      case "=":  return (left == right)? 1 : 0;
+      default: 
+        throwError("Unimplemented operator: " + operator); 
+        return 0;
     }
   }
 
