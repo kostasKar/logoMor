@@ -8,8 +8,7 @@ class GenericCommandTaskF  {
 
    constructor( numOfArgs, countMove = false){
     this.numOfArguments = numOfArgs;
-    this.arguments = new Array(this.numOfArguments);
-    this.currentArgument = 0;
+    this.arguments =[];
     this.countMove = countMove;
     tasksStack.push(this);
     if (this.numOfArguments == 0){
@@ -21,10 +20,9 @@ class GenericCommandTaskF  {
   }
   
   tryToTakeInput(arg){
-    if (this.currentArgument < this.numOfArguments){
+    if (this.arguments.length < this.numOfArguments){
       this.saveArgument(arg);
-      this.currentArgument++;
-      if (this.currentArgument == this.numOfArguments){
+      if (this.arguments.length == this.numOfArguments){
         this.canBeResolved = true;
       } else {
         new ArgumentResolverTask();
@@ -52,7 +50,7 @@ class GenericCommandTaskF  {
   	  throwError("Invalid command argument: " + arg);
       return;
   	}
-    this.arguments[this.currentArgument] = Number(arg);
+    this.arguments.push(Number(arg));
   }
 }
 
@@ -62,7 +60,7 @@ class GenericCommandTaskF  {
 class GenericCommandTaskS extends GenericCommandTaskF {
   constructor(numOfArgs){super(numOfArgs);}
   saveArgument(arg){
-    this.arguments[this.currentArgument] = arg.replace("\"", "");
+    this.arguments.push(arg.replace("\"", ""));
   } 
 }
 
