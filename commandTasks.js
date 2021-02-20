@@ -3,15 +3,23 @@
 var movesCount;
 
 
-//The generic command task. Takes any number of float arguments. the number of arguments is given at the constructor
-class GenericCommandTaskF  {
+/*
+  Argument types:
+  "N" : number
+  "S" : string
+  "B" : both
+ */
 
-   constructor( numOfArgs, countMove = false){
-    this.numOfArguments = numOfArgs;
+
+//The generic command task. Takes any number of float arguments. the number of arguments is given at the constructor
+class CommandTask  {
+
+   constructor( argumentTypes, countMove = false){
+    this.argumentTypes = argumentTypes;
     this.arguments =[];
     this.countMove = countMove;
     tasksStack.push(this);
-    if (this.numOfArguments == 0){
+    if (this.argumentTypes.length == 0){
       this.canBeResolved = true;
     } else {
       this.canBeResolved = false;
@@ -20,9 +28,9 @@ class GenericCommandTaskF  {
   }
   
   tryToTakeInput(arg){
-    if (this.arguments.length < this.numOfArguments){
+    if (this.arguments.length < this.argumentTypes.length){
       this.saveArgument(arg);
-      if (this.arguments.length == this.numOfArguments){
+      if (this.arguments.length == this.argumentTypes.length){
         this.canBeResolved = true;
       } else {
         new ArgumentResolverTask();
@@ -46,36 +54,45 @@ class GenericCommandTaskF  {
   }
   
   saveArgument(arg){
-  	if (isNaN(arg)){
-  	  throwError("Invalid command argument: " + arg);
-      return;
-  	}
-    this.arguments.push(Number(arg));
+
+    switch (this.argumentTypes[this.arguments.length]){
+
+      case "N":
+      if (isNaN(arg)){
+        throwError("Invalid number command argument: " + arg);
+        return;
+      }
+      arg = Number(arg);
+      break;
+
+      case "S":
+      if (!arg.startsWith('"')){
+        throwError("Invalid literal command argument: " + arg);
+        return;
+      }
+      arg = arg.replace('"', '');
+      break;
+
+      case "B":
+      arg = arg.replace('"', '');
+      break;
+
+    }
+    this.arguments.push(arg);
   }
 }
 
 
-
-//The generic task for commands that accept String arguments
-class GenericCommandTaskS extends GenericCommandTaskF {
-  constructor(numOfArgs){super(numOfArgs);}
-  saveArgument(arg){
-    this.arguments.push(arg.replace("\"", ""));
-  } 
-}
-
-
-
 //Children classes for specific number of arguments and type, just to avoid writing the constructors for all following command task classes
- class NoArgumentCommandTask extends GenericCommandTaskF{constructor() {super(0);}}           // 0 arguments
- class SingleArgumentCommandTask extends GenericCommandTaskF{constructor() {super(1);}}       // 1 argument, number
- class SingleStringArgumentCommandTask extends GenericCommandTaskS{constructor() {super(1);}} // 1 argument, string
- class TwoStringArgumentsCommandTask extends GenericCommandTaskS{constructor() {super(2);}}   // 2 arguments, string
- class TwoArgumentsCommandTask extends GenericCommandTaskF{constructor() {super(2);}}         // 2 arguments, numbers
- class ThreeArgumentsCommandTask extends GenericCommandTaskF{constructor() {super(3);}}       // 3 arguments, numbers
- class NoArgumentMove extends GenericCommandTaskF{constructor() {super(0, true);}}            // 0 argument, increment movesCount
- class SingleArgumentMove extends GenericCommandTaskF{constructor() {super(1, true);}}        // 1 argument, numbers, increment movesCount
- class ThreeArgumentsMove extends GenericCommandTaskF{constructor() {super(3, true);}}        // 3 arguments, numbers, increment movesCount 
+ class NoArgumentCommandTask extends CommandTask{constructor() {super([]);}}           // 0 arguments
+ class SingleArgumentCommandTask extends CommandTask{constructor() {super(["N"]);}}       // 1 argument, number
+ class SingleStringArgumentCommandTask extends CommandTask{constructor() {super(["B"]);}} // 1 argument, string
+ class TwoStringArgumentsCommandTask extends CommandTask{constructor() {super(["B","B"]);}}   // 2 arguments, string
+ class TwoArgumentsCommandTask extends CommandTask{constructor() {super(["N","N"]);}}         // 2 arguments, numbers
+ class ThreeArgumentsCommandTask extends CommandTask{constructor() {super(["N","N","N"]);}}       // 3 arguments, numbers
+ class NoArgumentMove extends CommandTask{constructor() {super([], true);}}            // 0 argument, increment movesCount
+ class SingleArgumentMove extends CommandTask{constructor() {super(["N"], true);}}        // 1 argument, numbers, increment movesCount
+ class ThreeArgumentsMove extends CommandTask{constructor() {super(["N","N","N"], true);}}        // 3 arguments, numbers, increment movesCount 
 
 
 
