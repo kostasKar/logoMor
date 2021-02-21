@@ -217,49 +217,6 @@ function L_ARC(angle, radius){
   return sqrt(pow(x-getlmX(), 2) + pow(y-(-getlmY()), 2) + pow(z-getlmZ(), 2));
  }
 
-  function L_SETX(newX){
-   pop();
-   push();
-   restoreStrokeStyle();
-   if (penDown){
-     line(getlmX(), getlmY(), getlmZ(), newX, getlmY(), getlmZ());
-   } 
-   setlmX(newX);
-   applyLogoTransformationMatrix(); 
-   if (penDown && shapeBegan){
-    addVertex();
-   }
- }
-
-function L_SETY(newY){
-   pop();
-   push();
-   restoreStrokeStyle();
-  if (penDown){
-     line(getlmX(), getlmY(), getlmZ(), getlmX(), -newY, getlmZ());
-   }
-   setlmY(-newY);
-   applyLogoTransformationMatrix(); 
-   if (penDown && shapeBegan){
-    addVertex();
-   }
- }
-
-function L_SETZ(newZ){
-   pop();
-   push();
-   restoreStrokeStyle();
-   if (penDown){
-     line(getlmX(), getlmY(), getlmZ(), getlmX(), getlmY(), newZ);
-   }
-   setlmZ(newZ);
-   applyLogoTransformationMatrix(); 
-   if (penDown && shapeBegan){
-    addVertex();
-   }
- }
- 
-
 function L_SETXYZ(newX, newY, newZ){
    pop();
    push();
@@ -275,6 +232,18 @@ function L_SETXYZ(newX, newY, newZ){
     addVertex();
    }
  }
+
+function L_SETX(newX){
+  L_SETXYZ(newX, L_GETY(), L_GETZ());
+}
+
+function L_SETY(newY){
+  L_SETXYZ(L_GETX(), newY, L_GETZ());
+}
+
+function L_SETZ(newZ){
+  L_SETXYZ(L_GETX(), L_GETY(), newZ);
+}
 
 function L_MOUSEX(){
   return  (mouseX - width/2)*(fov / 1.2) - centerX ;
