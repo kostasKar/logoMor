@@ -205,46 +205,17 @@ pushDemo(
 ';Using timing commands a sketch can be \n' + 
 ';animated! \n' + 
 ' \n' + 
-';------Functions---------------------- \n' + 
-'TO centeredCircle :r :n  \n' + 
-' make "segment 2*pi*:r/:n  \n' + 
-' penup  \n' + 
-' dn 90  \n' + 
-' fd :r  \n' + 
-' up 90  \n' + 
-' bk :segment/2  \n' + 
-' pendown  \n' + 
-' repeat :n [  \n' + 
-'  fd :segment   \n' + 
-'  up 360 / :n  \n' + 
-' ]  \n' + 
-' penup  \n' + 
-' fd :segment/2  \n' + 
-' up 90  \n' + 
-' fd :r  \n' + 
-' dn 90  \n' + 
-' pendown   \n' + 
-'END  \n' + 
-'  \n' + 
-'TO mysphere :r :n  \n' + 
-' repeat :n/2 [  \n' + 
-'  centeredCircle :r :n  \n' + 
-'  rr 360/:n  \n' + 
-' ]  \n' + 
-'END  \n' + 
-' \n' + 
 ';-----Global Variables-------------  \n' + 
 ';-see auto generated sliders below- \n' + 
 'make "radius 10 \n' + 
-'make "segs 10 \n' + 
 ' \n' + 
 ';----drawing----------------------- \n' +
 ';frame returns current frame number \n' +
 'pu \n' + 
 'sety 100 * sin frame*frame*0.002 \n' + 
 'setx 100 * cos frame*frame*0.002 \n' + 
-'pd \n' + 
-'mysphere :radius :segs \n' + 
+'ht \n' + 
+'sphere :radius \n' + 
 'print gety \n' + 
 'print getx \n');
 
