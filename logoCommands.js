@@ -256,3 +256,41 @@ function L_MOUSEY(){
 function L_MOUSEPRESSED(){
   return (cameraEnabled && mouseIsPressed);
 }
+
+
+//3D primitives
+function L_BOX(side){
+  if (!penDown) {noStroke();}
+  box(side);
+  restoreStrokeStyle();
+}
+
+function L_SPHERE(radius){
+  if (!penDown) {noStroke();}
+  sphere(radius);
+  restoreStrokeStyle();
+}
+
+function L_CYLINDER(radius, height){
+  if (!penDown) {noStroke();}
+  cylinder(radius, height);
+  restoreStrokeStyle();
+}
+
+function L_CONE(radius, height){
+  if (!penDown) {noStroke();}
+  cone(radius, height);
+  restoreStrokeStyle();
+}
+
+function L_TORUS(radius, tubeRadius){
+  if (!penDown) {noStroke();}
+  torus(radius, tubeRadius);
+  restoreStrokeStyle();
+}
+
+function L_ELLIPSOID(radiusX, radiusY, radiusZ){
+  if (!penDown) {noStroke();}
+  ellipsoid(radiusX, radiusY, radiusZ);
+  restoreStrokeStyle();
+}

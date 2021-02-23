@@ -94,7 +94,13 @@ var TasksConstructors = {
   "point":PointTask,
   "dist":DistTask,
   "word":WordTask,
-  "arc":ArcTask
+  "arc":ArcTask,
+  "box":BoxTask,
+  "sphere":SphereTask,
+  "cylinder":CylinderTask,
+  "cone":ConeTask,
+  "torus":TorusTask,
+  "ellipsoid":EllipsoidTask
 }
 
 

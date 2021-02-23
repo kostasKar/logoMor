@@ -187,3 +187,11 @@ class DecrementTask extends CommandTask1S{run(){setVariableValue(this.arguments[
 
 //Literals concatenation
 class WordTask extends CommandTask2B{run(){return '"' + this.arguments[0] + this.arguments[1];}}
+
+//3D Primitives
+class BoxTask extends CommandTask1N{run(){L_BOX(this.arguments[0]); return "";}}
+class SphereTask extends CommandTask1N{run(){L_SPHERE(this.arguments[0]); return "";}}
+class CylinderTask extends CommandTask2N{run(){L_CYLINDER(this.arguments[0], this.arguments[1]); return "";}}
+class ConeTask extends CommandTask2N{run(){L_CONE(this.arguments[0], this.arguments[1]); return "";}}
+class TorusTask extends CommandTask2N{run(){L_TORUS(this.arguments[0], this.arguments[1]); return "";}}
+class EllipsoidTask extends CommandTask3N{run(){L_ELLIPSOID(this.arguments[0], this.arguments[1], this.arguments[2]); return "";}}
