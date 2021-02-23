@@ -58,7 +58,7 @@ pushDemo(
 ' pendown  \n' + 
 'END \n' + 
 ' \n' + 
-'TO sphere :r :n \n' + 
+'TO mysphere :r :n \n' + 
 ' repeat :n/2 [ \n' + 
 '  centeredCircle :r :n \n' + 
 '  rr 360/:n \n' + 
@@ -71,15 +71,15 @@ pushDemo(
 'make "segs 10 \n' + 
 ' \n' + 
 ';--Actual Drawing---------------------\n'+
-'sphere :radius :segs \n' + 
+'mysphere :radius :segs \n' + 
 'penup \n' + 
 'setxyz 200 150 40 \n' + 
 'pendown \n' + 
-'sphere :radius/2 :segs \n' + 
+'mysphere :radius/2 :segs \n' + 
 'penup \n' + 
 'setxyz 300 200 150 \n' + 
 'pendown \n' + 
-'sphere :radius/4 :segs \n');
+'mysphere :radius/4 :segs \n');
 
 pushDemo(
 ';----------Demo Bracelet--------------  \n' + 
@@ -106,7 +106,7 @@ pushDemo(
 ' pendown   \n' + 
 'END  \n' + 
 '  \n' + 
-'TO sphere :r :n  \n' + 
+'TO mysphere :r :n  \n' + 
 ' repeat :n/2 [  \n' + 
 '  centeredCircle :r :n  \n' + 
 '  rt 360/:n  \n' + 
@@ -118,7 +118,7 @@ pushDemo(
 ' penup \n' + 
 ' fd :d/2 \n' + 
 ' pendown \n' + 
-' sphere :d/2 :n \n' + 
+' mysphere :d/2 :n \n' + 
 ' penup  \n' + 
 ' fd :d/2 \n' + 
 ' pendown \n' + 
@@ -226,7 +226,7 @@ pushDemo(
 ' pendown   \n' + 
 'END  \n' + 
 '  \n' + 
-'TO sphere :r :n  \n' + 
+'TO mysphere :r :n  \n' + 
 ' repeat :n/2 [  \n' + 
 '  centeredCircle :r :n  \n' + 
 '  rr 360/:n  \n' + 
@@ -244,7 +244,7 @@ pushDemo(
 'sety 100 * sin frame*frame*0.002 \n' + 
 'setx 100 * cos frame*frame*0.002 \n' + 
 'pd \n' + 
-'sphere :radius :segs \n' + 
+'mysphere :radius :segs \n' + 
 'print gety \n' + 
 'print getx \n');
 
