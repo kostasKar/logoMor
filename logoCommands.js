@@ -166,20 +166,18 @@ function L_ARC(angle, radius){
  }
  
  function L_COLOR(r, g, b){
-   stroke(r, g, b, strokeAlpha);
-   fill(r, g, b, strokeAlpha);
    strokeR = r;
    strokeG = g;
    strokeB = b;
+   restoreStrokeStyle();
  } 
 
  function L_COLORHSB(h, s, b){
   var c = color('hsb('+ h + ',' + s + '%,' + b + '%)');
-  stroke(c);
-  fill(c);
   strokeR = red(c);
   strokeG = green(c);
   strokeB = blue(c);
+  restoreStrokeStyle();
  }
 
  function L_COLORALPHA(a){
