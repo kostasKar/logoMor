@@ -39,6 +39,7 @@ var TasksConstructors = {
   "settextsize":StsTask,
   "sts":StsTask,
   "color":ColorTask,
+  "colorhsb":ColorHSBTask,
   "coloralpha":ColorAlphaTask,
   "home":HomeTask,
   "getx":GetXTask,

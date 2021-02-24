@@ -115,6 +115,7 @@ class CommandTask  {
  class SpsTask extends CommandTask1N { run() { L_SETPENSIZE(int(this.arguments[0])); return "";}}
  class StsTask extends CommandTask1N { run() { L_SETTEXTSIZE(int(this.arguments[0])); return "";}}
  class ColorTask extends CommandTask3N { run() { L_COLOR(parseInt(this.arguments[0]), parseInt(this.arguments[1]), parseInt(this.arguments[2])); return "";}}
+ class ColorHSBTask extends CommandTask3N { run() { L_COLORHSB(parseInt(this.arguments[0]), parseInt(this.arguments[1]), parseInt(this.arguments[2])); return "";}}
  class ColorAlphaTask extends CommandTask1N{ run() {L_COLORALPHA(parseInt(this.arguments[0])); return "";}}
  class PdTask extends CommandTask0 { run() { L_PENDOWN(); return "";}}
  class PuTask extends CommandTask0 { run() { L_PENUP(); return "";}}
