@@ -207,7 +207,7 @@ pushDemo(
 ' \n' + 
 ';-----Global Variables-------------  \n' + 
 ';-see auto generated sliders below- \n' + 
-'make "radius 10 \n' + 
+'make "radius 15 \n' + 
 ' \n' + 
 ';----drawing----------------------- \n' +
 ';frame returns current frame number \n' +
@@ -215,6 +215,7 @@ pushDemo(
 'sety 100 * sin frame*frame*0.002 \n' + 
 'setx 100 * cos frame*frame*0.002 \n' + 
 'ht \n' + 
+'pd \n' +
 'sphere :radius \n' + 
 'print gety \n' + 
 'print getx \n');
