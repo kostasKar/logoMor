@@ -18,6 +18,8 @@ LogoMor is a JavaScript interpreter and visualizer for the Logo programming lang
 
 ![image](https://user-images.githubusercontent.com/13304797/106600738-79872600-6563-11eb-840e-a3fd30df03d4.png)
 
+![Capture](https://user-images.githubusercontent.com/13304797/109687015-86f7f600-7b8b-11eb-86eb-3ffe08c70bbe.JPG)
+
 ## Technologies
 
 The interpreter is written in vanilla JavaScript  
@@ -55,6 +57,8 @@ The interpreter accepts the basic UCBLogo commands with many additions:
 - The user can enable an orientation and turning assistant that is displayed on the drawing avatar to help during programming
 - The editor has many IDE features as auto-completion, auto-indentation, keyword highlighting (also distinguishing plain commands from move commands), search highlighting, auto bracket closing etc
 - With the 'Share' button you can create a shareable link that includes the source code in the editor 
+- 3D primitives commands are available for box, sphere, torus, ellipsoid, cylider, cone
+- .STL files can be uploaded and rendered into the sketch by using the model command
 
 ## Contributing
 I would love to receive any LogoMor sketches and include them to the Demos  
