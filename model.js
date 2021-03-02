@@ -58,7 +58,7 @@ function createListEntryForModel(name){
 function renameModel(el){
   var oldName = el.name;
   var newName = el.value.toLowerCase();
-  if (oldname === newName){return;}
+  if (oldName === newName){return;}
   loadedModels[newName] = loadedModels[oldName];
   delete loadedModels[oldName];
   el.name = newName;
