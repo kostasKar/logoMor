@@ -11,16 +11,30 @@ function readModelFile(e) {
   var file = e.target.files[0];
   if (!file) return;
   var reader = new FileReader();
-  reader.onload = function(e) {
-    var newModel = new p5.Geometry();
-    newModel = parseSTL(newModel, e.target.result);
-    newModel.normalize();
-    var name = "model" + currentModelIndex++;
-    newModel.gid = name;
-    loadedModels[name] = newModel;
-    createListEntryForModel(name);
+  if (file.name.toLowerCase().endsWith(".stl")){
+      reader.onload = function(e) {
+      var newModel = new p5.Geometry();
+      parseSTL(newModel, e.target.result);
+      newModel.normalize();
+      var name = "model" + currentModelIndex++;
+      newModel.gid = name;
+      loadedModels[name] = newModel;
+      createListEntryForModel(name);
+    }
+    reader.readAsArrayBuffer(file);
+  } else if (file.name.toLowerCase().endsWith(".obj")){
+    reader.onload = function(e) {
+      var newModel = new p5.Geometry();
+      var lines = likeLoadStrings(e.target.result);
+      parseObj(newModel, lines);
+      newModel.normalize();
+      var name = "model" + currentModelIndex++;
+      newModel.gid = name;
+      loadedModels[name] = newModel;
+      createListEntryForModel(name);
+    }
+    reader.readAsText(file);
   }
-  reader.readAsArrayBuffer(file)
 }
 
 
@@ -385,3 +399,110 @@ function renameModel(el){
     return model;
   }
 
+
+
+
+
+
+
+
+  function parseObj(model, lines) {
+  // OBJ allows a face to specify an index for a vertex (in the above example),
+  // but it also allows you to specify a custom combination of vertex, UV
+  // coordinate, and vertex normal. So, "3/4/3" would mean, "use vertex 3 with
+  // UV coordinate 4 and vertex normal 3". In WebGL, every vertex with different
+  // parameters must be a different vertex, so loadedVerts is used to
+  // temporarily store the parsed vertices, normals, etc., and indexedVerts is
+  // used to map a specific combination (keyed on, for example, the string
+  // "3/4/3"), to the actual index of the newly created vertex in the final
+  // object.
+  var loadedVerts = {
+    v: [],
+    vt: [],
+    vn: []
+  };
+
+  var indexedVerts = {};
+
+  for (var line = 0; line < lines.length; ++line) {
+    // Each line is a separate object (vertex, face, vertex normal, etc)
+    // For each line, split it into tokens on whitespace. The first token
+    // describes the type.
+    var tokens = lines[line].trim().split(/\b\s+/);
+
+    if (tokens.length > 0) {
+      if (tokens[0] === 'v' || tokens[0] === 'vn') {
+        // Check if this line describes a vertex or vertex normal.
+        // It will have three numeric parameters.
+        var vertex = new p5.Vector(
+          parseFloat(tokens[1]),
+          parseFloat(tokens[2]),
+          parseFloat(tokens[3])
+          );
+
+        loadedVerts[tokens[0]].push(vertex);
+      } else if (tokens[0] === 'vt') {
+        // Check if this line describes a texture coordinate.
+        // It will have two numeric parameters.
+        var texVertex = [parseFloat(tokens[1]), parseFloat(tokens[2])];
+        loadedVerts[tokens[0]].push(texVertex);
+      } else if (tokens[0] === 'f') {
+        // Check if this line describes a face.
+        // OBJ faces can have more than three points. Triangulate points.
+        for (var tri = 3; tri < tokens.length; ++tri) {
+          var face = [];
+
+          var vertexTokens = [1, tri - 1, tri];
+
+          for (var tokenInd = 0; tokenInd < vertexTokens.length; ++tokenInd) {
+            // Now, convert the given token into an index
+            var vertString = tokens[vertexTokens[tokenInd]];
+            var vertIndex = 0;
+
+            // TODO: Faces can technically use negative numbers to refer to the
+            // previous nth vertex. I haven't seen this used in practice, but
+            // it might be good to implement this in the future.
+
+            if (indexedVerts[vertString] !== undefined) {
+              vertIndex = indexedVerts[vertString];
+            } else {
+              var vertParts = vertString.split('/');
+              for (var i = 0; i < vertParts.length; i++) {
+                vertParts[i] = parseInt(vertParts[i]) - 1;
+              }
+
+              vertIndex = indexedVerts[vertString] = model.vertices.length;
+              model.vertices.push(loadedVerts.v[vertParts[0]].copy());
+              if (loadedVerts.vt[vertParts[1]]) {
+                model.uvs.push(loadedVerts.vt[vertParts[1]].slice());
+              } else {
+                model.uvs.push([0, 0]);
+              }
+
+              if (loadedVerts.vn[vertParts[2]]) {
+                model.vertexNormals.push(loadedVerts.vn[vertParts[2]].copy());
+              }
+            }
+
+            face.push(vertIndex);
+          }
+
+          if (face[0] !== face[1] && face[0] !== face[2] && face[1] !== face[2]) {
+            model.faces.push(face);
+          }
+        }
+      }
+    }
+  }
+  // If the model doesn't have normals, compute the normals
+  if (model.vertexNormals.length === 0) {
+    model.computeNormals();
+  }
+
+  return model;
+}
+
+
+function likeLoadStrings (text) {
+  return text.replace(/\r\n/g, '\r').replace(/\n/g, '\r').split(/\r/);
+}
