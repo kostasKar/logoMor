@@ -41,6 +41,7 @@ function createListEntryForModel(name){
       canvas.style("visibility", "visible");
       canvas.style("display", "inline-block");
       canvas.style("margin-left", "15px");
+      canvas.style("position", "absolute");
       p.background(0);
       p.noStroke();
       p.lights();
