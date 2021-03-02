@@ -29,9 +29,11 @@ function createListEntryForModel(name){
   var modelDiv = document.createElement("div");
   modelDiv.className  = "modelDiv";
   modelDiv.id = name;
-  var modelLabel = document.createElement("label");
-  modelLabel.className = "modelName";
-  modelLabel.innerText = name;
+  var modelName = document.createElement("input");
+  modelName.className = "modelName";
+  modelName.value = name;
+  modelName.name = name;
+  modelName.onchange = function() {renameModel(this)};
   
   let sketch = function(p) {
     p.setup = function(){
@@ -48,12 +50,20 @@ function createListEntryForModel(name){
   };
 
   container.appendChild(modelDiv);
-  modelDiv.appendChild(modelLabel);
+  modelDiv.appendChild(modelName);
   new p5(sketch, modelDiv);
 }
 
 
-
+function renameModel(el){
+  var oldName = el.name;
+  var newName = el.value.toLowerCase();
+  if (oldname === newName){return;}
+  loadedModels[newName] = loadedModels[oldName];
+  delete loadedModels[oldName];
+  el.name = newName;
+  el.value = newName;
+}
 
 
 
