@@ -57,6 +57,8 @@
   <script src="utils.js"></script>
   <script src="output.js"></script>
 
+  <script src="model.js"></script>
+
 </head>
 <body>
 
@@ -132,6 +134,13 @@
           </div>
         </div>
       </div>
+
+      <div id="modelsDiv">
+        <label class="areaTitle">MODELS</label>
+        <button id="modelsAddButton" onclick="openModelFile()" class="dropbtn">Add</button>
+        <input id="modelinp" type='file' style="display:none;" onchange="readModelFile(event)" accept=".stl" />
+      </div>
+
 
   </div>
 

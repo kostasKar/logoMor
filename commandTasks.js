@@ -96,6 +96,7 @@ class CommandTask  {
  class CommandTask1S  extends CommandTask{constructor() {super(["S"]);}}
  class CommandTask2N  extends CommandTask{constructor() {super(["N","N"]);}}
  class CommandTask2B  extends CommandTask{constructor() {super(["B","B"]);}}
+ class CommandTask2SN extends CommandTask{constructor() {super(["S","N"]);}}
  class CommandTask3N  extends CommandTask{constructor() {super(["N","N","N"]);}}
  class CommandTask3NM extends CommandTask{constructor() {super(["N","N","N"], true);}}
 
@@ -196,3 +197,6 @@ class CylinderTask extends CommandTask2N{run(){L_CYLINDER(this.arguments[0], thi
 class ConeTask extends CommandTask2N{run(){L_CONE(this.arguments[0], this.arguments[1]); return "";}}
 class TorusTask extends CommandTask2N{run(){L_TORUS(this.arguments[0], this.arguments[1]); return "";}}
 class EllipsoidTask extends CommandTask3N{run(){L_ELLIPSOID(this.arguments[0], this.arguments[1], this.arguments[2]); return "";}}
+
+//Models
+class ModelTask extends CommandTask2SN { run() {L_MODEL(this.arguments[0], this.arguments[1]); return "";}}

@@ -301,3 +301,16 @@ function L_ELLIPSOID(radiusX, radiusY, radiusZ){
   ellipsoid(radiusX, radiusY, radiusZ);
   restoreStrokeStyle();
 }
+
+function L_MODEL(name, size){
+  if (!penDown) {noStroke();}
+  var scaleFactor = size/200; //normalized models fit inbetween -100, 100 so 200 size
+  scale(scaleFactor);
+  if (name in loadedModels){
+    model(loadedModels[name]);
+  } else {
+    throwError("Invalid model name: " + name);
+  }
+  scale(1/scaleFactor);
+  restoreStrokeStyle();
+}

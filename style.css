@@ -193,6 +193,18 @@ canvas {
   padding: 5px;
 }
 
+.modelDiv {
+  width: 90%; /* Width of the outside container */
+  margin-left: 10px;
+  padding: 5px;
+  height: 50px;
+}
+
+.modelName {
+  display: inline-block;
+  margin-top: 13px;
+}
+
 /* The slider itself */
 .slider {
   -webkit-appearance: none;  /* Override default CSS styles */
@@ -232,7 +244,7 @@ canvas {
   cursor: pointer; /* Cursor on hover */
   border-radius: 50%; 
 }
-.sliderVarName{
+.sliderVarName, .modelName{
   font-family: Consolas, monospace;
   color: #888888;
   font-size: 18px;

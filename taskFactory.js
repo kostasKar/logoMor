@@ -101,7 +101,8 @@ var TasksConstructors = {
   "cylinder":CylinderTask,
   "cone":ConeTask,
   "torus":TorusTask,
-  "ellipsoid":EllipsoidTask
+  "ellipsoid":EllipsoidTask,
+  "model":ModelTask
 }
 
 
