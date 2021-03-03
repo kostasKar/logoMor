@@ -58,7 +58,7 @@ The interpreter accepts the basic UCBLogo commands with many additions:
 - The editor has many IDE features as auto-completion, auto-indentation, keyword highlighting (also distinguishing plain commands from move commands), search highlighting, auto bracket closing etc
 - With the 'Share' button you can create a shareable link that includes the source code in the editor 
 - 3D primitives commands are available for box, sphere, torus, ellipsoid, cylider, cone
-- .STL files can be uploaded and rendered into the sketch by using the model command
+- .STL and .OBJ files can be uploaded and rendered into the sketch by using the model command
 
 ## Contributing
 I would love to receive any LogoMor sketches and include them to the Demos  
