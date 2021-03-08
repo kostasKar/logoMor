@@ -14,7 +14,10 @@ function readModelFile(e) {
   if (file.name.toLowerCase().endsWith(".stl")){
       reader.onload = function(e) {
       var newModel = new p5.Geometry();
-      parseSTL(newModel, e.target.result);
+      if (parseSTL(newModel, e.target.result) == null){
+        alert("Error loading STL file");
+        return;
+      }
       newModel.normalize();
       var name = "model" + currentModelIndex++;
       newModel.gid = name;
@@ -119,7 +122,7 @@ function removeModel(name){
     var decoder = new TextDecoder('utf-8');
     var lines = decoder.decode(reader);
     var lineArray = lines.split('\n');
-    parseASCIISTL(model, lineArray);
+    return parseASCIISTL(model, lineArray);
   }
   return model;
 }
