@@ -215,6 +215,20 @@ canvas {
   border-radius: 3px;
 }
 
+.deleteModelButton {
+  background-color: black;
+  border: none;
+  color: #cc8888;
+  padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 9px;
+  margin: 4px 0px;
+  cursor: pointer;
+  margin-left: 80px;
+}
+
 /* The slider itself */
 .slider {
   -webkit-appearance: none;  /* Override default CSS styles */

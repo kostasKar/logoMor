@@ -67,6 +67,11 @@ function createListEntryForModel(name){
   container.appendChild(modelDiv);
   modelDiv.appendChild(modelName);
   new p5(sketch, modelDiv);
+
+  var deleteButton = document.createElement("button");
+  deleteButton.className = "fa fa-times deleteModelButton";
+  deleteButton.onclick = function() {removeModel(this.parentNode.id)};
+  modelDiv.appendChild(deleteButton);
 }
 
 
@@ -80,6 +85,13 @@ function renameModel(el){
   el.value = newName;
 }
 
+
+function removeModel(name){
+  var element = document.getElementById(name);
+  element.parentNode.removeChild(element);
+  var modelName =  Object.keys(loadedModels).filter(modelName => loadedModels[modelName].gid === name);
+  delete loadedModels[modelName[0]];
+}
 
 
 //Modified methods from p5.js
