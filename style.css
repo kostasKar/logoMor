@@ -52,8 +52,8 @@ canvas {
 #controlsColumn {
   margin-right: 25px;
   margin-top: 10px;
-  display: inline-block;
-	float: right;
+  direction: rtl;
+  float: right;
 }
 
 #controlsColumn :focus{
@@ -148,11 +148,6 @@ canvas {
   border-radius: 4px;
 }
 
-#buttonDiv {
-  width: 100%;
-  position: relative;
-}
-
 #buttonDiv button {
   background-color: #222222;
   border: 3px solid #333333;
@@ -173,6 +168,17 @@ canvas {
 
 #buttonDiv input{
   float:right;
+}
+
+#sourceCodeEditorTitleDiv {
+  direction: ltr;
+  position: relative;
+}
+
+.areaDiv {
+  width: 415px;
+  direction: ltr;
+  position: relative;
 }
 
 .areaTitle {
