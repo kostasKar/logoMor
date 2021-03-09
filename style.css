@@ -239,7 +239,6 @@ canvas {
   -webkit-transition: .2s; /* 0.2 seconds transition on hover */
   transition: opacity .2s;
   border-radius: 3px;
-  transform: translate(0, 40%);
   position: relative;
   margin-left: 120px;
   display:inline-block;
