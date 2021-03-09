@@ -188,8 +188,8 @@ canvas {
 }
 
 .sliderContainer {
-  width: 90%; /* Width of the outside container */
-  margin: 10px;
+  width: 100%; /* Width of the outside container */
+  margin: 10px 0px 10px 10px;
   padding: 5px;
 }
 
@@ -233,7 +233,7 @@ canvas {
 .slider {
   -webkit-appearance: none;  /* Override default CSS styles */
   appearance: none;
-  width: 65%; /* Full-width */
+  width: 220px; 
   height: 10px; /* Specified height */
   background: #333333; /* Grey background */
   outline: none; /* Remove outline */
@@ -241,8 +241,10 @@ canvas {
   -webkit-transition: .2s; /* 0.2 seconds transition on hover */
   transition: opacity .2s;
   border-radius: 3px;
-  float:right;
   transform: translate(0, 40%);
+  position: relative;
+  margin-left: 120px;
+  display:inline-block;
 }
 
 /* Mouse-over effects */
@@ -273,15 +275,16 @@ canvas {
   color: #888888;
   font-size: 18px;
   padding-right: 10px;
+  position: absolute;
+  display:inline-block;
 }
 
 output{
-  padding-right: 10px;
   color: #888888;
   font-family: Consolas, monospace;
   font-size: 18px;
-  float:right;
-
+  margin-left: 10px;
+  display:inline-block;
 }
 
 ::-moz-selection { /* Code for Firefox */
