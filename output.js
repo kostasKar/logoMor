@@ -31,3 +31,22 @@ function throwError(text){
   consolePrintln("Line number: " + sourceCodeLineOfTokenIndex(currentIndex));
   stackTrace();
 }
+
+function variablesTrace(){
+  consolePrint("\nDebug Info:");
+  if(variablesScopeStack.length > 1){
+    consolePrintln("\nLocal variables:");
+    for (const [key, value] of Object.entries(variablesScopeStack[variablesScopeStack.length-1])){
+      consolePrint(key + " = " + value + "\n");
+    }
+  }
+  consolePrintln("\nGlobal variables:");
+  for (const [key, value] of Object.entries(globalVariables)){
+    consolePrint(key + " = " + value + "\n");
+  }
+  consolePrintln("\nStatic variables:");
+  for (const [key, value] of Object.entries(staticVariables)){
+    consolePrint(key + " = " + value + "\n");
+  }
+
+}
