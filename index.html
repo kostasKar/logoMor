@@ -122,7 +122,7 @@
         --><button onclick="openFile()">Load</button><!--
         --><button onclick=" window.open('assets/Documentation.pdf','_blank')" type="button">Help</button><!--
         --><button type="button" id="DemoButton" onclick="myCodeMirror.setValue(getRandomDemoProgram());parseLogo();localStorage.setItem('demoPressed', true);this.classList.remove('firstVisitBlink');">Demo</button>
-        <input id="inp" type='file' style="display:none;" onchange="readFile(event)" />
+        <input id="inp" type='file' style="display:none;" onchange="readFile(event)" onclick="this.value=null;" />
       </div>
 
       <div class="areaDiv">
@@ -143,7 +143,7 @@
       <div class="areaDiv" id="modelsDiv">
         <label class="areaTitle">MODELS</label>
         <button id="modelsAddButton" onclick="openModelFile()" class="dropbtn">Add</button>
-        <input id="modelinp" type='file' style="display:none;" onchange="readModelFile(event)" accept=".stl,.obj" />
+        <input id="modelinp" type='file' style="display:none;" onchange="readModelFile(event)" onclick="this.value=null;" accept=".stl,.obj" />
       </div>
 
 
