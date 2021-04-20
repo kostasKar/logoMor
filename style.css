@@ -446,8 +446,8 @@ output{
 
 .tooltip .tooltiptext.left {
   position: absolute;
-  width: 120px;
-  margin-left: -160px;
+  width: 130px;
+  margin-left: -170px;
 }
 
 .tooltip:hover .tooltiptext {

@@ -1,4 +1,5 @@
 let labelFont;
+var clearDraw = true;
 
 function preload() {
   //uncomment to deploy online
@@ -28,7 +29,9 @@ function setup() {
 
 function draw() {
   lights();
-  background(0);
+  if (clearDraw){
+    background(0);
+  }
   adjustCamera();
   logoStart();
   initLogoExecution();

@@ -136,3 +136,13 @@ function togglePause(){
     loop();
   }
 }
+
+function toggleClearDrawing(){
+  if (clearDraw){
+    clearDraw = false;
+    document.getElementById("clearDrawing").firstElementChild.style.color = "red";
+  } else {
+    clearDraw = true;
+    document.getElementById("clearDrawing").firstElementChild.style.removeProperty("color");
+  }
+}
