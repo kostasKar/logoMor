@@ -94,7 +94,7 @@ function toggleRecording(){
   } else {
     stopRecording();
     recording = false;
-    document.getElementById("record").firstElementChild.className = "fa fa-video-camera";
+    document.getElementById("record").firstElementChild.className = "fa fa-video";
     document.getElementById("record").firstElementChild.style.removeProperty("color");
   }
 }
