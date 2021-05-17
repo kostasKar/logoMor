@@ -314,3 +314,14 @@ function L_MODEL(name, size){
   scale(1/scaleFactor);
   restoreStrokeStyle();
 }
+
+function L_IMAGE(name, height){
+  if (name in loadedImages){
+    var w = loadedImages[name].width;
+    var h = loadedImages[name].height;
+    var scaleFactor =  height/h;
+    image(loadedImages[name], 0, 0, w * scaleFactor, h * scaleFactor);
+  } else {
+    throwError("Invalid image name: " + name);
+  }
+}

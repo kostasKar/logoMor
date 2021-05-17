@@ -59,6 +59,7 @@
   <script src="output.js"></script>
 
   <script src="model.js"></script>
+  <script src="image.js"></script>
 
 </head>
 <body>
@@ -145,6 +146,12 @@
         <label class="areaTitle">MODELS</label>
         <button id="modelsAddButton" onclick="openModelFile()" class="dropbtn">Add</button>
         <input id="modelinp" type='file' style="display:none;" onchange="readModelFile(event)" onclick="this.value=null;" accept=".stl,.obj" />
+      </div>
+
+      <div class="areaDiv" id="imagesDiv">
+        <label class="areaTitle">IMAGES</label>
+        <button id="imagesAddButton" onclick="openImageFile()" class="dropbtn">Add</button>
+        <input id="imageinp" type='file' style="display:none;" onchange="readImageFile(event)" onclick="this.value=null;" accept="image/*"/>
       </div>
 
 

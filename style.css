@@ -199,14 +199,14 @@ canvas {
   padding: 5px;
 }
 
-.modelDiv {
+.modelDiv, .imageDiv {
   width: 100%; /* Width of the outside container */
   margin-left: 10px;
   padding: 5px;
   height: 51px;
 }
 
-.modelName {
+.modelName, .imageName {
   font-family: Consolas, monospace;
   color: #888888;
   font-size: 18px;
@@ -219,7 +219,7 @@ canvas {
   border-radius: 3px;
 }
 
-.deleteModelButton {
+.deleteModelButton, .deleteImageButton {
   background-color: black;
   border: none;
   color: #cc8888;

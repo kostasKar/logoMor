@@ -102,7 +102,8 @@ var TasksConstructors = {
   "cone":ConeTask,
   "torus":TorusTask,
   "ellipsoid":EllipsoidTask,
-  "model":ModelTask
+  "model":ModelTask,
+  "image":ImageTask
 }
 
 

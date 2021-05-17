@@ -200,3 +200,6 @@ class EllipsoidTask extends CommandTask3N{run(){L_ELLIPSOID(this.arguments[0], t
 
 //Models
 class ModelTask extends CommandTask2SN { run() {L_MODEL(this.arguments[0], this.arguments[1]); return "";}}
+
+//Images
+class ImageTask extends CommandTask2SN { run() {L_IMAGE(this.arguments[0], this.arguments[1]); return "";}}
