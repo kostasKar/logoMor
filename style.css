@@ -80,10 +80,10 @@ canvas {
   direction: rtl;
   resize: both;
   overflow: auto;
-  min-height: 415px;
-  min-width: 415px;
-  width: 415px;
-  height: 415px;
+  min-height: 414px;
+  min-width: 414px;
+  width: 414px;
+  height: 414px;
   z-index: 1;
 }
 
@@ -91,7 +91,7 @@ canvas {
   position:relative;
   width: 100%;
   height: inherit !important;
-  min-height: 415px;
+  min-height: 414px;
   border: 3px solid #333333;
   border-radius: 4px;
   font-size: 14px;
@@ -152,7 +152,7 @@ canvas {
   background-color: #222222;
   border: 3px solid #333333;
   color: white;
-  padding: 10px 9px;
+  padding: 10px 0px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -160,6 +160,7 @@ canvas {
   margin: 4px 4px;
   cursor: pointer;
   border-radius: 6px;
+  width: 61px;
 }
 
 #buttonDiv button:hover {
@@ -176,7 +177,7 @@ canvas {
 }
 
 .areaDiv {
-  width: 415px;
+  width: 414px;
   direction: ltr;
   position: relative;
 }
