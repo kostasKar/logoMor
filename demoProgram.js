@@ -556,7 +556,7 @@ pushDemo(
 ' \n' + 
 'repeat :index [ \n' + 
 '  setxyz getitem "x repcount getitem "y repcount getz \n' + 
-'  label  word word getitem "x repcount "\\s getitem "x repcount \n' + 
+'  label  word word getitem "x repcount "\\s getitem "y repcount \n' + 
 '  point \n' + 
 '] \n');
 
