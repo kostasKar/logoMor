@@ -550,8 +550,8 @@ pushDemo(
 ' \n' + 
 'if mousepressed[ \n' + 
 '  increment "index \n' + 
-'  setitem "x :index mousex \n' + 
-'  setitem "y :index mousey \n' + 
+'  setitem "x :index round mousex \n' + 
+'  setitem "y :index round mousey \n' + 
 '] \n' + 
 ' \n' + 
 'repeat :index [ \n' + 
