@@ -30,10 +30,11 @@ function throwError(text){
   consolePrintln("Error: " + text);
   consolePrintln("Line number: " + sourceCodeLineOfTokenIndex(currentIndex));
   stackTrace();
+  variablesTrace();
 }
 
 function variablesTrace(){
-  consolePrint("\nDebug Info:");
+  consolePrint("\nVariables Info:");
   if(variablesScopeStack.length > 1){
     consolePrintln("\nLocal variables:");
     for (const [key, value] of Object.entries(variablesScopeStack[variablesScopeStack.length-1])){
