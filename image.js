@@ -5,13 +5,6 @@ var loadedImages = {};
 var currentImageIndex = 1;
 
 
-
-
-var loadedModels = {};
-var currentModelIndex = 1;
-var pImg;
-
-
 function openImageFile() {
   document.getElementById('imageinp').click();
 }
