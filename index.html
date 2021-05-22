@@ -104,7 +104,9 @@
 
       <div id="sourceCodeEditorTitleDiv">
         <label class="areaTitle">SOURCE CODE EDITOR</label>
-        <button id="copyCodeButton" onclick="copySourceCode()">Share</button>
+        <button class="editorButton" id="copyCodeButton" onclick="copySourceCode()">Share</button>
+        <button class="editorButton" onclick="increaseEditorFontSize()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        <button class="editorButton" onclick="decreaseEditorFontSize()"><i class="fa fa-minus" aria-hidden="true"></i></button>
       </div>
 
       <div id="sourceCodeContainer">
@@ -254,6 +256,8 @@
       }
     });
 
+    
+
   </script>
 
 
@@ -289,7 +293,15 @@
       }
     }
 
+    myCodeMirror.getWrapperElement().style["font-size"] = "14px";
 
+    function increaseEditorFontSize(){
+      myCodeMirror.getWrapperElement().style["font-size"] = parseInt(myCodeMirror.getWrapperElement().style["font-size"]) + 1 + "px";
+    }
+
+    function decreaseEditorFontSize(){
+      myCodeMirror.getWrapperElement().style["font-size"] = parseInt(myCodeMirror.getWrapperElement().style["font-size"]) - 1 + "px";
+    }
 
     </script>
     

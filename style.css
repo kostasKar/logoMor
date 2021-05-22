@@ -501,7 +501,7 @@ output{
   100% { transform: rotate(360deg); }
 }
 
-#copyCodeButton {
+.editorButton {
   background-color: #222222;
   border: 2px solid #333333;
   color: #aaaaaa;
