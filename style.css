@@ -369,6 +369,18 @@ output{
   margin: 1px;
 }
 
+#CameraInstructions h1 {
+  color: #eeeeee;
+  font-size: 16px;
+  font-weight: normal;
+  margin-top: 5px;
+  margin-bottom: 8px;
+}
+
+#CameraInstructions h1 .bigger{
+  font-size: 18px;
+}
+
 #fpsLabel, #fpsValue{
   margin: 1px;
 }
