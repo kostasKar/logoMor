@@ -459,7 +459,6 @@ output{
 
 /*Footer*/
 #copyright {
-  font-family: Consolas, monospace;
   color: #444444;
   position: fixed;
   bottom: 15px;
