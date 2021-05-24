@@ -2,11 +2,11 @@ body {
   margin: 0;
   padding: 0;
   background-color: #000000;
-  font-family: 'Lucida Console', monospace;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 button {
-  font-family: 'Lucida Console', monospace;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 canvas {

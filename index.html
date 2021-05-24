@@ -3,7 +3,8 @@
   <title>LogoMor</title>
   <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico'>
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inconsolata&amp;display=swap" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet">
   <!--<script src="p5.js"></script>-->
   <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.min.js"></script>
   <script src="seedrandom.min.js"></script>
@@ -103,7 +104,7 @@
   <div id="controlsColumn">
 
       <div id="sourceCodeEditorTitleDiv">
-        <label class="areaTitle">SOURCE CODE EDITOR</label>
+        <label class="areaTitle">Source Code Editor</label>
         <button class="editorButton" id="copyCodeButton" onclick="copySourceCode()">Share</button>
         <button class="editorButton" onclick="increaseEditorFontSize()"><i class="fa fa-plus" aria-hidden="true"></i></button>
         <button class="editorButton" onclick="decreaseEditorFontSize()"><i class="fa fa-minus" aria-hidden="true"></i></button>
@@ -130,12 +131,12 @@
       </div>
 
       <div class="areaDiv">
-        <label class="areaTitle">CONSOLE</label>
+        <label class="areaTitle">Console</label>
         <textarea readonly id="consoleTextArea"></textarea>
       </div>
 
       <div class="areaDiv" id="variablesDiv">
-        <label class="areaTitle" id="variablesTitle">VARIABLES MANIPULATORS</label>
+        <label class="areaTitle" id="variablesTitle">Variables Manipulators</label>
         <div class="dropdown">
           <button id="slidersAddButton" onclick="showVariablesNames()" class="dropbtn" disabled>Add</button>
           <button id="slidersClearButton" onclick="clearSliders()" class="dropbtn" disabled>Clear</button>
@@ -145,13 +146,13 @@
       </div>
 
       <div class="areaDiv" id="modelsDiv">
-        <label class="areaTitle">MODELS</label>
+        <label class="areaTitle">Models</label>
         <button id="modelsAddButton" onclick="openModelFile()" class="dropbtn">Add</button>
         <input id="modelinp" type='file' style="display:none;" onchange="readModelFile(event)" onclick="this.value=null;" accept=".stl,.obj" />
       </div>
 
       <div class="areaDiv" id="imagesDiv">
-        <label class="areaTitle">IMAGES</label>
+        <label class="areaTitle">Images</label>
         <button id="imagesAddButton" onclick="openImageFile()" class="dropbtn">Add</button>
         <input id="imageinp" type='file' style="display:none;" onchange="readImageFile(event)" onclick="this.value=null;" accept="image/*"/>
       </div>
