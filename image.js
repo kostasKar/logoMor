@@ -44,7 +44,7 @@ function createListEntryForImage(name){
   imageDiv.className  = "imageDiv";
   imageDiv.id = name;
   var imageName = document.createElement("input");
-  imageName.className = "imageName";
+  imageName.className = "imageName codeFont";
   imageName.value = name;
   imageName.name = name;
   imageName.onchange = function() {renameImage(this)};

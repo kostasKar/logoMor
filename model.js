@@ -47,7 +47,7 @@ function createListEntryForModel(name){
   modelDiv.className  = "modelDiv";
   modelDiv.id = name;
   var modelName = document.createElement("input");
-  modelName.className = "modelName";
+  modelName.className = "modelName codeFont";
   modelName.value = name;
   modelName.name = name;
   modelName.onchange = function() {renameModel(this)};

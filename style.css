@@ -2,11 +2,14 @@ body {
   margin: 0;
   padding: 0;
   background-color: #000000;
+}
+
+body, button {
   font-family: 'JetBrains Mono', monospace;
 }
 
-button {
-  font-family: 'JetBrains Mono', monospace;
+.codeFont, .CodeMirror {
+  font-family: Consolas, monospace !important;
 }
 
 canvas {
@@ -66,7 +69,6 @@ canvas {
 	background-color: #111111;
 	color: #eeeeee;
 	border: 3px solid #333333;
-	font-family: Consolas, monospace;
 	font-size: 14px;
   white-space: pre;
   height: 150px;
@@ -95,7 +97,6 @@ canvas {
   border: 3px solid #333333;
   border-radius: 4px;
   font-size: 14px;
-  font-family: Consolas, monospace !important;
   overflow: auto;
 }
 
@@ -209,7 +210,6 @@ canvas {
 }
 
 .modelName, .imageName {
-  font-family: Consolas, monospace;
   color: #888888;
   font-size: 18px;
   display: inline-block;
@@ -229,7 +229,7 @@ canvas {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 9px;
+  font-size: 14px;
   margin: 4px 0px;
   cursor: pointer;
   margin-left: 80px;
@@ -276,7 +276,6 @@ canvas {
   border-radius: 50%; 
 }
 .sliderVarName{
-  font-family: Consolas, monospace;
   color: #888888;
   font-size: 18px;
   padding-right: 10px;
@@ -286,7 +285,6 @@ canvas {
 
 output{
   color: #888888;
-  font-family: Consolas, monospace;
   font-size: 18px;
   margin-left: 10px;
   display:inline-block;

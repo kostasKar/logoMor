@@ -31,7 +31,7 @@ function createSliderForVar(name, value){
 	var sliderContainer = document.createElement("div");
 	sliderContainer.className  = "sliderContainer";
 	var varNameLabel = document.createElement("label");
-	varNameLabel.className = "sliderVarName";
+	varNameLabel.className = "sliderVarName codeFont";
 	varNameLabel.innerText = name;
 	var newSlider = document.createElement("input");
 	newSlider.id = name + "slider";
@@ -46,6 +46,7 @@ function createSliderForVar(name, value){
 		redrawIfPaused();
 	};
 	var sliderValue = document.createElement("output");
+	sliderValue.className = "codeFont";
 	sliderValue.value = value;
 	container.appendChild(sliderContainer);
 	sliderContainer.appendChild(varNameLabel);
