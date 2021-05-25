@@ -1,3 +1,8 @@
+/*
+  -------------- General Rules --------------
+ */
+
+
 body {
   margin: 0;
   padding: 0;
@@ -22,7 +27,58 @@ canvas {
   box-sizing: border-box;
 }
 
-/* Screenshot and video record buttons */
+button {
+  background-color: #222222; 
+  color: #aaaaaa;
+  border-color: #333333;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 6px;
+  outline: none !important;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover:not([disabled]) {
+  color: #dddddd;
+  background-color: #333333;
+}
+
+button:disabled {
+  color: #555555;
+  cursor: auto ;
+}
+
+textarea, .CodeMirror {
+  position:relative;
+  width: 100%;
+  background-color: #111111;
+  border-color: #333333;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.brightText {
+  color: #dddddd;
+}
+
+.subtleText1 {
+  color: #666666;
+}
+
+.subtleText2 {
+  color: #555555;
+}
+
+
+/* 
+  Screenshot and video record buttons 
+*/
+
 #pictureControl{
   display: inline-block;
   float : right;
@@ -31,27 +87,19 @@ canvas {
 }
 
 #pictureControl button{
-  background-color: #222222;
-  border: 3px solid #333333;
-  color: #aaaaaa;
   width: 50px;
   height: 50px;
-  text-align: center;
-  text-decoration: none;
   display: block;
-  font-size: 16px;
   margin: 6px 2px;
-  cursor: pointer;
   border-radius: 50%;
-  outline: none !important;
 }
 
-#pictureControl button:hover {
-  background-color: #333333;
-  color:white;
-}
 
-/*Source code and execution control column*/
+
+/*
+  Logo control column
+ */
+
 #controlsColumn {
   margin-right: 25px;
   margin-top: 10px;
@@ -64,17 +112,10 @@ canvas {
 }
 
 #consoleTextArea{
-  position:relative;
-  width: 100%;
-	background-color: #111111;
-	color: #eeeeee;
-	border: 3px solid #333333;
-	font-size: 14px;
   white-space: pre;
   height: 150px;
   min-height: 150px;
   resize: vertical;
-  border-radius: 4px;
 }
 
 #sourceCodeContainer {
@@ -90,13 +131,8 @@ canvas {
 }
 
 #sourceCodeTextArea, .CodeMirror {
-  position:relative;
-  width: 100%;
   height: inherit !important;
   min-height: 414px;
-  border: 3px solid #333333;
-  border-radius: 4px;
-  font-size: 14px;
   overflow: auto;
 }
 
@@ -132,7 +168,6 @@ canvas {
 #movesLimitDiv label{
   font-size: 12px;
   margin: 7px 5px 0px 0px;
-  color: #666666;
   float: right;
 }
 
@@ -150,23 +185,10 @@ canvas {
 }
 
 #buttonDiv button {
-  background-color: #222222;
-  border: 3px solid #333333;
-  color: #aaaaaa;
   padding: 10px 0px;
-  text-align: center;
-  text-decoration: none;
   display: inline-block;
-  font-size: 16px;
   margin: 4px 4px;
-  cursor: pointer;
-  border-radius: 6px;
   width: 61px;
-}
-
-#buttonDiv button:hover {
-  background-color: #333333;
-  color: #ffffff;
 }
 
 #buttonDiv input{
@@ -185,7 +207,6 @@ canvas {
 }
 
 .areaTitle {
-  color: #eeeeee;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
@@ -300,27 +321,9 @@ output{
 
 /*Variables Sliders*/
 .dropbtn {
-  background-color: #222222;
-  border: 3px solid #333333;
-  color: #aaaaaa;
   padding: 5px 5px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
   margin: 4px 0px;
-  cursor: pointer;
-  border-radius: 6px;
-}
-
-.dropbtn:hover:not([disabled]) {
-  background-color: #333333;
-  color: white;
-}
-
-.dropbtn:disabled {
-  color: #555555;
-  cursor: auto ;
+  font-size: 14px;
 }
 
 .dropdown {
@@ -353,9 +356,9 @@ output{
 .show {display: block;}
 
 
+
 /*View control column*/
 #CameraInstructions {
-  color: #555555;
   position: fixed;
   top: 20px;
   left: 20px;
@@ -368,7 +371,6 @@ output{
 }
 
 #CameraInstructions h1 {
-  color: #eeeeee;
   font-size: 16px;
   font-weight: normal;
   margin-top: 5px;
@@ -469,7 +471,6 @@ output{
 
 /*Footer*/
 #copyright {
-  color: #444444;
   position: fixed;
   bottom: 15px;
   left: 15px;
@@ -513,24 +514,11 @@ output{
 }
 
 .editorButton {
-  background-color: #222222;
-  border: 2px solid #333333;
-  color: #aaaaaa;
+  border-width: 2px;
   padding: 1px 5px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
   font-size: 11px;
   margin: 4px 4px;
-  cursor: pointer;
-  border-radius: 6px;
-  position: relative;
   float: right;
-}
-
-.editorButton:hover {
-  background-color: #333333;
-  color: #ffffff;
 }
 
 @keyframes blinkingBorder {

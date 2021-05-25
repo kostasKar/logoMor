@@ -66,8 +66,8 @@
 <body>
 
   <div id="p5_loading"></div>
-  <div id="CameraInstructions">
-    <h1> <span class="bigger">L</span>OGO<span class="bigger">M</span>OR</h1>
+  <div id="CameraInstructions" class="subtleText1">
+    <h1 class="brightText"> <span class="bigger">L</span>OGO<span class="bigger">M</span>OR</h1>
     <label>Left Click: Rotate </label> 
     <label>Middle Click: Pan </label> 
     <label>Scroll Wheel: Zoom </label>
@@ -95,7 +95,7 @@
     </button>
   </div>
 
-  <div id="copyright">&copy; 2021 Kostas Karouzos 
+  <div id="copyright" class="subtleText2">&copy; 2021 Kostas Karouzos 
     <a href = "mailto: &#099;&#107;&#046;&#107;&#097;&#114;&#111;&#117;&#122;&#111;&#115;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;">&#099;&#107;&#046;&#107;&#097;&#114;&#111;&#117;&#122;&#111;&#115;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;</a>
     <a href="https://github.com/kostasKar/logoMor" class="fab fa-github" target="_blank"></a>
   </div> 
@@ -105,20 +105,20 @@
   <div id="controlsColumn">
 
       <div id="sourceCodeEditorTitleDiv">
-        <label class="areaTitle">Source Code Editor</label>
+        <label class="areaTitle brightText">Source Code Editor</label>
         <button class="editorButton" id="copyCodeButton" onclick="copySourceCode()">Share</button>
         <button class="editorButton" onclick="increaseEditorFontSize()"><i class="fa fa-plus" aria-hidden="true"></i></button>
         <button class="editorButton" onclick="decreaseEditorFontSize()"><i class="fa fa-minus" aria-hidden="true"></i></button>
       </div>
 
       <div id="sourceCodeContainer">
-        <textarea class="codeFont" id="sourceCodeTextArea" spellcheck="false" placeholder="Logo code here...&#13;&#10;Press 'Demo' to load random example programs"></textarea>
+        <textarea class="codeFont brightText" id="sourceCodeTextArea" spellcheck="false" placeholder="Logo code here...&#13;&#10;Press 'Demo' to load random example programs"></textarea>
       </div>
       <div id="pull-tab"></div>
 
       <div class="areaDiv" id="movesLimitDiv">
         <input  id="movesLimitInput" type="number" name="quantity" min="0" value="1000" onchange="redrawIfPaused()">
-        <label>Moves Limit:</label>
+        <label class="subtleText1">Moves Limit:</label>
       </div>
 
       <div class="areaDiv" id = "buttonDiv">
@@ -132,12 +132,12 @@
       </div>
 
       <div class="areaDiv">
-        <label class="areaTitle">Console</label>
-        <textarea readonly id="consoleTextArea" class="codeFont"></textarea>
+        <label class="areaTitle brightText">Console</label>
+        <textarea readonly id="consoleTextArea" class="codeFont brightText"></textarea>
       </div>
 
       <div class="areaDiv" id="variablesDiv">
-        <label class="areaTitle" id="variablesTitle">Variables Manipulators</label>
+        <label class="areaTitle brightText" id="variablesTitle">Variables Manipulators</label>
         <div class="dropdown">
           <button id="slidersAddButton" onclick="showVariablesNames()" class="dropbtn" disabled>Add</button>
           <button id="slidersClearButton" onclick="clearSliders()" class="dropbtn" disabled>Clear</button>
@@ -147,13 +147,13 @@
       </div>
 
       <div class="areaDiv" id="modelsDiv">
-        <label class="areaTitle">Models</label>
+        <label class="areaTitle brightText">Models</label>
         <button id="modelsAddButton" onclick="openModelFile()" class="dropbtn">Add</button>
         <input id="modelinp" type='file' style="display:none;" onchange="readModelFile(event)" onclick="this.value=null;" accept=".stl,.obj" />
       </div>
 
       <div class="areaDiv" id="imagesDiv">
-        <label class="areaTitle">Images</label>
+        <label class="areaTitle brightText">Images</label>
         <button id="imagesAddButton" onclick="openImageFile()" class="dropbtn">Add</button>
         <input id="imageinp" type='file' style="display:none;" onchange="readImageFile(event)" onclick="this.value=null;" accept="image/*"/>
       </div>
