@@ -374,11 +374,18 @@ output{
   font-size: 16px;
   font-weight: normal;
   margin-top: 5px;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 #CameraInstructions h1 .bigger{
   font-size: 18px;
+}
+
+#CameraInstructions h2 {
+  font-size: 12px;
+  font-weight: normal;
+  margin-top: 2px;
+  margin-bottom: 8px;
 }
 
 #fpsLabel, #fpsValue{
