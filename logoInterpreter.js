@@ -1,7 +1,7 @@
 
 
 var wholeSourceTokens;   //an array to keep the complete source tokens for reference
-var mainSourceTokens = {};  //the array of tokens for the whole program
+var mainSourceTokens = {};  //the array of tokens for the main program
 var sourceTokens        //the array of the tokens for the currently executed code body
 var currentIndex;			  //the int index of current token
 var tasksStack;			    //the stack with all the tasks
@@ -21,10 +21,10 @@ function parseLogo(sourceCode){
 	  sourceCode = myCodeMirror.getValue();
   }
   var sourceCodeTxt = prepareSourceCodeText(sourceCode);
-  mainSourceTokens = sourceCodeTxt.trim().split(/[\s]+/);
-  mainSourceTokens = mainSourceTokens.filter(function (el) {return el != "";});
-  console.log(mainSourceTokens);
-  wholeSourceTokens = [...mainSourceTokens];
+  wholeSourceTokens = sourceCodeTxt.trim().split(/[\s]+/);
+  wholeSourceTokens = wholeSourceTokens.filter(function (el) {return el != "";});
+  console.log(wholeSourceTokens);
+  mainSourceTokens = [...wholeSourceTokens];
   seed = Math.random().toString(36).substring(7);
   procedurePrototypes = {};
   staticVariables = {};
