@@ -3,6 +3,8 @@
 var wholeSourceTokens;   //an array to keep the complete source tokens for reference
 var mainSourceTokens = {};  //the array of tokens for the main program
 var sourceTokens        //the array of the tokens for the currently executed code body
+var mainSourceTokensLineNumbers; //an array that keeps the text line numbers for all the main program tokens
+var sourceTokensLineNumbers;  //an array that keeps the text line nimbers for the currently executing body tokens
 var currentIndex;			  //the int index of current token
 var tasksStack;			    //the stack with all the tasks
 var globalVariables;	  //an object with all the global variables name-value pairs
@@ -21,8 +23,8 @@ function parseLogo(sourceCode){
 	  sourceCode = myCodeMirror.getValue();
   }
   var sourceCodeTxt = prepareSourceCodeText(sourceCode);
-  wholeSourceTokens = sourceCodeTxt.trim().split(/[\s]+/);
-  wholeSourceTokens = wholeSourceTokens.filter(function (el) {return el != "";});
+  wholeSourceTokens = sourceCodeTxt.trim().split(/[\s]+/).filter(function (el) {return el != "";});
+  mainSourceTokensLineNumbers = createLineNumbersArrayForWholeProgram();
   console.log(wholeSourceTokens);
   mainSourceTokens = [...wholeSourceTokens];
   seed = Math.random().toString(36).substring(7);
@@ -41,6 +43,7 @@ function parseLogo(sourceCode){
 
 function initLogoExecution(){
   sourceTokens = mainSourceTokens;
+  sourceTokensLineNumbers = mainSourceTokensLineNumbers;
   currentIndex = 0;
   movesCount = 0;
   seedableRNG = new Math.seedrandom(seed);

@@ -3,6 +3,7 @@ class ProcedureTask {
   
   constructor(procedurePrototype){
     this.body = procedurePrototype.body;
+    this.bodyLineNumbers = procedurePrototype.bodyLineNumbers;
     this.numOfParameters = procedurePrototype.numOfParameters;
     this.localVariables = Object.assign({}, procedurePrototype.localVariables);
     this.returnValue = "";
@@ -15,6 +16,8 @@ class ProcedureTask {
       this.returnIndex = currentIndex + 1;
       this.returnSourceTokens = sourceTokens;
       sourceTokens = this.body;
+      this.returnSourceTokensLineNumbers = sourceTokensLineNumbers;
+      sourceTokensLineNumbers = this.bodyLineNumbers;
       currentIndex = 0;
     }
     this.numOfParametersSet = 0;
@@ -34,6 +37,8 @@ class ProcedureTask {
         this.returnIndex = currentIndex;
         this.returnSourceTokens = sourceTokens;
         sourceTokens = this.body;
+        this.returnSourceTokensLineNumbers = sourceTokensLineNumbers;
+        sourceTokensLineNumbers = this.bodyLineNumbers;
         currentIndex = this.numOfParametersSet + 1;
       } else {
         var art = new ArgumentResolverTask();
@@ -62,6 +67,7 @@ class ProcedureTask {
     variablesScopeStack.pop();
     sourceTokens = this.returnSourceTokens;
     currentIndex = this.returnIndex;
+    sourceTokensLineNumbers = this.returnSourceTokensLineNumbers;
     return this.returnValue;
   }
   
