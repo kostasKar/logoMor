@@ -60,6 +60,7 @@ The interpreter accepts the basic UCBLogo commands with many additions:
 - 3D primitives commands are available for box, sphere, torus, ellipsoid, cylider, cone
 - .STL and .OBJ files can be uploaded and rendered into the sketch by using the model command
 - Images can be uploaded and drawn into the sketch by using the image command
+- Audio files can be uploaded and manipulated by the UI and by using logo commands
 
 ## Contributing
 I would love to receive any LogoMor sketches and include them to the Demos  
