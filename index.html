@@ -61,6 +61,7 @@
 
   <script src="model.js"></script>
   <script src="image.js"></script>
+  <script src="sound.js"></script>
 
 </head>
 <body>
@@ -124,7 +125,7 @@
 
       <div class="areaDiv" id = "buttonDiv">
         <button id="playButton" onclick="parseLogo()">Run</button><!-- just to get rid of the space between the inline-blocks
-        --><button id="stopButton" onclick="parseLogo('')">Stop</button><!--
+        --><button id="stopButton" onclick="parseLogo(''); stopAllAudio()">Stop</button><!--
         --><button type="button" id="saveButton" onclick="download()">Save</button><!--
         --><button onclick="openFile()">Load</button><!--
         --><button onclick=" window.open('assets/Documentation.pdf','_blank')" type="button">Help</button><!--
@@ -157,6 +158,12 @@
         <label class="areaTitle brightText">Images</label>
         <button id="imagesAddButton" onclick="openImageFile()" class="dropbtn">Add</button>
         <input id="imageinp" type='file' style="display:none;" onchange="readImageFile(event)" onclick="this.value=null;" accept="image/*"/>
+      </div>
+
+      <div class="areaDiv" id="soundsDiv">
+        <label class="areaTitle brightText">Sounds</label>
+        <button id="soundAddButton" onclick="openSoundFile()" class="dropbtn">Add</button>
+        <input id="soundinp" type='file' style="display:none;" onchange="readSoundFile(event)" onclick="this.value=null;" accept="audio/*"/>
       </div>
 
 

@@ -15,5 +15,5 @@ function createLineNumbersArrayForWholeProgram(){
 }
 
 function sourceCodeLineOfTokenIndex(index){
-  return sourceTokensLineNumbers[index];
+  return (index < sourceTokensLineNumbers.length) ? sourceTokensLineNumbers[index] : sourceTokensLineNumbers[sourceTokensLineNumbers.length - 1];
 }

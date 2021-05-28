@@ -203,3 +203,8 @@ class ModelTask extends CommandTask2SN { run() {L_MODEL(this.arguments[0], this.
 
 //Images
 class ImageTask extends CommandTask2SN { run() {L_IMAGE(this.arguments[0], this.arguments[1]); return "";}}
+
+//Sounds
+class PlaySoundTask extends CommandTask1S { run() {L_PLAYSOUND(this.arguments[0]); return "";}}
+class StopSoundTask extends CommandTask1S { run() {L_STOPSOUND(this.arguments[0]); return "";}}
+class PauseSoundTask extends CommandTask1S { run() {L_PAUSESOUND(this.arguments[0]); return "";}}

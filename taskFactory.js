@@ -103,7 +103,10 @@ var TasksConstructors = {
   "torus":TorusTask,
   "ellipsoid":EllipsoidTask,
   "model":ModelTask,
-  "image":ImageTask
+  "image":ImageTask,
+  "playsound":PlaySoundTask,
+  "stopsound":StopSoundTask,
+  "pausesound":PauseSoundTask
 }
 
 

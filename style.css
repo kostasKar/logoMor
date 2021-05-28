@@ -223,26 +223,32 @@ textarea, .CodeMirror {
   padding: 5px;
 }
 
-.modelDiv, .imageDiv {
+.modelDiv, .imageDiv, .soundDiv {
   width: 100%; /* Width of the outside container */
   margin-left: 10px;
   padding: 5px;
   height: 51px;
 }
 
-.modelName, .imageName {
+.modelName, .imageName, .soundName {
   color: #888888;
   font-size: 18px;
   display: inline-block;
   margin-top: 13px;
   background: black;
-  width: 105px;
+  width: 100px;
   outline: none;
   border: 1px solid #333333;
   border-radius: 3px;
 }
 
-.deleteModelButton, .deleteImageButton {
+.soundDiv audio {
+  width: 270px;
+  height: 20px;
+  margin: 0px 0px -4px 3px;
+}
+
+.deleteModelButton, .deleteImageButton, .deleteSoundButton {
   background-color: black;
   border: none;
   color: #cc8888;
@@ -254,6 +260,18 @@ textarea, .CodeMirror {
   margin: 4px 0px;
   cursor: pointer;
   margin-left: 80px;
+}
+
+.playSoundButton, .stopSoundButton, .deleteSoundButton {
+  background-color: black;
+  border: none;
+  padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 5px 5px;
+  cursor: pointer;
 }
 
 /* The slider itself */

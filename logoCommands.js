@@ -325,3 +325,33 @@ function L_IMAGE(name, height){
     throwError("Invalid image name: " + name);
   }
 }
+
+function L_PLAYSOUND(name){
+  if (name in loadedSounds){
+    var audio = loadedSounds[name];
+    if (audio.paused || audio.currentTime === 0 || audio.ended) {
+      audio.play();
+    }
+  } else {
+    throwError("Invalid sound name: " + name);
+  }
+}
+
+function L_STOPSOUND(name){
+  if (name in loadedSounds){
+    var audio = loadedSounds[name];
+    audio.pause();
+    audio.currentTime = 0;
+  } else {
+    throwError("Invalid sound name: " + name);
+  }
+}
+
+function L_PAUSESOUND(name){
+  if (name in loadedSounds){
+    var audio = loadedSounds[name];
+    audio.pause();
+  } else {
+    throwError("Invalid sound name: " + name);
+  }
+}
