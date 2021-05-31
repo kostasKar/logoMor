@@ -104,9 +104,14 @@ var TasksConstructors = {
   "ellipsoid":EllipsoidTask,
   "model":ModelTask,
   "image":ImageTask,
-  "playsound":PlaySoundTask,
-  "stopsound":StopSoundTask,
-  "pausesound":PauseSoundTask
+  "sound_play":PlaySoundTask,
+  "sound_stop":StopSoundTask,
+  "sound_pause":PauseSoundTask,
+  "sound_isplaying":IsPLayingSoundTask,
+  "sound_settime":SetTimeSoundTask,
+  "sound_setvolume":SetVolumeSoundTask,
+  "sound_gettime":GetTimeSoundTask,
+  "sound_getvolume":GetVolumeSoundTask
 }
 
 

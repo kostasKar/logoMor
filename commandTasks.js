@@ -208,3 +208,8 @@ class ImageTask extends CommandTask2SN { run() {L_IMAGE(this.arguments[0], this.
 class PlaySoundTask extends CommandTask1S { run() {L_PLAYSOUND(this.arguments[0]); return "";}}
 class StopSoundTask extends CommandTask1S { run() {L_STOPSOUND(this.arguments[0]); return "";}}
 class PauseSoundTask extends CommandTask1S { run() {L_PAUSESOUND(this.arguments[0]); return "";}}
+class IsPLayingSoundTask extends CommandTask1S { run() {return L_IS_PLAYINGSOUND(this.arguments[0]);}}
+class GetTimeSoundTask extends CommandTask1S { run() {return L_GET_TIME_SOUND(this.arguments[0]);}}
+class GetVolumeSoundTask extends CommandTask1S { run() {return L_GET_VOLUME_SOUND(this.arguments[0]);}}
+class SetTimeSoundTask extends CommandTask2SN { run() {L_SET_TIME_SOUND(this.arguments[0], this.arguments[1]); return "";}}
+class SetVolumeSoundTask extends CommandTask2SN { run() {L_SET_VOLUME_SOUND(this.arguments[0], this.arguments[1]); return "";}}

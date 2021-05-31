@@ -355,3 +355,49 @@ function L_PAUSESOUND(name){
     throwError("Invalid sound name: " + name);
   }
 }
+
+function L_IS_PLAYINGSOUND(name){
+  if (name in loadedSounds){
+    var audio = loadedSounds[name];
+    return (audio.paused || audio.currentTime === 0 || audio.ended) ? 0 : 1;
+  } else {
+    throwError("Invalid sound name: " + name);
+    return 0;
+  }
+}
+
+function L_SET_TIME_SOUND(name, time){
+  if (name in loadedSounds){
+    loadedSounds[name].currentTime = time;
+  } else {
+    throwError("Invalid sound name: " + name);
+  }
+}
+
+function L_SET_VOLUME_SOUND(name, vol){
+  if (name in loadedSounds){
+    if ((vol >= 0) &&(vol <= 100)){
+      loadedSounds[name].volume = vol/100;
+    } 
+  } else {
+    throwError("Invalid sound name: " + name);
+  }
+}
+
+function L_GET_TIME_SOUND(name){
+  if (name in loadedSounds){
+    return loadedSounds[name].currentTime;
+  } else {
+    throwError("Invalid sound name: " + name);
+    return 0;
+  }
+}
+
+function L_GET_VOLUME_SOUND(name){
+  if (name in loadedSounds){
+    return Math.round(loadedSounds[name].volume * 100);
+  } else {
+    throwError("Invalid sound name: " + name);
+    return 0;
+  }
+}
