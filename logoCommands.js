@@ -375,10 +375,10 @@ function L_SET_TIME_SOUND(name, time){
 }
 
 function L_SET_VOLUME_SOUND(name, vol){
+  if(vol < 0 ){ vol = 0;}
+  if(vol > 100){vol = 100;}
   if (name in loadedSounds){
-    if ((vol >= 0) &&(vol <= 100)){
-      loadedSounds[name].volume = vol/100;
-    } 
+    loadedSounds[name].volume = vol/100;
   } else {
     throwError("Invalid sound name: " + name);
   }
