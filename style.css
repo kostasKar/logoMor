@@ -322,11 +322,31 @@ textarea, .CodeMirror {
   display:inline-block;
 }
 
-output{
+.sliderContainer output{
   color: #888888;
   font-size: 18px;
   margin-left: 10px;
   display:inline-block;
+  width: 40px;
+}
+
+.rangeLabel{
+  color: #888888;
+  font-size: 14px;
+  Margin-right: 5px;
+}
+
+.rangeInput{
+  color: #888888;
+  font-size: 14px;
+  display: inline-block;
+  margin-top: 13px;
+  background: black;
+  width: 80px;
+  outline: none;
+  border: 1px solid #333333;
+  border-radius: 3px;
+  Margin-right: 10px;
 }
 
 ::-moz-selection { /* Code for Firefox */

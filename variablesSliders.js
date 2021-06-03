@@ -30,28 +30,65 @@ function createSliderForVar(name, value){
 	var container = document.getElementById("variablesDiv");
 	var sliderContainer = document.createElement("div");
 	sliderContainer.className  = "sliderContainer";
+
 	var varNameLabel = document.createElement("label");
 	varNameLabel.className = "sliderVarName codeFont";
 	varNameLabel.innerText = name;
-	var newSlider = document.createElement("input");
-	newSlider.id = name + "slider";
-	newSlider.type = "range";
-	newSlider.min = Math.min(0, 10*value);
-	newSlider.max = (value != 0)? Math.max(0, 10*value) : 10;
-	newSlider.step = (Math.round(value)==value)? 1 : 0.1;
-	newSlider.value = Number(value);
-	newSlider.className  = "slider";
-	newSlider.oninput= function(){
-		this.nextElementSibling.value = this.value;
-		redrawIfPaused();
-	};
+
 	var sliderValue = document.createElement("output");
 	sliderValue.className = "codeFont";
 	sliderValue.value = value;
-	container.appendChild(sliderContainer);
-	sliderContainer.appendChild(varNameLabel);
-	sliderContainer.appendChild(newSlider);
+
+	var slider = document.createElement("input");
+	slider.id = name + "slider";
+	slider.type = "range";
+	slider.min = Math.min(0, 10*value);
+	slider.max = (value != 0)? Math.max(0, 10*value) : 10;
+	slider.step = (Math.round(value)==value)? 1 : 0.1;
+	slider.value = Number(value);
+	slider.className  = "slider";
+	slider.oninput= function(){
+		sliderValue.value = this.value;
+		redrawIfPaused();
+	};
+
+	var maxLabel = document.createElement("label");
+	maxLabel.className = "rangeLabel";
+	maxLabel.innerText = "Max:"
+	var minLabel = document.createElement("label");
+	minLabel.className = "rangeLabel";
+	minLabel.innerText = "Min:"
+	var stepLabel = document.createElement("label");
+	stepLabel.className = "rangeLabel";
+	stepLabel.innerText = "Step:"
+	var maxInput = document.createElement("input");
+	maxInput.className = "rangeInput";
+	maxInput.value = slider.max;
+	maxInput.type = "number";
+	maxInput.onchange = function(){slider.max = this.value;};
+	var minInput = document.createElement("input");
+	minInput.className = "rangeInput";
+	minInput.value = slider.min;
+	minInput.type = "number";
+	minInput.onchange = function(){slider.min = this.value;};
+	var stepInput = document.createElement("input");
+	stepInput.className = "rangeInput";
+	stepInput.value = slider.step;
+	stepInput.type = "number";
+	stepInput.onchange = function(){slider.step = this.value;};
+
+
+  container.appendChild(sliderContainer);
+  sliderContainer.appendChild(varNameLabel);
+	sliderContainer.appendChild(slider);
 	sliderContainer.appendChild(sliderValue);
+	sliderContainer.appendChild(minLabel);
+	sliderContainer.appendChild(minInput);
+	sliderContainer.appendChild(stepLabel);
+	sliderContainer.appendChild(stepInput);
+	sliderContainer.appendChild(maxLabel);
+	sliderContainer.appendChild(maxInput);
+
 }
 
 function clearSliders(){
