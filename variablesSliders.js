@@ -68,17 +68,17 @@ function createSliderForVar(name, value){
 	maxInput.className = "rangeInput";
 	maxInput.value = slider.max;
 	maxInput.type = "number";
-	maxInput.onchange = function(){slider.max = this.value;};
+	maxInput.onchange = function(){slider.max = this.value; sliderValue.value = slider.value;};
 	var minInput = document.createElement("input");
 	minInput.className = "rangeInput";
 	minInput.value = slider.min;
 	minInput.type = "number";
-	minInput.onchange = function(){slider.min = this.value;};
+	minInput.onchange = function(){slider.min = this.value; sliderValue.value = slider.value;};
 	var stepInput = document.createElement("input");
 	stepInput.className = "rangeInput";
 	stepInput.value = slider.step;
 	stepInput.type = "number";
-	stepInput.onchange = function(){slider.step = this.value;};
+	stepInput.onchange = function(){slider.step = this.value; sliderValue.value = slider.value;};
 
 
   container.appendChild(sliderContainer);
