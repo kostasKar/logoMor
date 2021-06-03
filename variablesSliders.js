@@ -31,12 +31,15 @@ function createSliderForVar(name, value){
 	var sliderContainer = document.createElement("div");
 	sliderContainer.className  = "sliderContainer";
 
+	var sliderNameValueDiv = document.createElement("div");
+	sliderNameValueDiv.className = "sliderNameValue";
+
 	var varNameLabel = document.createElement("label");
 	varNameLabel.className = "sliderVarName codeFont";
-	varNameLabel.innerText = name;
+	varNameLabel.innerText = name + ":";
 
 	var sliderValue = document.createElement("output");
-	sliderValue.className = "codeFont";
+	sliderValue.className = "sliderValue codeFont";
 	sliderValue.value = value;
 
 	var slider = document.createElement("input");
@@ -54,13 +57,13 @@ function createSliderForVar(name, value){
 
 	var maxLabel = document.createElement("label");
 	maxLabel.className = "rangeLabel";
-	maxLabel.innerText = "Max:"
+	maxLabel.innerText = "Max"
 	var minLabel = document.createElement("label");
 	minLabel.className = "rangeLabel";
-	minLabel.innerText = "Min:"
+	minLabel.innerText = "Min"
 	var stepLabel = document.createElement("label");
 	stepLabel.className = "rangeLabel";
-	stepLabel.innerText = "Step:"
+	stepLabel.innerText = "Step"
 	var maxInput = document.createElement("input");
 	maxInput.className = "rangeInput";
 	maxInput.value = slider.max;
@@ -79,9 +82,10 @@ function createSliderForVar(name, value){
 
 
   container.appendChild(sliderContainer);
-  sliderContainer.appendChild(varNameLabel);
+  sliderContainer.appendChild(sliderNameValueDiv);
+  sliderNameValueDiv.appendChild(varNameLabel);
+	sliderNameValueDiv.appendChild(sliderValue);
 	sliderContainer.appendChild(slider);
-	sliderContainer.appendChild(sliderValue);
 	sliderContainer.appendChild(minLabel);
 	sliderContainer.appendChild(minInput);
 	sliderContainer.appendChild(stepLabel);

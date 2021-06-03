@@ -172,17 +172,18 @@ textarea, .CodeMirror {
 }
 
 #movesLimitDiv input {
-  background-color: #222222;
+  background: black;
   font-size:14px;
   width: 80px;
   padding: 2px;
-  color: #888888;
+  color: #666666;
   position: relative;
   float: right;
-  border-width: 2px;
-  border-color: #333;
-  border-radius: 4px;
+  border: 1px solid #333333;
+  border-radius: 3px;
+  margin-top: 3px;
 }
+
 
 #buttonDiv button {
   padding: 10px 0px;
@@ -278,7 +279,7 @@ textarea, .CodeMirror {
 .slider {
   -webkit-appearance: none;  /* Override default CSS styles */
   appearance: none;
-  width: 220px; 
+  width: 260px; 
   height: 10px; /* Specified height */
   background: #333333; /* Grey background */
   outline: none; /* Remove outline */
@@ -286,8 +287,6 @@ textarea, .CodeMirror {
   -webkit-transition: .2s; /* 0.2 seconds transition on hover */
   transition: opacity .2s;
   border-radius: 3px;
-  position: relative;
-  margin-left: 120px;
   display:inline-block;
 }
 
@@ -314,30 +313,31 @@ textarea, .CodeMirror {
   cursor: pointer; /* Cursor on hover */
   border-radius: 50%; 
 }
+
+.sliderNameValue{
+  display:inline-block;
+  width: 120px;
+}
+
 .sliderVarName{
   color: #888888;
   font-size: 18px;
-  padding-right: 10px;
-  position: absolute;
-  display:inline-block;
 }
 
-.sliderContainer output{
+.sliderValue{
   color: #888888;
   font-size: 18px;
-  margin-left: 10px;
-  display:inline-block;
-  width: 40px;
+  margin-left: 5px;
 }
 
 .rangeLabel{
-  color: #888888;
+  color: #666666;
   font-size: 14px;
   Margin-right: 5px;
 }
 
 .rangeInput{
-  color: #888888;
+  color: #666666;
   font-size: 14px;
   display: inline-block;
   margin-top: 13px;
@@ -346,7 +346,7 @@ textarea, .CodeMirror {
   outline: none;
   border: 1px solid #333333;
   border-radius: 3px;
-  Margin-right: 10px;
+  Margin-right: 21px;
 }
 
 ::-moz-selection { /* Code for Firefox */
