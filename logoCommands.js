@@ -4,6 +4,15 @@ var strokeR, strokeG, strokeB, strokeWght, strokeAlpha, labelTextSize;
 var shapeBegan;
 var vertices;
 
+var defaultStyle = {"weight":1, "r":255, "g":255, "b":255, "a":255, "textSize":10};
+
+function setDefaultHexColor(hexColor){
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
+  defaultStyle.r = parseInt(result[1], 16);
+  defaultStyle.g = parseInt(result[2], 16);
+  defaultStyle.b = parseInt(result[3], 16);
+}
+
 
 function makeShape(){
   pop();
@@ -23,17 +32,14 @@ function addVertex(){
 
 
 function initStrokeStyle(){
-  strokeWght = 1
-  strokeR = 255;
-  strokeG = 255;
-  strokeB = 255;
-  strokeAlpha = 255;
-  labelTextSize = 10;
+  strokeWght = defaultStyle.weight;
+  strokeR = defaultStyle.r;
+  strokeG = defaultStyle.g;
+  strokeB = defaultStyle.b;
+  strokeAlpha = defaultStyle.a;
+  labelTextSize = defaultStyle.textSize;
 
-  stroke(255);
-  strokeWeight(1);
-  fill(255);
-  textSize(10);
+  restoreStrokeStyle();
 }
 
 function restoreStrokeStyle(){
