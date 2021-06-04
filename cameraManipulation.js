@@ -81,6 +81,10 @@ function adjustCamera(){
   rotateX(xRotation);
   rotateY(yRotation);
 
+  if (document.getElementById("avatarViewCheckbox").checked){
+    applyInverseLogoTransformationMatrix();
+  }
+
   fps = 1000 / (millis()-previousMillis);
   previousMillis = millis();
   document.getElementById("fpsValue").innerText = Math.round(fps*10)/10;

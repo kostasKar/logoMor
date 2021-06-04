@@ -91,6 +91,14 @@
         <span class="onoffswitch-switch"></span>
       </label>
     </div>
+    <div class="onoffswitch tooltip">
+      <span class="tooltiptext right">Avatar view</span>    
+      <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="avatarViewCheckbox" tabindex="0">
+      <label class="onoffswitch-label" for="avatarViewCheckbox">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+      </label>
+    </div>
     <button class="tooltip" id="fullscreenButton" onclick="fullscreen(!fullscreen())">
       <i class="fa fa-expand" aria-hidden="true"></i>
       <span class="tooltiptext right">Fullscreen</span>
@@ -191,9 +199,7 @@
       <i class="fas fa-paint-brush" aria-hidden="true"></i>
       <span class="tooltiptext left">Default color</span>
     </button>
-    <input id="colorPicker" type="color" value="#ffffff" style="visibility: hidden" onchange="setDefaultHexColor(this.value)"/>
-
-
+    <input id="colorPicker" type="color" value="#ffffff" style="visibility: hidden; width: 0px;" onchange="setDefaultHexColor(this.value)"/>
   </div>
 
 
