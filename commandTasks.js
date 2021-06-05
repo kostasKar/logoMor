@@ -213,3 +213,6 @@ class GetTimeSoundTask extends CommandTask1S { run() {return L_GET_TIME_SOUND(th
 class GetVolumeSoundTask extends CommandTask1S { run() {return L_GET_VOLUME_SOUND(this.arguments[0]);}}
 class SetTimeSoundTask extends CommandTask2SN { run() {L_SET_TIME_SOUND(this.arguments[0], this.arguments[1]); return "";}}
 class SetVolumeSoundTask extends CommandTask2SN { run() {L_SET_VOLUME_SOUND(this.arguments[0], this.arguments[1]); return "";}}
+
+//Keyboard
+class KeyPressedTask extends CommandTask0{run(){return L_KEY_PRESSED();}}

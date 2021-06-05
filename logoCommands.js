@@ -407,3 +407,8 @@ function L_GET_VOLUME_SOUND(name){
     return 0;
   }
 }
+
+
+function L_KEY_PRESSED(){
+  return keyIsPressed ? keyCode : 0;
+}
