@@ -502,6 +502,7 @@ textarea, .CodeMirror {
 
 .tooltip .tooltiptext.right {
   left: 120%;
+  margin-top: -3px;
 }
 
 .tooltip .tooltiptext.left {
