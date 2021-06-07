@@ -180,7 +180,7 @@ class EndShapeTask extends CommandTask0{run(){L_ENDSHAPE(); return "";}}
 //mouse tasks
 class MouseXTask extends CommandTask0{run(){return L_MOUSEX();}}
 class MouseYTask extends CommandTask0{run(){return L_MOUSEY();}}
-class MousePressedTask extends CommandTask0{run(){return L_MOUSEPRESSED()? "1" : "0";}}
+class MousePressedTask extends CommandTask0{run(){return L_MOUSEPRESSED();}}
 
 //Variable manipulation tasks
 class ThingTask extends CommandTask1S{run(){return getVariableValue(this.arguments[0]);}}

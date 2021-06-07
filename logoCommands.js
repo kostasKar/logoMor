@@ -267,7 +267,11 @@ function L_MOUSEY(){
 }
 
 function L_MOUSEPRESSED(){
-  return (cameraEnabled && mouseIsPressed);
+  var mouseCodes = {};
+  mouseCodes[LEFT] = 1;
+  mouseCodes[RIGHT] = 2;
+  mouseCodes[CENTER] = 3;
+  return (cameraEnabled && mouseIsPressed) ? mouseCodes[mouseButton] : 0;
 }
 
 
