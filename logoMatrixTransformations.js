@@ -1,13 +1,13 @@
-var lm;
+const unitMatrix = [1, 0, 0, 0,
+                    0, 1, 0, 0,
+                    0, 0, 1, 0,
+                    0, 0, 0, 1];
+                    
+var lm = [...unitMatrix];
 
 
 function resetLogoTransformationMatrix(){
-  lm = [
-    1, 0, 0, 0,
-    0, 1, 0, 0,
-    0, 0, 1, 0,
-    0, 0, 0, 1
-  ];
+  lm = [...unitMatrix];
 }
 
 
