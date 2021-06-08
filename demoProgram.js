@@ -930,7 +930,7 @@ pushDemo(
 '  setxyz -5*:d :d  0 \n' + 
 '  pd\n' + 
 '  color 200 200 200\n' + 
-'  label word "score\s :score\n' + 
+'  label word "score\\s :score\n' + 
 'end\n' + 
 '\n' + 
 'to dogameover \n' + 
@@ -941,7 +941,7 @@ pushDemo(
 '  settextsize 30\n' + 
 '  setxyz 0 :height*:d/2 2*:d\n' + 
 '  color 255 255 255\n' + 
-'  label "game\sover\n' + 
+'  label "game\\sover\n' + 
 'end\n' + 
 '\n' + 
 '\n' + 
