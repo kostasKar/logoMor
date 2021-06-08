@@ -3,6 +3,7 @@ var showTurtle;
 var strokeR, strokeG, strokeB, strokeWght, strokeAlpha, labelTextSize;
 var shapeBegan;
 var vertices;
+var lastKeyPressed;
 
 var defaultStyle = {"weight":1, "r":255, "g":255, "b":255, "a":255, "textSize":10};
 
@@ -414,5 +415,9 @@ function L_GET_VOLUME_SOUND(name){
 
 
 function L_KEY_PRESSED(){
-  return keyIsPressed ? keyCode : 0;
+  return keyIsPressed ? lastKeyPressed : 0;
+}
+
+function keyPressed() {
+  lastKeyPressed = keyCode;
 }
