@@ -680,3 +680,299 @@ pushDemo(
 'drawarraypoints "ar :size\n' + 
 'print word "steps\\s :steps\n' + 
 '\n');
+
+pushDemo(
+';--------TETRIS----------------\n' + 
+'; play with the keyboard arrows\n' + 
+';------------------------------\n' + 
+'\n' + 
+';returns the relative coordinate of a specific box of a tetromino\n' + 
+';shape: 1-7 the different tetrominos\n' + 
+';orient: 0-3 the different orientations\n' + 
+';boxnum: 1-4 selects a specific box of the shape - all shapes consist of 4 boxes\n' + 
+';xory: 1 for the X coordinate, 0 for the Y\n' + 
+'to getboxcoordinate :shape :orient :boxnum :xory  \n' + 
+'  \n' + 
+'	if :shape = 1[ ;square tetromino\n' + 
+'    if :boxnum = 1 [make "x 0 make "y 0]\n' + 
+'    if :boxnum = 2 [make "x 0 make "y 1]\n' + 
+'    if :boxnum = 3 [make "x 1 make "y 1]\n' + 
+'    if :boxnum = 4 [make "x 1 make "y 0]\n' + 
+'    ifelse :xory [return :x][return :y] ;do not rotate the square\n' + 
+'  ]\n' + 
+'  if :shape = 2[ ;straight tetromino\n' + 
+'    if :boxnum = 1 [make "x 0 make "y -1]\n' + 
+'    if :boxnum = 2 [make "x 0 make "y 0]\n' + 
+'    if :boxnum = 3 [make "x 0 make "y 1]\n' + 
+'    if :boxnum = 4 [make "x 0 make "y 2]\n' + 
+'  ]\n' + 
+'  if :shape = 3[ ;T-teromino\n' + 
+'    if :boxnum = 1 [make "x 0 make "y -1]\n' + 
+'    if :boxnum = 2 [make "x 0 make "y 0]\n' + 
+'    if :boxnum = 3 [make "x 0 make "y 1]\n' + 
+'    if :boxnum = 4 [make "x 1 make "y 0]\n' + 
+'  ]\n' + 
+'  if :shape = 4[ ;L-tetromino\n' + 
+'    if :boxnum = 1 [make "x 0 make "y -1]\n' + 
+'    if :boxnum = 2 [make "x 0 make "y 0]\n' + 
+'    if :boxnum = 3 [make "x 0 make "y 1]\n' + 
+'    if :boxnum = 4 [make "x 1 make "y -1]\n' + 
+'  ]\n' + 
+'  if :shape = 5[ ;mirrored L-tetromino\n' + 
+'    if :boxnum = 1 [make "x 0 make "y -1]\n' + 
+'    if :boxnum = 2 [make "x 0 make "y 0]\n' + 
+'    if :boxnum = 3 [make "x 0 make "y 1]\n' + 
+'    if :boxnum = 4 [make "x -1 make "y -1]\n' + 
+'  ]\n' + 
+'  if :shape = 6[ ;S-tetromino\n' + 
+'    if :boxnum = 1 [make "x 0 make "y -1]\n' + 
+'    if :boxnum = 2 [make "x 0 make "y 0]\n' + 
+'    if :boxnum = 3 [make "x -1 make "y 0]\n' + 
+'    if :boxnum = 4 [make "x -1 make "y 1]\n' + 
+'  ]\n' + 
+'  if :shape = 7[ ;mirrored S-tetromino\n' + 
+'    if :boxnum = 1 [make "x 0 make "y -1]\n' + 
+'    if :boxnum = 2 [make "x 0 make "y 0]\n' + 
+'    if :boxnum = 3 [make "x 1 make "y 0]\n' + 
+'    if :boxnum = 4 [make "x 1 make "y 1]\n' + 
+'  ]\n' + 
+'  return rotatecoordinate :x :y :orient :xory \n' + 
+'end\n' + 
+'\n' + 
+';applies the rotation to the shape\n' + 
+'to rotatecoordinate :x :y :orient :xory\n' + 
+'	if :orient = 0 [ifelse :xory [return :x][return :y]]\n' + 
+'  if :orient = 1 [ifelse :xory [return :y][return -:x]]\n' + 
+'  if :orient = 2 [ifelse :xory [return -:x][return -:y]]\n' + 
+'  if :orient = 3 [ifelse :xory [return -:y][return :x]]\n' + 
+'end\n' + 
+'\n' + 
+'to shapegenerator :s :o\n' + 
+'  setcolor :s\n' + 
+'  make "x0 getx\n' + 
+'  make "y0 gety\n' + 
+'  repeat 4 [\n' + 
+'    pu setxyz :x0 + :d * getboxcoordinate :s :o repcount 1 :y0 + :d * getboxcoordinate :s :o repcount 0 0 pd box :d \n' + 
+'  ]\n' + 
+'end\n' + 
+'\n' + 
+'to setcolor :s\n' + 
+'	colorhsb (mod :s 7)*(360/7) :colorsaturation 100\n' + 
+'end\n' + 
+'\n' + 
+'to getrandomshape \n' + 
+'  return (randcrazy 7)  + 1\n' + 
+'end\n' + 
+'\n' + 
+'to getrandomentrypoint \n' + 
+'  return (randcrazy :width) + 1\n' + 
+'end\n' + 
+'\n' + 
+'to checkpositiony\n' + 
+'  static "previoustime time\n' + 
+'  if time - :previoustime > :dt [\n' + 
+'    decrement "ypos\n' + 
+'    make "previoustime time\n' + 
+'  ]\n' + 
+'end\n' + 
+'\n' + 
+'to checkkeyboard\n' + 
+'  static "previouskeytime 0\n' + 
+'  if and keypressed time - :previouskeytime > :debouncetime [\n' + 
+'    make "previouskeytime time\n' + 
+'    if keypressed = 38 [  ;up\n' + 
+'      make "currentorientation  mod (:currentorientation + 1) 4\n' + 
+'      if shapeinterferes [\n' + 
+'        make "currentorientation  mod (:currentorientation - 1) 4\n' + 
+'      ]\n' + 
+'    ] \n' + 
+'    if keypressed = 39 [ ;right\n' + 
+'      make "xpos min :xpos + 1 :width\n' + 
+'      if shapeinterferes [\n' + 
+'        decrement "xpos\n' + 
+'      ]\n' + 
+'    ]	\n' + 
+'    if keypressed = 37 [ ;left\n' + 
+'      make "xpos max :xpos - 1 0\n' + 
+'      if shapeinterferes [\n' + 
+'        increment "xpos\n' + 
+'      ]\n' + 
+'    ]	\n' + 
+'    if keypressed = 40 [ ;down\n' + 
+'      decrement "ypos\n' + 
+'    ] \n' + 
+'  ]\n' + 
+'end\n' + 
+'\n' + 
+'to drawcurrentshape\n' + 
+'  pu \n' + 
+'  setxyz :d * :xpos :d * :ypos 0\n' + 
+'  pd\n' + 
+'  shapegenerator :currentshape :currentorientation\n' + 
+'end\n' + 
+'\n' + 
+'to drawnextshape \n' + 
+'	pu\n' + 
+'  setxyz -:d*4 :height*:d 0\n' + 
+'  pd\n' + 
+'  shapegenerator :nextshape 0\n' + 
+'end\n' + 
+'\n' + 
+'to bringnew\n' + 
+'  make "xpos getrandomentrypoint\n' + 
+'  make "ypos :height\n' + 
+'  make "currentshape :nextshape\n' + 
+'  make "nextshape getrandomshape\n' + 
+'  make "currentorientation 0\n' + 
+'end\n' + 
+'\n' + 
+'to constructarray\n' + 
+'  repeat :width [\n' + 
+'    make "w repcount\n' + 
+'    repeat :height + 5 [\n' + 
+'      static word word word "p :w "_ repcount 0\n' + 
+'    ]\n' + 
+'  ]\n' + 
+'end\n' + 
+'\n' + 
+'to boxvalue :x :y\n' + 
+'  if :y < 1 [return 10]\n' + 
+'  if :x > :width [decrement "xpos return 0]\n' + 
+'  if :x < 1 [increment "xpos return 0]  \n' + 
+'	return thing word word word "p :x "_ :y\n' + 
+'end\n' + 
+'\n' + 
+'to shapetouched \n' + 
+'  repeat 4 [\n' + 
+'    if boxvalue :xpos + getboxcoordinate :currentshape :currentorientation repcount 1 :ypos + (getboxcoordinate :currentshape :currentorientation repcount 0) - 1 [return 1]\n' + 
+'	]\n' + 
+'  return 0\n' + 
+'end\n' + 
+'\n' + 
+'to place :x :y\n' + 
+'  if :y = :height [make "gameover 1]\n' + 
+'  make word word word "p :x "_ :y :currentshape\n' + 
+'end\n' + 
+'\n' + 
+'to shapeplace\n' + 
+'  repeat 4 [\n' + 
+'    place :xpos + getboxcoordinate :currentshape :currentorientation repcount 1 :ypos + getboxcoordinate :currentshape :currentorientation repcount 0\n' + 
+'  ]\n' + 
+'end\n' + 
+'\n' + 
+'to drawplacedshapes \n' + 
+'  repeat :width [\n' + 
+'    make "x repcount\n' + 
+'    repeat :height [\n' + 
+'      make "y repcount\n' + 
+'      if boxvalue :x :y [\n' + 
+'        if not :gameover [setcolor boxvalue :x :y]\n' + 
+'        pu\n' + 
+'        setxyz :x*:d :y*:d 0\n' + 
+'        pd\n' + 
+'        box :d \n' + 
+'      ]\n' + 
+'    ]\n' + 
+'  ]\n' + 
+'end\n' + 
+'\n' + 
+'to shapeinterferes \n' + 
+'  repeat 4[\n' + 
+'  	if boxvalue :xpos + getboxcoordinate :currentshape :currentorientation repcount 1 :ypos + getboxcoordinate :currentshape :currentorientation repcount 0 [return 1]\n' + 
+'	]\n' + 
+'  return 0\n' + 
+'end\n' + 
+'\n' + 
+'to clearrow :r\n' + 
+'  until :r > :height [\n' + 
+'    repeat :width [\n' + 
+'      make word word word "p repcount "_ :r thing word word word "p repcount "_ :r + 1	\n' + 
+'    ]\n' + 
+'		increment "r    \n' + 
+'  ]\n' + 
+'end\n' + 
+'\n' + 
+'to checkforfullrows\n' + 
+'	make "r :height\n' + 
+'  until :r = 0 [\n' + 
+'    make "foundempty 0\n' + 
+'    repeat :width [\n' + 
+'      if not boxvalue repcount :r [\n' + 
+'        make "foundempty 1\n' + 
+'      ]\n' + 
+'    ]\n' + 
+'    if not :foundempty [\n' + 
+'      clearrow :r\n' + 
+'      increment "score\n' + 
+'    ]\n' + 
+'    decrement "r\n' + 
+'  ]\n' + 
+'end\n' + 
+'\n' + 
+'\n' + 
+'\n' + 
+'to drawborders\n' + 
+'  color 255 255 255\n' + 
+'	pu \n' + 
+'  setxyz :d/2 :d/2 (0) \n' + 
+'  pd \n' + 
+'  fd :height*:d \n' + 
+'  bk :height*:d \n' + 
+'  rt 90 \n' + 
+'  fd :width*:d \n' + 
+'  lt 90 \n' + 
+'  fd :height*:d\n' + 
+'  pu\n' + 
+'end\n' + 
+'\n' + 
+'to drawscore\n' + 
+'  pu \n' + 
+'  setxyz -5*:d :d  0 \n' + 
+'  pd\n' + 
+'  color 200 200 200\n' + 
+'  label word "score\s :score\n' + 
+'end\n' + 
+'\n' + 
+'to dogameover \n' + 
+'	color 100 100 100\n' + 
+'  drawplacedshapes\n' + 
+'  drawscore\n' + 
+'  pu\n' + 
+'  settextsize 30\n' + 
+'  setxyz 0 :height*:d/2 2*:d\n' + 
+'  color 255 255 255\n' + 
+'  label "game\sover\n' + 
+'end\n' + 
+'\n' + 
+'\n' + 
+'\n' + 
+';global and static variables\n' + 
+'make "width 10\n' + 
+'make "height 25\n' + 
+'make "d 10\n' + 
+'make "dt 0.5\n' + 
+'make "debouncetime 0.08\n' + 
+'make "colorsaturation 50\n' + 
+'\n' + 
+'static "score 0\n' + 
+'static "gameover 0\n' + 
+'static "xpos getrandomentrypoint\n' + 
+'static "ypos :height\n' + 
+'static "currentshape getrandomshape\n' + 
+'static "nextshape getrandomshape\n' + 
+'static "currentorientation 0\n' + 
+'\n' + 
+'\n' + 
+';main game loop\n' + 
+'constructarray\n' + 
+'ht\n' + 
+'if :gameover [ dogameover return ]\n' + 
+'checkpositiony\n' + 
+'if not shapetouched [ checkkeyboard ]\n' + 
+'if shapetouched [ shapeplace bringnew ]\n' + 
+'drawcurrentshape\n' + 
+'drawplacedshapes\n' + 
+'checkforfullrows\n' + 
+'drawscore\n' + 
+'drawborders\n' + 
+'drawnextshape\n');
