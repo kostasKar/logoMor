@@ -951,7 +951,7 @@ pushDemo(
 'make "height 25\n' + 
 'make "d 10\n' + 
 'make "dt 0.5\n' + 
-'make "debouncetime 0.08\n' + 
+'make "debouncetime 0.1\n' + 
 'make "colorsaturation 50\n' + 
 '\n' + 
 'static "score 0\n' + 
@@ -976,3 +976,119 @@ pushDemo(
 'drawscore\n' + 
 'drawborders\n' + 
 'drawnextshape\n');
+
+pushDemo(
+';---------------------------------\n' + 
+';      Conway\'s Game of Life\n' + 
+';---------------------------------\n' + 
+'\n' + 
+'make "height 15\n' + 
+'make "width 15\n' + 
+'make "d 10\n' + 
+'make "dt 0.1\n' + 
+'make "inverseprobability 8\n' + 
+'static "currentarray "a\n' + 
+'static "nextarray "b\n' + 
+'\n' + 
+'to checkgeneration\n' + 
+'  static "previoustime time\n' + 
+'  if time - :previoustime > :dt [\n' + 
+'    nextgeneration\n' + 
+'    make "previoustime time\n' + 
+'  ]\n' + 
+'end\n' + 
+'\n' + 
+'to nextgeneration \n' + 
+'  repeat :width [\n' + 
+'    make "x repcount\n' + 
+'    repeat :height [\n' + 
+'      make "y repcount\n' + 
+'      make "cellalive thing cellname :currentarray :x :y\n' + 
+'      make "liveneighbors numofliveneighbors :currentarray :x :y\n' + 
+'      make cellname :nextarray :x :y :cellalive\n' + 
+'      if and :cellalive :liveneighbors < 2 [make cellname :nextarray :x :y 0]\n' + 
+'      if and :cellalive :liveneighbors > 3 [make cellname :nextarray :x :y 0]\n' + 
+'      if and not :cellalive :liveneighbors = 3 [make cellname :nextarray :x :y 1]\n' + 
+'    ]\n' + 
+'  ]\n' + 
+'  make "tmp :nextarray\n' + 
+'  make "nextarray :currentarray\n' + 
+'  make "currentarray :tmp\n' + 
+'end\n' + 
+'\n' + 
+'to numofliveneighbors :name :x :y\n' + 
+'  make "liveneighbors 0\n' + 
+'  make "i -1\n' + 
+'  while :i <= 1 [\n' + 
+'    make "j -1\n' + 
+'    while :j <= 1 [\n' + 
+'      if or :i :j [\n' + 
+'        if getcellvaluePeriodic :name :x + :i :y + :j [\n' + 
+'          increment "liveneighbors\n' + 
+'        ]\n' + 
+'      ]\n' + 
+'      increment "j\n' + 
+'    ]\n' + 
+'    increment "i\n' + 
+'  ]\n' + 
+'  return :liveneighbors\n' + 
+'end\n' + 
+'\n' + 
+'to constructarray :name\n' + 
+'  repeat :width [\n' + 
+'    make "i repcount\n' + 
+'    repeat :height [\n' + 
+'      make "j repcount\n' + 
+'      static cellname :name :i :j not rand :inverseprobability\n' + 
+'    ]\n' + 
+'  ]\n' + 
+'end\n' + 
+'\n' + 
+'to cellname :name :x :y\n' + 
+'  return word word word :name :x "_ :y\n' + 
+'end\n' + 
+'\n' + 
+'to getcellvaluePeriodic :name :x :y\n' + 
+'  if :x > :width [make "x 1]\n' + 
+'  if :x < 1 [make "x :width]\n' + 
+'  if :y > :height [make "y 1]\n' + 
+'  if :y < 1 [make "y :height]\n' + 
+'  return thing cellname :name :x :y\n' + 
+'end\n' + 
+'\n' + 
+'to drawarray \n' + 
+'  repeat :width [\n' + 
+'    make "x repcount\n' + 
+'    repeat :height [\n' + 
+'      make "y repcount\n' + 
+'      if thing cellname :currentarray :x :y [\n' + 
+'        pu\n' + 
+'        setxyz :x*:d :y*:d 0\n' + 
+'        pd\n' + 
+'        box :d \n' + 
+'      ]\n' + 
+'    ]\n' + 
+'  ]\n' + 
+'end\n' + 
+'\n' + 
+'to drawborder\n' + 
+'  pu\n' + 
+'  setxyz :d/2 :d/2 0\n' + 
+'  pd\n' + 
+'  repeat 4 [fd :height*:d rt 90]\n' + 
+'end\n' + 
+'  \n' + 
+'  \n' + 
+';initialization\n' + 
+'static "once 1\n' + 
+'if :once [\n' + 
+'  constructarray :currentarray\n' + 
+'  constructarray :nextarray\n' + 
+'  make "once 0\n' + 
+']\n' + 
+'\n' + 
+';main loop\n' + 
+'ht\n' + 
+'drawborder\n' + 
+'drawarray \n' + 
+'checkgeneration\n')
