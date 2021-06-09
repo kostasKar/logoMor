@@ -1060,12 +1060,12 @@ pushDemo(
 '  return thing cellname :name :x :y\n' + 
 'end\n' + 
 '\n' + 
-'to drawarray \n' + 
+'to drawarray :name\n' + 
 '  repeat :width [\n' + 
 '    make "x repcount\n' + 
 '    repeat :height [\n' + 
 '      make "y repcount\n' + 
-'      if thing cellname :currentarray :x :y [\n' + 
+'      if thing cellname :name :x :y [\n' + 
 '        pu\n' + 
 '        setxyz :x*:d :y*:d 0\n' + 
 '        pd\n' + 
@@ -1094,5 +1094,8 @@ pushDemo(
 ';main loop\n' + 
 'ht\n' + 
 'drawborder\n' + 
-'drawarray \n' + 
-'checkgeneration\n')
+'coloralpha 50\n' + 
+'drawarray :nextarray\n' + 
+'coloralpha 255\n' + 
+'drawarray :currentarray\n' + 
+'checkgeneration\n');
