@@ -681,7 +681,7 @@ pushDemo(
 'print word "steps\\s :steps\n' + 
 '\n');
 
-pushDemo(
+pushDemo (
 ';--------TETRIS----------------\n' + 
 '; play with the keyboard arrows\n' + 
 ';------------------------------\n' + 
@@ -830,16 +830,20 @@ pushDemo(
 '  repeat :width [\n' + 
 '    make "w repcount\n' + 
 '    repeat :height + 5 [\n' + 
-'      static word word word "p :w "_ repcount 0\n' + 
+'      static boxvariable :w repcount 0\n' + 
 '    ]\n' + 
 '  ]\n' + 
+'end\n' + 
+'\n' + 
+'to boxvariable :x :y\n' + 
+'  return word word word "p :x "_ :y\n' + 
 'end\n' + 
 '\n' + 
 'to boxvalue :x :y\n' + 
 '  if :y < 1 [return 10]\n' + 
 '  if :x > :width [decrement "xpos return 0]\n' + 
 '  if :x < 1 [increment "xpos return 0]  \n' + 
-'	return thing word word word "p :x "_ :y\n' + 
+'	return thing boxvariable :x :y\n' + 
 'end\n' + 
 '\n' + 
 'to shapetouched \n' + 
@@ -851,7 +855,7 @@ pushDemo(
 '\n' + 
 'to place :x :y\n' + 
 '  if :y = :height [make "gameover 1]\n' + 
-'  make word word word "p :x "_ :y :currentshape\n' + 
+'  make boxvariable :x :y :currentshape\n' + 
 'end\n' + 
 '\n' + 
 'to shapeplace\n' + 
@@ -886,7 +890,7 @@ pushDemo(
 'to clearrow :r\n' + 
 '  until :r > :height [\n' + 
 '    repeat :width [\n' + 
-'      make word word word "p repcount "_ :r thing word word word "p repcount "_ :r + 1	\n' + 
+'      make boxvariable repcount :r thing boxvariable repcount :r + 1	\n' + 
 '    ]\n' + 
 '		increment "r    \n' + 
 '  ]\n' + 
