@@ -1038,12 +1038,16 @@ pushDemo(
 '  return :liveneighbors\n' + 
 'end\n' + 
 '\n' + 
-'to constructarray :name\n' + 
+'to constructarray :name :randominit\n' + 
 '  repeat :width [\n' + 
 '    make "i repcount\n' + 
 '    repeat :height [\n' + 
 '      make "j repcount\n' + 
-'      static cellname :name :i :j not rand :inverseprobability\n' + 
+'      ifelse :randominit [\n' + 
+'        static cellname :name :i :j not rand :inverseprobability \n' + 
+'      ][\n' + 
+'        static cellname :name :i :j 0\n' + 
+'      ]\n' + 
 '    ]\n' + 
 '  ]\n' + 
 'end\n' + 
@@ -1086,8 +1090,8 @@ pushDemo(
 ';initialization\n' + 
 'static "once 1\n' + 
 'if :once [\n' + 
-'  constructarray :currentarray\n' + 
-'  constructarray :nextarray\n' + 
+'  constructarray :currentarray 1\n' + 
+'  constructarray :nextarray 0\n' + 
 '  make "once 0\n' + 
 ']\n' + 
 '\n' + 
