@@ -34,7 +34,7 @@ The interpreter accepts the basic UCBLogo commands with many additions:
 - Random number generator (per run and per frame modes available)
 - Timing commands, returning current time and frame
 - Static variables with not frame-limited lifetime
-- Mouse movements tracking commands
+- Mouse and keyboard tracking commands
 - Face creation commands for making surfaces as solid objects faces
 
 ## Usage - Features
