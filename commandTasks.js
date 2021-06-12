@@ -142,6 +142,7 @@ class CommandTask  {
  class AndTask extends CommandTask2N { run() {return ((this.arguments[0] != 0) && (this.arguments[1] != 0))? "1" : "0";}}
  class OrTask extends CommandTask2N { run() {return ((this.arguments[0] != 0) || (this.arguments[1] != 0))? "1" : "0";}}
  class NotTask extends CommandTask1N { run() {return (this.arguments[0] == 0)? "1" : "0";}}
+ class EqualsTask extends CommandTask2B { run() {return (this.arguments[0] == this.arguments[1])? "1" : "0";}}
 
 //Random number generation
  class RandTask extends CommandTask1N { run() {return Math.floor(seedableRNG() * this.arguments[0]);}}
