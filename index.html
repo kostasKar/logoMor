@@ -286,6 +286,11 @@
             if (hht) {hht.remove();}
           });
 
+          if (result["list"].length === 0){
+            var hht = document.getElementById("hintHelpText");
+            if (hht) {hht.remove();}
+          }
+
           return result;
         };
 
