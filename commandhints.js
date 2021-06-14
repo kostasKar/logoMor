@@ -2,8 +2,8 @@ var commandHints = {
 
 	"forward": "forward :steps \nMove forward",
 	"fd": "fd :steps \nMove forward ",
-	"back": "back :steps \nMove backward ",
-	"bk": "bk :steps \nMove backward ",
+	"back": "back :steps \nMove backwards ",
+	"bk": "bk :steps \nMove backwards ",
 	"right": "right :degrees\nTurn right ",
 	"rt": "rt :degrees \nTurn right ",
 	"left": "left :degrees\nTurn left ",
@@ -16,10 +16,10 @@ var commandHints = {
 	"roll_left": "roll_left :degrees ",
 	"rl": "rl :degrees \nRoll left ",
 	"home": "Return to initial position",
-	"setx": "setx :x \nGo to specific x coordinate ",
-	"sety": "setx :y \nGo to specific y coordinate ",
-	"setz": "setx :z \nGo to specific z coordinate ",
-	"setxyz": "setxyz :x :y :z \ngo to specific point in space",
+	"setx": "setx :x \nMove to a specific x coordinate ",
+	"sety": "setx :y \nMove to a specific y coordinate ",
+	"setz": "setx :z \nMove to a specific z coordinate ",
+	"setxyz": "setxyz :x :y :z \nMove to a specific point in space",
 	"penup": "Stop leaving trail ",
 	"pu": "Stop leaving trail ",
 	"pendown": "Start leaving trail ",
@@ -43,10 +43,10 @@ var commandHints = {
 	"and": "and :a :b \nLogical AND operator ",
 	"or": "or :a :b \nLogical OR operator  ",
 	"not": "not :a\nLogical inversion ",
-	"rand": "rand :maxvalue\n Returns a random number in range (0-maxvalue]. Same number series for each execution frame",
-	"random": "random :maxvalue\n Returns a random number in range (0-maxvalue]. Same number series for each execution frame",
-	"randcrazy": "randcrazy :maxvalue\n Returns a random number in range (0-maxvalue], different for each frame  ",
-	"randomcrazy": "randomcrazy :maxvalue\n Returns a random number in range (0-maxvalue], different for each frame   ",
+	"rand": "rand :maxvalue\n Returns a random number in range [0-maxvalue). Same number series for each execution frame",
+	"random": "random :maxvalue\n Returns a random number in range [0-maxvalue). Same number series for each execution frame",
+	"randcrazy": "randcrazy :maxvalue\n Returns a random number in range [0-maxvalue), different for each frame  ",
+	"randomcrazy": "randomcrazy :maxvalue\n Returns a random number in range [0-maxvalue), different for each frame   ",
 	"sqrt": "sqrt :value \nSquare root ",
 	"power": "power :base :exponent\n Raise to power ",
 	"pow": "pow :base :exponent\n Raise to power ",
@@ -113,6 +113,6 @@ var commandHints = {
 	"until": "until :condition [code]\nLoop execution",
 	"to": "function definition ",
 	"end": "end of function ",
-	"return" : "return :val\nReturn a value from function or stop main program execution (if used outside of a function and without argument)"
+	"return" : "return :val\nReturns a value from a function or stops main program execution (if used outside of a function and without any argument)"
 
 }
