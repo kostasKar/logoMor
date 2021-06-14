@@ -283,10 +283,8 @@
 
           CodeMirror.on(result, "close", function(){
             var hht = document.getElementById("hintHelpText");
-            hht.remove();
+            if (hht) {hht.remove();}
           });
-
-
 
           return result;
         };
@@ -296,9 +294,9 @@
        };
 
        myCodeMirror.on("endCompletion", function(){
-            var hht = document.getElementById("hintHelpText");
-            hht.remove();
-        });
+         var hht = document.getElementById("hintHelpText");
+         if (hht) {hht.remove();}
+       });
 
        myCodeMirror.on("keyup", function (cm, event) {
         if (!cm.state.completionActive && /*Enables keyboard navigation in autocomplete list*/
