@@ -274,8 +274,8 @@
               hht.readOnly = true;
               hht.type = "text";
               hht.id = "hintHelpText";
-              hht.style.marginLeft = Element.parentNode.offsetWidth + 2 + "px";
             }
+            hht.style.marginLeft = Element.parentNode.offsetWidth + 2 + "px";
             hht.innerText = commandHints[completion] ? commandHints[completion] : completion;
 
             myCodeMirror.addWidget({ch:start , line: cursor.line},hht, true);
