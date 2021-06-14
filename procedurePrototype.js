@@ -2,6 +2,10 @@ class ProcedurePrototype {
   
   constructor(){
     let i = currentIndex;
+    if (tasksStack.length > 0){
+      throwError("Cannot define a function inside another task");
+      return;
+    }
     if(sourceTokens.length < i + 3){//there should be at least a token for function name and a token for 'end'
       throwError("Incomplete function definition");
       return;
