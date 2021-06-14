@@ -62,6 +62,7 @@
   <script src="model.js"></script>
   <script src="image.js"></script>
   <script src="sound.js"></script>
+  <script src="commandhints.js"></script>
 
 </head>
 <body>
@@ -265,12 +266,39 @@
             result = {list: [], from: CodeMirror.Pos(cursor.line, start), to: CodeMirror.Pos(cursor.line, end) };
           }
 
+          CodeMirror.on(result, "select", function(completion, Element) { 
+            var hht = document.getElementById("hintHelpText");
+            if (!hht){
+              hht = document.createElement("div");
+              hht.className = "codeFont";
+              hht.readOnly = true;
+              hht.type = "text";
+              hht.id = "hintHelpText";
+              hht.style.marginLeft = Element.parentNode.offsetWidth + 2 + "px";
+            }
+            hht.innerText = commandHints[completion] ? commandHints[completion] : completion;
+
+            myCodeMirror.addWidget({ch:start , line: cursor.line},hht, true);
+          });
+
+          CodeMirror.on(result, "close", function(){
+            var hht = document.getElementById("hintHelpText");
+            hht.remove();
+          });
+
+
+
           return result;
         };
 
         CodeMirror.commands.autocomplete = function (cm, options) {
          CodeMirror.showHint(cm, CodeMirror.hint.logomor, options);
        };
+
+       myCodeMirror.on("endCompletion", function(){
+            var hht = document.getElementById("hintHelpText");
+            hht.remove();
+        });
 
        myCodeMirror.on("keyup", function (cm, event) {
         if (!cm.state.completionActive && /*Enables keyboard navigation in autocomplete list*/

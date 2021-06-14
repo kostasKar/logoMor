@@ -575,3 +575,12 @@ textarea, .CodeMirror {
 .firstVisitBlink {
   animation: blinkingBorder 1s ease infinite;
 }
+
+#hintHelpText{
+  border: 1px solid black;
+  border-radius: 3px;
+  font-size: 12px;
+  background-color: #49483E;
+  color: #f8f8f2;
+  z-index: 5;
+}
