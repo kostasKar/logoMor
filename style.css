@@ -13,7 +13,7 @@ body, button {
   font-family: 'JetBrains Mono', monospace;
 }
 
-.codeFont, .CodeMirror {
+.codeFont, .CodeMirror, .CodeMirror-hints {
   font-family: Consolas, monospace !important;
 }
 
