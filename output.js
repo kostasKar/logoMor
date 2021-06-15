@@ -26,7 +26,6 @@ function stackTrace(){
 }
 
 var errorLineNumber;
-var errorScroll;
 function throwError(text){
   error = true;
   errorLineNumber = sourceCodeLineOfTokenIndex(currentIndex);
@@ -35,10 +34,7 @@ function throwError(text){
   stackTrace();
   variablesTrace();
   myCodeMirror.addLineClass(errorLineNumber - 1, "background", "cm-error-line");
-  if (!errorScroll){
-    myCodeMirror.scrollIntoView({line:errorLineNumber - 1, char:1}, 200);
-    errorScroll = true;
-  }
+  myCodeMirror.scrollIntoView({line:errorLineNumber - 1, char:1}, 200);
 }
 
 function clearError(){

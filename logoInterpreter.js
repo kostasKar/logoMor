@@ -16,6 +16,7 @@ var seedableRNG;			  //a seedable random number generator
 var error;              //boolean indicating error in execution
 var startTime;          //used for time command
 var startFrame;         //used for frame command
+var returnFromMain;     //used to stop execution of the program with the return statement
 
 function parseLogo(sourceCode){
   
@@ -35,7 +36,7 @@ function parseLogo(sourceCode){
 
   startTime = millis();
   startFrame = frameCount;
-  errorScroll = false;
+  clearError();
 
   if(!isLooping()){
     redraw();
@@ -52,13 +53,13 @@ function initLogoExecution(){
   globalVariables = {};
   variablesScopeStack = [];
   variablesScopeStack.push(globalVariables);
-  consoleClear();
-  clearError();
+  if (!error) {consoleClear();}
+  returnFromMain = false;
 }
 
 function executeLogo(){
   var movesLimit = document.getElementById("movesLimitInput").value;
-  while (((currentIndex < sourceTokens.length) || (tasksStack.length > 0)) && (!error) && (movesCount < movesLimit)){
+  while (((currentIndex < sourceTokens.length) || (tasksStack.length > 0)) && (!error) && (!returnFromMain) && (movesCount < movesLimit)){
     checkNextToken();
   }
   if (movesCount >= movesLimit){
@@ -96,7 +97,7 @@ function checkNextToken(){
       tasksStack.pop();
     } 
     if (tasksStack.length === 0){
-      error = true; //This is either an error, or we can use return to exit execution. So no actual error thrown
+      returnFromMain = true; //This is either an error, or we can use return to exit execution. So no actual error thrown
       consolePrintln("Returned from execution");
     }
     return;
