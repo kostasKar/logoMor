@@ -35,6 +35,7 @@ function parseLogo(sourceCode){
 
   startTime = millis();
   startFrame = frameCount;
+  errorScroll = false;
 
   if(!isLooping()){
     redraw();
@@ -52,7 +53,7 @@ function initLogoExecution(){
   variablesScopeStack = [];
   variablesScopeStack.push(globalVariables);
   consoleClear();
-  error = false;
+  clearError();
 }
 
 function executeLogo(){

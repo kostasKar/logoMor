@@ -25,12 +25,27 @@ function stackTrace(){
   }
 }
 
+var errorLineNumber;
+var errorScroll;
 function throwError(text){
   error = true;
+  errorLineNumber = sourceCodeLineOfTokenIndex(currentIndex);
   consolePrintln("Error: " + text);
-  consolePrintln("Line number: " + sourceCodeLineOfTokenIndex(currentIndex));
+  consolePrintln("Line number: " + errorLineNumber);
   stackTrace();
   variablesTrace();
+  myCodeMirror.addLineClass(errorLineNumber - 1, "background", "cm-error-line");
+  if (!errorScroll){
+    myCodeMirror.scrollIntoView({line:errorLineNumber - 1, char:1}, 200);
+    errorScroll = true;
+  }
+}
+
+function clearError(){
+  if (error){
+    myCodeMirror.removeLineClass(errorLineNumber - 1, "background", "cm-error-line");
+  }
+  error = false;
 }
 
 function variablesTrace(){
