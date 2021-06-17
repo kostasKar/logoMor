@@ -100,11 +100,16 @@ textarea, .CodeMirror {
   Logo control column
  */
 
+#controlsColumnScroll{
+  float: right;
+  height: 100vh;
+  overflow: auto;
+}
+
 #controlsColumn {
   margin-right: 25px;
   margin-top: 10px;
   direction: rtl;
-  float: right;
 }
 
 #controlsColumn :focus{
