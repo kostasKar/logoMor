@@ -42,7 +42,7 @@ CodeMirror.defineMode("logomorMode", function(config) {
 
 
       var ch = stream.peek();
-      if (ch == ";") {
+      if (ch == this.lineComment) {
         stream.skipToEnd();
         return "comment";
       } else if (ch == ":"){
@@ -92,7 +92,9 @@ CodeMirror.defineMode("logomorMode", function(config) {
 
     },
 
-    electricInput: /^\s*(?:end|end[^\s]|\])$/i
+    electricInput: /^\s*(?:end|end[^\s]|\])$/i,
+
+    lineComment: ";"
 
   };
 

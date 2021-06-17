@@ -30,6 +30,7 @@
   <link rel="stylesheet" href="codemirrorLogomor/addon/hint/show-hint.css">
   <link rel="stylesheet" href="codemirrorLogomor/addon/display/fullscreen.css">
   <script src="codemirrorLogomor/addon/display/placeholder.js"></script>
+  <script src="codemirrorLogomor/addon/comment/comment.js"></script>
 
   <script src="cameraManipulation.js"></script>
   <script src="drawThings.js"></script>
@@ -237,7 +238,10 @@
       styleActiveLine: true,
       highlightSelectionMatches: { showToken: false, annotateScrollbar: true },
       scrollbarStyle: "overlay",
-      indentUnit: 2
+      indentUnit: 2,
+      extraKeys: {
+        'Ctrl-;': function (cm) { cm.execCommand('toggleComment') }
+      }
     });
 
 
