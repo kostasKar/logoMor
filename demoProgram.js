@@ -972,8 +972,8 @@ pushDemo (
 'ht\n' + 
 'if :gameover [ dogameover return ]\n' + 
 'checkpositiony\n' + 
-'if shapetouched [ shapeplace bringnew ]\n' + 
 'if not shapetouched [ checkkeyboard ]\n' + 
+'if shapetouched [ shapeplace bringnew ]\n' + 
 'drawcurrentshape\n' + 
 'drawplacedshapes\n' + 
 'checkforfullrows\n' + 
