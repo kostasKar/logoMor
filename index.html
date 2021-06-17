@@ -311,7 +311,8 @@
       }
     });
 
-    
+    const resizeObserver = new ResizeObserver(function(){myCodeMirror.refresh();});
+    resizeObserver.observe(document.getElementById('sourceCodeContainer'));
 
   </script>
 

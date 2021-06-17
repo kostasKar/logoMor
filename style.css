@@ -104,6 +104,12 @@ textarea, .CodeMirror {
   float: right;
   height: 100vh;
   overflow: auto;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+#controlsColumnScroll::-webkit-scrollbar {
+  display: none;
 }
 
 #controlsColumn {
