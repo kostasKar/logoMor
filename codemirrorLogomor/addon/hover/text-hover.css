@@ -1,0 +1,25 @@
+.CodeMirror-hover-tooltip {
+	/*background-color: #49483E;
+    color: #aaaaaa;*/
+	background-color: infobackground;
+	color: infotext;
+	border: 1px solid black;
+	border-radius: 4px 4px 4px 4px;
+	font-family: monospace;
+	font-size: 10pt;
+	overflow: visible;
+	padding: 2px 5px;
+	position: fixed;
+	z-index: 100;
+	opacity: 0;
+	white-space: pre-wrap;
+	transition: opacity .4s;
+	-moz-transition: opacity .4s;
+	-webkit-transition: opacity .4s;
+	-o-transition: opacity .4s;
+	-ms-transition: opacity .4s;
+}
+
+/*.CodeMirror-hover {
+	outline: 1px solid grey;
+}*/

@@ -65,6 +65,12 @@
   <script src="sound.js"></script>
   <script src="commandhints.js"></script>
 
+  <link rel="stylesheet" href="codemirrorLogomor/addon/hover/text-hover.css">
+  <script src="codemirrorLogomor/addon/hover/text-hover.js"></script>
+  <script src="codemirrorLogomor/addon/hover/token-hover.js"></script>
+
+
+
 </head>
 <body>
 
@@ -241,7 +247,9 @@
       indentUnit: 2,
       extraKeys: {
         'Ctrl-;': function (cm) { cm.execCommand('toggleComment') }
-      }
+      },
+      textHover: true,
+      hoverDelay: 750
     });
 
 
@@ -365,6 +373,8 @@
 
     </script>
     
+
+
 
 </body>
 </html>
