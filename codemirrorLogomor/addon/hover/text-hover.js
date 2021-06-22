@@ -5,7 +5,7 @@
 
   function showTooltip(e, content) {
     var tt = document.createElement("div");
-    tt.className = "CodeMirror-hover-tooltip";
+    tt.className = "CodeMirror-hover-tooltip codeFont";
     if (typeof content == "string") {
       content = document.createTextNode(content);
     }
