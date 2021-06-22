@@ -365,10 +365,12 @@
 
     function increaseEditorFontSize(){
       myCodeMirror.getWrapperElement().style["font-size"] = parseInt(myCodeMirror.getWrapperElement().style["font-size"]) + 1 + "px";
+      myCodeMirror.refresh();
     }
 
     function decreaseEditorFontSize(){
       myCodeMirror.getWrapperElement().style["font-size"] = parseInt(myCodeMirror.getWrapperElement().style["font-size"]) - 1 + "px";
+      myCodeMirror.refresh();
     }
 
     </script>
