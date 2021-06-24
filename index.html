@@ -252,6 +252,10 @@
       hoverDelay: 750
     });
 
+    if (sessionStorage.getItem("editorContent")){
+      myCodeMirror.setValue(sessionStorage.getItem("editorContent"));
+    }
+    myCodeMirror.on("change", function(){sessionStorage.setItem("editorContent", myCodeMirror.getValue())});
 
     CodeMirror.hint.logomor = function (editor) {
       var list = [...logomorMoves, ...logomorKeywords, ...logomorBuiltins];
