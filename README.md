@@ -8,17 +8,19 @@ LogoMor is a JavaScript interpreter and visualizer for the Logo programming lang
 
 ## Screenshots
 
-![image](https://user-images.githubusercontent.com/13304797/106599420-b3572d00-6561-11eb-8243-01a720d94cc0.png)
+![image](https://user-images.githubusercontent.com/13304797/123317157-58d16400-d536-11eb-87f0-98e5b21f84b0.png)
 
 ![image](https://user-images.githubusercontent.com/13304797/106599557-ea2d4300-6561-11eb-87c5-66ad295d0782.png)
 
+![image](https://user-images.githubusercontent.com/13304797/123316919-1871e600-d536-11eb-8ad7-d7a3d408bb9b.png)
+
 ![image](https://user-images.githubusercontent.com/13304797/106599718-22cd1c80-6562-11eb-9f80-c06113cd9779.png)
 
-![image](https://user-images.githubusercontent.com/13304797/106600231-c9b1b880-6562-11eb-9417-6b662a88c9d5.png)
+![image](https://user-images.githubusercontent.com/13304797/123317495-c1b8dc00-d536-11eb-8a0d-79d4abf8427c.png)
 
-![image](https://user-images.githubusercontent.com/13304797/106600738-79872600-6563-11eb-840e-a3fd30df03d4.png)
+![image](https://user-images.githubusercontent.com/13304797/123317671-f2991100-d536-11eb-9fe2-e09da34d768c.png)
 
-![Capture](https://user-images.githubusercontent.com/13304797/109687015-86f7f600-7b8b-11eb-86eb-3ffe08c70bbe.JPG)
+![image](https://user-images.githubusercontent.com/13304797/123317910-3f7ce780-d537-11eb-8c1b-aaced81ba5f7.png)
 
 ## Technologies
 
