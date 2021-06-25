@@ -34,12 +34,13 @@ Code editor uses CodeMirror with custom mode for the Logo language
 ## Logo language
 
 The interpreter accepts the basic UCBLogo commands with many additions:
-- 3-Dimentional moves
+- 3-Dimentional moves 
 - Random number generator (per run and per frame modes available)
 - Timing commands, returning current time and frame
 - Static variables with not frame-limited lifetime
 - Mouse and keyboard tracking commands
-- Face creation commands for making surfaces as solid objects faces
+- 3D solids creation commands
+- STL and OBJ models, images and sound files can be uploaded, manipulated programmatically and incorporated in the drawing
 
 ## Usage - Features
 
@@ -61,10 +62,6 @@ The interpreter accepts the basic UCBLogo commands with many additions:
 - The user can enable an orientation and turning assistant that is displayed on the drawing avatar to help during programming
 - The editor has many IDE features as auto-completion, auto-indentation, keyword highlighting (also distinguishing plain commands from move commands), search highlighting, auto bracket closing etc
 - With the 'Share' button you can create a shareable link that includes the source code in the editor 
-- 3D primitives commands are available for box, sphere, torus, ellipsoid, cylider, cone
-- .STL and .OBJ files can be uploaded and rendered into the sketch by using the model command
-- Images can be uploaded and drawn into the sketch by using the image command
-- Audio files can be uploaded and manipulated by the UI and by using logo commands
 
 ## Contributing
 I would love to receive any LogoMor sketches and include them to the Demos  
