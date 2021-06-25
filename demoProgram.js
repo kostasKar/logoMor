@@ -1083,7 +1083,7 @@ pushDemo(
 '  pu\n' + 
 '  setxyz :d/2 :d/2 0\n' + 
 '  pd\n' + 
-'  repeat 4 [fd :height*:d rt 90]\n' + 
+'  repeat 2 [fd :height*:d rt 90 fd :width*:d rt 90]\n' + 
 'end\n' + 
 '  \n' + 
 '  \n' + 
