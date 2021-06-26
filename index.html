@@ -355,6 +355,7 @@
 
     function copySourceCode() {
       var sourceCodeText = myCodeMirror.getValue();
+      var completeURL = window.location.href.split('?')[0];
 
       if (saveToServer){
         var uniqueId = Date.now();
@@ -362,19 +363,15 @@
         xhttp.open("POST", "saveEditorText.php");
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send("editorCode=" + encodeURIComponent(sourceCodeText) + "&id=" + encodeURIComponent(uniqueId));
-        var completeURLText = window.location.href.split('?')[0];
-        completeURLText = completeURLText + "?codeid=" + uniqueId;
+        completeURL= completeURL + "?codeid=" + uniqueId;
       } else {
-        var completeURLText = window.location.href.split('?')[0];
         if (sourceCodeText !== ""){
-          completeURLText = completeURLText + "?code=" + encodeURIComponent(btoa(sourceCodeText));
+          completeURL = completeURL + "?code=" + encodeURIComponent(btoa(sourceCodeText));
         }
-        var completeURL = completeURLText;
     }
 
       if ((saveToServer) || (completeURL.length < 5000)){
         var dummy = document.createElement("textarea");
-        //dummy.style.display = 'none'; //this does not allow copying
         document.body.appendChild(dummy);
         dummy.value = completeURL;
         dummy.select();
