@@ -337,21 +337,42 @@
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     if (urlParams.has('code')){
+
       myCodeMirror.setValue(atob(urlParams.get('code')));
+      window.history.replaceState(null, null, window.location.pathname);
+    } else if (urlParams.has('codeid')){
+
+      const xhttp = new XMLHttpRequest();
+      xhttp.onload = function() {
+        myCodeMirror.setValue(this.responseText);
+      }
+      xhttp.open("GET", "saveEditorText.php?id=" + urlParams.get('codeid'), true);
+      xhttp.send();
       window.history.replaceState(null, null, window.location.pathname);
     }
 
+    var saveToServer = true;
 
     function copySourceCode() {
       var sourceCodeText = myCodeMirror.getValue();
-      var completeURLText = window.location.href.split('?')[0];
-      if (sourceCodeText !== ""){
-        completeURLText = completeURLText + "?code=" + encodeURIComponent(btoa(sourceCodeText));
-      }
-      var completeURL = completeURLText;
-      //window.prompt("Copy to clipboard: Ctrl+C, Enter", completeURL);
 
-      if (completeURL.length < 5000){
+      if (saveToServer){
+        var uniqueId = Date.now();
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "saveEditorText.php");
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("editorCode=" + encodeURIComponent(sourceCodeText) + "&id=" + encodeURIComponent(uniqueId));
+        var completeURLText = window.location.href.split('?')[0];
+        completeURLText = completeURLText + "?codeid=" + uniqueId;
+      } else {
+        var completeURLText = window.location.href.split('?')[0];
+        if (sourceCodeText !== ""){
+          completeURLText = completeURLText + "?code=" + encodeURIComponent(btoa(sourceCodeText));
+        }
+        var completeURL = completeURLText;
+    }
+
+      if ((saveToServer) || (completeURL.length < 5000)){
         var dummy = document.createElement("textarea");
         //dummy.style.display = 'none'; //this does not allow copying
         document.body.appendChild(dummy);
