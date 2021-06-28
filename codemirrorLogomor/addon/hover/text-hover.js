@@ -29,7 +29,7 @@
         tt.style.right = "0px";
       }
     }
-    CodeMirror.on(document, "mousemove", position);
+    //CodeMirror.on(document, "mousemove", position);
     position(e);
     if (tt.style.opacity != null)
       tt.style.opacity = 1;
