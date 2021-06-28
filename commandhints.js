@@ -33,7 +33,7 @@ var commandHints = {
 	"settextsize": "settextsize :pixels \nSet the heigth of the text labels ",
 	"sts": "sts :pixels \nSet the heigth of the text labels ",
 	"color": "color :r :g :b (0-255)\nSet the drawing color in RGB space ",
-	"colorhsb": "colorhsb :h(0-255) :s(0-100) :b(0-100)\nSet the drawing color in HSB space  ",
+	"colorhsb": "colorhsb :h(0-360) :s(0-100) :b(0-100)\nSet the drawing color in HSB space  ",
 	"coloralpha": "coloralpha :alpha(0-255)\nSet the opacity of the drawing ",
 	"getx": "Returns the x coordinate of the avatar ",
 	"gety": "Returns the y coordinate of the avatar  ",
