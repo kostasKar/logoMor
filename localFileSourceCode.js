@@ -57,7 +57,7 @@ function startRecording(){
   var canvas = document.getElementById("defaultCanvas0");
   videoStream = canvas.captureStream(25);
 
-  mediaStreamDest.stream.getAudioTracks().forEach(track => videoStream.addTrack(track));
+  if (mediaStreamDest) {mediaStreamDest.stream.getAudioTracks().forEach(track => videoStream.addTrack(track))};
 
   mediaRecorder = new MediaRecorder(videoStream);
 
