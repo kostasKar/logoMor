@@ -55,7 +55,19 @@ var mediaRecorder;
 function startRecording(){
   chunks = [];
   var canvas = document.getElementById("defaultCanvas0");
-  videoStream = canvas.captureStream(60);
+  videoStream = canvas.captureStream(25);
+
+  //Add the audio tracks
+  for (var soundName in loadedSounds){
+    let ctx = new AudioContext();
+    let dest = ctx.createMediaStreamDestination();
+    let sourceNode = ctx.createMediaElementSource(loadedSounds[soundName]);
+    sourceNode.connect(dest);
+    sourceNode.connect(ctx.destination);
+    let audioTrack = dest.stream.getAudioTracks()[0];
+    videoStream.addTrack(audioTrack);
+  }
+
   mediaRecorder = new MediaRecorder(videoStream);
 
   mediaRecorder.ondataavailable = function(e) {
