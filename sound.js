@@ -1,5 +1,8 @@
 var loadedSounds = {};
 var currentSoundIndex = 1;
+var AudioContext;
+var audioCtx;
+var mediaStreamDest;
 
 
 function openSoundFile() {
@@ -44,6 +47,17 @@ function createListEntryForSound(name, src){
   sound.src      = src;
   sound.type     = 'audio';
   soundDiv.appendChild(sound);
+
+   if (Object.keys(loadedSounds).length === 0){
+     AudioContext = window.AudioContext || window.webkitAudioContext;
+     audioCtx = new AudioContext();
+     mediaStreamDest = audioCtx.createMediaStreamDestination();
+   }
+
+  
+  let sourceNode = audioCtx.createMediaElementSource(sound);
+  sourceNode.connect(mediaStreamDest);
+  sourceNode.connect(audioCtx.destination);
 
   // var playButton = document.createElement("button");
   // playButton.className = "fa fa-play playSoundButton"
