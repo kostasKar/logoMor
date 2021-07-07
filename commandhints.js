@@ -116,23 +116,3 @@ var commandHints = {
 	"return" : "return :val\nReturns a value from a function or stops main program execution (if used outside of a function and without any argument)"
 
 }
-
-
-function showHoverHint(event){
-	var x = event.pageX;
-  var y = event.pageY;
-
-  var ch = myCodeMirror.coordsChar({left: x, top: y}, "page");
-  var token = myCodeMirror.getTokenAt(ch);
-  if (token.type &&(token.type.match(/^(keyword|command|move)$/))){
-  	//alert(token.string);
-  	var el = document.createElement("div");
-  	el.innerText = commandHints[token.string];
-  	el.style.top = (y + 20) + 'px';
-    el.style.left = (x + 20) + 'px';
-    el.style.position = "fixed";
-    el.style.fontSize = "12";
-    document.getElementById("sourceCodeContainer").appendChild(el);
-  }
-
-}
