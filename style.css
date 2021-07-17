@@ -419,11 +419,17 @@ textarea, .CodeMirror {
   margin: 1px;
 }
 
+#logoIcon {
+  height: 30px;
+  margin-bottom: -8px;
+}
+
 #CameraInstructions h1 {
   font-size: 16px;
   font-weight: normal;
   margin-top: 5px;
   margin-bottom: 4px;
+  display: inline-block;
 }
 
 #CameraInstructions h1 .bigger{
