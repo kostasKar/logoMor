@@ -37,6 +37,13 @@ function createSliderForVar(name, value){
 	var varNameLabel = document.createElement("label");
 	varNameLabel.className = "sliderVarName codeFont";
 	varNameLabel.innerText = name + ":";
+	var numOfNameLetters = name.length;
+	var initialFontSize = 14;
+	var maxNumOfLetters = 10;
+	if(numOfNameLetters > maxNumOfLetters){
+		varNameLabel.style.fontSize = (initialFontSize * maxNumOfLetters / numOfNameLetters ) + 'px';
+	}
+	
 
 	var sliderValue = document.createElement("output");
 	sliderValue.className = "sliderValue codeFont";
