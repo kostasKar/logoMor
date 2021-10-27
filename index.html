@@ -126,9 +126,9 @@
 
       <div id="sourceCodeEditorTitleDiv">
         <label class="areaTitle brightText">Source Code Editor</label>
-        <button class="editorButton" id="copyCodeButton" onclick="copySourceCode()">Share</button>
-        <button class="editorButton" onclick="increaseEditorFontSize()"><i class="fa fa-plus" aria-hidden="true"></i></button>
-        <button class="editorButton" onclick="decreaseEditorFontSize()"><i class="fa fa-minus" aria-hidden="true"></i></button>
+        <button title="Create a shareable link with the source code" class="editorButton" id="copyCodeButton" onclick="copySourceCode()">Share</button>
+        <button title="Increase editor font size" class="editorButton" onclick="increaseEditorFontSize()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        <button title="Decrease editor font size" class="editorButton" onclick="decreaseEditorFontSize()"><i class="fa fa-minus" aria-hidden="true"></i></button>
       </div>
 
       <div id="sourceCodeContainer">
@@ -138,7 +138,7 @@
 
       <div class="areaDiv" id="movesLimitDiv">
         <input  id="movesLimitInput" type="number" name="quantity" min="0" value="1000" onchange="redrawIfPaused()">
-        <label class="subtleText1">Moves Limit:</label>
+        <label title="Maximum number of move commands per frame" class="subtleText1">Moves Limit:</label>
       </div>
 
       <div class="areaDiv" id = "buttonDiv">
@@ -152,12 +152,12 @@
       </div>
 
       <div class="areaDiv">
-        <label class="areaTitle brightText">Console</label>
+        <label title="Program output (print command), system and error messages dispayed here" class="areaTitle brightText">Console</label>
         <textarea readonly id="consoleTextArea" class="codeFont brightText"></textarea>
       </div>
 
       <div class="areaDiv" id="variablesDiv">
-        <label class="areaTitle brightText" id="variablesTitle">Variables Manipulators</label>
+        <label title="Manipulate the initial value of any global variable defined in the source code. Changes can be observed on the drawing in real time" class="areaTitle brightText" id="variablesTitle">Variables Manipulators</label>
         <div class="dropdown">
           <button id="slidersAddButton" onclick="showVariablesNames()" class="dropbtn" disabled>Add</button>
           <button id="slidersClearButton" onclick="clearSliders()" class="dropbtn" disabled>Clear</button>
@@ -167,19 +167,19 @@
       </div>
 
       <div class="areaDiv" id="modelsDiv">
-        <label class="areaTitle brightText">Models</label>
+        <label title="Import an .stl or .obj 3D model file from local disk" class="areaTitle brightText">Models</label>
         <button id="modelsAddButton" onclick="openModelFile()" class="dropbtn">Add</button>
         <input id="modelinp" type='file' style="display:none;" onchange="readModelFile(event)" onclick="this.value=null;" accept=".stl,.obj" />
       </div>
 
       <div class="areaDiv" id="imagesDiv">
-        <label class="areaTitle brightText">Images</label>
+        <label title="Import any image file from local disk" class="areaTitle brightText">Images</label>
         <button id="imagesAddButton" onclick="openImageFile()" class="dropbtn">Add</button>
         <input id="imageinp" type='file' style="display:none;" onchange="readImageFile(event)" onclick="this.value=null;" accept="image/*"/>
       </div>
 
       <div class="areaDiv" id="soundsDiv">
-        <label class="areaTitle brightText">Sounds</label>
+        <label title="Import any audio file from local disk" class="areaTitle brightText">Sounds</label>
         <button id="soundAddButton" onclick="openSoundFile()" class="dropbtn">Add</button>
         <input id="soundinp" type='file' style="display:none;" onchange="readSoundFile(event)" onclick="this.value=null;" accept="audio/*"/>
       </div>
