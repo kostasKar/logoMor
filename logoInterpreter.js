@@ -94,6 +94,10 @@ function checkNextToken(){
   //Return occurred inside another task inside a proc. So several pops are needed for the proc to 'see' the return command
   if (sourceTokens[currentIndex] === "return"){ 
     while ((tasksStack.length > 0) && (tasksStack[tasksStack.length-1].constructor.name !== 'ProcedureTask')){
+      if (tasksStack[tasksStack.length-1].constructor.name === 'ArgumentResolverTask'){
+        throwError("return statement inside argument");
+        return;
+      }
       tasksStack.pop();
     } 
     if (tasksStack.length === 0){
@@ -106,6 +110,10 @@ function checkNextToken(){
   //Break occurred, so the most recent loop task must exit, along with all tasks after it
   if(sourceTokens[currentIndex] === "break"){
     while ((tasksStack.length > 0) && (!tasksStack[tasksStack.length-1].hasOwnProperty("endOfLoopBlockIndex"))){
+      if (tasksStack[tasksStack.length-1].constructor.name === 'ArgumentResolverTask'){
+        throwError("break statement inside argument");
+        return;
+      }
       tasksStack.pop();
     } 
     if (tasksStack.length === 0){
