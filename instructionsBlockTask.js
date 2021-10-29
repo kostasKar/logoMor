@@ -57,7 +57,7 @@ class InstructionsBlockTask {
     while (sourceTokens[index] !== '['){
       index++;
       if (index == sourceTokens.length){
-        throwError("Finding end of Instructions Block: Missing '['");
+        throwError("Instruction block missing '['");
         return;
       }
     }
@@ -67,7 +67,7 @@ class InstructionsBlockTask {
     
     do {
       if (index == sourceTokens.length){
-        throwError("Finding end of Instruction Block: Missing ']'");
+        throwError("Instruction block missing ']'");
         return;
       }
       if (sourceTokens[index] === "[") {bracketDepth++;}
