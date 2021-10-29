@@ -1,7 +1,7 @@
 
 var logomorMoves = ["forward","fd","back","bk","right","rt","left","lt","up","down","dn","roll_right","rr","roll_left","rl","home","setx","sety","setz","setxyz"];
 var logomorKeywords = ["penup","pu","pendown","pd","showturtle","st","hideturtle","ht","setpensize","sps","settextsize","sts","color","colorhsb","coloralpha","getx","gety","getz","print","label","and","or","not","rand","random","randcrazy","randomcrazy","sqrt","power","pow","modulo","mod","cos","sin","tan","arccos","arcsin","arctan","ln","log","exp","pi","time","frame","int","round","trunc","abs","min","max","beginface","endface","mousex","mousey","mousepressed","thing","valueof","increment","decrement","point","dist","radtodeg","degtorad","word","arc","box","sphere","cylinder","cone","torus","ellipsoid","model","image","sound_play","sound_stop","sound_pause","sound_isplaying","sound_settime","sound_setvolume","sound_gettime","sound_getvolume","keypressed","equals"];
-var logomorBuiltins = ["make","static","if","ifelse","repeat","repcount","while","until","to","end","return"];
+var logomorBuiltins = ["make","static","if","ifelse","repeat","repcount","while","until","to","end","return","break"];
 
 
 

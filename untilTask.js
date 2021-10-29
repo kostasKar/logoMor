@@ -11,6 +11,7 @@ class UntilTask {
     this.canBeResolved = false;
     this.conditionSet = false;
     this.conditionIndex = currentIndex + 1;
+    this.endOfLoopBlockIndex = InstructionsBlockTask.findEndOfBlockIndex();
   }
   
   tryToTakeInput(arg){
@@ -25,7 +26,7 @@ class UntilTask {
       if (arg == 0){
         new InstructionsBlockTask(); 
       } else if (arg != 0){
-        InstructionsBlockTask.skipBlock();
+        currentIndex = this.endOfLoopBlockIndex;
         this.canBeResolved = true;
       }
       this.conditionSet = true;

@@ -50,4 +50,33 @@ class InstructionsBlockTask {
     while (bracketDepth > 0);
   }
 
+  static findEndOfBlockIndex(){
+    var bracketDepth = 0;
+    var index = currentIndex;
+    
+    while (sourceTokens[index] !== '['){
+      index++;
+      if (index == sourceTokens.length){
+        throwError("Finding end of Instructions Block: Missing '['");
+        return;
+      }
+    }
+
+    index++;
+    var bracketDepth = 1;
+    
+    do {
+      if (index == sourceTokens.length){
+        throwError("Finding end of Instruction Block: Missing ']'");
+        return;
+      }
+      if (sourceTokens[index] === "[") {bracketDepth++;}
+      else if (sourceTokens[index] === "]") {bracketDepth--;}
+      index++;
+    } 
+    while (bracketDepth > 0);
+
+    return index;
+  }
+
 }

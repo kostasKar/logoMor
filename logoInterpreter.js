@@ -102,6 +102,21 @@ function checkNextToken(){
     }
     return;
   } 
+
+  //Break occurred, so the most recent loop task must exit, along with all tasks after it
+  if(sourceTokens[currentIndex] === "break"){
+    while ((tasksStack.length > 0) && (!tasksStack[tasksStack.length-1].hasOwnProperty("endOfLoopBlockIndex"))){
+      tasksStack.pop();
+    } 
+    if (tasksStack.length === 0){
+      throwError("break command occurred outside of loop task");
+      return;
+    }
+    currentIndex = tasksStack[tasksStack.length - 1]["endOfLoopBlockIndex"];
+    tasksStack.pop();
+    return;
+  }
+
   
   //If we got here, it means that a new task has to be created and pushed in the tasks Stack
   checkTaskFactory();

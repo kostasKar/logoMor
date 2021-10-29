@@ -113,6 +113,7 @@ var commandHints = {
 	"until": "until :condition [code]\nLoop execution",
 	"to": "function definition ",
 	"end": "end of function ",
-	"return" : "return :val\nReturns a value from a function or stops main program execution (if used outside of a function and without any argument)"
+	"return" : "return :val\nReturns a value from a function or stops main program execution (if used outside of a function and without any argument)",
+	"break" : "Stops the execution of a loop"
 
 }
