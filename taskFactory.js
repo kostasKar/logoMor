@@ -113,7 +113,8 @@ var TasksConstructors = {
   "sound_gettime":GetTimeSoundTask,
   "sound_getvolume":GetVolumeSoundTask,
   "keypressed":KeyPressedTask,
-  "equals":EqualsTask
+  "equals":EqualsTask,
+  "randseed":RandSeedTask
 }
 
 
