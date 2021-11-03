@@ -147,7 +147,7 @@ class CommandTask  {
 //Random number generation
  class RandTask extends CommandTask1N { run() {return Math.floor(seedableRNG() * this.arguments[0]);}}
  class RandCrazyTask extends CommandTask1N { run() {return Math.floor(Math.random() * this.arguments[0]);}}
- class RandSeedTask extends CommandTask1N {run(){seedableRNG = new Math.seedrandom(this.arguments[0]); return "";}}
+ class RandSeedTask extends CommandTask1B {run(){seedableRNG = new Math.seedrandom(this.arguments[0]); return "";}}
 
 //Mathematical commands
  class SqrtTask extends CommandTask1N { run() {return Math.sqrt(this.arguments[0]);}}
