@@ -986,6 +986,9 @@ pushDemo(
 ';      Conway\'s Game of Life\n' + 
 ';---------------------------------\n' + 
 '\n' + 
+';Uncomment to see a glider!\n' + 
+';randseed "wjqj8\n' +
+'\n' + 
 'make "height 15\n' + 
 'make "width 15\n' + 
 'make "d 10\n' + 
