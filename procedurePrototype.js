@@ -11,8 +11,12 @@ class ProcedurePrototype {
       return;
     }
     i++;//skip the 'to'
-    if(sourceTokens[i] in procedurePrototypes){//we cannot declare another procedure with the same name
+    if(sourceTokens[i] in procedurePrototypes){
       throwError("Redefinition of function with name: " + sourceTokens[i]);
+      return;
+    }
+    if(logomorBuiltins.includes(sourceTokens[i])){
+      throwError("Cannot use keyword as function name: " + sourceTokens[i]);
       return;
     }
     let startIndex = i; //start index at procedure name
