@@ -34,7 +34,7 @@ CodeMirror with custom mode
 ## Logo features
 
 The interpreter accepts the basic UCBLogo commands with many additions:
-- 3-Dimesional sketching
+- 3-Dimensional sketching
 - Animations
 - Solid objects creation
 - 3D model .stl/.obj files
