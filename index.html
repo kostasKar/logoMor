@@ -138,8 +138,11 @@
       <div id="pull-tab"></div>
 
       <div class="areaDiv" id="movesLimitDiv">
+        <label class="subtleText1 debugControls">Debug:</label>
+        <button class="debugControls" id="debugContinueButton" onclick="debuggerContinuePressed()" disabled>Continue</button>
+        <button class="debugControls" id="debugStepButton" onclick="debuggerStepPressed()" disabled>Step</button>  
         <input  id="movesLimitInput" type="number" name="quantity" min="0" value="1000" onchange="redrawIfPaused()">
-        <label title="Maximum number of move commands per frame" class="subtleText1">Moves Limit:</label>
+        <label title="Maximum number of move commands per frame" class="subtleText1" id="movesLimitLabel">Moves Limit:</label>
       </div>
 
       <div class="areaDiv" id = "buttonDiv">
@@ -154,9 +157,6 @@
 
       <div class="areaDiv">
         <label title="Program output (print command), system and error messages dispayed here" class="areaTitle brightText">Console</label>
-        <button class="debugControls" id="debugStepButton" onclick="debuggerStepPressed()" disabled>Step</button>
-        <button class="debugControls" id="debugContinueButton" onclick="debuggerContinuePressed()" disabled>Continue</button>
-        <label class="subtleText1 debugControls">Debugging:</label>
         <textarea readonly id="consoleTextArea" class="codeFont brightText"></textarea>
       </div>
 
