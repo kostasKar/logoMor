@@ -51,7 +51,7 @@ button:disabled {
   cursor: auto ;
 }
 
-textarea, .CodeMirror {
+#consoleTextArea, .CodeMirror {
   position:relative;
   width: 100%;
   background-color: #111111;
@@ -127,6 +127,8 @@ textarea, .CodeMirror {
   height: 150px;
   min-height: 150px;
   resize: vertical;
+  overflow: auto;
+  margin-bottom: 2px;
 }
 
 #sourceCodeContainer {
@@ -614,4 +616,8 @@ label.debugControls {
   color: #aaaaaa;
   z-index: 5;
   padding: 5px;
+}
+
+.system-output{
+  color: #eeee99;
 }

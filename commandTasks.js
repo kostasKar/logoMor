@@ -135,7 +135,7 @@ class CommandTask  {
  class ArcTask extends CommandTask2N{ run() {L_ARC(this.arguments[0], this.arguments[1]); return "";}}
 
 //Output commands:
- class PrintTask extends CommandTask1B { run(){consolePrintln(this.arguments[0].replace(/\\s/g, " ")); return "";}}
+ class PrintTask extends CommandTask1B { run(){consolePrintln(this.arguments[0].replace(/\\s/g, " "), "user"); return "";}}
  class LabelTask extends CommandTask1B { run(){L_LABEL(this.arguments[0].replace(/\\s/g, " ")); return "";}}
 
 //Logical commands

@@ -1,16 +1,23 @@
 
 
-
-function consolePrintln(text){
-  document.getElementById("consoleTextArea").value += text + "\n";
+function consolePrintln(text, colorMode = "system"){
+  consolePrint(text, colorMode);
+  document.getElementById("consoleTextArea").innerHTML += "\n";
 }
 
-function consolePrint(text){
-  document.getElementById("consoleTextArea").value += text;
+function consolePrint(text, colorMode = "system"){
+  switch (colorMode){
+    case "system":
+    text = "<span class='system-output'>" +  text + "</span>";
+    break;
+    case "user":
+    break;
+  }
+  document.getElementById("consoleTextArea").innerHTML += text 
 }
 
 function consoleClear(){
-  document.getElementById("consoleTextArea").value = "";
+  document.getElementById("consoleTextArea").innerHTML = "";
 }
 
 function stackTrace(){
