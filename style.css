@@ -195,6 +195,18 @@ textarea, .CodeMirror {
   margin-top: 3px;
 }
 
+.debugControls {
+  border-width: 2px;
+  padding: 1px 5px;
+  font-size: 11px;
+  margin: 4px 4px;
+  float: right;
+}
+
+label.debugControls {
+  font-size: 12px;
+  float:  right;
+}
 
 #buttonDiv button {
   padding: 10px 0px;

@@ -37,6 +37,7 @@ function parseLogo(sourceCode){
   startTime = millis();
   startFrame = frameCount;
   clearError();
+  debuggerInitForNewRun();
 
   if(!isLooping()){
     redraw();
@@ -55,6 +56,7 @@ function initLogoExecution(){
   variablesScopeStack.push(globalVariables);
   if (!error) {consoleClear();}
   returnFromMain = false;
+  debuggerInitForNewFrame();
 }
 
 function executeLogo(){
@@ -88,6 +90,11 @@ function checkNextToken(){
   //Here only new tokens should arrive
   if (currentIndex >= sourceTokens.length){
     throwError("Unresolved task expects argument");
+    return;
+  }
+
+  if (debugerStoppedNewCommand()){
+    returnFromMain = true;
     return;
   }
   

@@ -39,3 +39,7 @@
 .cm-error-line{
   background-color: #602822 !important;
 }
+
+.cm-debug-line{
+  background-color: #305010 !important;
+}

@@ -47,8 +47,8 @@ The interpreter accepts the basic UCBLogo commands with many additions:
 
 - Fully-featured 3D sketch viewer - 60fps
 - Fully-featured source code editor (autocompletion, hints, etc)
+- Debugging (breakpoints on line numbers gutter, single-stepping) 
 - Real-time variable manipulation sliders
-- Move-by-move execution for debugging
 - Verbose error messages with stack and variables trace
 - Screenshot and video capturing, code online sharing
 - Various sketching support tools (orientation assistant, avatar view etc.)

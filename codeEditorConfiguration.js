@@ -17,8 +17,22 @@ var myCodeMirror = CodeMirror.fromTextArea
     'Ctrl-;': function (cm) { cm.execCommand('toggleComment') }
   },
   textHover: true,
-  hoverDelay: 750
+  hoverDelay: 750,
+  gutters: ["CodeMirror-linenumbers", "breakpoints"]
 });
+
+myCodeMirror.on("gutterClick", function(cm, n) {
+  var info = cm.lineInfo(n);
+  cm.setGutterMarker(n, "breakpoints", info.gutterMarkers ? null : makeMarker());
+});
+
+function makeMarker() {
+  var marker = document.createElement("div");
+  marker.style.color = "#f00";
+  marker.style.marginLeft = "-2px";
+  marker.innerHTML = "●";
+  return marker;
+}
 
 if (sessionStorage.getItem("editorContent")){
   myCodeMirror.setValue(sessionStorage.getItem("editorContent"));
