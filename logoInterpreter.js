@@ -18,9 +18,9 @@ var startTime;          //used for time command
 var startFrame;         //used for frame command
 var returnFromMain;     //used to stop execution of the program with the return statement
 
-function parseLogo(sourceCode){
+function parseLogo(sourceCode = null, setDebugOn = false){
   
-  if (sourceCode === undefined){
+  if (sourceCode === null){
 	  sourceCode = myCodeMirror.getValue();
   }
   var sourceCodeTxt = prepareSourceCodeText(sourceCode);
@@ -38,6 +38,7 @@ function parseLogo(sourceCode){
   startFrame = frameCount;
   clearError();
   debuggerInitForNewRun();
+  debugOn = setDebugOn;
 
   if(!isLooping()){
     redraw();
@@ -93,9 +94,12 @@ function checkNextToken(){
     return;
   }
 
-  if (debugerStoppedNewCommand()){
-    returnFromMain = true;
-    return;
+  //check debugger
+  if (debugOn){
+    if (debugerStoppedNewCommand()){
+      returnFromMain = true;
+      return;
+    }
   }
   
   //Return occurred inside another task inside a proc. So several pops are needed for the proc to 'see' the return command

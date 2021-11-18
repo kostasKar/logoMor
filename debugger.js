@@ -1,3 +1,4 @@
+var debugOn;
 var breakpointCounter;
 var initialBreakPointCounter;
 var commandsExecuted;
@@ -6,11 +7,10 @@ var debugControl;
 var debuggingLine = 0;
 
 
-
 function debuggerInitForNewRun(){
-  initialBreakPointCounter = 0;
+  initialBreakPointCounter = -1;
   commandsLimit = 0;
-  debugControl = "breakpoint";
+  debugControl = "step";
 }
 
 function debuggerInitForNewFrame(){
@@ -57,6 +57,11 @@ function stopOnStep(){
 }
 
 function debugerStoppedNewCommand(){
+
+	//function definitions are only parsed on first pass and are not actually commands
+	if (sourceTokens[currentIndex] === "to"){
+		return false;
+	}
 
 	commandsExecuted++;
 
