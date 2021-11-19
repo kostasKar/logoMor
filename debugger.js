@@ -1,20 +1,17 @@
 var debugOn;
-var breakpointCounter;
-var initialBreakPointCounter;
 var commandsExecuted;
 var commandsLimit;
 var debugControl;
 var debuggingLine = 0;
+var previousDebuggingLine;
 
 
 function debuggerInitForNewRun(){
-  initialBreakPointCounter = -1;
   commandsLimit = 0;
   debugControl = "step";
 }
 
 function debuggerInitForNewFrame(){
-  breakpointCounter = initialBreakPointCounter;
   commandsExecuted = -1;
   clearDebuggingLine();
   document.getElementById("debugContinueButton").disabled = true;
@@ -27,34 +24,16 @@ function debuggerStepPressed(){
 }
 
 function debuggerContinuePressed(){
-	initialBreakPointCounter++;
+	commandsLimit++;
 	debugControl = "breakpoint";
 }
 
 function breakPointOnToken(){
-  var currentLine = sourceCodeLineOfTokenIndex(currentIndex) - 1;
-  var lineOfPreviousToken = sourceCodeLineOfTokenIndex(currentIndex-1) - 1;
-  return ((myCodeMirror.lineInfo(currentLine) != null) && 
-      	  (myCodeMirror.lineInfo(currentLine).gutterMarkers) && 
-      		(currentLine != lineOfPreviousToken));
+  return ((myCodeMirror.lineInfo(debuggingLine) != null) && 
+      	  (myCodeMirror.lineInfo(debuggingLine).gutterMarkers) && 
+      		(debuggingLine != previousDebuggingLine));
 }
 
-function stopOnBreakpoint(){
-	if (breakPointOnToken()){
-		if (breakpointCounter === 0){
-			return true;
-		} else {
-			breakpointCounter--;
-		}
-	}
-	return false;
-}
-
-function stopOnStep(){
-	if (commandsExecuted === commandsLimit){
-		return true;
-	}
-}
 
 function debugerStoppedNewCommand(){
 
@@ -65,41 +44,26 @@ function debugerStoppedNewCommand(){
 
 	commandsExecuted++;
 
-	if (debugControl === "breakpoint"){
-		if(stopOnBreakpoint()){
-			commandsLimit = commandsExecuted;
-			consolePrintln("Debugger: Stopped on breakpoint");
-    	consolePrintln("On line: " + sourceCodeLineOfTokenIndex((currentIndex)? currentIndex : 0));
-    	consolePrintln("Next token: " + sourceTokens[currentIndex]);
-    	variablesTrace();
-    	colorDebuggingLine();
-    	document.getElementById("debugContinueButton").disabled = false;
-  	  document.getElementById("debugStepButton").disabled = false;
-			return true;
-		} else {
-			return false;
-		}
+	debuggingLine = sourceCodeLineOfTokenIndex(currentIndex) - 1;
+
+	var ret;
+	if ((debugControl === "step") && (commandsExecuted === commandsLimit)){
+		showDebuggerOutput();
+		ret = true;
+	} else if ((debugControl === "breakpoint") && (commandsExecuted >= commandsLimit) && (breakPointOnToken())){
+		commandsLimit = commandsExecuted;
+		showDebuggerOutput();
+		ret = true;
+	} else {
+		ret = false;
 	}
 
-	if (debugControl === "step"){
-		if (stopOnStep()){
-			consolePrintln("Debugger: Single-stepping");
-    	consolePrintln("On line: " + sourceCodeLineOfTokenIndex((currentIndex)? currentIndex: 0));
-    	consolePrintln("Next token: " + sourceTokens[currentIndex]);
-    	variablesTrace();
-    	colorDebuggingLine();
-    	document.getElementById("debugContinueButton").disabled = false;
-  	  document.getElementById("debugStepButton").disabled = false;
-			return true;
-		} else {
-			return false;
-		}
-	} 
+	previousDebuggingLine = debuggingLine;
 
+	return ret;
 }
 
 function colorDebuggingLine(){
-	debuggingLine =  sourceCodeLineOfTokenIndex(currentIndex) - 1;
 	myCodeMirror.addLineClass(debuggingLine, "background", "cm-debug-line");
 }
 
@@ -107,7 +71,14 @@ function clearDebuggingLine(){
 	myCodeMirror.removeLineClass(debuggingLine, "background", "cm-debug-line");
 }
 
-
+function showDebuggerOutput(){
+	consolePrintln("Debugger: Paused on line " + sourceCodeLineOfTokenIndex((currentIndex)? currentIndex: 0));
+	consolePrintln("Next token: " + sourceTokens[currentIndex]);
+	variablesTrace();
+	colorDebuggingLine();
+	document.getElementById("debugContinueButton").disabled = false;
+  document.getElementById("debugStepButton").disabled = false;
+}
 
 
 
