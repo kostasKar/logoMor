@@ -138,9 +138,9 @@
       <div id="pull-tab"></div>
 
       <div class="areaDiv" id="movesLimitDiv">
-        <button class="debugControls" id="debugButton" onclick="parseLogo(null, true)">Debug</button>
-        <button class="debugControls" id="debugContinueButton" onclick="debuggerContinuePressed()" disabled>Continue</button>
-        <button class="debugControls" id="debugStepButton" onclick="debuggerStepPressed()" disabled>Step</button>  
+        <button title="Start debugging" class="debugControls" id="debugButton" onclick="parseLogo(null, true)">Debug</button>
+        <button title="Run to breakpoint" class="debugControls" id="debugContinueButton" onclick="debuggerContinuePressed()" disabled>Continue</button>
+        <button title="Run next command" class="debugControls" id="debugStepButton" onclick="debuggerStepPressed()" disabled>Step</button>  
         <input  id="movesLimitInput" type="number" name="quantity" min="0" value="1000" onchange="redrawIfPaused()">
         <label title="Maximum number of move commands per frame" class="subtleText1" id="movesLimitLabel">Moves Limit:</label>
       </div>
