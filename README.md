@@ -8,21 +8,21 @@ LogoMor is an interpreter and visualizer for the Logo programming language, with
 
 ## Screenshots
 
-![123317157-58d16400-d536-11eb-87f0-98e5b21f84b0](https://user-images.githubusercontent.com/13304797/139117498-484fb769-0196-4097-83ac-e338a47b13c7.png)
+![123317157-58d16400-d536-11eb-87f0-98e5b21f84b0](https://user-images.githubusercontent.com/13304797/142780799-7d36714c-a6c6-470f-a19b-c84fa9e2a8aa.png)
 
 ![image](https://user-images.githubusercontent.com/13304797/106599557-ea2d4300-6561-11eb-87c5-66ad295d0782.png)
 
-![123316919-1871e600-d536-11eb-8ad7-d7a3d408bb9b](https://user-images.githubusercontent.com/13304797/139117554-ea675249-ee08-41f5-84f9-247eef28f974.png)
+![123316919-1871e600-d536-11eb-8ad7-d7a3d408bb9b](https://user-images.githubusercontent.com/13304797/142780815-48843f08-4eb6-47cb-90fa-3a4fad474470.png)
 
 ![image](https://user-images.githubusercontent.com/13304797/106599718-22cd1c80-6562-11eb-9f80-c06113cd9779.png)
 
-![123317495-c1b8dc00-d536-11eb-8a0d-79d4abf8427c](https://user-images.githubusercontent.com/13304797/139117586-d347d234-8f49-408b-980e-d7740bfc6a16.png)
+![123317495-c1b8dc00-d536-11eb-8a0d-79d4abf8427c](https://user-images.githubusercontent.com/13304797/142780836-2d746cf2-d9c1-4504-86bf-1d67f3f76ab5.png)
 
-![123317671-f2991100-d536-11eb-9fe2-e09da34d768c](https://user-images.githubusercontent.com/13304797/139117609-e73ece28-a2f9-46f4-9400-e3e59e5dcaf6.png)
+![123317671-f2991100-d536-11eb-9fe2-e09da34d768c](https://user-images.githubusercontent.com/13304797/142780852-a65d6b01-5a97-48ed-8b25-b1b23faf8e18.png)
 
-![123317910-3f7ce780-d537-11eb-8c1b-aaced81ba5f7](https://user-images.githubusercontent.com/13304797/139117635-d8b02115-2a8e-498e-bc7d-30c64e40776a.png)
+![123317910-3f7ce780-d537-11eb-8c1b-aaced81ba5f7](https://user-images.githubusercontent.com/13304797/142780862-b73b6a54-545a-45d6-9401-84e6e090db7a.png)
 
-![123318191-9edaf780-d537-11eb-992c-a2e87195e55c](https://user-images.githubusercontent.com/13304797/139117658-9f94945b-063d-4de6-8a6d-fc6150de982e.png)
+![123318191-9edaf780-d537-11eb-992c-a2e87195e55c](https://user-images.githubusercontent.com/13304797/142780867-95832e74-b798-47e2-a39a-8842fbaa9116.png)
 
 ## Technologies
 
