@@ -313,17 +313,15 @@ pushDemo(
 ' make "locationY :height   \n' + 
 ']    \n' + 
 '    \n' + 
-'to circle :r    \n' + 
-'make "l 2*pi*:r/50   \n' + 
-'bk :l/2   \n' + 
-'repeat 50[fd :l rt 360/50]    \n' + 
-'end    \n' + 
+'to circle :r  \n' +    
+'  setx getx + :r  \n' +
+'  arc 360 :r  \n' +
+'  setx getx - :r  \n' +
+'end  \n' +  
 '    \n' + 
 'penup    \n' + 
 'setxyz :locationX :locationY 0    \n' + 
-'pendown    \n' + 
 'circle :radius   \n' + 
-'penup   \n' + 
 'home    \n' + 
 'pendown   \n' + 
 'fd :height+:radius rt 90   \n' + 
@@ -377,17 +375,15 @@ pushDemo(
 ' make "locationY :height    \n' + 
 ']     \n' + 
 '     \n' + 
-'to circle :r     \n' + 
-'make "l 2*pi*:r/50    \n' + 
-'bk :l/2    \n' + 
-'repeat 50[fd :l rt 360/50]     \n' + 
-'end     \n' + 
+'to circle :r  \n' +    
+'  setx getx + :r  \n' +
+'  arc 360 :r  \n' +
+'  setx getx - :r  \n' +
+'end  \n' +  
 '     \n' + 
 'penup     \n' + 
 'setxyz :locationX :locationY 0     \n' + 
-'pendown     \n' + 
 'circle :radius    \n' + 
-'penup    \n' + 
 'home     \n' + 
 'pendown    \n' + 
 'fd :height+:radius rt 90    \n' + 
