@@ -139,8 +139,8 @@
 
       <div class="areaDiv" id="movesLimitDiv">
         <button title="Start debugging" class="debugControls" id="debugButton" onclick="parseLogo(null, true)">Debug</button>
-        <button title="Run to breakpoint" class="debugControls" id="debugContinueButton" onclick="debuggerContinuePressed()" disabled>Continue</button>
-        <button title="Run next command" class="debugControls" id="debugStepButton" onclick="debuggerStepPressed()" disabled>Step</button>  
+        <button title="Run to breakpoint" class="debugControls" id="debugContinueButton" onclick="logoDebugger.continuePressed()" disabled>Continue</button>
+        <button title="Run next command" class="debugControls" id="debugStepButton" onclick="logoDebugger.stepPressed()" disabled>Step</button>  
         <input  id="movesLimitInput" type="number" name="quantity" min="0" value="1000" onchange="redrawIfPaused()">
         <label title="Maximum number of move commands per frame" class="subtleText1" id="movesLimitLabel">Moves Limit:</label>
       </div>
@@ -151,7 +151,7 @@
         --><button type="button" id="saveButton" onclick="download()">Save</button><!--
         --><button onclick="openFile()">Load</button><!--
         --><button onclick=" window.open('assets/Documentation.pdf','_blank')" type="button">Help</button><!--
-        --><button type="button" id="DemoButton" onclick="myCodeMirror.setValue(getRandomDemoProgram());parseLogo();localStorage.setItem('demoPressed', true);this.classList.remove('firstVisitBlink');">Demo</button>
+        --><button type="button" id="DemoButton" onclick="myCodeMirror.setValue(demoPrograms.getRandomDemo());parseLogo();localStorage.setItem('demoPressed', true);this.classList.remove('firstVisitBlink');">Demo</button>
         <input id="inp" type='file' style="display:none;" onchange="readFile(event)" onclick="this.value=null;" />
       </div>
 

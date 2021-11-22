@@ -37,8 +37,8 @@ function parseLogo(sourceCode = null, setDebugOn = false){
   startTime = millis();
   startFrame = frameCount;
   clearError();
-  debuggerInitForNewRun();
-  debugOn = setDebugOn;
+  logoDebugger.initForNewRun();
+  logoDebugger.setEnabled(setDebugOn);
 
   if(!isLooping()){
     redraw();
@@ -57,7 +57,7 @@ function initLogoExecution(){
   variablesScopeStack.push(globalVariables);
   if (!error) {consoleClear();}
   returnFromMain = false;
-  debuggerInitForNewFrame();
+  logoDebugger.initForNewFrame();
 }
 
 function executeLogo(){
@@ -95,11 +95,9 @@ function checkNextToken(){
   }
 
   //check debugger
-  if (debugOn){
-    if (debugerStoppedNewCommand()){
-      returnFromMain = true;
-      return;
-    }
+  if (logoDebugger.isEnabled() && logoDebugger.stoppedNewCommand()){
+    returnFromMain = true;
+    return;
   }
   
   //Return occurred inside another task inside a proc. So several pops are needed for the proc to 'see' the return command
