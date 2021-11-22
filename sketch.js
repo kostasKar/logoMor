@@ -14,10 +14,10 @@ function setup() {
   setAttributes('antialias', true);
   canvas = createCanvas(windowWidth, windowHeight, WEBGL);
   canvas.parent('drawCanvas');
-  initializeCamera();
-  canvas.doubleClicked(resetCamera);
-  canvas.mouseOver(enableCamera);
-  canvas.mouseOut(disableCamera);
+  cameraViewControl.initialize();
+  canvas.doubleClicked(cameraViewControl.reset);
+  canvas.mouseOver(cameraViewControl.enable);
+  canvas.mouseOut(cameraViewControl.disable);
 
   //labels fonts
   //uncomment to deploy online
@@ -32,7 +32,7 @@ function draw() {
   if (clearDraw){
     background(0);
   }
-  adjustCamera();
+  cameraViewControl.adjust();
   logoStart();
   initLogoExecution();
 
@@ -41,6 +41,12 @@ function draw() {
   logoEnd();
 }
 
+
+//p5 defined events:
+function mouseWheel(event){
+  cameraViewControl.mouseWheelCallback(event.delta);
+  return false;
+}
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
