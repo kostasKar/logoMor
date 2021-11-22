@@ -136,6 +136,6 @@ function checkNextToken(){
 
   
   //If we got here, it means that a new task has to be created and pushed in the tasks Stack
-  checkTaskFactory();
+  taskFactory.checkToken(sourceTokens[currentIndex]);
   
 }  
