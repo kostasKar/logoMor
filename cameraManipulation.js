@@ -80,7 +80,7 @@ function adjustCamera(){
   rotateY(yRotation);
 
   if (document.getElementById("avatarViewCheckbox").checked){
-    applyInverseLogoTransformationMatrix();
+    logoMatrix.applyInverse();
   }
 
   document.getElementById("fpsValue").innerText = frameRate().toFixed(1);

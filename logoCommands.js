@@ -24,11 +24,11 @@ function makeShape(){
     vertex(vertices[i][0], vertices[i][1], vertices[i][2]);
   } 
   endShape();
-  applyLogoTransformationMatrix();
+  logoMatrix.apply();
 }
 
 function addVertex(){
-  vertices.push([getlmX(), getlmY(), getlmZ()]);
+  vertices.push([logoMatrix.getX(), logoMatrix.getY(), logoMatrix.getZ()]);
 }
 
 
@@ -58,7 +58,7 @@ function logoStart(){
   vertices = [];
   initStrokeStyle();
   push();
-  resetLogoTransformationMatrix();
+  logoMatrix.reset();
 }
 
 function logoEnd(){
@@ -101,7 +101,7 @@ function L_ENDSHAPE(){
     line(0, 0, 0, 0, -length, 0);
    }
    translate(0, -length, 0);
-   logoTranslate(0, -length, 0);
+   logoMatrix.translate(0, -length, 0);
    if (penDown && shapeBegan){
     addVertex();
    }
@@ -112,7 +112,7 @@ function L_ENDSHAPE(){
      line(0, 0, 0, 0, length, 0);
    }
    translate(0, length, 0);
-   logoTranslate(0, length, 0);
+   logoMatrix.translate(0, length, 0);
    if (penDown && shapeBegan){
     addVertex();
    }
@@ -120,32 +120,32 @@ function L_ENDSHAPE(){
  
  function L_RIGHT(angle){
    rotateZ(radians(angle));
-   logoRotateZ(radians(angle));
+   logoMatrix.rotateZ(radians(angle));
  }
  
   function L_LEFT(angle){
    rotateZ(radians(-angle));
-   logoRotateZ(radians(-angle));
+   logoMatrix.rotateZ(radians(-angle));
  }
  
  function L_UP(angle){
    rotateX(radians(-angle));
-   logoRotateX(radians(-angle));
+   logoMatrix.rotateX(radians(-angle));
  }
  
   function L_DOWN(angle){
    rotateX(radians(angle));
-   logoRotateX(radians(angle));
+   logoMatrix.rotateX(radians(angle));
  }
  
   function L_ROLLRIGHT(angle){
    rotateY(radians(angle));
-   logoRotateY(radians(angle));
+   logoMatrix.rotateY(radians(angle));
  }
  
    function L_ROLLLEFT(angle){
    rotateY(radians(-angle));
-   logoRotateY(radians(-angle));
+   logoMatrix.rotateY(radians(-angle));
  }
  
 function L_ARC(angle, radius){
@@ -207,28 +207,28 @@ function L_ARC(angle, radius){
    push();
    restoreStrokeStyle();
    if (penDown){
-     line(0, 0, 0, getlmX(), getlmY(), getlmZ());
+     line(0, 0, 0, logoMatrix.getX(), logoMatrix.getY(), logoMatrix.getZ());
    }
-   resetLogoTransformationMatrix(); 
+   logoMatrix.reset(); 
    if (penDown && shapeBegan){
     addVertex();
    }
  }
  
   function L_GETX(){
-   return getlmX();
+   return logoMatrix.getX();
  }
  
   function L_GETY(){
-   return - getlmY();
+   return - logoMatrix.getY();
  }
  
   function L_GETZ(){
-   return getlmZ();
+   return logoMatrix.getZ();
  }
 
  function L_DIST(x, y, z){
-  return sqrt(pow(x-getlmX(), 2) + pow(y-(-getlmY()), 2) + pow(z-getlmZ(), 2));
+  return sqrt(pow(x-logoMatrix.getX(), 2) + pow(y-(-logoMatrix.getY()), 2) + pow(z-logoMatrix.getZ(), 2));
  }
 
 function L_SETXYZ(newX, newY, newZ){
@@ -236,12 +236,12 @@ function L_SETXYZ(newX, newY, newZ){
    push();
    restoreStrokeStyle();
    if (penDown){
-     line(getlmX(), getlmY(), getlmZ(), newX, -newY, newZ);
+     line(logoMatrix.getX(), logoMatrix.getY(), logoMatrix.getZ(), newX, -newY, newZ);
    }
-   setlmX(newX);
-   setlmY(-newY);
-   setlmZ(newZ);
-   applyLogoTransformationMatrix(); 
+   logoMatrix.setX(newX);
+   logoMatrix.setY(-newY);
+   logoMatrix.setZ(newZ);
+   logoMatrix.apply(); 
    if (penDown && shapeBegan){
     addVertex();
    }
