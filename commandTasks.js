@@ -1,8 +1,4 @@
 
-//This variable is used to count the moves of the avatar so that we can use it to set a limit
-var movesCount;
-
-
 /*
   Argument types:
   "N" : number
@@ -11,8 +7,11 @@ var movesCount;
  */
 
 
-//The generic command task. Takes any number of float arguments. the number of arguments is given at the constructor
+//The generic command task. Takes any number of arguments. the number and types of arguments are given to the constructor
 class CommandTask  {
+
+   //This variable is used to count the moves of the avatar so that we can use it to set a limit
+   static movesCount;
 
    constructor( argumentTypes, isMove = false){
     this.argumentTypes = argumentTypes;
@@ -42,7 +41,7 @@ class CommandTask  {
   }
   
   resolve(){
-    if (this.isMove){movesCount++;}
+    if (this.isMove){CommandTask.movesCount++;}
     var ret =  this.run().toString();
     tasksStack.pop();
     return ret;

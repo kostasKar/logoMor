@@ -49,7 +49,7 @@ function initLogoExecution(){
   sourceTokens = mainSourceTokens;
   sourceTokensLineNumbers = mainSourceTokensLineNumbers;
   currentIndex = 0;
-  movesCount = 0;
+  CommandTask.movesCount = 0;;
   seedableRNG = new Math.seedrandom(seed);
   tasksStack = [];
   globalVariables = {};
@@ -62,10 +62,10 @@ function initLogoExecution(){
 
 function executeLogo(){
   var movesLimit = document.getElementById("movesLimitInput").value;
-  while (((currentIndex < sourceTokens.length) || (tasksStack.length > 0)) && (!error) && (!returnFromMain) && (movesCount < movesLimit)){
+  while (((currentIndex < sourceTokens.length) || (tasksStack.length > 0)) && (!error) && (!returnFromMain) && (CommandTask.movesCount < movesLimit)){
     checkNextToken();
   }
-  if (movesCount >= movesLimit){
+  if (CommandTask.movesCount >= movesLimit){
     consolePrintln("Stopped: Reached Moves Limit");
     consolePrintln("On line: " + sourceCodeLineOfTokenIndex((currentIndex)? currentIndex - 1 : 0));
   }
