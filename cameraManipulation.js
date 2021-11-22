@@ -21,6 +21,18 @@ var cameraViewControl = (function (){
   var autoRotation_lastYRotation;
 
   return {
+    getFov: function(){
+      return fov;
+    },
+
+    getCenterCoordinates: function(){
+      return {"x": centerX, "y": centerY};
+    },
+
+    isCameraEnabled: function(){
+      return cameraEnabled;
+    },
+
     initialize: function(){
       fov_min = radians(1);
       fov_max = radians(90);

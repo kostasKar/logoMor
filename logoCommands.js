@@ -260,11 +260,11 @@ function L_SETZ(newZ){
 }
 
 function L_MOUSEX(){
-  return  (mouseX - width/2)*(fov / 1.2) - centerX ;
+  return  (mouseX - width/2)*(cameraViewControl.getFov() / 1.2) - cameraViewControl.getCenterCoordinates()["x"] ;
 }
 
 function L_MOUSEY(){
-  return -((mouseY - height/2)*(fov / 1.2) - centerY);
+  return -((mouseY - height/2)*(cameraViewControl.getFov() / 1.2) - cameraViewControl.getCenterCoordinates()["y"]);
 }
 
 function L_MOUSEPRESSED(){
@@ -272,7 +272,7 @@ function L_MOUSEPRESSED(){
   mouseCodes[LEFT] = 1;
   mouseCodes[RIGHT] = 2;
   mouseCodes[CENTER] = 3;
-  return (cameraEnabled && mouseIsPressed) ? mouseCodes[mouseButton] : 0;
+  return (cameraViewControl.isCameraEnabled() && mouseIsPressed) ? mouseCodes[mouseButton] : 0;
 }
 
 
