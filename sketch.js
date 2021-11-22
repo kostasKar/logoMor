@@ -33,12 +33,12 @@ function draw() {
     background(0);
   }
   cameraViewControl.adjust();
-  logoStart();
+  logo.start();
   initLogoExecution();
 
   executeLogo();
   
-  logoEnd();
+  logo.end();
 }
 
 
@@ -51,4 +51,8 @@ function mouseWheel(event){
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   document.getElementById("fullscreenButton").firstElementChild.className = fullscreen()? "fa fa-compress" : "fa fa-expand";
+}
+
+function keyPressed() {
+  logo.keyPressedCallback(keyCode);
 }

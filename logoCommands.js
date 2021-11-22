@@ -1,423 +1,433 @@
-var penDown;
-var showTurtle;
-var strokeR, strokeG, strokeB, strokeWght, strokeAlpha, labelTextSize;
-var shapeBegan;
-var vertices;
-var lastKeyPressed;
+var logo = (function(){
 
-var defaultStyle = {"weight":1, "r":255, "g":255, "b":255, "a":255, "textSize":10};
+  var penDown;
+  var showTurtle;
+  var strokeR, strokeG, strokeB, strokeWght, strokeAlpha, labelTextSize;
+  var shapeBegan;
+  var vertices;
+  var lastKeyPressed;
 
-function setDefaultHexColor(hexColor){
-  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
-  defaultStyle.r = parseInt(result[1], 16);
-  defaultStyle.g = parseInt(result[2], 16);
-  defaultStyle.b = parseInt(result[3], 16);
-}
+  var defaultStyle = {"weight":1, "r":255, "g":255, "b":255, "a":255, "textSize":10};
 
-
-function makeShape(){
-  pop();
-  push();
-  restoreStrokeStyle(); //for the stroke color
-  beginShape();
-  for (let i = 0; i < vertices.length; i++) {
-    vertex(vertices[i][0], vertices[i][1], vertices[i][2]);
-  } 
-  endShape();
-  logoMatrix.apply();
-}
-
-function addVertex(){
-  vertices.push([logoMatrix.getX(), logoMatrix.getY(), logoMatrix.getZ()]);
-}
-
-
-function initStrokeStyle(){
-  strokeWght = defaultStyle.weight;
-  strokeR = defaultStyle.r;
-  strokeG = defaultStyle.g;
-  strokeB = defaultStyle.b;
-  strokeAlpha = defaultStyle.a;
-  labelTextSize = defaultStyle.textSize;
-
-  restoreStrokeStyle();
-}
-
-function restoreStrokeStyle(){
-  strokeWeight(strokeWght);
-  stroke(strokeR, strokeG, strokeB, strokeAlpha);
-  fill(strokeR, strokeG, strokeB, strokeAlpha);
-  textSize(labelTextSize);
-}
-
-function logoStart(){
-  drawCoordinates(25);
-  penDown = true;
-  showTurtle = true;
-  shapeBegan = false;
-  vertices = [];
-  initStrokeStyle();
-  push();
-  logoMatrix.reset();
-}
-
-function logoEnd(){
-  if (shapeBegan){
-    makeShape();
+  function makeShape(){
+    pop();
+    push();
+    restoreStrokeStyle(); //for the stroke color
+    beginShape();
+    for (let i = 0; i < vertices.length; i++) {
+      vertex(vertices[i][0], vertices[i][1], vertices[i][2]);
+    } 
+    endShape();
+    logoMatrix.apply();
   }
-  if (showTurtle){
-    drawAvatar();
-    if (document.getElementById("turnsHelpArrows").checked){
-      drawHelpArrows(15);
-    } else {
-      drawCoordinates(10);
+
+  function addVertex(){
+    vertices.push([logoMatrix.getX(), logoMatrix.getY(), logoMatrix.getZ()]);
+  }
+
+
+  function initStrokeStyle(){
+    strokeWght = defaultStyle.weight;
+    strokeR = defaultStyle.r;
+    strokeG = defaultStyle.g;
+    strokeB = defaultStyle.b;
+    strokeAlpha = defaultStyle.a;
+    labelTextSize = defaultStyle.textSize;
+
+    restoreStrokeStyle();
+  }
+
+  function restoreStrokeStyle(){
+    strokeWeight(strokeWght);
+    stroke(strokeR, strokeG, strokeB, strokeAlpha);
+    fill(strokeR, strokeG, strokeB, strokeAlpha);
+    textSize(labelTextSize);
+  }
+
+
+
+  return {
+
+    keyPressedCallback:function(key){
+      lastKeyPressed = key;
+    },
+
+    setDefaultHexColor: function(hexColor){
+      var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
+      defaultStyle.r = parseInt(result[1], 16);
+      defaultStyle.g = parseInt(result[2], 16);
+      defaultStyle.b = parseInt(result[3], 16);
+    },  
+
+    start: function(){
+      drawCoordinates(25);
+      penDown = true;
+      showTurtle = true;
+      shapeBegan = false;
+      vertices = [];
+      initStrokeStyle();
+      push();
+      logoMatrix.reset();
+    },
+
+    end: function(){
+      if (shapeBegan){
+        makeShape();
+      }
+      if (showTurtle){
+        drawAvatar();
+        if (document.getElementById("turnsHelpArrows").checked){
+          drawHelpArrows(15);
+        } else {
+          drawCoordinates(10);
+        }
+      }
+      pop();
+    },
+
+    showTurtle: function(){
+      showTurtle = true;
+    },
+
+    hideTurtle: function(){
+      showTurtle = false;
+    },
+
+    beginShape: function(){
+      shapeBegan = true;
+      vertices = [];
+      addVertex();
+    },
+
+    endShape: function(){
+      shapeBegan = false;
+      makeShape();
+      vertices = [];
+    },
+
+    forward: function(length){
+     if (penDown){
+        line(0, 0, 0, 0, -length, 0);
+      }
+      translate(0, -length, 0);
+      logoMatrix.translate(0, -length, 0);
+      if (penDown && shapeBegan){
+        addVertex();
+      }
+    },
+
+    backward: function(length){
+      if (penDown){
+        line(0, 0, 0, 0, length, 0);
+      }
+      translate(0, length, 0);
+      logoMatrix.translate(0, length, 0);
+      if (penDown && shapeBegan){
+        addVertex();
+      }
+    },
+
+    right: function(angle){
+     rotateZ(radians(angle));
+     logoMatrix.rotateZ(radians(angle));
+    },
+
+    left: function(angle){
+     rotateZ(radians(-angle));
+     logoMatrix.rotateZ(radians(-angle));
+    },
+
+    up: function(angle){
+     rotateX(radians(-angle));
+     logoMatrix.rotateX(radians(-angle));
+    },
+
+    down: function(angle){
+     rotateX(radians(angle));
+     logoMatrix.rotateX(radians(angle));
+    },
+
+    rollRight: function(angle){
+     rotateY(radians(angle));
+     logoMatrix.rotateY(radians(angle));
+    },
+
+    rollLeft: function(angle){
+     rotateY(radians(-angle));
+     logoMatrix.rotateY(radians(-angle));
+    },
+
+    arc: function(angle, radius){
+      noFill();
+      arc(0, 0, radius*2, radius*2, -HALF_PI, radians(angle) - HALF_PI);
+      restoreStrokeStyle();
+    },
+
+    penDown: function(){
+      penDown = true;
+    },
+
+    penUp: function(){
+      penDown = false;
+    },
+
+    setPenSize: function(n){
+     strokeWeight(n);
+     strokeWght = n;
+    },
+
+    setTextSize: function(n){
+      textSize(n);
+      labelTextSize = n;
+    },
+
+    color: function(r, g, b){
+     strokeR = r;
+     strokeG = g;
+     strokeB = b;
+     restoreStrokeStyle();
+    },
+
+    colorHSB: function(h, s, b){
+      var c = color('hsb('+ h + ',' + s + '%,' + b + '%)');
+      strokeR = red(c);
+      strokeG = green(c);
+      strokeB = blue(c);
+      restoreStrokeStyle();
+    },
+
+    colorAlpha: function(a){
+     stroke(strokeR, strokeG, strokeB, a);
+     fill(strokeR, strokeG, strokeB, a);
+     strokeAlpha = a;
+    },
+
+    label: function(word){
+     text(word, 0, 0);
+    },
+
+    point: function(){
+      point(0,0,0);
+    },
+
+
+    home: function(){
+     pop();
+     push();
+     restoreStrokeStyle();
+     if (penDown){
+       line(0, 0, 0, logoMatrix.getX(), logoMatrix.getY(), logoMatrix.getZ());
+     }
+     logoMatrix.reset(); 
+     if (penDown && shapeBegan){
+      addVertex();
     }
-  }
-  pop();
-}
+    },
 
-function L_SHOWTURTLE(){
-  showTurtle = true;
-}
+    getx: function(){
+     return logoMatrix.getX();
+    },
 
-function L_HIDETURTLE(){
-  showTurtle = false;
-}
+    gety: function(){
+     return - logoMatrix.getY();
+    },
 
-function L_BEGINSHAPE(){
-  shapeBegan = true;
-  vertices = [];
-  addVertex();
-}
+    getz: function(){
+     return logoMatrix.getZ();
+    },
 
-function L_ENDSHAPE(){
-  shapeBegan = false;
-  makeShape();
-  vertices = [];
-}
+    dist: function(x, y, z){
+      return sqrt(pow(x-logoMatrix.getX(), 2) + pow(y-(-logoMatrix.getY()), 2) + pow(z-logoMatrix.getZ(), 2));
+    },
 
- function L_FORWARD(length){
-   if (penDown){
-    line(0, 0, 0, 0, -length, 0);
-   }
-   translate(0, -length, 0);
-   logoMatrix.translate(0, -length, 0);
-   if (penDown && shapeBegan){
-    addVertex();
-   }
- }
- 
-  function L_BACKWARD(length){
-   if (penDown){
-     line(0, 0, 0, 0, length, 0);
-   }
-   translate(0, length, 0);
-   logoMatrix.translate(0, length, 0);
-   if (penDown && shapeBegan){
-    addVertex();
-   }
- }
- 
- function L_RIGHT(angle){
-   rotateZ(radians(angle));
-   logoMatrix.rotateZ(radians(angle));
- }
- 
-  function L_LEFT(angle){
-   rotateZ(radians(-angle));
-   logoMatrix.rotateZ(radians(-angle));
- }
- 
- function L_UP(angle){
-   rotateX(radians(-angle));
-   logoMatrix.rotateX(radians(-angle));
- }
- 
-  function L_DOWN(angle){
-   rotateX(radians(angle));
-   logoMatrix.rotateX(radians(angle));
- }
- 
-  function L_ROLLRIGHT(angle){
-   rotateY(radians(angle));
-   logoMatrix.rotateY(radians(angle));
- }
- 
-   function L_ROLLLEFT(angle){
-   rotateY(radians(-angle));
-   logoMatrix.rotateY(radians(-angle));
- }
- 
-function L_ARC(angle, radius){
-  noFill();
-  arc(0, 0, radius*2, radius*2, -HALF_PI, radians(angle) - HALF_PI);
-  restoreStrokeStyle();
-}
-
- function L_PENDOWN(){
-  penDown = true;
- }
- 
-  function L_PENUP(){
-  penDown = false;
- }
- 
- function L_SETPENSIZE(n){
-   strokeWeight(n);
-   strokeWght = n;
- }
-
- function L_SETTEXTSIZE(n){
-  textSize(n);
-  labelTextSize = n;
- }
- 
- function L_COLOR(r, g, b){
-   strokeR = r;
-   strokeG = g;
-   strokeB = b;
-   restoreStrokeStyle();
- } 
-
- function L_COLORHSB(h, s, b){
-  var c = color('hsb('+ h + ',' + s + '%,' + b + '%)');
-  strokeR = red(c);
-  strokeG = green(c);
-  strokeB = blue(c);
-  restoreStrokeStyle();
- }
-
- function L_COLORALPHA(a){
-   stroke(strokeR, strokeG, strokeB, a);
-   fill(strokeR, strokeG, strokeB, a);
-   strokeAlpha = a;
- } 
-
- function L_LABEL(word){
-   text(word, 0, 0);
- }
-
- function L_POINT(){
-  point(0,0,0);
- }
-
- 
-  function L_HOME(){
-   pop();
-   push();
-   restoreStrokeStyle();
-   if (penDown){
-     line(0, 0, 0, logoMatrix.getX(), logoMatrix.getY(), logoMatrix.getZ());
-   }
-   logoMatrix.reset(); 
-   if (penDown && shapeBegan){
-    addVertex();
-   }
- }
- 
-  function L_GETX(){
-   return logoMatrix.getX();
- }
- 
-  function L_GETY(){
-   return - logoMatrix.getY();
- }
- 
-  function L_GETZ(){
-   return logoMatrix.getZ();
- }
-
- function L_DIST(x, y, z){
-  return sqrt(pow(x-logoMatrix.getX(), 2) + pow(y-(-logoMatrix.getY()), 2) + pow(z-logoMatrix.getZ(), 2));
- }
-
-function L_SETXYZ(newX, newY, newZ){
-   pop();
-   push();
-   restoreStrokeStyle();
-   if (penDown){
-     line(logoMatrix.getX(), logoMatrix.getY(), logoMatrix.getZ(), newX, -newY, newZ);
-   }
-   logoMatrix.setX(newX);
-   logoMatrix.setY(-newY);
-   logoMatrix.setZ(newZ);
-   logoMatrix.apply(); 
-   if (penDown && shapeBegan){
-    addVertex();
-   }
- }
-
-function L_SETX(newX){
-  L_SETXYZ(newX, L_GETY(), L_GETZ());
-}
-
-function L_SETY(newY){
-  L_SETXYZ(L_GETX(), newY, L_GETZ());
-}
-
-function L_SETZ(newZ){
-  L_SETXYZ(L_GETX(), L_GETY(), newZ);
-}
-
-function L_MOUSEX(){
-  return  (mouseX - width/2)*(cameraViewControl.getFov() / 1.2) - cameraViewControl.getCenterCoordinates()["x"] ;
-}
-
-function L_MOUSEY(){
-  return -((mouseY - height/2)*(cameraViewControl.getFov() / 1.2) - cameraViewControl.getCenterCoordinates()["y"]);
-}
-
-function L_MOUSEPRESSED(){
-  var mouseCodes = {};
-  mouseCodes[LEFT] = 1;
-  mouseCodes[RIGHT] = 2;
-  mouseCodes[CENTER] = 3;
-  return (cameraViewControl.isCameraEnabled() && mouseIsPressed) ? mouseCodes[mouseButton] : 0;
-}
-
-
-//3D primitives
-function L_BOX(side){
-  if (!penDown) {noStroke();}
-  box(side);
-  restoreStrokeStyle();
-}
-
-function L_SPHERE(radius){
-  if (!penDown) {noStroke();}
-  sphere(radius);
-  restoreStrokeStyle();
-}
-
-function L_CYLINDER(radius, height){
-  if (!penDown) {noStroke();}
-  cylinder(radius, height);
-  restoreStrokeStyle();
-}
-
-function L_CONE(radius, height){
-  if (!penDown) {noStroke();}
-  cone(radius, height);
-  restoreStrokeStyle();
-}
-
-function L_TORUS(radius, tubeRadius){
-  if (!penDown) {noStroke();}
-  torus(radius, tubeRadius);
-  restoreStrokeStyle();
-}
-
-function L_ELLIPSOID(radiusX, radiusY, radiusZ){
-  if (!penDown) {noStroke();}
-  ellipsoid(radiusX, radiusY, radiusZ);
-  restoreStrokeStyle();
-}
-
-function L_MODEL(name, size){
-  if (!penDown) {noStroke();}
-  var scaleFactor = size/200; //normalized models fit inbetween -100, 100 so 200 size
-  scale(scaleFactor);
-  if (name in loadedModels){
-    model(loadedModels[name]);
-  } else {
-    throwError("Invalid model name: " + name);
-  }
-  scale(1/scaleFactor);
-  restoreStrokeStyle();
-}
-
-function L_IMAGE(name, height){
-  if (name in loadedImages){
-    var w = loadedImages[name].width;
-    var h = loadedImages[name].height;
-    var scaleFactor =  height/h;
-    image(loadedImages[name], 0, 0, w * scaleFactor, h * scaleFactor);
-  } else {
-    throwError("Invalid image name: " + name);
-  }
-}
-
-function L_PLAYSOUND(name){
-  if (name in loadedSounds){
-    var audio = loadedSounds[name];
-    if (audio.paused || audio.currentTime === 0 || audio.ended) {
-      audio.play();
+    setxyz: function(newX, newY, newZ){
+     pop();
+     push();
+     restoreStrokeStyle();
+     if (penDown){
+       line(logoMatrix.getX(), logoMatrix.getY(), logoMatrix.getZ(), newX, -newY, newZ);
+     }
+     logoMatrix.setX(newX);
+     logoMatrix.setY(-newY);
+     logoMatrix.setZ(newZ);
+     logoMatrix.apply(); 
+     if (penDown && shapeBegan){
+      addVertex();
     }
-  } else {
-    throwError("Invalid sound name: " + name);
-  }
-}
+    },
 
-function L_STOPSOUND(name){
-  if (name in loadedSounds){
-    var audio = loadedSounds[name];
-    audio.pause();
-    audio.currentTime = 0;
-  } else {
-    throwError("Invalid sound name: " + name);
-  }
-}
+    setx: function(newX){
+      this.setxyz(newX, this.gety(), this.getz());
+    },
 
-function L_PAUSESOUND(name){
-  if (name in loadedSounds){
-    var audio = loadedSounds[name];
-    audio.pause();
-  } else {
-    throwError("Invalid sound name: " + name);
-  }
-}
+    sety: function(newY){
+      this.setxyz(this.getx(), newY, this.getz());
+    },
 
-function L_IS_PLAYINGSOUND(name){
-  if (name in loadedSounds){
-    var audio = loadedSounds[name];
-    return (audio.paused || audio.currentTime === 0 || audio.ended) ? 0 : 1;
-  } else {
-    throwError("Invalid sound name: " + name);
-    return 0;
-  }
-}
+    setz: function(newZ){
+      this.setxyz(this.getx(), this.gety(), newZ);
+    },
 
-function L_SET_TIME_SOUND(name, time){
-  if (name in loadedSounds){
-    loadedSounds[name].currentTime = time;
-  } else {
-    throwError("Invalid sound name: " + name);
-  }
-}
+    mousex: function(){
+      return  (mouseX - width/2)*(cameraViewControl.getFov() / 1.2) - cameraViewControl.getCenterCoordinates()["x"] ;
+    },
 
-function L_SET_VOLUME_SOUND(name, vol){
-  if(vol < 0 ){ vol = 0;}
-  if(vol > 100){vol = 100;}
-  if (name in loadedSounds){
-    loadedSounds[name].volume = vol/100;
-  } else {
-    throwError("Invalid sound name: " + name);
-  }
-}
+    mousey: function(){
+      return -((mouseY - height/2)*(cameraViewControl.getFov() / 1.2) - cameraViewControl.getCenterCoordinates()["y"]);
+    },
 
-function L_GET_TIME_SOUND(name){
-  if (name in loadedSounds){
-    return loadedSounds[name].currentTime;
-  } else {
-    throwError("Invalid sound name: " + name);
-    return 0;
-  }
-}
-
-function L_GET_VOLUME_SOUND(name){
-  if (name in loadedSounds){
-    return Math.round(loadedSounds[name].volume * 100);
-  } else {
-    throwError("Invalid sound name: " + name);
-    return 0;
-  }
-}
+    mousePressed: function(){
+      var mouseCodes = {};
+      mouseCodes[LEFT] = 1;
+      mouseCodes[RIGHT] = 2;
+      mouseCodes[CENTER] = 3;
+      return (cameraViewControl.isCameraEnabled() && mouseIsPressed) ? mouseCodes[mouseButton] : 0;
+    },
 
 
-function L_KEY_PRESSED(){
-  return keyIsPressed ? lastKeyPressed : 0;
+    //3D primitives
+    box: function(side){
+      if (!penDown) {noStroke();}
+      box(side);
+      restoreStrokeStyle();
+    },
+
+    sphere: function(radius){
+      if (!penDown) {noStroke();}
+      sphere(radius);
+      restoreStrokeStyle();
+    },
+
+    cylinder: function(radius, height){
+      if (!penDown) {noStroke();}
+      cylinder(radius, height);
+      restoreStrokeStyle();
+    },
+
+    cone: function(radius, height){
+      if (!penDown) {noStroke();}
+      cone(radius, height);
+      restoreStrokeStyle();
+    },
+
+    torus: function(radius, tubeRadius){
+      if (!penDown) {noStroke();}
+      torus(radius, tubeRadius);
+      restoreStrokeStyle();
+    },
+
+    ellipsoid: function(radiusX, radiusY, radiusZ){
+      if (!penDown) {noStroke();}
+      ellipsoid(radiusX, radiusY, radiusZ);
+      restoreStrokeStyle();
+    },
+
+    model: function(name, size){
+      if (!penDown) {noStroke();}
+      var scaleFactor = size/200; //normalized models fit inbetween -100, 100 so 200 size
+      scale(scaleFactor);
+      if (name in loadedModels){
+        model(loadedModels[name]);
+      } else {
+        throwError("Invalid model name: " + name);
+      }
+      scale(1/scaleFactor);
+      restoreStrokeStyle();
+    },
+
+    image: function(name, height){
+      if (name in loadedImages){
+        var w = loadedImages[name].width;
+        var h = loadedImages[name].height;
+        var scaleFactor =  height/h;
+        image(loadedImages[name], 0, 0, w * scaleFactor, h * scaleFactor);
+      } else {
+        throwError("Invalid image name: " + name);
+      }
+    },
+
+    soundPlay: function(name){
+      if (name in loadedSounds){
+        var audio = loadedSounds[name];
+        if (audio.paused || audio.currentTime === 0 || audio.ended) {
+          audio.play();
+        }
+      } else {
+        throwError("Invalid sound name: " + name);
+      }
+    },
+
+    soundStop: function(name){
+      if (name in loadedSounds){
+        var audio = loadedSounds[name];
+        audio.pause();
+        audio.currentTime = 0;
+      } else {
+        throwError("Invalid sound name: " + name);
+      }
+    },
+
+    soundPause: function(name){
+      if (name in loadedSounds){
+        var audio = loadedSounds[name];
+        audio.pause();
+      } else {
+        throwError("Invalid sound name: " + name);
+      }
+    },
+
+    soundIsPlaying: function(name){
+      if (name in loadedSounds){
+        var audio = loadedSounds[name];
+        return (audio.paused || audio.currentTime === 0 || audio.ended) ? 0 : 1;
+      } else {
+        throwError("Invalid sound name: " + name);
+        return 0;
+      }
+    },
+
+    soundSetTime: function(name, time){
+      if (name in loadedSounds){
+        loadedSounds[name].currentTime = time;
+      } else {
+        throwError("Invalid sound name: " + name);
+      }
+    },
+
+    soundSetVolume: function(name, vol){
+      if(vol < 0 ){ vol = 0;}
+      if(vol > 100){vol = 100;}
+      if (name in loadedSounds){
+        loadedSounds[name].volume = vol/100;
+      } else {
+        throwError("Invalid sound name: " + name);
+      }
+    },
+
+    soundGetTime: function(name){
+      if (name in loadedSounds){
+        return loadedSounds[name].currentTime;
+      } else {
+        throwError("Invalid sound name: " + name);
+        return 0;
+      }
+    },
+
+    soundGetVolume: function(name){
+      if (name in loadedSounds){
+        return Math.round(loadedSounds[name].volume * 100);
+      } else {
+        throwError("Invalid sound name: " + name);
+        return 0;
+      }
+    },
+
+    keyPressed: function(){
+      return keyIsPressed ? lastKeyPressed : 0;
+    }
+
 }
 
-function keyPressed() {
-  lastKeyPressed = keyCode;
-}
+
+})();
+
