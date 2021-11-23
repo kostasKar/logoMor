@@ -7,7 +7,7 @@ CodeMirror.registerHelper("textHover", "logomorMode", function(cm, data, node) {
     if (tokenName in commandHints) {text += '<br>' + commandHints[tokenName];}
     //Easter egg for random number generator:
     if ((tokenName === "rand") || (tokenName === "random")){
-    text += "<br>(Current seed: " + seed + ")";
+    text += "<br>(Current seed: " + logoRandomGenerator.getSeed() + ")";
     }
   }
   var result = document.createElement('div');

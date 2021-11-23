@@ -8,8 +8,6 @@ var globalVariables;	  //an object with all the global variables name-value pair
 var variablesScopeStack;//the stack with the variables scopes
 var staticVariables;    //an object with all ste static variables name-value pairs
 var procedurePrototypes;//an object with all the functions name-object pairs
-var seed;				        //the seed for the seedable Random Number Generator		
-var seedableRNG;			  //a seedable random number generator
 var error;              //boolean indicating error in execution
 var startTime;          //used for time command
 var startFrame;         //used for frame command
@@ -19,7 +17,7 @@ function parseLogo(sourceCode = null, setDebugOn = false){
   
   logoParser.parse(sourceCode);
 
-  seed = Math.random().toString(36).substring(7);
+  logoRandomGenerator.initForNewRun();
   procedurePrototypes = {};
   staticVariables = {};
   clearSliders();
@@ -41,7 +39,7 @@ function initLogoExecution(){
   sourceTokensLineNumbers = logoParser.mainSourceTokensLineNumbers;
   currentIndex = 0;
   CommandTask.movesCount = 0;;
-  seedableRNG = new Math.seedrandom(seed);
+  logoRandomGenerator.initForNewFrame();
   tasksStack = [];
   globalVariables = {};
   variablesScopeStack = [];

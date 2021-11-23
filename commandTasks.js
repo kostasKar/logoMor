@@ -144,9 +144,9 @@ class CommandTask  {
  class EqualsTask extends CommandTask2B { run() {return (this.arguments[0] == this.arguments[1])? "1" : "0";}}
 
 //Random number generation
- class RandTask extends CommandTask1N { run() {return Math.floor(seedableRNG() * this.arguments[0]);}}
- class RandCrazyTask extends CommandTask1N { run() {return Math.floor(Math.random() * this.arguments[0]);}}
- class RandSeedTask extends CommandTask1B {run(){seedableRNG = new Math.seedrandom(this.arguments[0]); seed = this.arguments[0]; return "";}}
+ class RandTask extends CommandTask1N { run() {return Math.floor(logoRandomGenerator.getConsistentOutput() * this.arguments[0]);}}
+ class RandCrazyTask extends CommandTask1N { run() {return Math.floor(logoRandomGenerator.getInconsistentOutput() * this.arguments[0]);}}
+ class RandSeedTask extends CommandTask1B {run(){logoRandomGenerator.setSeed(this.arguments[0]); return "";}}
 
 //Mathematical commands
  class SqrtTask extends CommandTask1N { run() {return Math.sqrt(this.arguments[0]);}}
