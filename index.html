@@ -147,7 +147,7 @@
 
       <div class="areaDiv" id = "buttonDiv">
         <button id="playButton" onclick="parseLogo()">Run</button><!-- just to get rid of the space between the inline-blocks
-        --><button id="stopButton" onclick="parseLogo(''); stopAllAudio()">Stop</button><!--
+        --><button id="stopButton" onclick="parseLogo(''); logoSounds.stopAllAudio()">Stop</button><!--
         --><button type="button" id="saveButton" onclick="download()">Save</button><!--
         --><button onclick="openFile()">Load</button><!--
         --><button onclick=" window.open('assets/Documentation.pdf','_blank')" type="button">Help</button><!--
@@ -184,8 +184,8 @@
 
       <div class="areaDiv" id="soundsDiv">
         <label title="Import any audio file from local disk" class="areaTitle brightText">Sounds</label>
-        <button id="soundAddButton" onclick="openSoundFile()" class="dropbtn">Add</button>
-        <input id="soundinp" type='file' style="display:none;" onchange="readSoundFile(event)" onclick="this.value=null;" accept="audio/*"/>
+        <button id="soundAddButton" onclick="logoSounds.openSoundFile()" class="dropbtn">Add</button>
+        <input id="soundinp" type='file' style="display:none;" onchange="logoSounds.readSoundFile(event)" onclick="this.value=null;" accept="audio/*"/>
       </div>
 
 

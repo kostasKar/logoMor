@@ -347,8 +347,8 @@ var logo = (function(){
     },
 
     soundPlay: function(name){
-      if (name in loadedSounds){
-        var audio = loadedSounds[name];
+      if (logoSounds.soundExists(name)){
+        var audio = logoSounds.getAudio(name);
         if (audio.paused || audio.currentTime === 0 || audio.ended) {
           audio.play();
         }
@@ -358,8 +358,8 @@ var logo = (function(){
     },
 
     soundStop: function(name){
-      if (name in loadedSounds){
-        var audio = loadedSounds[name];
+      if (logoSounds.soundExists(name)){
+        var audio = logoSounds.getAudio(name);
         audio.pause();
         audio.currentTime = 0;
       } else {
@@ -368,8 +368,8 @@ var logo = (function(){
     },
 
     soundPause: function(name){
-      if (name in loadedSounds){
-        var audio = loadedSounds[name];
+      if (logoSounds.soundExists(name)){
+        var audio = logoSounds.getAudio(name);
         audio.pause();
       } else {
         throwError("Invalid sound name: " + name);
@@ -377,8 +377,8 @@ var logo = (function(){
     },
 
     soundIsPlaying: function(name){
-      if (name in loadedSounds){
-        var audio = loadedSounds[name];
+      if (logoSounds.soundExists(name)){
+        var audio = logoSounds.getAudio(name);
         return (audio.paused || audio.currentTime === 0 || audio.ended) ? 0 : 1;
       } else {
         throwError("Invalid sound name: " + name);
@@ -387,8 +387,8 @@ var logo = (function(){
     },
 
     soundSetTime: function(name, time){
-      if (name in loadedSounds){
-        loadedSounds[name].currentTime = time;
+      if (logoSounds.soundExists(name)){
+        logoSounds.getAudio(name).currentTime = time;
       } else {
         throwError("Invalid sound name: " + name);
       }
@@ -397,16 +397,16 @@ var logo = (function(){
     soundSetVolume: function(name, vol){
       if(vol < 0 ){ vol = 0;}
       if(vol > 100){vol = 100;}
-      if (name in loadedSounds){
-        loadedSounds[name].volume = vol/100;
+      if (logoSounds.soundExists(name)){
+        logoSounds.getAudio(name).volume = vol/100;
       } else {
         throwError("Invalid sound name: " + name);
       }
     },
 
     soundGetTime: function(name){
-      if (name in loadedSounds){
-        return loadedSounds[name].currentTime;
+      if (logoSounds.soundExists(name)){
+        return logoSounds.getAudio(name).currentTime;
       } else {
         throwError("Invalid sound name: " + name);
         return 0;
@@ -414,8 +414,8 @@ var logo = (function(){
     },
 
     soundGetVolume: function(name){
-      if (name in loadedSounds){
-        return Math.round(loadedSounds[name].volume * 100);
+      if (logoSounds.soundExists(name)){
+        return Math.round(logoSounds.getAudio(name).volume * 100);
       } else {
         throwError("Invalid sound name: " + name);
         return 0;
