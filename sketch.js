@@ -45,7 +45,6 @@ function draw() {
 //p5 defined events:
 function mouseWheel(event){
   cameraViewControl.mouseWheelCallback(event.delta);
-  return false;
 }
 
 function windowResized() {
