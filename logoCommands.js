@@ -326,8 +326,8 @@ var logo = (function(){
       if (!penDown) {noStroke();}
       var scaleFactor = size/200; //normalized models fit inbetween -100, 100 so 200 size
       scale(scaleFactor);
-      if (name in loadedModels){
-        model(loadedModels[name]);
+      if (logoModels.modelExists(name)){
+        model(logoModels.getModel(name));
       } else {
         throwError("Invalid model name: " + name);
       }

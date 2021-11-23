@@ -172,8 +172,8 @@
 
       <div class="areaDiv" id="modelsDiv">
         <label title="Import an .stl or .obj 3D model file from local disk" class="areaTitle brightText">Models</label>
-        <button id="modelsAddButton" onclick="openModelFile()" class="dropbtn">Add</button>
-        <input id="modelinp" type='file' style="display:none;" onchange="readModelFile(event)" onclick="this.value=null;" accept=".stl,.obj" />
+        <button id="modelsAddButton" onclick="logoModels.openModelFile()" class="dropbtn">Add</button>
+        <input id="modelinp" type='file' style="display:none;" onchange="logoModels.readModelFile(event)" onclick="this.value=null;" accept=".stl,.obj" />
       </div>
 
       <div class="areaDiv" id="imagesDiv">
