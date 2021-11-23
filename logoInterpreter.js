@@ -1,9 +1,6 @@
 
 
-var wholeSourceTokens;   //an array to keep the complete source tokens for reference
-var mainSourceTokens = {};  //the array of tokens for the main program
 var sourceTokens        //the array of the tokens for the currently executed code body
-var mainSourceTokensLineNumbers; //an array that keeps the text line numbers for all the main program tokens
 var sourceTokensLineNumbers;  //an array that keeps the text line nimbers for the currently executing body tokens
 var currentIndex;			  //the int index of current token
 var tasksStack;			    //the stack with all the tasks
@@ -20,14 +17,8 @@ var returnFromMain;     //used to stop execution of the program with the return 
 
 function parseLogo(sourceCode = null, setDebugOn = false){
   
-  if (sourceCode === null){
-	  sourceCode = myCodeMirror.getValue();
-  }
-  var sourceCodeTxt = prepareSourceCodeText(sourceCode);
-  wholeSourceTokens = sourceCodeTxt.trim().split(/[\s]+/).filter(function (el) {return el != "";});
-  mainSourceTokensLineNumbers = createLineNumbersArrayForWholeProgram();
-  console.log(wholeSourceTokens);
-  mainSourceTokens = [...wholeSourceTokens];
+  logoParser.parse(sourceCode);
+
   seed = Math.random().toString(36).substring(7);
   procedurePrototypes = {};
   staticVariables = {};
@@ -46,8 +37,8 @@ function parseLogo(sourceCode = null, setDebugOn = false){
 }
 
 function initLogoExecution(){
-  sourceTokens = mainSourceTokens;
-  sourceTokensLineNumbers = mainSourceTokensLineNumbers;
+  sourceTokens = logoParser.mainSourceTokens;
+  sourceTokensLineNumbers = logoParser.mainSourceTokensLineNumbers;
   currentIndex = 0;
   CommandTask.movesCount = 0;;
   seedableRNG = new Math.seedrandom(seed);
