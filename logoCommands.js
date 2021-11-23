@@ -336,11 +336,12 @@ var logo = (function(){
     },
 
     image: function(name, height){
-      if (name in loadedImages){
-        var w = loadedImages[name].width;
-        var h = loadedImages[name].height;
+      if (logoImages.imageExists(name)){
+        var im = logoImages.getImage(name);
+        var w = im.width;
+        var h = im.height;
         var scaleFactor =  height/h;
-        image(loadedImages[name], 0, 0, w * scaleFactor, h * scaleFactor);
+        image(im, 0, 0, w * scaleFactor, h * scaleFactor);
       } else {
         throwError("Invalid image name: " + name);
       }
