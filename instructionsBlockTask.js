@@ -3,8 +3,8 @@
 class InstructionsBlockTask {
 
   constructor(){
-    tasksStack.push(this);
-    if (sourceTokens[currentIndex] !== "["){
+    interpreter.tasksStack.push(this);
+    if (interpreter.currentToken !== "["){
       throwError("Missing '['");
     }
     this.opened = false;
@@ -26,33 +26,34 @@ class InstructionsBlockTask {
   }
 
   resolve(){
-  	tasksStack.pop();
+  	interpreter.tasksStack.pop();
   	return "";
   }
 
   static skipBlock(){
     var bracketDepth = 0;
     
-    if(sourceTokens[currentIndex] !== "[") {
+    if(interpreter.currentToken !== "[") {
       throwError("Skippig Instruction Block: Missing '['");
       return;
     }
     
     do {
-      if (currentIndex == sourceTokens.length){
+      if (interpreter.currentIndex == interpreter.sourceTokens.length){
         throwError("Skippig Instruction Block: Missing ']'");
         return;
       }
-      if (sourceTokens[currentIndex] === "[") {bracketDepth++;}
-      else if (sourceTokens[currentIndex] === "]") {bracketDepth--;}
-      currentIndex++;
+      if (interpreter.currentToken === "[") {bracketDepth++;}
+      else if (interpreter.currentToken === "]") {bracketDepth--;}
+      interpreter.currentIndex++;
     } 
     while (bracketDepth > 0);
   }
 
   static findEndOfBlockIndex(){
+    var sourceTokens = interpreter.sourceTokens;
     var bracketDepth = 0;
-    var index = currentIndex;
+    var index = interpreter.currentIndex;
     
     while (sourceTokens[index] !== '['){
       index++;

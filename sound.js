@@ -67,6 +67,10 @@ var logoSounds = (function(){
 
   return {
 
+    getMediaStreamDest: function(){
+      return mediaStreamDest;
+    },
+
     soundExists: function(name){
       return (name in loadedSounds);
     },

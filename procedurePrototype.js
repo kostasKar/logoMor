@@ -1,8 +1,9 @@
 class ProcedurePrototype {
   
   constructor(){
-    let i = currentIndex;
-    if (tasksStack.length > 0){
+    let i = interpreter.currentIndex;
+    let sourceTokens = interpreter.sourceTokens;
+    if (interpreter.tasksStack.length > 0){
       throwError("Cannot define a function inside another task");
       return;
     }
@@ -11,7 +12,7 @@ class ProcedurePrototype {
       return;
     }
     i++;//skip the 'to'
-    if(sourceTokens[i] in procedurePrototypes){
+    if(sourceTokens[i] in interpreter.procedurePrototypes){
       throwError("Redefinition of function with name: " + sourceTokens[i]);
       return;
     }
@@ -40,10 +41,10 @@ class ProcedurePrototype {
       i++;
     }
     let endIndex = i;
-    procedurePrototypes[sourceTokens[startIndex]] = this;
+    interpreter.procedurePrototypes[sourceTokens[startIndex]] = this;
     this.body = sourceTokens.splice(startIndex, (endIndex+1)-startIndex);//cut the body from sourceTokens and put it in body
-    sourceTokens.splice(currentIndex, 1); //remove 'to'
-    this.bodyLineNumbers = sourceTokensLineNumbers.splice(startIndex, (endIndex+1)-startIndex);
-    sourceTokensLineNumbers.splice(currentIndex, 1);
+    sourceTokens.splice(interpreter.currentIndex, 1); //remove 'to'
+    this.bodyLineNumbers = interpreter.sourceTokensLineNumbers.splice(startIndex, (endIndex+1)-startIndex);
+    interpreter.sourceTokensLineNumbers.splice(interpreter.currentIndex, 1);
   }
 }

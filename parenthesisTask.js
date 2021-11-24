@@ -8,8 +8,8 @@ class ParenthesisTask {
   constructor(){
      this.canBeResolved = false;
      this.valueSet = false;
-     tasksStack.push(this);
-     var art = new ArgumentResolverTask();
+     interpreter.tasksStack.push(this);
+     new ArgumentResolverTask();
   }
   
   tryToTakeInput(arg){
@@ -30,7 +30,7 @@ class ParenthesisTask {
   }
   
   resolve(){
-    tasksStack.pop();
+    interpreter.tasksStack.pop();
     return this.value;
   }
   

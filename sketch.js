@@ -34,9 +34,9 @@ function draw() {
   }
   cameraViewControl.adjust();
   logo.start();
-  initLogoExecution();
+  interpreter.initLogoExecution();
 
-  executeLogo();
+  interpreter.executeLogo();
   
   logo.end();
 }

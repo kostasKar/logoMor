@@ -6,11 +6,11 @@
 class UntilTask {
 
   constructor(){
-    tasksStack.push(this);
+    interpreter.tasksStack.push(this);
     new ArgumentResolverTask();
     this.canBeResolved = false;
     this.conditionSet = false;
-    this.conditionIndex = currentIndex + 1;
+    this.conditionIndex = interpreter.currentIndex + 1;
     this.endOfLoopBlockIndex = InstructionsBlockTask.findEndOfBlockIndex();
   }
   
@@ -26,13 +26,13 @@ class UntilTask {
       if (arg == 0){
         new InstructionsBlockTask(); 
       } else if (arg != 0){
-        currentIndex = this.endOfLoopBlockIndex;
+        interpreter.currentIndex = this.endOfLoopBlockIndex;
         this.canBeResolved = true;
       }
       this.conditionSet = true;
       return true;
     } else {
-      currentIndex = this.conditionIndex;
+      interpreter.currentIndex = this.conditionIndex;
       new ArgumentResolverTask();
       this.conditionSet = false;
       return false;
@@ -40,7 +40,7 @@ class UntilTask {
   }
   
   resolve(){
-    tasksStack.pop();
+    interpreter.tasksStack.pop();
     return "";
   }
 

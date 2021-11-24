@@ -33,7 +33,7 @@ class ArgumentResolverTask {
     this.stringArgumentSet = false;
     this.stringArgumentCanBeSet = true;
     this.negative = false;
-    tasksStack.push(this);
+    interpreter.tasksStack.push(this);
     this.expression = [];
   }
 
@@ -82,7 +82,7 @@ class ArgumentResolverTask {
   
   resolve(){
     var ret =  this.evaluateExpressionByPrecedence().toString();     
-    tasksStack.pop();
+    interpreter.tasksStack.pop();
     return ret; 
   }
 

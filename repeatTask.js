@@ -5,7 +5,7 @@
 class RepeatTask{
 
   constructor(){
-    tasksStack.push(this);
+    interpreter.tasksStack.push(this);
     new ArgumentResolverTask();
     this.totalExecutionsSet = false;
     this.canBeResolved = false;
@@ -24,10 +24,10 @@ class RepeatTask{
       }
       this.totalExecutions = parseInt(arg);
       if (this.totalExecutions <= 0){
-        currentIndex = this.endOfLoopBlockIndex;
+        interpreter.currentIndex = this.endOfLoopBlockIndex;
         this.canBeResolved = true;
       } else {
-        this.startIndex = currentIndex;
+        this.startIndex = interpreter.currentIndex;
         new InstructionsBlockTask();
       }
       this.totalExecutionsSet = true;
@@ -37,7 +37,7 @@ class RepeatTask{
       if (this.executionsMade >= this.totalExecutions){
         this.canBeResolved = true;
       } else {
-        currentIndex = this.startIndex;
+        interpreter.currentIndex = this.startIndex;
         new InstructionsBlockTask();
       }
       return false;
@@ -45,7 +45,7 @@ class RepeatTask{
   }
   
   resolve(){
-    tasksStack.pop();
+    interpreter.tasksStack.pop();
     return "";
   }
   
@@ -66,7 +66,7 @@ class RepeatTask{
 
 class RepCountTask{
   constructor(){
-    tasksStack.push(this);
+    interpreter.tasksStack.push(this);
     this.canBeResolved = true;
   }
 
@@ -75,10 +75,10 @@ class RepCountTask{
   }
 
   resolve(){
-    tasksStack.pop();
-    for (let i = tasksStack.length-1; i>=0; i--){
-      if ((tasksStack[i].constructor.name === 'RepeatTask') && (tasksStack[i].totalExecutionsSet)){
-        return (tasksStack[i].executionsMade+1).toString();
+    interpreter.tasksStack.pop();
+    for (let i = interpreter.tasksStack.length-1; i>=0; i--){
+      if ((interpreter.tasksStack[i].constructor.name === 'RepeatTask') && (interpreter.tasksStack[i].totalExecutionsSet)){
+        return (interpreter.tasksStack[i].executionsMade+1).toString();
       }
     }
     return "0";

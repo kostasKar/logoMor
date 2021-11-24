@@ -22,8 +22,8 @@ var logoDebugger = (function () {
 	}
 
 	function showDebuggerOutput(){
-		consolePrintln("Debugger: Paused on line " + sourceCodeLineOfTokenIndex((currentIndex)? currentIndex: 0));
-		consolePrintln("Next token: " + sourceTokens[currentIndex]);
+		consolePrintln("Debugger: Paused on line " + interpreter.currentTokenLineNumber);
+		consolePrintln("Next token: " + interpreter.currentToken);
 		variablesTrace();
 		colorDebuggingLine();
 		document.getElementById("debugContinueButton").disabled = false;
@@ -65,12 +65,12 @@ var logoDebugger = (function () {
 		stoppedNewCommand: function(){
 
 			//function definitions are only parsed on first pass and are not actually commands
-			if (sourceTokens[currentIndex] === "to"){
+			if (interpreter.currentToken === "to"){
 				return false;
 			}
 
 			commandsExecuted++;
-			debuggingLine = sourceCodeLineOfTokenIndex(currentIndex) - 1;
+			debuggingLine = interpreter.currentTokenLineNumber - 1;
 
 			var ret;
 			if ((debugControl === "step") && (commandsExecuted === commandsLimit)){

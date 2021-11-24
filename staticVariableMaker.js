@@ -5,7 +5,7 @@
 class StaticVariableMakerTask{
 
   constructor(){
-    tasksStack.push(this);
+    interpreter.tasksStack.push(this);
     this.canBeResolved = false; 
     this.nameAvailable = false;
     var art = new ArgumentResolverTask();
@@ -23,8 +23,8 @@ class StaticVariableMakerTask{
       return true;
     } else if (!this.canBeResolved){
       if (!isNaN(arg) || arg.startsWith("\"")){
-        if (this.name in staticVariables === false){
-          staticVariables[this.name] = arg;
+        if (this.name in interpreter.staticVariables === false){
+          interpreter.staticVariables[this.name] = arg;
         }
       }else {
         throwError("Static variable maker invalid argument: " + arg);
@@ -38,7 +38,7 @@ class StaticVariableMakerTask{
   }
   
   resolve(){
-    tasksStack.pop();
+    interpreter.tasksStack.pop();
     return "";
   }
 

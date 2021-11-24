@@ -17,7 +17,7 @@ class CommandTask  {
     this.argumentTypes = argumentTypes;
     this.arguments =[];
     this.isMove = isMove;
-    tasksStack.push(this);
+    interpreter.tasksStack.push(this);
     if (this.argumentTypes.length == 0){
       this.canBeResolved = true;
     } else {
@@ -43,7 +43,7 @@ class CommandTask  {
   resolve(){
     if (this.isMove){CommandTask.movesCount++;}
     var ret =  this.run().toString();
-    tasksStack.pop();
+    interpreter.tasksStack.pop();
     return ret;
   }
   
@@ -171,8 +171,8 @@ class CommandTask  {
  class DegToRadTask extends CommandTask1N { run() {return radians(this.arguments[0]);}}
 
 //Timing 
-class TimeTask extends CommandTask0{run(){return ((millis()-startTime)/1000);}}
-class FrameTask extends CommandTask0{run(){return (frameCount-startFrame);}}
+class TimeTask extends CommandTask0{run(){return ((millis()-interpreter.startTime)/1000);}}
+class FrameTask extends CommandTask0{run(){return (frameCount-interpreter.startFrame);}}
 
 //3d solids
 class BeginShapeTask extends CommandTask0{run(){logo.beginShape(); return "";}}

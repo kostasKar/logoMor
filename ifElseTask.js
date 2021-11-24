@@ -5,7 +5,7 @@
 class IfElseTask {
 
   constructor(){
-    tasksStack.push(this);
+    interpreter.tasksStack.push(this);
     new ArgumentResolverTask();
     this.canBeResolved = false;
   }
@@ -36,7 +36,7 @@ class IfElseTask {
     if (this.conditionValue){
       InstructionsBlockTask.skipBlock();
     }
-    tasksStack.pop();
+    interpreter.tasksStack.pop();
     return "";
   }
 

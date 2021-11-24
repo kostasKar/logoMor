@@ -121,10 +121,10 @@ var taskFactory = {
 
     if (token in this.TasksConstructors){
       new this.TasksConstructors[token];
-      currentIndex++;
-    } else if (token in procedurePrototypes){
-      new ProcedureTask(procedurePrototypes[token]);
-      currentIndex++;
+      interpreter.currentIndex++;
+    } else if (token in interpreter.procedurePrototypes){
+      new ProcedureTask(interpreter.procedurePrototypes[token]);
+      interpreter.currentIndex++;
     } else if (token === "to"){
       new ProcedurePrototype();
     } else {

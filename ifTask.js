@@ -3,7 +3,7 @@
 class IfTask{
 
   constructor(){
-    tasksStack.push(this);
+    interpreter.tasksStack.push(this);
     new ArgumentResolverTask();
     this.canBeResolved = false;
   }
@@ -27,7 +27,7 @@ class IfTask{
   }
   
   resolve(){
-    tasksStack.pop();
+    interpreter.tasksStack.pop();
     return "";
   }
 
