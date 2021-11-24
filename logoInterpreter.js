@@ -12,7 +12,8 @@ var interpreter = {
   errorLineNumber: 0,     
   startTime: 0, 
   startFrame: 0,         
-  returnFromMain: false,     
+  returnFromMain: false,   
+  movesLimit: 1000,  
 
   get stackLength() {return this.tasksStack.length;},
   get headTask() {return this.tasksStack[this.tasksStack.length - 1];},
@@ -99,7 +100,7 @@ var interpreter = {
     
   },
 
-  set: function(sourceCode = null, setDebugOn = false){
+  setup: function(sourceCode = null, setDebugOn = false){
     logoParser.parse(sourceCode);
     logoRandomGenerator.initForNewRun();
     this.procedurePrototypes = {};
@@ -112,6 +113,7 @@ var interpreter = {
     clearError();
     logoDebugger.initForNewRun();
     logoDebugger.setEnabled(setDebugOn);
+    this.movesLimit = document.getElementById("movesLimitInput").value;
 
     if(!isLooping()){
       redraw();
@@ -134,11 +136,10 @@ var interpreter = {
   },
 
   executeLogo:function(){
-    var movesLimit = document.getElementById("movesLimitInput").value;
-    while (((!this.noMoreTokens()) || (this.stackLength)) && (!this.error) && (!this.returnFromMain) && (CommandTask.movesCount < movesLimit)){
+    while (((!this.noMoreTokens()) || (this.stackLength)) && (!this.error) && (!this.returnFromMain) && (CommandTask.movesCount < this.movesLimit)){
       this.checkNextToken();
     }
-    if (CommandTask.movesCount >= movesLimit){
+    if (CommandTask.movesCount >= this.movesLimit){
       consolePrintln("Stopped: Reached Moves Limit");
       consolePrintln("On line: " + this.sourceTokensLineNumbers[(this.currentIndex)? this.currentIndex - 1 : 0]);
     }
