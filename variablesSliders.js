@@ -59,7 +59,7 @@ function createSliderForVar(name, value){
 	slider.className  = "slider";
 	slider.oninput= function(){
 		sliderValue.value = this.value;
-		redrawIfPaused();
+		drawingLoopControl.redrawIfPaused();
 	};
 
 	var maxLabel = document.createElement("label");
