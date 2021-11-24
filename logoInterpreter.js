@@ -140,7 +140,7 @@ var interpreter = {
     }
     if (CommandTask.movesCount >= movesLimit){
       consolePrintln("Stopped: Reached Moves Limit");
-      consolePrintln("On line: " + sourceTokensLineNumbers[(currentIndex)? currentIndex - 1 : 0]);
+      consolePrintln("On line: " + this.sourceTokensLineNumbers[(this.currentIndex)? this.currentIndex - 1 : 0]);
     }
   }   
 
