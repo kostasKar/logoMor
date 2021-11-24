@@ -54,7 +54,7 @@ class VariableMakerTask{
 
     var existingListItem = document.getElementById(this.name+"li");
     if ((existingListItem == null) && !(value.includes("\""))){
-      createListItemForVar(this.name, value);
+      variableManipulatorsSliders.createListItemForVar(this.name, value);
     }
 
     var existingSlider = document.getElementById(this.name + "slider");

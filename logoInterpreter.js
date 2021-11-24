@@ -105,8 +105,8 @@ var interpreter = {
     logoRandomGenerator.initForNewRun();
     this.procedurePrototypes = {};
     this.staticVariables = {};
-    clearSliders();
-    clearListItems();
+    variableManipulatorsSliders.clearSliders();
+    variableManipulatorsSliders.clearListItems();
 
     this.startTime = millis();
     this.startFrame = frameCount;
