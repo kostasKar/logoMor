@@ -1,19 +1,23 @@
 
-var demoPrograms = {
+var demoPrograms = (function(){
 
-	programmsArray: [],
-	previousIndex: -1,
+	var programmsArray = [];
+	var previousIndex = -1;
 
-	pushDemo: function(demoString){
-		this.programmsArray.splice(Math.floor(Math.random()*this.programmsArray.length), 0, demoString);
-	},
+	return {
 
-	getRandomDemo: function(){
-		this.previousIndex = (this.previousIndex + 1) % this.programmsArray.length;
-		return this.programmsArray[this.previousIndex];
+		pushDemo: function(demoString){
+			programmsArray.splice(Math.floor(Math.random()*programmsArray.length), 0, demoString);
+		},
+
+		getRandomDemo: function(){
+			previousIndex = (previousIndex + 1) % programmsArray.length;
+			return programmsArray[previousIndex];
+		}
+
 	}
 
-};
+})();
 
 
 demoPrograms.pushDemo(  
