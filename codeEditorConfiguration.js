@@ -77,7 +77,7 @@ CodeMirror.hint.logomor = function (editor) {
         hht.style.marginLeft = Element.parentNode.offsetWidth + 2 + "px";
         hht.innerText = commandHints[completion] ? commandHints[completion] : completion;
 
-        myCodeMirror.addWidget({ch:start , line: cursor.line},hht, true);
+        myCodeMirror.addWidget({ch:start , line: cursor.line},hht, false);
       });
 
       CodeMirror.on(result, "close", function(){
