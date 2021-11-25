@@ -621,3 +621,7 @@ label.debugControls {
 .system-output{
   color: #eeee99;
 }
+
+.error-output{
+  color: #ee9999;
+}

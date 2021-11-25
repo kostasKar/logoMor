@@ -1,7 +1,7 @@
 
 function throwError(text){
   interpreter.setError(true);
-  consoleHandler.println("Error: " + text);
+  consoleHandler.println("Error: " + text, "error");
   consoleHandler.println("Line number: " + interpreter.errorLineNumber);
   stackTrace();
   variablesTrace();
