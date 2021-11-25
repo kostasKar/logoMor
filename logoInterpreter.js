@@ -71,7 +71,7 @@ var interpreter = {
       } 
       if (!this.stackLength){
         this.returnFromMain = true; //This is either an error, or we can use return to exit execution. So no actual error thrown
-        consolePrintln("Returned from execution");
+        consoleHandler.println("Returned from execution");
       }
       return;
     } 
@@ -130,7 +130,7 @@ var interpreter = {
     this.globalVariables = {};
     this.variablesScopeStack = [];
     this.variablesScopeStack.push(this.globalVariables);
-    if (!this.error) {consoleClear();}
+    if (!this.error) {consoleHandler.clear();}
     this.returnFromMain = false;
     logoDebugger.initForNewFrame();
   },
@@ -140,9 +140,10 @@ var interpreter = {
       this.checkNextToken();
     }
     if (CommandTask.movesCount >= this.movesLimit){
-      consolePrintln("Stopped: Reached Moves Limit");
-      consolePrintln("On line: " + this.sourceTokensLineNumbers[(this.currentIndex)? this.currentIndex - 1 : 0]);
+      consoleHandler.println("Stopped: Reached Moves Limit");
+      consoleHandler.println("On line: " + this.sourceTokensLineNumbers[(this.currentIndex)? this.currentIndex - 1 : 0]);
     }
+    consoleHandler.update();
   }   
 
 

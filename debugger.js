@@ -22,8 +22,8 @@ var logoDebugger = (function () {
 	}
 
 	function showDebuggerOutput(){
-		consolePrintln("Debugger: Paused on line " + interpreter.currentTokenLineNumber);
-		consolePrintln("Next token: " + interpreter.currentToken);
+		consoleHandler.println("Debugger: Paused on line " + interpreter.currentTokenLineNumber);
+		consoleHandler.println("Next token: " + interpreter.currentToken);
 		variablesTrace();
 		colorDebuggingLine();
 		document.getElementById("debugContinueButton").disabled = false;
