@@ -10,7 +10,7 @@ var logoDebugger = (function () {
 	function breakPointOnToken(){
  		return ((myCodeMirror.lineInfo(debuggingLine) != null) && 
       	  	(myCodeMirror.lineInfo(debuggingLine).gutterMarkers) && 
-      			(debuggingLine != previousDebuggingLine));
+      			(debuggingLine !== previousDebuggingLine));
 	}
 
 	function colorDebuggingLine(){
@@ -24,7 +24,7 @@ var logoDebugger = (function () {
 	function showDebuggerOutput(){
 		consoleHandler.println("Debugger: Paused on line " + interpreter.currentTokenLineNumber);
 		consoleHandler.println("Next token: " + interpreter.currentToken);
-		variablesTrace();
+		consoleHandler.println(memoryController.getMemoryTrace());
 		colorDebuggingLine();
 		document.getElementById("debugContinueButton").disabled = false;
 	  document.getElementById("debugStepButton").disabled = false;

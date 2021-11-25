@@ -184,9 +184,9 @@ class MouseYTask extends CommandTask0{run(){return logo.mousey();}}
 class MousePressedTask extends CommandTask0{run(){return logo.mousePressed();}}
 
 //Variable manipulation tasks
-class ThingTask extends CommandTask1S{run(){return getVariableValue(this.arguments[0]);}}
-class IncrementTask extends CommandTask1S{run(){setVariableValue(this.arguments[0], Number(getVariableValue(this.arguments[0])) + 1); return "";}}
-class DecrementTask extends CommandTask1S{run(){setVariableValue(this.arguments[0], Number(getVariableValue(this.arguments[0])) - 1); return "";}}
+class ThingTask extends CommandTask1S{run(){return memoryController.getVariable(this.arguments[0]);}}
+class IncrementTask extends CommandTask1S{run(){memoryController.setExistingVariable(this.arguments[0], Number(memoryController.getVariable(this.arguments[0])) + 1); return "";}}
+class DecrementTask extends CommandTask1S{run(){memoryController.setExistingVariable(this.arguments[0], Number(memoryController.getVariable(this.arguments[0])) - 1); return "";}}
 
 //Literals concatenation
 class WordTask extends CommandTask2B{run(){return '"' + this.arguments[0] + this.arguments[1];}}

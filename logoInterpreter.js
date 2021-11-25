@@ -3,10 +3,7 @@ var interpreter = {
   sourceTokens: [],     
   sourceTokensLineNumbers: [],
   currentIndex: 0,
-  tasksStack: [],    
-  globalVariables: {},    
-  variablesScopeStack: [],
-  staticVariables: {},
+  tasksStack: [],
   procedurePrototypes: {},
   error: false,
   errorLineNumber: 0,     
@@ -104,7 +101,7 @@ var interpreter = {
     logoParser.parse(sourceCode);
     logoRandomGenerator.initForNewRun();
     this.procedurePrototypes = {};
-    this.staticVariables = {};
+    memoryController.initStaticVariables();
     variableManipulatorsSliders.clearSliders();
     variableManipulatorsSliders.clearListItems();
 
@@ -127,9 +124,7 @@ var interpreter = {
     CommandTask.movesCount = 0;;
     logoRandomGenerator.initForNewFrame();
     this.tasksStack = [];
-    this.globalVariables = {};
-    this.variablesScopeStack = [];
-    this.variablesScopeStack.push(this.globalVariables);
+    memoryController.initNonStaticVariables();
     if (!this.error) {consoleHandler.clear();}
     this.returnFromMain = false;
     logoDebugger.initForNewFrame();

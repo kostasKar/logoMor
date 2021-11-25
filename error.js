@@ -4,7 +4,7 @@ function throwError(text){
   consoleHandler.println("Error: " + text, "error");
   consoleHandler.println("Line number: " + interpreter.errorLineNumber);
   stackTrace();
-  variablesTrace();
+  consoleHandler.println(memoryController.getMemoryTrace());
   myCodeMirror.addLineClass(interpreter.errorLineNumber - 1, "background", "cm-error-line");
   myCodeMirror.scrollIntoView({line:interpreter.errorLineNumber - 1, char:1}, 200);
 }
@@ -26,23 +26,4 @@ function stackTrace(){
       consoleHandler.println("");
     }
   }
-}
-
-function variablesTrace(){
-  consoleHandler.print("\nVariables Info:");
-  if(interpreter.variablesScopeStack.length > 1){
-    consoleHandler.println("\nLocal variables:");
-    for (const [key, value] of Object.entries(interpreter.variablesScopeStack[interpreter.variablesScopeStack.length-1])){
-      consoleHandler.print(key + " = " + value + "\n");
-    }
-  }
-  consoleHandler.println("\nGlobal variables:");
-  for (const [key, value] of Object.entries(interpreter.globalVariables)){
-    consoleHandler.print(key + " = " + value + "\n");
-  }
-  consoleHandler.println("\nStatic variables:");
-  for (const [key, value] of Object.entries(interpreter.staticVariables)){
-    consoleHandler.print(key + " = " + value + "\n");
-  }
-
 }

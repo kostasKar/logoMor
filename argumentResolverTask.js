@@ -47,7 +47,7 @@ class ArgumentResolverTask {
       }
 
       if (arg.startsWith(":")){
-        arg = getVariableValue(arg.replace(":", ""));
+        arg = memoryController.getVariable(arg.replace(":", ""));
       }
 
       if (!isNaN(arg)){

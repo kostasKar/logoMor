@@ -12,7 +12,7 @@ class ProcedureTask {
     if (this.numOfParameters > 0){
       var art = new ArgumentResolverTask();
     } else {
-      interpreter.variablesScopeStack.push(this.localVariables);
+      memoryController.pushScope(this.localVariables);
       this.returnIndex = interpreter.currentIndex + 1;
       this.returnSourceTokens = interpreter.sourceTokens;
       interpreter.sourceTokens = this.body;
@@ -33,7 +33,7 @@ class ProcedureTask {
       this.localVariables[this.body[this.numOfParametersSet + 1].replace(":", "")]  = arg; 
       this.numOfParametersSet++;
       if (this.numOfParametersSet == this.numOfParameters){
-        interpreter.variablesScopeStack.push(this.localVariables);
+        memoryController.pushScope(this.localVariables);
         this.returnIndex = interpreter.currentIndex;
         this.returnSourceTokens = interpreter.sourceTokens;
         interpreter.sourceTokens = this.body;
@@ -64,7 +64,7 @@ class ProcedureTask {
   
   resolve(){
     interpreter.tasksStack.pop();
-    interpreter.variablesScopeStack.pop();
+    memoryController.popScope();
     interpreter.sourceTokens = this.returnSourceTokens;
     interpreter.currentIndex = this.returnIndex;
     interpreter.sourceTokensLineNumbers = this.returnSourceTokensLineNumbers;

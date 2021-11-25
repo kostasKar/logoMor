@@ -23,8 +23,8 @@ class StaticVariableMakerTask{
       return true;
     } else if (!this.canBeResolved){
       if (!isNaN(arg) || arg.startsWith("\"")){
-        if (this.name in interpreter.staticVariables === false){
-          interpreter.staticVariables[this.name] = arg;
+        if (!memoryController.staticVariableExists(this.name)){
+          memoryController.setNewStaticVariable(this.name, arg);
         }
       }else {
         throwError("Static variable maker invalid argument: " + arg);
