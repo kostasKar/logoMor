@@ -139,7 +139,20 @@ var interpreter = {
       consoleHandler.println("On line: " + this.sourceTokensLineNumbers[(this.currentIndex)? this.currentIndex - 1 : 0]);
     }
     consoleHandler.update();
-  }   
+  },
+
+  getStackTrace: function(){
+    let traceText = "Stack trace (most recent task last):\n";
+    for (let i=0; i<this.tasksStack.length; i++){
+      traceText += "-" + this.tasksStack[i].constructor.name;
+      if (this.tasksStack[i].constructor.name === 'ProcedureTask'){
+        traceText += " " + this.tasksStack[i].body[0] + "\n";
+      } else {
+        traceText += "\n";
+      }
+    }
+    return traceText;
+  }
 
 
 };

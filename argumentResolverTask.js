@@ -5,26 +5,24 @@
    Once the task has a left hand operand, it can be resolved, returning its value.
    However, the interpreter will first make sure that the argumentResolverTask can not consume any more inputs before it resolves it
    After the left hand operand, argumentResolverTask can accept an operator (arithmetic or comparison)
-   Note: The minus operator is also acceptable as the first argument, for negative values.
-   After accepting an operator, the argumentResolverTask becomes non-resolvable, unless it receives another operand
-   whose return value will be considered it's right hand operand the value of the initial operand will be updated with the result of the operation
+   Note: Minus and plus operators are also acceptable as unary operators.
+   After accepting an operator, the argumentResolverTask becomes non-resolvable, until it receives another operand
    This process can continue for an arbitrary chained succession of operands and operators, before the initial resolver returns a value to the calling task
    If the task is expecting an operand and the token it receives is not one of the directly consumable cases, it does not consume it and it remains unresolvable
    That token will probably trigger the creation of a command task that produces a return value. Once that task is resolved, 
-   it's return value will be then be consumable by the argumentResolverTask.
+   it's return value will then be consumable by the argumentResolverTask.
    The precedence of the operators (highest to lowest): [["*", "/"], ["+", "-"], ["<", "<=", ">", ">="], ["="]]
    Among operators of the same precedence, left-to-right associativity is followed
  */
 
-//These are all the allowed operators
-var operators = ["*", "/", "+", "-", "<", "<=", ">", ">=", "="];
+//These are all the allowed operators arranged in descending precedence groups.
+// Within each group all operators have equal precedence
+const operatorsPrecedence = [["*", "/"],
+                             ["+", "-"],
+                             ["<", "<=", ">", ">="],
+                             ["="]];
 
-//These are the operators arranged in descending precedence groups. Whithin each group all operators have equal precedence
-var operatorsPrecedence = [["*", "/"], 
-                           ["+", "-"], 
-                           ["<", "<=", ">", ">="], 
-                           ["="]];
-
+const operators = operatorsPrecedence.flat();
 
 class ArgumentResolverTask {
   
