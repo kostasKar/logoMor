@@ -28,6 +28,7 @@ var logoImages = (function(){
         p.noStroke();
         p.lights();
         p.image(loadedImages[name], -(w*ratio/2), -25, w*ratio, 50);
+        p.noLoop();
       }
     };
 

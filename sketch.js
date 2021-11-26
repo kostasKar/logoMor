@@ -1,8 +1,9 @@
 var labelFont;
 
 function preload() {
-  //uncomment to deploy online
-  //labelFont = loadFont('assets/Inconsolata.otf');
+  if (window.location.protocol !== "file:"){
+    labelFont = loadFont('assets/Inconsolata.otf');
+  }
 }
 
 
@@ -18,10 +19,9 @@ function setup() {
   canvas.mouseOver(cameraViewControl.enable);
   canvas.mouseOut(cameraViewControl.disable);
 
-  //labels fonts
-  //uncomment to deploy online
-  //textFont(labelFont);
-
+  if (window.location.protocol !== "file:"){
+    textFont(labelFont);
+  }
 }
 
 

@@ -76,6 +76,7 @@ var logoModels = (function() {
         p.lights();
         p.scale(0.25);
         p.model(loadedModels[name]);
+        p.noLoop();
       }
     };
 
