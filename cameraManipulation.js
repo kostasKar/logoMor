@@ -34,8 +34,8 @@ var cameraViewControl = (function (){
     },
 
     initialize: function(){
-      fov_min = radians(1);
-      fov_max = radians(90);
+      fov_min = p5Renderer.radians(1);
+      fov_max = p5Renderer.radians(90);
       cameraEnabled = false;
       this.reset();
     },
@@ -43,10 +43,10 @@ var cameraViewControl = (function (){
     reset: function(){
       centerX = 0;
       centerY = 0;
-      fov = radians(30);
+      fov = p5Renderer.radians(30);
       xRotation = 0;
       yRotation = 0;
-      autoRotation_lastFrameCount = frameCount;
+      autoRotation_lastFrameCount = p5Renderer.frameCount;
       autoRotation_lastYRotation = 0;
     },
 
@@ -59,7 +59,7 @@ var cameraViewControl = (function (){
     },
 
     mouseWheelCallback: function(eventDelta) {
-      if (cameraEnabled && isLooping()){  
+      if (cameraEnabled && p5Renderer.isLooping()){
 
         fov += (eventDelta > 0) ? 1/60 : -1/60;
         if (fov < fov_min){
@@ -72,36 +72,36 @@ var cameraViewControl = (function (){
     },
 
     adjust: function(){
-      var cameraZ = (height/2.0) / tan(fov / 2.0);
-      var aspect = width / height;
-      perspective(fov, aspect, cameraZ/200.0, cameraZ*10.0);
+      var cameraZ = (p5Renderer.height/2.0) / Math.tan(fov / 2.0);
+      var aspect = p5Renderer.width / p5Renderer.height;
+      p5Renderer.perspective(fov, aspect, cameraZ/200.0, cameraZ*10.0);
       
-      if (cameraEnabled && mouseIsPressed && (mouseButton == LEFT)) {
-        xRotation += - (mouseY - pmouseY)/(height) * PI;
-        yRotation += (mouseX - pmouseX)/(height) * PI;
+      if (cameraEnabled && p5Renderer.mouseIsPressed && (p5Renderer.mouseButton == p5Renderer.LEFT)) {
+        xRotation += - (p5Renderer.mouseY - p5Renderer.pmouseY)/(p5Renderer.height) * Math.PI;
+        yRotation += (p5Renderer.mouseX - p5Renderer.pmouseX)/(p5Renderer.height) * Math.PI;
       }
       
-      if (cameraEnabled && mouseIsPressed && (mouseButton == CENTER)) {
-        centerX += (mouseX - pmouseX) * (fov / 1.2);
-        centerY += (mouseY - pmouseY) * (fov / 1.2);
+      if (cameraEnabled && p5Renderer.mouseIsPressed && (p5Renderer.mouseButton == p5Renderer.CENTER)) {
+        centerX += (p5Renderer.mouseX - p5Renderer.pmouseX) * (fov / 1.2);
+        centerY += (p5Renderer.mouseY - p5Renderer.pmouseY) * (fov / 1.2);
       }
 
       if (document.getElementById("autoRotate").checked){
-        yRotation = autoRotation_lastYRotation + (frameCount - autoRotation_lastFrameCount) * 0.015;
+        yRotation = autoRotation_lastYRotation + (p5Renderer.frameCount - autoRotation_lastFrameCount) * 0.015;
       } else {
-        autoRotation_lastFrameCount = frameCount;
+        autoRotation_lastFrameCount = p5Renderer.frameCount;
         autoRotation_lastYRotation = yRotation;
       }
-      
-      translate(centerX, centerY, 0);
-      rotateX(xRotation);
-      rotateY(yRotation);
+
+      p5Renderer.translate(centerX, centerY, 0);
+      p5Renderer.rotateX(xRotation);
+      p5Renderer.rotateY(yRotation);
 
       if (document.getElementById("avatarViewCheckbox").checked){
         logoMatrix.applyInverse();
       }
 
-      document.getElementById("fpsValue").innerText = frameRate().toFixed(1);
+      document.getElementById("fpsValue").innerText = p5Renderer.frameRate().toFixed(1);
       
     }
   }

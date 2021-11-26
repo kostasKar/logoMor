@@ -105,16 +105,13 @@ var interpreter = {
     variableManipulatorsSliders.clearSliders();
     variableManipulatorsSliders.clearListItems();
 
-    this.startTime = millis();
-    this.startFrame = frameCount;
+    this.startTime = Date.now();
+    this.startFrame = p5Renderer.frameCount;
     clearError();
     logoDebugger.initForNewRun();
     logoDebugger.setEnabled(setDebugOn);
     this.movesLimit = document.getElementById("movesLimitInput").value;
-
-    if(!isLooping()){
-      redraw();
-    }
+    drawingLoopControl.redrawIfPaused();
   },
 
   initLogoExecution: function(){

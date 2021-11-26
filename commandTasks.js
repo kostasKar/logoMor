@@ -112,8 +112,8 @@ class CommandTask  {
  class DnTask extends CommandTask1NM { run() { logo.down(this.arguments[0]); return "";}}
  class RrTask extends CommandTask1NM { run() { logo.rollRight(this.arguments[0]); return "";}}
  class RlTask extends CommandTask1NM { run() { logo.rollLeft(this.arguments[0]); return "";}}
- class SpsTask extends CommandTask1N { run() { logo.setPenSize(int(this.arguments[0])); return "";}}
- class StsTask extends CommandTask1N { run() { logo.setTextSize(int(this.arguments[0])); return "";}}
+ class SpsTask extends CommandTask1N { run() { logo.setPenSize(Math.round(this.arguments[0])); return "";}}
+ class StsTask extends CommandTask1N { run() { logo.setTextSize(Math.round(this.arguments[0])); return "";}}
  class ColorTask extends CommandTask3N { run() { logo.color(parseInt(this.arguments[0]), parseInt(this.arguments[1]), parseInt(this.arguments[2])); return "";}}
  class ColorHSBTask extends CommandTask3N { run() { logo.colorHSB(parseInt(this.arguments[0]), parseInt(this.arguments[1]), parseInt(this.arguments[2])); return "";}}
  class ColorAlphaTask extends CommandTask1N{ run() {logo.colorAlpha(parseInt(this.arguments[0])); return "";}}
@@ -152,12 +152,12 @@ class CommandTask  {
  class SqrtTask extends CommandTask1N { run() {return Math.sqrt(this.arguments[0]);}}
  class PowTask extends CommandTask2N { run() {return Math.pow(this.arguments[0], this.arguments[1]);}}
  class ModTask extends CommandTask2N { run() {return (Math.floor(this.arguments[0]) % Math.floor(this.arguments[1]));}}
- class CosTask extends CommandTask1N { run() {return Math.cos(radians(this.arguments[0]));}}
- class SinTask extends CommandTask1N { run() {return Math.sin(radians(this.arguments[0]));}}
- class TanTask extends CommandTask1N { run() {return Math.tan(radians(this.arguments[0]));}}
- class ArcCosTask extends CommandTask1N { run() {return degrees(Math.acos(this.arguments[0]));}}
- class ArcSinTask extends CommandTask1N { run() {return degrees(Math.asin(this.arguments[0]));}}
- class ArcTanTask extends CommandTask1N { run() {return degrees(Math.atan(this.arguments[0]));}}
+ class CosTask extends CommandTask1N { run() {return Math.cos(p5Renderer.radians(this.arguments[0]));}}
+ class SinTask extends CommandTask1N { run() {return Math.sin(p5Renderer.radians(this.arguments[0]));}}
+ class TanTask extends CommandTask1N { run() {return Math.tan(p5Renderer.radians(this.arguments[0]));}}
+ class ArcCosTask extends CommandTask1N { run() {return p5Renderer.degrees(Math.acos(this.arguments[0]));}}
+ class ArcSinTask extends CommandTask1N { run() {return p5Renderer.degrees(Math.asin(this.arguments[0]));}}
+ class ArcTanTask extends CommandTask1N { run() {return p5Renderer.degrees(Math.atan(this.arguments[0]));}}
  class LnTask extends CommandTask1N { run() {return Math.log(this.arguments[0]);}}
  class LogTask extends CommandTask1N { run() {return Math.log10(this.arguments[0]);}}
  class ExpTask extends CommandTask1N { run() {return Math.exp(this.arguments[0]);}}
@@ -167,12 +167,12 @@ class CommandTask  {
  class AbsTask extends CommandTask1N { run() {return Math.abs(this.arguments[0]);}}
  class MinTask extends CommandTask2N { run() {return Math.min(this.arguments[0], this.arguments[1]);}}
  class MaxTask extends CommandTask2N { run() {return Math.max(this.arguments[0], this.arguments[1]);}}
- class RadToDegTask extends CommandTask1N { run() {return degrees(this.arguments[0]);}}
- class DegToRadTask extends CommandTask1N { run() {return radians(this.arguments[0]);}}
+ class RadToDegTask extends CommandTask1N { run() {return p5Renderer.degrees(this.arguments[0]);}}
+ class DegToRadTask extends CommandTask1N { run() {return p5Renderer.radians(this.arguments[0]);}}
 
 //Timing 
-class TimeTask extends CommandTask0{run(){return ((millis()-interpreter.startTime)/1000);}}
-class FrameTask extends CommandTask0{run(){return (frameCount-interpreter.startFrame);}}
+class TimeTask extends CommandTask0{run(){return ((Date.now()-interpreter.startTime)/1000);}}
+class FrameTask extends CommandTask0{run(){return (p5Renderer.frameCount-interpreter.startFrame);}}
 
 //3d solids
 class BeginShapeTask extends CommandTask0{run(){logo.beginShape(); return "";}}

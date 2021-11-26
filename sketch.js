@@ -1,59 +1,58 @@
-var labelFont;
 
-function preload() {
-  if (window.location.protocol !== "file:"){
-    labelFont = loadFont('assets/Inconsolata.otf');
+let s = p => {
+
+  var labelFont;
+  var canvas;
+
+  p.preload = function(){
+    if (window.location.protocol !== "file:"){
+      labelFont = p.loadFont('assets/Inconsolata.otf');
+    }
+  };
+
+  p.setup = function() {
+    p.setAttributes('antialias', true);
+    canvas = p.createCanvas(p.windowWidth, p.windowHeight, p.WEBGL);
+    canvas.parent('drawCanvas');
+    cameraViewControl.initialize();
+    canvas.doubleClicked(cameraViewControl.reset);
+    canvas.mouseOver(cameraViewControl.enable);
+    canvas.mouseOut(cameraViewControl.disable);
+
+    if (window.location.protocol !== "file:"){
+      p.textFont(labelFont);
+    }
+  };
+
+  p.draw = function() {
+    p.lights();
+    if (drawingLoopControl.clearDrawing){
+      p.background(0);
+    }
+    cameraViewControl.adjust();
+    logo.start();
+    interpreter.initLogoExecution();
+    interpreter.executeLogo();
+    logo.end();
+  };
+
+  p.mouseWheel = function(event){
+    cameraViewControl.mouseWheelCallback(event.delta);
+  };
+
+  p.windowResized = function() {
+    p.resizeCanvas(p.windowWidth, p.windowHeight);
+    document.getElementById("fullscreenButton").firstElementChild.className = p.fullscreen()? "fa fa-compress" : "fa fa-expand";
+  };
+
+  p.keyPressed = function() {
+    logo.keyPressedCallback(p.keyCode);
   }
-}
+
+};
 
 
-
-var canvas;
-
-function setup() {
-  setAttributes('antialias', true);
-  canvas = createCanvas(windowWidth, windowHeight, WEBGL);
-  canvas.parent('drawCanvas');
-  cameraViewControl.initialize();
-  canvas.doubleClicked(cameraViewControl.reset);
-  canvas.mouseOver(cameraViewControl.enable);
-  canvas.mouseOut(cameraViewControl.disable);
-
-  if (window.location.protocol !== "file:"){
-    textFont(labelFont);
-  }
-}
-
-
-
-function draw() {
-  lights();
-  if (drawingLoopControl.clearDrawing){
-    background(0);
-  }
-  cameraViewControl.adjust();
-  logo.start();
-  interpreter.initLogoExecution();
-
-  interpreter.executeLogo();
-  
-  logo.end();
-}
-
-
-//p5 defined events:
-function mouseWheel(event){
-  cameraViewControl.mouseWheelCallback(event.delta);
-}
-
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-  document.getElementById("fullscreenButton").firstElementChild.className = fullscreen()? "fa fa-compress" : "fa fa-expand";
-}
-
-function keyPressed() {
-  logo.keyPressedCallback(keyCode);
-}
+let p5Renderer = new p5(s);
 
 
 var drawingLoopControl = {
@@ -61,24 +60,24 @@ var drawingLoopControl = {
   clearDrawing: true,
 
   redrawIfPaused: function(){
-    if (!isLooping()){
-      redraw();
+    if (!p5Renderer.isLooping()){
+      p5Renderer.redraw();
     }
   },
 
   togglePause: function(){
-    if (isLooping()){
+    if (p5Renderer.isLooping()){
       document.getElementById("pause").firstElementChild.className = "fa fa-play";
       document.getElementById("pause").firstElementChild.style.color = "lime";
       document.getElementById("autoRotate").disabled = true;
       document.getElementById("turnsHelpArrows").disabled = true;
-      noLoop();
+      p5Renderer.noLoop();
     } else {
       document.getElementById("pause").firstElementChild.className = "fa fa-pause";
       document.getElementById("pause").firstElementChild.style.removeProperty("color");
       document.getElementById("autoRotate").disabled = false;
       document.getElementById("turnsHelpArrows").disabled = false;
-      loop();
+      p5Renderer.loop();
     }
   },
 

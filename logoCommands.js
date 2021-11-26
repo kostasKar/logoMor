@@ -10,14 +10,14 @@ var logo = (function(){
   var defaultStyle = {"weight":1, "r":255, "g":255, "b":255, "a":255, "textSize":10};
 
   function makeShape(){
-    pop();
-    push();
+    p5Renderer.pop();
+    p5Renderer.push();
     restoreStrokeStyle(); //for the stroke color
-    beginShape();
+    p5Renderer.beginShape();
     for (let i = 0; i < vertices.length; i++) {
-      vertex(vertices[i][0], vertices[i][1], vertices[i][2]);
-    } 
-    endShape();
+      p5Renderer.vertex(vertices[i][0], vertices[i][1], vertices[i][2]);
+    }
+    p5Renderer.endShape();
     logoMatrix.apply();
   }
 
@@ -38,10 +38,10 @@ var logo = (function(){
   }
 
   function restoreStrokeStyle(){
-    strokeWeight(strokeWght);
-    stroke(strokeR, strokeG, strokeB, strokeAlpha);
-    fill(strokeR, strokeG, strokeB, strokeAlpha);
-    textSize(labelTextSize);
+    p5Renderer.strokeWeight(strokeWght);
+    p5Renderer.stroke(strokeR, strokeG, strokeB, strokeAlpha);
+    p5Renderer.fill(strokeR, strokeG, strokeB, strokeAlpha);
+    p5Renderer.textSize(labelTextSize);
   }
 
 
@@ -66,7 +66,7 @@ var logo = (function(){
       shapeBegan = false;
       vertices = [];
       initStrokeStyle();
-      push();
+      p5Renderer.push();
       logoMatrix.reset();
     },
 
@@ -82,7 +82,7 @@ var logo = (function(){
           drawCoordinates(10);
         }
       }
-      pop();
+      p5Renderer.pop();
     },
 
     showTurtle: function(){
@@ -107,9 +107,9 @@ var logo = (function(){
 
     forward: function(length){
      if (penDown){
-        line(0, 0, 0, 0, -length, 0);
+       p5Renderer.line(0, 0, 0, 0, -length, 0);
       }
-      translate(0, -length, 0);
+      p5Renderer.translate(0, -length, 0);
       logoMatrix.translate(0, -length, 0);
       if (penDown && shapeBegan){
         addVertex();
@@ -118,9 +118,9 @@ var logo = (function(){
 
     backward: function(length){
       if (penDown){
-        line(0, 0, 0, 0, length, 0);
+        p5Renderer.line(0, 0, 0, 0, length, 0);
       }
-      translate(0, length, 0);
+      p5Renderer.translate(0, length, 0);
       logoMatrix.translate(0, length, 0);
       if (penDown && shapeBegan){
         addVertex();
@@ -128,38 +128,38 @@ var logo = (function(){
     },
 
     right: function(angle){
-     rotateZ(radians(angle));
-     logoMatrix.rotateZ(radians(angle));
+     p5Renderer.rotateZ(p5Renderer.radians(angle));
+     logoMatrix.rotateZ(p5Renderer.radians(angle));
     },
 
     left: function(angle){
-     rotateZ(radians(-angle));
-     logoMatrix.rotateZ(radians(-angle));
+     p5Renderer.rotateZ(p5Renderer.radians(-angle));
+     logoMatrix.rotateZ(p5Renderer.radians(-angle));
     },
 
     up: function(angle){
-     rotateX(radians(-angle));
-     logoMatrix.rotateX(radians(-angle));
+     p5Renderer.rotateX(p5Renderer.radians(-angle));
+     logoMatrix.rotateX(p5Renderer.radians(-angle));
     },
 
     down: function(angle){
-     rotateX(radians(angle));
-     logoMatrix.rotateX(radians(angle));
+     p5Renderer.rotateX(p5Renderer.radians(angle));
+     logoMatrix.rotateX(p5Renderer.radians(angle));
     },
 
     rollRight: function(angle){
-     rotateY(radians(angle));
-     logoMatrix.rotateY(radians(angle));
+     p5Renderer.rotateY(p5Renderer.radians(angle));
+     logoMatrix.rotateY(p5Renderer.radians(angle));
     },
 
     rollLeft: function(angle){
-     rotateY(radians(-angle));
-     logoMatrix.rotateY(radians(-angle));
+     p5Renderer.rotateY(p5Renderer.radians(-angle));
+     logoMatrix.rotateY(p5Renderer.radians(-angle));
     },
 
     arc: function(angle, radius){
-      noFill();
-      arc(0, 0, radius*2, radius*2, -HALF_PI, radians(angle) - HALF_PI);
+      p5Renderer.noFill();
+      p5Renderer.arc(0, 0, radius*2, radius*2, -p5Renderer.HALF_PI, p5Renderer.radians(angle) - p5Renderer.HALF_PI);
       restoreStrokeStyle();
     },
 
@@ -172,12 +172,12 @@ var logo = (function(){
     },
 
     setPenSize: function(n){
-     strokeWeight(n);
+     p5Renderer.strokeWeight(n);
      strokeWght = n;
     },
 
     setTextSize: function(n){
-      textSize(n);
+      p5Renderer.textSize(n);
       labelTextSize = n;
     },
 
@@ -189,34 +189,34 @@ var logo = (function(){
     },
 
     colorHSB: function(h, s, b){
-      var c = color('hsb('+ h + ',' + s + '%,' + b + '%)');
-      strokeR = red(c);
-      strokeG = green(c);
-      strokeB = blue(c);
+      var c = p5Renderer.color('hsb('+ h + ',' + s + '%,' + b + '%)');
+      strokeR = p5Renderer.red(c);
+      strokeG = p5Renderer.green(c);
+      strokeB = p5Renderer.blue(c);
       restoreStrokeStyle();
     },
 
     colorAlpha: function(a){
-     stroke(strokeR, strokeG, strokeB, a);
-     fill(strokeR, strokeG, strokeB, a);
+     p5Renderer.stroke(strokeR, strokeG, strokeB, a);
+     p5Renderer.fill(strokeR, strokeG, strokeB, a);
      strokeAlpha = a;
     },
 
     label: function(word){
-     text(word, 0, 0);
+      p5Renderer.text(word, 0, 0);
     },
 
     point: function(){
-      point(0,0,0);
+      p5Renderer.point(0,0,0);
     },
 
 
     home: function(){
-     pop();
-     push();
+      p5Renderer.pop();
+      p5Renderer.push();
      restoreStrokeStyle();
      if (penDown){
-       line(0, 0, 0, logoMatrix.getX(), logoMatrix.getY(), logoMatrix.getZ());
+       p5Renderer.line(0, 0, 0, logoMatrix.getX(), logoMatrix.getY(), logoMatrix.getZ());
      }
      logoMatrix.reset(); 
      if (penDown && shapeBegan){
@@ -237,23 +237,23 @@ var logo = (function(){
     },
 
     dist: function(x, y, z){
-      return sqrt(pow(x-logoMatrix.getX(), 2) + pow(y-(-logoMatrix.getY()), 2) + pow(z-logoMatrix.getZ(), 2));
+      return Math.sqrt(Math.pow(x-logoMatrix.getX(), 2) + Math.pow(y-(-logoMatrix.getY()), 2) + Math.pow(z-logoMatrix.getZ(), 2));
     },
 
     setxyz: function(newX, newY, newZ){
-     pop();
-     push();
+      p5Renderer.pop();
+      p5Renderer.push();
      restoreStrokeStyle();
      if (penDown){
-       line(logoMatrix.getX(), logoMatrix.getY(), logoMatrix.getZ(), newX, -newY, newZ);
+       p5Renderer.line(logoMatrix.getX(), logoMatrix.getY(), logoMatrix.getZ(), newX, -newY, newZ);
      }
      logoMatrix.setX(newX);
      logoMatrix.setY(-newY);
      logoMatrix.setZ(newZ);
      logoMatrix.apply(); 
      if (penDown && shapeBegan){
-      addVertex();
-    }
+       addVertex();
+     }
     },
 
     setx: function(newX){
@@ -269,69 +269,69 @@ var logo = (function(){
     },
 
     mousex: function(){
-      return  (mouseX - width/2)*(cameraViewControl.getFov() / 1.2) - cameraViewControl.getCenterCoordinates()["x"] ;
+      return  (p5Renderer.mouseX - p5Renderer.width/2)*(cameraViewControl.getFov() / 1.2) - cameraViewControl.getCenterCoordinates()["x"] ;
     },
 
     mousey: function(){
-      return -((mouseY - height/2)*(cameraViewControl.getFov() / 1.2) - cameraViewControl.getCenterCoordinates()["y"]);
+      return -((p5Renderer.mouseY - p5Renderer.height/2)*(cameraViewControl.getFov() / 1.2) - cameraViewControl.getCenterCoordinates()["y"]);
     },
 
     mousePressed: function(){
       var mouseCodes = {};
-      mouseCodes[LEFT] = 1;
-      mouseCodes[RIGHT] = 2;
-      mouseCodes[CENTER] = 3;
-      return (cameraViewControl.isCameraEnabled() && mouseIsPressed) ? mouseCodes[mouseButton] : 0;
+      mouseCodes[p5Renderer.LEFT] = 1;
+      mouseCodes[p5Renderer.RIGHT] = 2;
+      mouseCodes[p5Renderer.CENTER] = 3;
+      return (cameraViewControl.isCameraEnabled() && p5Renderer.mouseIsPressed) ? mouseCodes[p5Renderer.mouseButton] : 0;
     },
 
 
     //3D primitives
     box: function(side){
-      if (!penDown) {noStroke();}
-      box(side);
+      if (!penDown) {p5Renderer.noStroke();}
+      p5Renderer.box(side);
       restoreStrokeStyle();
     },
 
     sphere: function(radius){
-      if (!penDown) {noStroke();}
-      sphere(radius);
+      if (!penDown) {p5Renderer.noStroke();}
+      p5Renderer.sphere(radius);
       restoreStrokeStyle();
     },
 
     cylinder: function(radius, height){
-      if (!penDown) {noStroke();}
-      cylinder(radius, height);
+      if (!penDown) {p5Renderer.noStroke();}
+      p5Renderer.cylinder(radius, height);
       restoreStrokeStyle();
     },
 
     cone: function(radius, height){
-      if (!penDown) {noStroke();}
-      cone(radius, height);
+      if (!penDown) {p5Renderer.noStroke();}
+      p5Renderer.cone(radius, height);
       restoreStrokeStyle();
     },
 
     torus: function(radius, tubeRadius){
-      if (!penDown) {noStroke();}
-      torus(radius, tubeRadius);
+      if (!penDown) {p5Renderer.noStroke();}
+      p5Renderer.torus(radius, tubeRadius);
       restoreStrokeStyle();
     },
 
     ellipsoid: function(radiusX, radiusY, radiusZ){
-      if (!penDown) {noStroke();}
-      ellipsoid(radiusX, radiusY, radiusZ);
+      if (!penDown) {p5Renderer.noStroke();}
+      p5Renderer.ellipsoid(radiusX, radiusY, radiusZ);
       restoreStrokeStyle();
     },
 
     model: function(name, size){
-      if (!penDown) {noStroke();}
+      if (!penDown) {p5Renderer.noStroke();}
       var scaleFactor = size/200; //normalized models fit inbetween -100, 100 so 200 size
-      scale(scaleFactor);
+      p5Renderer.scale(scaleFactor);
       if (logoModels.modelExists(name)){
-        model(logoModels.getModel(name));
+        p5Renderer.model(logoModels.getModel(name));
       } else {
         throwError("Invalid model name: " + name);
       }
-      scale(1/scaleFactor);
+      p5Renderer.scale(1/scaleFactor);
       restoreStrokeStyle();
     },
 
@@ -341,7 +341,7 @@ var logo = (function(){
         var w = im.width;
         var h = im.height;
         var scaleFactor =  height/h;
-        image(im, 0, 0, w * scaleFactor, h * scaleFactor);
+        p5Renderer.image(im, 0, 0, w * scaleFactor, h * scaleFactor);
       } else {
         throwError("Invalid image name: " + name);
       }
@@ -424,7 +424,7 @@ var logo = (function(){
     },
 
     keyPressed: function(){
-      return keyIsPressed ? lastKeyPressed : 0;
+      return p5Renderer.keyIsPressed ? lastKeyPressed : 0;
     }
 
 }
