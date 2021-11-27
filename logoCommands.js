@@ -60,7 +60,7 @@ var logo = (function(){
     },  
 
     start: function(){
-      drawCoordinates(25);
+      drawCoordinates(p5Renderer,25);
       penDown = true;
       showTurtle = true;
       shapeBegan = false;
@@ -75,11 +75,11 @@ var logo = (function(){
         makeShape();
       }
       if (showTurtle){
-        drawAvatar();
+        drawAvatar(p5Renderer);
         if (document.getElementById("turnsHelpArrows").checked){
-          drawHelpArrows(15);
+          drawHelpArrows(p5Renderer,15);
         } else {
-          drawCoordinates(10);
+          drawCoordinates(p5Renderer,10);
         }
       }
       p5Renderer.pop();

@@ -1,102 +1,102 @@
 
 
 
- function drawCoordinates(length){
-   p5Renderer.strokeWeight(1);
-   p5Renderer.stroke('#ff0000');
-   p5Renderer.line(0,0,0,length,0,0);
-   p5Renderer.fill('#ff0000');
-   p5Renderer.push();
-   p5Renderer.translate(length,0,0);
-   p5Renderer.rotateZ(-p5Renderer.PI/2);
-   p5Renderer.cone(1, 2, 20, 1,  true);
-   p5Renderer.pop();
+ function drawCoordinates(p, length){
+   p.strokeWeight(1);
+   p.stroke('#ff0000');
+   p.line(0,0,0,length,0,0);
+   p.fill('#ff0000');
+   p.push();
+   p.translate(length,0,0);
+   p.rotateZ(-p.PI/2);
+   p.cone(1, 2, 20, 1,  true);
+   p.pop();
    
-   p5Renderer.stroke('#00ff00');
-   p5Renderer.line(0,0,0,0,-length,0);
-   p5Renderer.fill('#00ff00');
-   p5Renderer.push();
-   p5Renderer.translate(0,-length,0);
-   p5Renderer.rotateX(p5Renderer.PI);
-   p5Renderer.cone(1, 2, 20, 1,  true);
-   p5Renderer.pop();
+   p.stroke('#00ff00');
+   p.line(0,0,0,0,-length,0);
+   p.fill('#00ff00');
+   p.push();
+   p.translate(0,-length,0);
+   p.rotateX(p.PI);
+   p.cone(1, 2, 20, 1,  true);
+   p.pop();
    
-   p5Renderer.stroke('#0000ff');
-   p5Renderer.line(0,0,0,0,0,length);
-   p5Renderer.fill('#0000ff');
-   p5Renderer.push();
-   p5Renderer.translate(0,0,length);
-   p5Renderer.rotateX(p5Renderer.PI/2);
-   p5Renderer.cone(1, 2, 20, 1,  true);
-   p5Renderer.pop();
+   p.stroke('#0000ff');
+   p.line(0,0,0,0,0,length);
+   p.fill('#0000ff');
+   p.push();
+   p.translate(0,0,length);
+   p.rotateX(p.PI/2);
+   p.cone(1, 2, 20, 1,  true);
+   p.pop();
    
-   p5Renderer.stroke(255);
+   p.stroke(255);
  }
  
-  function drawAvatar(){
-   p5Renderer.strokeWeight(1);
-   p5Renderer.stroke('#888888');
-   p5Renderer.fill('#888888');
-   p5Renderer.push();
-   p5Renderer.rotateX(p5Renderer.PI);
-   p5Renderer.translate(0, 6/2, 0); 
-   p5Renderer.cone(3, 6, 5, 1, true);
-   p5Renderer.pop();
+  function drawAvatar(p){
+   p.strokeWeight(1);
+   p.stroke('#888888');
+   p.fill('#888888');
+   p.push();
+   p.rotateX(p.PI);
+   p.translate(0, 6/2, 0);
+   p.cone(3, 6, 5, 1, true);
+   p.pop();
  
-   p5Renderer.stroke(255);
+   p.stroke(255);
  }
  
-function drawHelpArrows(r){
-   p5Renderer.strokeWeight(1);
-   p5Renderer.textSize(5);
+function drawHelpArrows(p,radius){
+   p.strokeWeight(1);
+   p.textSize(5);
 
-   p5Renderer.push();
-   p5Renderer.noFill();
-   p5Renderer.stroke('#0000ff');
-   p5Renderer.arc(0, 0, 2*r, 2*r, -p5Renderer.HALF_PI, 0);
-   p5Renderer.fill('#0000ff');
-   p5Renderer.text('rt', 0.75*r, -0.75*r);
-   p5Renderer.noStroke();
-   p5Renderer.fill('#0000ff88');
-   p5Renderer.arc(0, 0, 2*r-2, 2*r-2, -p5Renderer.TWO_PI, 0);
-   p5Renderer.translate(r, 0, 0);
-   p5Renderer.stroke('#0000ff');
-   p5Renderer.fill('#0000ff');
-   p5Renderer.cone(1, 2, 20, 1,  true);
-   p5Renderer.pop();
+   p.push();
+   p.noFill();
+   p.stroke('#0000ff');
+   p.arc(0, 0, 2*radius, 2*radius, -p.HALF_PI, 0);
+   p.fill('#0000ff');
+   p.text('rt', 0.75*radius, -0.75*radius);
+   p.noStroke();
+   p.fill('#0000ff88');
+   p.arc(0, 0, 2*radius-2, 2*radius-2, -p.TWO_PI, 0);
+   p.translate(radius, 0, 0);
+   p.stroke('#0000ff');
+   p.fill('#0000ff');
+   p.cone(1, 2, 20, 1,  true);
+   p.pop();
 
-   p5Renderer.push();
-   p5Renderer.rotateY(-p5Renderer.HALF_PI);  
-   p5Renderer.noFill();
-   p5Renderer.stroke('#ff0000');
-   p5Renderer.arc(0, 0, 2*r, 2*r, -p5Renderer.HALF_PI, 0);
-   p5Renderer.fill('#ff0000');
-   p5Renderer.text('up', 0.75*r, -0.75*r);
-   p5Renderer.noStroke();
-   p5Renderer.fill('#ff000088');
-   p5Renderer.arc(0, 0, 2*r-2, 2*r-2, -p5Renderer.TWO_PI, 0);
-   p5Renderer.translate(r, 0, 0);
-   p5Renderer.stroke('#ff0000');
-   p5Renderer.fill('#ff0000');
-   p5Renderer.cone(1, 2, 20, 1,  true);
-   p5Renderer.pop();
+   p.push();
+   p.rotateY(-p.HALF_PI);
+   p.noFill();
+   p.stroke('#ff0000');
+   p.arc(0, 0, 2*radius, 2*radius, -p.HALF_PI, 0);
+   p.fill('#ff0000');
+   p.text('up', 0.75*radius, -0.75*radius);
+   p.noStroke();
+   p.fill('#ff000088');
+   p.arc(0, 0, 2*radius-2, 2*radius-2, -p.TWO_PI, 0);
+   p.translate(radius, 0, 0);
+   p.stroke('#ff0000');
+   p.fill('#ff0000');
+   p.cone(1, 2, 20, 1,  true);
+   p.pop();
 
-   p5Renderer.push();
-   p5Renderer.rotateX(p5Renderer.HALF_PI); 
-   p5Renderer.noFill(); 
-   p5Renderer.stroke('#00ff00');
-   p5Renderer.arc(0, 0, 2*r, 2*r, -p5Renderer.HALF_PI, 0);
-   p5Renderer.fill('#00ff00');
-   p5Renderer.text('rr', 0.75*r, -0.75*r);
-   p5Renderer.noStroke();
-   p5Renderer.fill('#00ff0088');
-   p5Renderer.arc(0, 0, 2*r-2, 2*r-2, -p5Renderer.TWO_PI, 0);
-   p5Renderer.translate(0, -r, 0);
-   p5Renderer.rotateZ(p5Renderer.HALF_PI);
-   p5Renderer.stroke('#00ff00');
-   p5Renderer.fill('#00ff00');
-   p5Renderer.cone(1, 2, 20, 1,  true);
-   p5Renderer.pop();
+   p.push();
+   p.rotateX(p.HALF_PI);
+   p.noFill();
+   p.stroke('#00ff00');
+   p.arc(0, 0, 2*radius, 2*radius, -p.HALF_PI, 0);
+   p.fill('#00ff00');
+   p.text('rr', 0.75*radius, -0.75*radius);
+   p.noStroke();
+   p.fill('#00ff0088');
+   p.arc(0, 0, 2*radius-2, 2*radius-2, -p.TWO_PI, 0);
+   p.translate(0, -radius, 0);
+   p.rotateZ(p.HALF_PI);
+   p.stroke('#00ff00');
+   p.fill('#00ff00');
+   p.cone(1, 2, 20, 1,  true);
+   p.pop();
 
 }
  

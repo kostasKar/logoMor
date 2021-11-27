@@ -1,5 +1,5 @@
 
-let s = p => {
+let sketch = function(p) {
 
   var labelFont;
   var canvas;
@@ -52,7 +52,7 @@ let s = p => {
 };
 
 
-let p5Renderer = new p5(s);
+let p5Renderer = new p5(sketch);
 
 
 var drawingLoopControl = {
