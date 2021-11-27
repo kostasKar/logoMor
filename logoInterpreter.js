@@ -111,7 +111,7 @@ var interpreter = {
     logoDebugger.initForNewRun();
     logoDebugger.setEnabled(setDebugOn);
     this.movesLimit = document.getElementById("movesLimitInput").value;
-    drawingLoopControl.redrawIfPaused();
+    p5Renderer.redrawIfPaused();
   },
 
   initLogoExecution: function(){

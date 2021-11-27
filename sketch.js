@@ -1,8 +1,9 @@
 
-let sketch = function(p) {
+var p5Renderer = new p5( function(p) {
 
   var labelFont;
   var canvas;
+  var clearDrawing = true;
 
   p.preload = function(){
     if (window.location.protocol !== "file:"){
@@ -26,7 +27,7 @@ let sketch = function(p) {
 
   p.draw = function() {
     p.lights();
-    if (drawingLoopControl.clearDrawing){
+    if (clearDrawing){
       p.background(0);
     }
     cameraViewControl.adjust();
@@ -49,23 +50,13 @@ let sketch = function(p) {
     logo.keyPressedCallback(p.keyCode);
   }
 
-};
-
-
-let p5Renderer = new p5(sketch);
-
-
-var drawingLoopControl = {
-
-  clearDrawing: true,
-
-  redrawIfPaused: function(){
+  p.redrawIfPaused = function(){
     if (!p5Renderer.isLooping()){
       p5Renderer.redraw();
     }
-  },
+  }
 
-  togglePause: function(){
+  p.togglePause = function(){
     if (p5Renderer.isLooping()){
       document.getElementById("pause").firstElementChild.className = "fa fa-play";
       document.getElementById("pause").firstElementChild.style.color = "lime";
@@ -79,17 +70,22 @@ var drawingLoopControl = {
       document.getElementById("turnsHelpArrows").disabled = false;
       p5Renderer.loop();
     }
-  },
+  }
 
-  toggleClearDrawing: function(){
-    if (this.clearDrawing){
-      this.clearDrawing = false;
+  p.toggleClearDrawing = function(){
+    if (clearDrawing){
+      clearDrawing = false;
       document.getElementById("clearDrawing").firstElementChild.style.color = "red";
     } else {
-      this.clearDrawing = true;
+      clearDrawing = true;
       document.getElementById("clearDrawing").firstElementChild.style.removeProperty("color");
     }
   }
 
-};
+});
+
+
+
+
+
 

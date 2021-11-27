@@ -36,7 +36,7 @@ var variableManipulatorsSliders = (function(){
 		slider.className  = "slider";
 		slider.oninput= function(){
 			sliderValue.value = this.value;
-			drawingLoopControl.redrawIfPaused();
+			p5Renderer.redrawIfPaused();
 		};
 
 		var maxLabel = document.createElement("label");

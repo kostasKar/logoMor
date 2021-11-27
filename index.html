@@ -143,7 +143,7 @@
         <button title="Start debugging" class="debugControls" id="debugButton" onclick="interpreter.setup(null, true)">Debug</button>
         <button title="Run to breakpoint" class="debugControls" id="debugContinueButton" onclick="logoDebugger.continuePressed()" disabled>Continue</button>
         <button title="Run next command" class="debugControls" id="debugStepButton" onclick="logoDebugger.stepPressed()" disabled>Step</button>  
-        <input  id="movesLimitInput" type="number" name="quantity" min="0" value="1000" onchange="interpreter.movesLimit = this.value; drawingLoopControl.redrawIfPaused()">
+        <input  id="movesLimitInput" type="number" name="quantity" min="0" value="1000" onchange="interpreter.movesLimit = this.value; p5Renderer.redrawIfPaused()">
         <label title="Maximum number of move commands per frame" class="subtleText1" id="movesLimitLabel">Moves Limit:</label>
       </div>
 
@@ -204,11 +204,11 @@
       <i class="fa fa-video" aria-hidden="true"></i>
       <span class="tooltiptext left">Video</span>
     </button>
-    <button class="tooltip" id="pause" onclick="drawingLoopControl.togglePause()">
+    <button class="tooltip" id="pause" onclick="p5Renderer.togglePause()">
       <i class="fa fa-pause" aria-hidden="true"></i>
       <span class="tooltiptext left">Redrawing</span>
     </button>
-    <button class="tooltip" id="clearDrawing" onclick="drawingLoopControl.toggleClearDrawing()">
+    <button class="tooltip" id="clearDrawing" onclick="p5Renderer.toggleClearDrawing()">
       <i class="fas fa-clone" aria-hidden="true"></i>
       <span class="tooltiptext left">Persist draw</span>
     </button>
