@@ -123,14 +123,70 @@ var myCodeMirror = (function(){
 
   //Custom methods for cm:
   cm.increaseEditorFontSize = function(){
-    myCodeMirror.getWrapperElement().style["font-size"] = parseInt(myCodeMirror.getWrapperElement().style["font-size"]) + 2 + "px";
-    myCodeMirror.refresh();
+    this.getWrapperElement().style["font-size"] = parseInt(this.getWrapperElement().style["font-size"]) + 2 + "px";
+    this.refresh();
   }
 
   cm.decreaseEditorFontSize =  function(){
-    myCodeMirror.getWrapperElement().style["font-size"] = parseInt(myCodeMirror.getWrapperElement().style["font-size"]) - 2 + "px";
-    myCodeMirror.refresh();
+    this.getWrapperElement().style["font-size"] = parseInt(this.getWrapperElement().style["font-size"]) - 2 + "px";
+    this.refresh();
   }
+
+  cm.copyShareableSourceCodeLink = function() {
+
+    //!change this to false to create a link with the whole source code in the uri - server not involved
+    const saveToServer = true;
+
+    var sourceCodeText = this.getValue();
+    var completeURL = window.location.href.split('?')[0];
+
+    if (saveToServer){
+      var uniqueId = Date.now();
+      const xhttp = new XMLHttpRequest();
+      xhttp.open("POST", "saveEditorText.php");
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhttp.send("editorCode=" + encodeURIComponent(sourceCodeText) + "&id=" + encodeURIComponent(uniqueId));
+      completeURL= completeURL + "?codeid=" + uniqueId;
+    } else {
+      if (sourceCodeText !== ""){
+        completeURL = completeURL + "?code=" + encodeURIComponent(btoa(sourceCodeText));
+      }
+    }
+
+    if ((saveToServer) || (completeURL.length < 5000)){
+      var dummy = document.createElement("textarea");
+      document.body.appendChild(dummy);
+      dummy.value = completeURL;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+      alert("Link with source code copied to clipboard");
+    } else {
+      alert("Source code too long to create share link\nSave and share the source code file instead");
+    }
+  }
+
+  cm.fetchSourceCodeFromURI = function(){
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    if (urlParams.has('code')) {
+
+      this.setValue(atob(urlParams.get('code')));
+      window.history.replaceState(null, null, window.location.pathname);
+    } else if (urlParams.has('codeid')) {
+
+      const xhttp = new XMLHttpRequest();
+      xhttp.onload = function () {
+        cm.setValue(this.responseText);
+      }
+      xhttp.open("GET", "saveEditorText.php?id=" + urlParams.get('codeid'), true);
+      xhttp.send();
+      window.history.replaceState(null, null, window.location.pathname);
+    }
+  }
+
+  //Execute fetchSourceCodeFromURI right now
+  cm.fetchSourceCodeFromURI();
 
   return cm;
 
@@ -139,62 +195,10 @@ var myCodeMirror = (function(){
 
 
 
-/* 
-  Fetch requested source code from uri - Executed right now (mycodeMirror is defined above)
- */
-(function(){
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  if (urlParams.has('code')) {
-
-    myCodeMirror.setValue(atob(urlParams.get('code')));
-    window.history.replaceState(null, null, window.location.pathname);
-  } else if (urlParams.has('codeid')) {
-
-    const xhttp = new XMLHttpRequest();
-    xhttp.onload = function () {
-      myCodeMirror.setValue(this.responseText);
-    }
-    xhttp.open("GET", "saveEditorText.php?id=" + urlParams.get('codeid'), true);
-    xhttp.send();
-    window.history.replaceState(null, null, window.location.pathname);
-  }
-})();
 
 
 
 
 
-function copySourceCode() {
 
-  //!change this to false to create a link with the whole source code in the uri - server not involved
-  const saveToServer = true;
 
-  var sourceCodeText = myCodeMirror.getValue();
-  var completeURL = window.location.href.split('?')[0];
-
-  if (saveToServer){
-    var uniqueId = Date.now();
-    const xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "saveEditorText.php");
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send("editorCode=" + encodeURIComponent(sourceCodeText) + "&id=" + encodeURIComponent(uniqueId));
-    completeURL= completeURL + "?codeid=" + uniqueId;
-  } else {
-    if (sourceCodeText !== ""){
-      completeURL = completeURL + "?code=" + encodeURIComponent(btoa(sourceCodeText));
-    }
-  }
-
-  if ((saveToServer) || (completeURL.length < 5000)){
-    var dummy = document.createElement("textarea");
-    document.body.appendChild(dummy);
-    dummy.value = completeURL;
-    dummy.select();
-    document.execCommand("copy");
-    document.body.removeChild(dummy);
-    alert("Link with source code copied to clipboard");
-  } else {
-    alert("Source code too long to create share link\nSave and share the source code file instead");
-  }
-}
