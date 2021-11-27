@@ -59,7 +59,7 @@ var myCodeMirror = (function(){
 
 
   CodeMirror.hint.logomor = function (editor) {
-    var list = [...logomorMoves, ...logomorKeywords, ...logomorBuiltins];
+    var list = hintableCommands;
     var cursor = editor.getCursor();
     var currentLine = editor.getLine(cursor.line);
     var start = cursor.ch;
@@ -94,8 +94,7 @@ var myCodeMirror = (function(){
         hht.id = "hintHelpText";
       }
       hht.style.marginLeft = Element.parentNode.offsetWidth + 2 + "px";
-      hht.innerText = commandHints[completion] ? commandHints[completion] : completion;
-
+      hht.innerText = (logomorCommands[completion]) ? logomorCommands[completion].hint || completion : completion;
       cm.addWidget({ch:start , line: cursor.line},hht, false);
     });
 
