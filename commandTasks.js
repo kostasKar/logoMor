@@ -200,20 +200,20 @@ class TorusTask extends CommandTask2N{run(){logo.torus(this.arguments[0], this.a
 class EllipsoidTask extends CommandTask3N{run(){logo.ellipsoid(this.arguments[0], this.arguments[1], this.arguments[2]); return "";}}
 
 //Models
-class ModelTask extends CommandTask2SN { run() {logo.model(this.arguments[0], this.arguments[1]); return "";}}
+class ModelTask extends CommandTask2SN { run() {if (logoModels.assertExists(this.arguments[0])){logo.model(logoModels.getModel(this.arguments[0]), this.arguments[1])} return "";}}
 
 //Images
-class ImageTask extends CommandTask2SN { run() {logo.image(this.arguments[0], this.arguments[1]); return "";}}
+class ImageTask extends CommandTask2SN { run() {if (logoImages.assertExists(this.arguments[0])){logo.image(logoImages.getImage(this.arguments[0]), this.arguments[1])} return "";}}
 
 //Sounds
-class PlaySoundTask extends CommandTask1S { run() {logo.soundPlay(this.arguments[0]); return "";}}
-class StopSoundTask extends CommandTask1S { run() {logo.soundStop(this.arguments[0]); return "";}}
-class PauseSoundTask extends CommandTask1S { run() {logo.soundPause(this.arguments[0]); return "";}}
-class IsPLayingSoundTask extends CommandTask1S { run() {return logo.soundIsPlaying(this.arguments[0]);}}
-class GetTimeSoundTask extends CommandTask1S { run() {return logo.soundGetTime(this.arguments[0]);}}
-class GetVolumeSoundTask extends CommandTask1S { run() {return logo.soundGetVolume(this.arguments[0]);}}
-class SetTimeSoundTask extends CommandTask2SN { run() {logo.soundSetTime(this.arguments[0], this.arguments[1]); return "";}}
-class SetVolumeSoundTask extends CommandTask2SN { run() {logo.soundSetVolume(this.arguments[0], this.arguments[1]); return "";}}
+class PlaySoundTask extends CommandTask1S { run() {if (logoSounds.assertExists(this.arguments[0])){logo.soundPlay(logoSounds.getAudio(this.arguments[0]))} return "";}}
+class StopSoundTask extends CommandTask1S { run() {if (logoSounds.assertExists(this.arguments[0])){logo.soundStop(logoSounds.getAudio(this.arguments[0]))} return "";}}
+class PauseSoundTask extends CommandTask1S { run() {if (logoSounds.assertExists(this.arguments[0])){logo.soundPause(logoSounds.getAudio(this.arguments[0]))} return "";}}
+class IsPLayingSoundTask extends CommandTask1S { run() {return (logoSounds.assertExists(this.arguments[0])) ? logo.soundIsPlaying(logoSounds.getAudio(this.arguments[0])) : 0;}}
+class GetTimeSoundTask extends CommandTask1S { run() {return (logoSounds.assertExists(this.arguments[0])) ? logo.soundGetTime(logoSounds.getAudio(this.arguments[0])) : 0}}
+class GetVolumeSoundTask extends CommandTask1S { run() {return (logoSounds.assertExists(this.arguments[0])) ? logo.soundGetVolume(logoSounds.getAudio(this.arguments[0])) : 0}}
+class SetTimeSoundTask extends CommandTask2SN { run() {if (logoSounds.assertExists(this.arguments[0])){logo.soundSetTime(logoSounds.getAudio(this.arguments[0]), this.arguments[1])} return "";}}
+class SetVolumeSoundTask extends CommandTask2SN { run() {if (logoSounds.assertExists(this.arguments[0])){logo.soundSetVolume(logoSounds.getAudio(this.arguments[0]), this.arguments[1])} return "";}}
 
 //Keyboard
 class KeyPressedTask extends CommandTask0{run(){return logo.keyPressed();}}

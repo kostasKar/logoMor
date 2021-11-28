@@ -9,6 +9,15 @@ var logoModels = (function() {
       return (name in loadedModels);
     },
 
+    assertExists: function(name){
+      if(this.modelExists(name)){
+        return true;
+      } else {
+        throwError("Invalid model name: " + name);
+        return false;
+      }
+    },
+
     getModel: function(name){
       return loadedModels[name];
     },

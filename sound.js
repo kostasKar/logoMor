@@ -75,6 +75,15 @@ var logoSounds = (function(){
       return (name in loadedSounds);
     },
 
+    assertExists: function(name){
+      if(this.soundExists(name)){
+        return true;
+      } else {
+        throwError("Invalid sound name: " + name);
+        return false;
+      }
+    },
+
     getAudio: function(name){
       return loadedSounds[name];
     },

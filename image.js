@@ -69,6 +69,15 @@ var logoImages = (function(){
       return (name in loadedImages);
     },
 
+    assertExists: function(name){
+      if(this.imageExists(name)){
+        return true;
+      } else {
+        throwError("Invalid image name: " + name);
+        return false;
+      }
+    },
+
     getImage: function(name){
       return loadedImages[name];
     },

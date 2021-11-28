@@ -322,105 +322,57 @@ var logo = (function(){
       restoreStrokeStyle();
     },
 
-    model: function(name, size){
+    model: function(model, size){
       if (!penDown) {p5Renderer.noStroke();}
       var scaleFactor = size/200; //normalized models fit inbetween -100, 100 so 200 size
       p5Renderer.scale(scaleFactor);
-      if (logoModels.modelExists(name)){
-        p5Renderer.model(logoModels.getModel(name));
-      } else {
-        throwError("Invalid model name: " + name);
-      }
+      p5Renderer.model(model);
       p5Renderer.scale(1/scaleFactor);
       restoreStrokeStyle();
     },
 
-    image: function(name, height){
-      if (logoImages.imageExists(name)){
-        var im = logoImages.getImage(name);
-        var w = im.width;
-        var h = im.height;
-        var scaleFactor =  height/h;
-        p5Renderer.image(im, 0, 0, w * scaleFactor, h * scaleFactor);
-      } else {
-        throwError("Invalid image name: " + name);
+    image: function(image, height){
+      var w = image.width;
+      var h = image.height;
+      var scaleFactor =  height/h;
+      p5Renderer.image(image, 0, 0, w * scaleFactor, h * scaleFactor);
+    },
+
+    soundPlay: function(audio){
+      if (audio.paused || audio.currentTime === 0 || audio.ended) {
+        audio.play();
       }
     },
 
-    soundPlay: function(name){
-      if (logoSounds.soundExists(name)){
-        var audio = logoSounds.getAudio(name);
-        if (audio.paused || audio.currentTime === 0 || audio.ended) {
-          audio.play();
-        }
-      } else {
-        throwError("Invalid sound name: " + name);
-      }
+    soundStop: function(audio){
+      audio.pause();
+      audio.currentTime = 0;
     },
 
-    soundStop: function(name){
-      if (logoSounds.soundExists(name)){
-        var audio = logoSounds.getAudio(name);
-        audio.pause();
-        audio.currentTime = 0;
-      } else {
-        throwError("Invalid sound name: " + name);
-      }
+    soundPause: function(audio){
+      audio.pause();
     },
 
-    soundPause: function(name){
-      if (logoSounds.soundExists(name)){
-        var audio = logoSounds.getAudio(name);
-        audio.pause();
-      } else {
-        throwError("Invalid sound name: " + name);
-      }
+    soundIsPlaying: function(audio){
+      return (audio.paused || audio.currentTime === 0 || audio.ended) ? 0 : 1;
     },
 
-    soundIsPlaying: function(name){
-      if (logoSounds.soundExists(name)){
-        var audio = logoSounds.getAudio(name);
-        return (audio.paused || audio.currentTime === 0 || audio.ended) ? 0 : 1;
-      } else {
-        throwError("Invalid sound name: " + name);
-        return 0;
-      }
+    soundSetTime: function(audio, time){
+      audio.currentTime = time;
     },
 
-    soundSetTime: function(name, time){
-      if (logoSounds.soundExists(name)){
-        logoSounds.getAudio(name).currentTime = time;
-      } else {
-        throwError("Invalid sound name: " + name);
-      }
-    },
-
-    soundSetVolume: function(name, vol){
+    soundSetVolume: function(audio, vol){
       if(vol < 0 ){ vol = 0;}
       if(vol > 100){vol = 100;}
-      if (logoSounds.soundExists(name)){
-        logoSounds.getAudio(name).volume = vol/100;
-      } else {
-        throwError("Invalid sound name: " + name);
-      }
+      audio.volume = vol/100;
     },
 
-    soundGetTime: function(name){
-      if (logoSounds.soundExists(name)){
-        return logoSounds.getAudio(name).currentTime;
-      } else {
-        throwError("Invalid sound name: " + name);
-        return 0;
-      }
+    soundGetTime: function(audio){
+      return audio.currentTime;
     },
 
-    soundGetVolume: function(name){
-      if (logoSounds.soundExists(name)){
-        return Math.round(logoSounds.getAudio(name).volume * 100);
-      } else {
-        throwError("Invalid sound name: " + name);
-        return 0;
-      }
+    soundGetVolume: function(audio){
+      return Math.round(audio.volume * 100);
     },
 
     keyPressed: function(){
