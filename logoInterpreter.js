@@ -82,7 +82,7 @@ var interpreter = {
         }
         this.tasksStack.pop();
       } 
-      if (this.stackLength){
+      if (!this.stackLength){
         throwError("break command occurred outside of loop task");
         return;
       }
