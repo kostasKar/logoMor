@@ -129,6 +129,7 @@ button:disabled {
   resize: vertical;
   overflow: auto;
   margin-bottom: 2px;
+  padding: 5px;
 }
 
 #sourceCodeContainer {
