@@ -83,7 +83,7 @@ var memoryController = (function(){
         getMemoryTrace: function(){
             var traceText = "\nVariables info: ";
             traceText += "<table class='variablesTraceTable'>"
-            if (!this.noLocalScopeExists()){
+            if ((!this.noLocalScopeExists()) && ((Object.keys(headScope()).length))){
                 traceText += "<tr><th colspan='2'>Local</th></tr>";
                 for (const [key, value] of Object.entries(headScope())){
                     traceText += `<tr><td>${key}</td><td>${value}</td></tr>`;
