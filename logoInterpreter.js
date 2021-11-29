@@ -139,11 +139,11 @@ var interpreter = {
   },
 
   getStackTrace: function(){
-    let traceText = "Stack trace (most recent task last):\n";
+    let traceText = "\nStack trace (most recent task last):\n";
     for (let i=0; i<this.tasksStack.length; i++){
-      traceText += "-" + this.tasksStack[i].constructor.name;
+      traceText += "  " + this.tasksStack[i].constructor.name.replace("Task", " task");
       if (this.tasksStack[i].constructor.name === 'ProcedureTask'){
-        traceText += " " + this.tasksStack[i].body[0] + "\n";
+        traceText += " <b>" + this.tasksStack[i].body[0] + "</b>\n";
       } else {
         traceText += "\n";
       }

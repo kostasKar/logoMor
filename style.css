@@ -619,9 +619,30 @@ label.debugControls {
 }
 
 .system-output{
-  color: #eeee99;
+  color: #cacaa2;
 }
 
 .error-output{
   color: #ee9999;
 }
+
+.variablesTraceTable {
+  font-size: 14px;
+  border-collapse: collapse;
+  width: 300px;
+  border: 1px solid #616138;
+}
+
+.variablesTraceTable th {
+  font-size: 14px;
+  border-bottom: 1px solid #616138;
+  border-top: 1px solid #616138;
+  paddin-left: 3px;
+}
+.variablesTraceTable td {
+  width: 50%;
+  padding-left: 3px;
+}
+
+
+

@@ -81,22 +81,29 @@ var memoryController = (function(){
         },
 
         getMemoryTrace: function(){
-            var traceText = "";
-            traceText += "\nVariables info: ";
+            var traceText = "\nVariables info: ";
+            traceText += "<table class='variablesTraceTable'>"
             if (!this.noLocalScopeExists()){
-                traceText += "\nLocal variables:\n";
+                traceText += "<tr><th colspan='2'>Local</th></tr>";
                 for (const [key, value] of Object.entries(headScope())){
-                    traceText += (key + " = " + value + "\n");
+                    traceText += `<tr><td>${key}</td><td>${value}</td></tr>`;
                 }
             }
-            traceText += "\nGlobal variables:\n";
-            for (const [key, value] of Object.entries(globalVariables)){
-                traceText += (key + " = " + value + "\n");
+
+            if(Object.keys(globalVariables).length) {
+                traceText += "<tr><th colspan='2'>Global</th></tr>";
+                for (const [key, value] of Object.entries(globalVariables)) {
+                    traceText += `<tr><td>${key}</td><td>${value}</td></tr>`;
+                }
             }
-            traceText += "\nStatic variables:\n";
-            for (const [key, value] of Object.entries(staticVariables)){
-                traceText += (key + " = " + value + "\n");
+
+            if(Object.keys(staticVariables).length) {
+                traceText += "<tr><th colspan='2'>Static</th></tr>";
+                for (const [key, value] of Object.entries(staticVariables)) {
+                    traceText += `<tr><td>${key}</td><td>${value}</td></tr>`;
+                }
             }
+            traceText += "</table>";
             return traceText;
         }
 
