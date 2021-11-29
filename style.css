@@ -641,9 +641,13 @@ label.debugControls {
   paddin-left: 3px;
 }
 .variablesTraceTable td {
-  width: 50%;
+  width: 150px;
+  max-width: 150px;
   padding-left: 3px;
+  text-overflow: ellipsis;
   overflow: hidden;
+  white-space: nowrap;
+
 }
 
 
