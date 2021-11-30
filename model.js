@@ -75,7 +75,7 @@ LM.models = (function() {
     
     let sketch = function(p) {
       p.setup = function(){
-        canvas = p.createCanvas(50, 50, p.WEBGL);
+        let canvas = p.createCanvas(50, 50, p.WEBGL);
         canvas.style("visibility", "visible");
         canvas.style("display", "inline-block");
         canvas.style("margin-left", "15px");
