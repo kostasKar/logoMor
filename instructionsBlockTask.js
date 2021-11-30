@@ -30,42 +30,16 @@ class InstructionsBlockTask {
   	return "";
   }
 
-  static skipBlock(){
-    var bracketDepth = 0;
-    
-    if(interpreter.currentToken !== "[") {
-      throwError("Skippig Instruction Block: Missing '['");
-      return;
-    }
-    
-    do {
-      if (interpreter.currentIndex == interpreter.sourceTokens.length){
-        throwError("Skippig Instruction Block: Missing ']'");
-        return;
-      }
-      if (interpreter.currentToken === "[") {bracketDepth++;}
-      else if (interpreter.currentToken === "]") {bracketDepth--;}
-      interpreter.currentIndex++;
-    } 
-    while (bracketDepth > 0);
-  }
-
   static findEndOfBlockIndex(){
     var sourceTokens = interpreter.sourceTokens;
-    var bracketDepth = 0;
     var index = interpreter.currentIndex;
-    
-    while (sourceTokens[index] !== '['){
-      index++;
-      if (index == sourceTokens.length){
-        throwError("Instruction block missing '['");
-        return;
-      }
+    var bracketDepth = 0;
+
+    if (sourceTokens[index] !== '['){
+      throwError("Instruction block missing '['");
+      return;
     }
 
-    index++;
-    var bracketDepth = 1;
-    
     do {
       if (index == sourceTokens.length){
         throwError("Instruction block missing ']'");
@@ -74,10 +48,13 @@ class InstructionsBlockTask {
       if (sourceTokens[index] === "[") {bracketDepth++;}
       else if (sourceTokens[index] === "]") {bracketDepth--;}
       index++;
-    } 
+    }
     while (bracketDepth > 0);
 
     return index;
   }
 
+  static skipBlock(){
+    interpreter.currentIndex = InstructionsBlockTask.findEndOfBlockIndex();
+  }
 }

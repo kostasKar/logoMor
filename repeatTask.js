@@ -10,7 +10,6 @@ class RepeatTask{
     this.totalExecutionsSet = false;
     this.canBeResolved = false;
     this.executionsMade = 0;
-    this.endOfLoopBlockIndex = InstructionsBlockTask.findEndOfBlockIndex();
   }  
 
   tryToTakeInput(arg){
@@ -24,10 +23,11 @@ class RepeatTask{
       }
       this.totalExecutions = parseInt(arg);
       if (this.totalExecutions <= 0){
-        interpreter.currentIndex = this.endOfLoopBlockIndex;
+        InstructionsBlockTask.skipBlock();
         this.canBeResolved = true;
       } else {
         this.startIndex = interpreter.currentIndex;
+        this.endOfLoopBlockIndex = InstructionsBlockTask.findEndOfBlockIndex();
         new InstructionsBlockTask();
       }
       this.totalExecutionsSet = true;

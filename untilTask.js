@@ -11,7 +11,7 @@ class UntilTask {
     this.canBeResolved = false;
     this.conditionSet = false;
     this.conditionIndex = interpreter.currentIndex + 1;
-    this.endOfLoopBlockIndex = InstructionsBlockTask.findEndOfBlockIndex();
+    this.endOfLoopBlockIndexSet = false;
   }
   
   tryToTakeInput(arg){
@@ -23,8 +23,12 @@ class UntilTask {
         throwError("Invalid until condition: " + arg);
         return false;
       }
+      if (!this.endOfLoopBlockIndexSet){
+        this.endOfLoopBlockIndex = InstructionsBlockTask.findEndOfBlockIndex();
+        this.endOfLoopBlockIndexSet = true;
+      }
       if (arg == 0){
-        new InstructionsBlockTask(); 
+        new InstructionsBlockTask();
       } else if (arg != 0){
         interpreter.currentIndex = this.endOfLoopBlockIndex;
         this.canBeResolved = true;
