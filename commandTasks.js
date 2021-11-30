@@ -10,9 +10,6 @@
 //The generic command task. Takes any number of arguments. the number and types of arguments are given to the constructor
 class CommandTask  {
 
-   //This variable is used to count the moves of the avatar so that we can use it to set a limit
-   static movesCount;
-
    constructor( argumentTypes, isMove = false){
     this.argumentTypes = argumentTypes;
     this.arguments =[];
@@ -41,7 +38,7 @@ class CommandTask  {
   }
   
   resolve(){
-    if (this.isMove){CommandTask.movesCount++;}
+    if (this.isMove){LM.interpreter.movesCount++;}
     var ret =  this.run().toString();
     LM.interpreter.tasksStack.pop();
     return ret;

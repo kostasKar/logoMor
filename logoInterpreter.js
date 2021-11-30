@@ -9,7 +9,8 @@ LM.interpreter = {
   errorLineNumber: 0,     
   startTime: 0, 
   startFrame: 0,         
-  returnFromMain: false,   
+  returnFromMain: false,
+  movesCount: 0,
   movesLimit: 1000,  
 
   get stackLength() {return this.tasksStack.length;},
@@ -132,7 +133,7 @@ LM.interpreter = {
     this.sourceTokens = LM.parser.mainSourceTokens;
     this.sourceTokensLineNumbers = LM.parser.mainSourceTokensLineNumbers;
     this.currentIndex = 0;
-    CommandTask.movesCount = 0;;
+    this.movesCount = 0;
     LM.randomGenerator.initForNewFrame();
     this.tasksStack = [];
     LM.memoryController.initNonStaticVariables();
@@ -142,10 +143,10 @@ LM.interpreter = {
   },
 
   executeLogo:function(){
-    while (((!this.noMoreTokens()) || (this.stackLength)) && (!this.error) && (!this.returnFromMain) && (CommandTask.movesCount < this.movesLimit)){
+    while (((!this.noMoreTokens()) || (this.stackLength)) && (!this.error) && (!this.returnFromMain) && (this.movesCount < this.movesLimit)){
       this.checkNextToken();
     }
-    if (CommandTask.movesCount >= this.movesLimit){
+    if (this.movesCount >= this.movesLimit){
       LM.consoleHandler.println("Stopped: Reached Moves Limit");
       LM.consoleHandler.println("On line: " + this.sourceTokensLineNumbers[(this.currentIndex)? this.currentIndex - 1 : 0]);
     }
