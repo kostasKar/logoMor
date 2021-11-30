@@ -1,4 +1,4 @@
-var logo = (function(){
+LM.logo = (function(){
 
   var penDown;
   var showTurtle;
@@ -10,19 +10,19 @@ var logo = (function(){
   var defaultStyle = {"weight":1, "r":255, "g":255, "b":255, "a":255, "textSize":10};
 
   function makeShape(){
-    p5Renderer.pop();
-    p5Renderer.push();
+    LM.p5Renderer.pop();
+    LM.p5Renderer.push();
     restoreStrokeStyle(); //for the stroke color
-    p5Renderer.beginShape();
+    LM.p5Renderer.beginShape();
     for (let i = 0; i < vertices.length; i++) {
-      p5Renderer.vertex(vertices[i][0], vertices[i][1], vertices[i][2]);
+      LM.p5Renderer.vertex(vertices[i][0], vertices[i][1], vertices[i][2]);
     }
-    p5Renderer.endShape();
-    logoMatrix.apply();
+    LM.p5Renderer.endShape();
+    LM.matrix.apply();
   }
 
   function addVertex(){
-    vertices.push([logoMatrix.getX(), logoMatrix.getY(), logoMatrix.getZ()]);
+    vertices.push([LM.matrix.getX(), LM.matrix.getY(), LM.matrix.getZ()]);
   }
 
 
@@ -38,10 +38,10 @@ var logo = (function(){
   }
 
   function restoreStrokeStyle(){
-    p5Renderer.strokeWeight(strokeWght);
-    p5Renderer.stroke(strokeR, strokeG, strokeB, strokeAlpha);
-    p5Renderer.fill(strokeR, strokeG, strokeB, strokeAlpha);
-    p5Renderer.textSize(labelTextSize);
+    LM.p5Renderer.strokeWeight(strokeWght);
+    LM.p5Renderer.stroke(strokeR, strokeG, strokeB, strokeAlpha);
+    LM.p5Renderer.fill(strokeR, strokeG, strokeB, strokeAlpha);
+    LM.p5Renderer.textSize(labelTextSize);
   }
 
 
@@ -60,14 +60,14 @@ var logo = (function(){
     },  
 
     start: function(){
-      drawCoordinates(p5Renderer,25);
+      LM.drawCoordinates(LM.p5Renderer,25);
       penDown = true;
       showTurtle = true;
       shapeBegan = false;
       vertices = [];
       initStrokeStyle();
-      p5Renderer.push();
-      logoMatrix.reset();
+      LM.p5Renderer.push();
+      LM.matrix.reset();
     },
 
     end: function(){
@@ -75,14 +75,14 @@ var logo = (function(){
         makeShape();
       }
       if (showTurtle){
-        drawAvatar(p5Renderer);
+        LM.drawAvatar(LM.p5Renderer);
         if (document.getElementById("turnsHelpArrows").checked){
-          drawHelpArrows(p5Renderer,15);
+          LM.drawHelpArrows(LM.p5Renderer,15);
         } else {
-          drawCoordinates(p5Renderer,10);
+          LM.drawCoordinates(LM.p5Renderer,10);
         }
       }
-      p5Renderer.pop();
+      LM.p5Renderer.pop();
     },
 
     showTurtle: function(){
@@ -107,10 +107,10 @@ var logo = (function(){
 
     forward: function(length){
      if (penDown){
-       p5Renderer.line(0, 0, 0, 0, -length, 0);
+       LM.p5Renderer.line(0, 0, 0, 0, -length, 0);
       }
-      p5Renderer.translate(0, -length, 0);
-      logoMatrix.translate(0, -length, 0);
+      LM.p5Renderer.translate(0, -length, 0);
+      LM.matrix.translate(0, -length, 0);
       if (penDown && shapeBegan){
         addVertex();
       }
@@ -118,48 +118,48 @@ var logo = (function(){
 
     backward: function(length){
       if (penDown){
-        p5Renderer.line(0, 0, 0, 0, length, 0);
+        LM.p5Renderer.line(0, 0, 0, 0, length, 0);
       }
-      p5Renderer.translate(0, length, 0);
-      logoMatrix.translate(0, length, 0);
+      LM.p5Renderer.translate(0, length, 0);
+      LM.matrix.translate(0, length, 0);
       if (penDown && shapeBegan){
         addVertex();
       }
     },
 
     right: function(angle){
-     p5Renderer.rotateZ(p5Renderer.radians(angle));
-     logoMatrix.rotateZ(p5Renderer.radians(angle));
+     LM.p5Renderer.rotateZ(LM.p5Renderer.radians(angle));
+     LM.matrix.rotateZ(LM.p5Renderer.radians(angle));
     },
 
     left: function(angle){
-     p5Renderer.rotateZ(p5Renderer.radians(-angle));
-     logoMatrix.rotateZ(p5Renderer.radians(-angle));
+     LM.p5Renderer.rotateZ(LM.p5Renderer.radians(-angle));
+     LM.matrix.rotateZ(LM.p5Renderer.radians(-angle));
     },
 
     up: function(angle){
-     p5Renderer.rotateX(p5Renderer.radians(-angle));
-     logoMatrix.rotateX(p5Renderer.radians(-angle));
+     LM.p5Renderer.rotateX(LM.p5Renderer.radians(-angle));
+     LM.matrix.rotateX(LM.p5Renderer.radians(-angle));
     },
 
     down: function(angle){
-     p5Renderer.rotateX(p5Renderer.radians(angle));
-     logoMatrix.rotateX(p5Renderer.radians(angle));
+     LM.p5Renderer.rotateX(LM.p5Renderer.radians(angle));
+     LM.matrix.rotateX(LM.p5Renderer.radians(angle));
     },
 
     rollRight: function(angle){
-     p5Renderer.rotateY(p5Renderer.radians(angle));
-     logoMatrix.rotateY(p5Renderer.radians(angle));
+     LM.p5Renderer.rotateY(LM.p5Renderer.radians(angle));
+     LM.matrix.rotateY(LM.p5Renderer.radians(angle));
     },
 
     rollLeft: function(angle){
-     p5Renderer.rotateY(p5Renderer.radians(-angle));
-     logoMatrix.rotateY(p5Renderer.radians(-angle));
+     LM.p5Renderer.rotateY(LM.p5Renderer.radians(-angle));
+     LM.matrix.rotateY(LM.p5Renderer.radians(-angle));
     },
 
     arc: function(angle, radius){
-      p5Renderer.noFill();
-      p5Renderer.arc(0, 0, radius*2, radius*2, -p5Renderer.HALF_PI, p5Renderer.radians(angle) - p5Renderer.HALF_PI);
+      LM.p5Renderer.noFill();
+      LM.p5Renderer.arc(0, 0, radius*2, radius*2, -LM.p5Renderer.HALF_PI, LM.p5Renderer.radians(angle) - LM.p5Renderer.HALF_PI);
       restoreStrokeStyle();
     },
 
@@ -172,12 +172,12 @@ var logo = (function(){
     },
 
     setPenSize: function(n){
-     p5Renderer.strokeWeight(n);
+     LM.p5Renderer.strokeWeight(n);
      strokeWght = n;
     },
 
     setTextSize: function(n){
-      p5Renderer.textSize(n);
+      LM.p5Renderer.textSize(n);
       labelTextSize = n;
     },
 
@@ -189,68 +189,68 @@ var logo = (function(){
     },
 
     colorHSB: function(h, s, b){
-      var c = p5Renderer.color('hsb('+ h + ',' + s + '%,' + b + '%)');
-      strokeR = p5Renderer.red(c);
-      strokeG = p5Renderer.green(c);
-      strokeB = p5Renderer.blue(c);
+      var c = LM.p5Renderer.color('hsb('+ h + ',' + s + '%,' + b + '%)');
+      strokeR = LM.p5Renderer.red(c);
+      strokeG = LM.p5Renderer.green(c);
+      strokeB = LM.p5Renderer.blue(c);
       restoreStrokeStyle();
     },
 
     colorAlpha: function(a){
-     p5Renderer.stroke(strokeR, strokeG, strokeB, a);
-     p5Renderer.fill(strokeR, strokeG, strokeB, a);
+     LM.p5Renderer.stroke(strokeR, strokeG, strokeB, a);
+     LM.p5Renderer.fill(strokeR, strokeG, strokeB, a);
      strokeAlpha = a;
     },
 
     label: function(word){
-      p5Renderer.text(word, 0, 0);
+      LM.p5Renderer.text(word, 0, 0);
     },
 
     point: function(){
-      p5Renderer.point(0,0,0);
+      LM.p5Renderer.point(0,0,0);
     },
 
 
     home: function(){
-      p5Renderer.pop();
-      p5Renderer.push();
+      LM.p5Renderer.pop();
+      LM.p5Renderer.push();
      restoreStrokeStyle();
      if (penDown){
-       p5Renderer.line(0, 0, 0, logoMatrix.getX(), logoMatrix.getY(), logoMatrix.getZ());
+       LM.p5Renderer.line(0, 0, 0, LM.matrix.getX(), LM.matrix.getY(), LM.matrix.getZ());
      }
-     logoMatrix.reset(); 
+     LM.matrix.reset(); 
      if (penDown && shapeBegan){
       addVertex();
     }
     },
 
     getx: function(){
-     return logoMatrix.getX();
+     return LM.matrix.getX();
     },
 
     gety: function(){
-     return - logoMatrix.getY();
+     return - LM.matrix.getY();
     },
 
     getz: function(){
-     return logoMatrix.getZ();
+     return LM.matrix.getZ();
     },
 
     dist: function(x, y, z){
-      return Math.sqrt(Math.pow(x-logoMatrix.getX(), 2) + Math.pow(y-(-logoMatrix.getY()), 2) + Math.pow(z-logoMatrix.getZ(), 2));
+      return Math.sqrt(Math.pow(x-LM.matrix.getX(), 2) + Math.pow(y-(-LM.matrix.getY()), 2) + Math.pow(z-LM.matrix.getZ(), 2));
     },
 
     setxyz: function(newX, newY, newZ){
-      p5Renderer.pop();
-      p5Renderer.push();
+      LM.p5Renderer.pop();
+      LM.p5Renderer.push();
      restoreStrokeStyle();
      if (penDown){
-       p5Renderer.line(logoMatrix.getX(), logoMatrix.getY(), logoMatrix.getZ(), newX, -newY, newZ);
+       LM.p5Renderer.line(LM.matrix.getX(), LM.matrix.getY(), LM.matrix.getZ(), newX, -newY, newZ);
      }
-     logoMatrix.setX(newX);
-     logoMatrix.setY(-newY);
-     logoMatrix.setZ(newZ);
-     logoMatrix.apply(); 
+     LM.matrix.setX(newX);
+     LM.matrix.setY(-newY);
+     LM.matrix.setZ(newZ);
+     LM.matrix.apply(); 
      if (penDown && shapeBegan){
        addVertex();
      }
@@ -269,65 +269,65 @@ var logo = (function(){
     },
 
     mousex: function(){
-      return  (p5Renderer.mouseX - p5Renderer.width/2)*(cameraViewControl.getFov() / 1.2) - cameraViewControl.getCenterCoordinates()["x"] ;
+      return  (LM.p5Renderer.mouseX - LM.p5Renderer.width/2)*(LM.cameraViewControl.getFov() / 1.2) - LM.cameraViewControl.getCenterCoordinates()["x"] ;
     },
 
     mousey: function(){
-      return -((p5Renderer.mouseY - p5Renderer.height/2)*(cameraViewControl.getFov() / 1.2) - cameraViewControl.getCenterCoordinates()["y"]);
+      return -((LM.p5Renderer.mouseY - LM.p5Renderer.height/2)*(LM.cameraViewControl.getFov() / 1.2) - LM.cameraViewControl.getCenterCoordinates()["y"]);
     },
 
     mousePressed: function(){
       var mouseCodes = {};
-      mouseCodes[p5Renderer.LEFT] = 1;
-      mouseCodes[p5Renderer.RIGHT] = 2;
-      mouseCodes[p5Renderer.CENTER] = 3;
-      return (cameraViewControl.isCameraEnabled() && p5Renderer.mouseIsPressed) ? mouseCodes[p5Renderer.mouseButton] : 0;
+      mouseCodes[LM.p5Renderer.LEFT] = 1;
+      mouseCodes[LM.p5Renderer.RIGHT] = 2;
+      mouseCodes[LM.p5Renderer.CENTER] = 3;
+      return (LM.cameraViewControl.isCameraEnabled() && LM.p5Renderer.mouseIsPressed) ? mouseCodes[LM.p5Renderer.mouseButton] : 0;
     },
 
 
     //3D primitives
     box: function(side){
-      if (!penDown) {p5Renderer.noStroke();}
-      p5Renderer.box(side);
+      if (!penDown) {LM.p5Renderer.noStroke();}
+      LM.p5Renderer.box(side);
       restoreStrokeStyle();
     },
 
     sphere: function(radius){
-      if (!penDown) {p5Renderer.noStroke();}
-      p5Renderer.sphere(radius);
+      if (!penDown) {LM.p5Renderer.noStroke();}
+      LM.p5Renderer.sphere(radius);
       restoreStrokeStyle();
     },
 
     cylinder: function(radius, height){
-      if (!penDown) {p5Renderer.noStroke();}
-      p5Renderer.cylinder(radius, height);
+      if (!penDown) {LM.p5Renderer.noStroke();}
+      LM.p5Renderer.cylinder(radius, height);
       restoreStrokeStyle();
     },
 
     cone: function(radius, height){
-      if (!penDown) {p5Renderer.noStroke();}
-      p5Renderer.cone(radius, height);
+      if (!penDown) {LM.p5Renderer.noStroke();}
+      LM.p5Renderer.cone(radius, height);
       restoreStrokeStyle();
     },
 
     torus: function(radius, tubeRadius){
-      if (!penDown) {p5Renderer.noStroke();}
-      p5Renderer.torus(radius, tubeRadius);
+      if (!penDown) {LM.p5Renderer.noStroke();}
+      LM.p5Renderer.torus(radius, tubeRadius);
       restoreStrokeStyle();
     },
 
     ellipsoid: function(radiusX, radiusY, radiusZ){
-      if (!penDown) {p5Renderer.noStroke();}
-      p5Renderer.ellipsoid(radiusX, radiusY, radiusZ);
+      if (!penDown) {LM.p5Renderer.noStroke();}
+      LM.p5Renderer.ellipsoid(radiusX, radiusY, radiusZ);
       restoreStrokeStyle();
     },
 
     model: function(model, size){
-      if (!penDown) {p5Renderer.noStroke();}
+      if (!penDown) {LM.p5Renderer.noStroke();}
       var scaleFactor = size/200; //normalized models fit inbetween -100, 100 so 200 size
-      p5Renderer.scale(scaleFactor);
-      p5Renderer.model(model);
-      p5Renderer.scale(1/scaleFactor);
+      LM.p5Renderer.scale(scaleFactor);
+      LM.p5Renderer.model(model);
+      LM.p5Renderer.scale(1/scaleFactor);
       restoreStrokeStyle();
     },
 
@@ -335,7 +335,7 @@ var logo = (function(){
       var w = image.width;
       var h = image.height;
       var scaleFactor =  height/h;
-      p5Renderer.image(image, 0, 0, w * scaleFactor, h * scaleFactor);
+      LM.p5Renderer.image(image, 0, 0, w * scaleFactor, h * scaleFactor);
     },
 
     soundPlay: function(audio){
@@ -376,7 +376,7 @@ var logo = (function(){
     },
 
     keyPressed: function(){
-      return p5Renderer.keyIsPressed ? lastKeyPressed : 0;
+      return LM.p5Renderer.keyIsPressed ? lastKeyPressed : 0;
     }
 
 }

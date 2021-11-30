@@ -1,5 +1,5 @@
 
-var demoPrograms = (function(){
+LM.demoPrograms = (function(){
 
 	var programmsArray = [];
 	var previousIndex = -1;
@@ -20,7 +20,7 @@ var demoPrograms = (function(){
 })();
 
 
-demoPrograms.pushDemo(  
+LM.demoPrograms.pushDemo(
 ';-----------Demo Random curve---------\n'+
 '\n'+
 ';------Function-----------------------\n'+
@@ -42,7 +42,7 @@ demoPrograms.pushDemo(
 'setpensize 3\n'+
 'drawRandomCurve 150\n');
 
-demoPrograms.pushDemo( 
+LM.demoPrograms.pushDemo(
 ';----------Demo Spheres--------------- \n' + 
 '\n'+
 ';------Functions----------------------\n'+
@@ -89,7 +89,7 @@ demoPrograms.pushDemo(
 'pendown \n' + 
 'mysphere :radius/4 :segs \n');
 
-demoPrograms.pushDemo(
+LM.demoPrograms.pushDemo(
 ';----------Demo Bracelet--------------  \n' + 
 ' \n' + 
 ';------Functions---------------------- \n' + 
@@ -145,7 +145,7 @@ demoPrograms.pushDemo(
 ' rt 360/:jewels  \n' + 
 '] \n');
 
-demoPrograms.pushDemo( 
+LM.demoPrograms.pushDemo(
 ';---------Demo Fractal---------------- \n' + 
 ' \n' + 
 ';------Recursive Function------------- \n' + 
@@ -169,7 +169,7 @@ demoPrograms.pushDemo(
 'home \n' +
 'pendown');
 
-demoPrograms.pushDemo( 
+LM.demoPrograms.pushDemo(
 ';---------Demo Crazy Cubes------------- \n' + 
 ';Rand produces random numbers for each run \n' + 
 ';Randcrazy does the same but for each frame! \n' + 
@@ -208,7 +208,7 @@ demoPrograms.pushDemo(
 'print rand 500 \n' + 
 'print randcrazy 500');
 
-demoPrograms.pushDemo( 
+LM.demoPrograms.pushDemo(
 ';-----Demo Accelerating Sphere--------  \n' + 
 ';Using timing commands a sketch can be \n' + 
 ';animated! \n' + 
@@ -228,7 +228,7 @@ demoPrograms.pushDemo(
 'print gety \n' + 
 'print getx \n');
 
-demoPrograms.pushDemo( 
+LM.demoPrograms.pushDemo(
 ';----Demo Flying Avatars----------- \n' + 
 'rr frame \n' + 
 'rt frame \n' + 
@@ -238,7 +238,7 @@ demoPrograms.pushDemo(
 'make "speed 1 \n' + 
 'fd mod :speed*frame 300 \n');
 
-demoPrograms.pushDemo( 
+LM.demoPrograms.pushDemo(
 ';----Demo Colorful Starfish--------- \n' + 
 ';Using beginface endface we can create solids \n' + 
 ' \n' + 
@@ -282,7 +282,7 @@ demoPrograms.pushDemo(
 ' rt 360/:legs \n' + 
 '] \n');
 
-demoPrograms.pushDemo( 
+LM.demoPrograms.pushDemo(
 ';---Demo Bouncing Ball---------------    \n' + 
 ';---using static variables we can make    \n' + 
 ';---any kind of animation!-----------    \n' + 
@@ -338,7 +338,7 @@ demoPrograms.pushDemo(
 'fd :width+(:radius*2) rt 90   \n' + 
 'fd :radius   \n');
 
-demoPrograms.pushDemo( 
+LM.demoPrograms.pushDemo(
 ';---Demo pinball game---------------     \n' + 
 '     \n' + 
 'make "width 300    \n' + 
@@ -403,7 +403,7 @@ demoPrograms.pushDemo(
 'print "score \n' + 
 'print :score \n');
 
-demoPrograms.pushDemo(
+LM.demoPrograms.pushDemo(
 ';--------Demo Fibonacci spiral--------- \n' + 
 ' \n' + 
 ';Recursive fibonacci just for reference \n' + 
@@ -442,7 +442,7 @@ demoPrograms.pushDemo(
 '] \n' + 
 ';print :functioncalls \n');
 
-demoPrograms.pushDemo( 
+LM.demoPrograms.pushDemo(
 ';---------Demo Data structures-------------- \n' + 
 ';The commands "word" and "thing" and the ability \n' + 
 ';of variables to hold literals as values, enable \n' + 
@@ -564,7 +564,7 @@ demoPrograms.pushDemo(
 '  point \n' + 
 '] \n');
 
-demoPrograms.pushDemo(
+LM.demoPrograms.pushDemo(
 ';-------Demo Sorting algorithms----------\n' + 
 '\n' + 
 ';----------------------------------------\n' + 
@@ -685,7 +685,7 @@ demoPrograms.pushDemo(
 'print word "steps\\s :steps\n' + 
 '\n');
 
-demoPrograms.pushDemo (
+LM.demoPrograms.pushDemo (
 ';--------TETRIS----------------\n' + 
 '; play with the keyboard arrows\n' + 
 ';------------------------------\n' + 
@@ -985,7 +985,7 @@ demoPrograms.pushDemo (
 'drawborders\n' + 
 'drawnextshape\n');
 
-demoPrograms.pushDemo(
+LM.demoPrograms.pushDemo(
 ';---------------------------------\n' + 
 ';      Conway\'s Game of Life\n' + 
 ';---------------------------------\n' + 

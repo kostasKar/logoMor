@@ -13,6 +13,22 @@
   <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.min.js"></script>
 
   <!--Local scripts -->
+  <script src="logomorApp.js"><</script>
+  <script src="argumentResolverTask.js"></script>
+  <script src="commandTasks.js"></script>
+  <script src="parenthesisTask.js"></script>
+  <script src="variableMakerTask.js"></script>
+  <script src="staticVariableMaker.js"></script>
+  <script src="instructionsBlockTask.js"></script>
+  <script src="ifTask.js"></script>
+  <script src="ifElseTask.js"></script>
+  <script src="repeatTask.js"></script>
+  <script src="whileTask.js"></script>
+  <script src="untilTask.js"></script>
+  <script src="procedurePrototype.js"></script>
+  <script src="procedureTask.js"></script>
+  <script src="variablesSliders.js"></script>
+  <script src="logomorCommands.js"></script>
   <script src="codemirrorLogomor/lib/codemirror.js"></script>
   <script src="codemirrorLogomor/mode/logomor/logomor.js"></script>
   <script src="codemirrorLogomor/addon/edit/matchbrackets.js"></script>
@@ -31,28 +47,12 @@
   <script src="cameraManipulation.js"></script>
   <script src="drawThings.js"></script>
   <script src="logoMatrixTransformations.js"></script>
-  <script src="logoCommands.js"></script>
-  <script src="commandTasks.js"></script>
   <script src="debugger.js"></script>
   <script src='logoParser.js'></script>
   <script src='memoryController.js'></script>
   <script src="logoInterpreter.js"></script>
-  <script src="argumentResolverTask.js"></script>
-  <script src="parenthesisTask.js"></script>
-  <script src="variableMakerTask.js"></script>
-  <script src="staticVariableMaker.js"></script>
-  <script src="instructionsBlockTask.js"></script>
-  <script src="ifTask.js"></script>
-  <script src="ifElseTask.js"></script>
-  <script src="repeatTask.js"></script>
-  <script src="whileTask.js"></script>
-  <script src="untilTask.js"></script>
-  <script src="procedurePrototype.js"></script>
-  <script src="procedureTask.js"></script>
-  <script src="variablesSliders.js"></script>
+  <script src="logoCommands.js"></script>
   <script src="randomGenerator.js"></script>
-  <script src="logomorCommands.js"></script>
-  <script src="taskFactory.js"></script>
   <script src="demoProgram.js"></script>
   <script src="localFileSourceCode.js"></script>
   <script src="output.js"></script>
@@ -61,7 +61,7 @@
   <script src="image.js"></script>
   <script src="sound.js"></script>
   <script src="seedrandom.min.js"></script>
-  <script src="sketch.js" defer></script>
+  <script src="sketch.js"></script>
   <script src="codeEditorConfiguration.js" defer></script>
 
 
@@ -112,7 +112,7 @@
         <span class="onoffswitch-switch"></span>
       </label>
     </div>
-    <button class="tooltip" id="fullscreenButton" onclick="p5Renderer.fullscreen(!p5Renderer.fullscreen())">
+    <button class="tooltip" id="fullscreenButton" onclick="LM.p5Renderer.fullscreen(!LM.p5Renderer.fullscreen())">
       <i class="fa fa-expand" aria-hidden="true"></i>
       <span class="tooltiptext right">Fullscreen</span>
     </button>
@@ -130,9 +130,9 @@
 
       <div id="sourceCodeEditorTitleDiv">
         <label class="areaTitle brightText">Source Code Editor</label>
-        <button title="Create a shareable link with the source code" class="editorButton" id="copyCodeButton" onclick="myCodeMirror.copyShareableSourceCodeLink()">Share</button>
-        <button title="Increase editor font size" class="editorButton" onclick="myCodeMirror.increaseEditorFontSize()"><i class="fa fa-plus" aria-hidden="true"></i></button>
-        <button title="Decrease editor font size" class="editorButton" onclick="myCodeMirror.decreaseEditorFontSize()"><i class="fa fa-minus" aria-hidden="true"></i></button>
+        <button title="Create a shareable link with the source code" class="editorButton" id="copyCodeButton" onclick="LM.codeMirror.copyShareableSourceCodeLink()">Share</button>
+        <button title="Increase editor font size" class="editorButton" onclick="LM.codeMirror.increaseEditorFontSize()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        <button title="Decrease editor font size" class="editorButton" onclick="LM.codeMirror.decreaseEditorFontSize()"><i class="fa fa-minus" aria-hidden="true"></i></button>
       </div>
 
       <div id="sourceCodeContainer">
@@ -141,21 +141,21 @@
       <div id="pull-tab"></div>
 
       <div class="areaDiv" id="movesLimitDiv">
-        <button title="Start debugging" class="debugControls" id="debugButton" onclick="interpreter.setup(null, true)">Debug</button>
-        <button title="Run to breakpoint" class="debugControls" id="debugContinueButton" onclick="logoDebugger.continuePressed()" disabled>Continue</button>
-        <button title="Run next command" class="debugControls" id="debugStepButton" onclick="logoDebugger.stepPressed()" disabled>Step</button>  
-        <input  id="movesLimitInput" type="number" name="quantity" min="0" value="1000" onchange="interpreter.movesLimit = this.value; p5Renderer.redrawIfPaused()">
+        <button title="Start debugging" class="debugControls" id="debugButton" onclick="LM.interpreter.setup(null, true)">Debug</button>
+        <button title="Run to breakpoint" class="debugControls" id="debugContinueButton" onclick="LM.debugger.continuePressed()" disabled>Continue</button>
+        <button title="Run next command" class="debugControls" id="debugStepButton" onclick="LM.debugger.stepPressed()" disabled>Step</button>
+        <input  id="movesLimitInput" type="number" name="quantity" min="0" value="1000" onchange="LM.interpreter.movesLimit = this.value; LM.p5Renderer.redrawIfPaused()">
         <label title="Maximum number of move commands per frame" class="subtleText1" id="movesLimitLabel">Moves Limit:</label>
       </div>
 
       <div class="areaDiv" id = "buttonDiv">
-        <button id="playButton" onclick="interpreter.setup()">Run</button><!-- just to get rid of the space between the inline-blocks
-        --><button id="stopButton" onclick="interpreter.setup(''); logoSounds.stopAllAudio()">Stop</button><!--
-        --><button type="button" id="saveButton" onclick="localSystem.download()">Save</button><!--
-        --><button onclick="localSystem.openFile()">Load</button><!--
+        <button id="playButton" onclick="LM.interpreter.setup()">Run</button><!-- just to get rid of the space between the inline-blocks
+        --><button id="stopButton" onclick="LM.interpreter.setup(''); LM.sounds.stopAllAudio()">Stop</button><!--
+        --><button type="button" id="saveButton" onclick="LM.localSystem.download()">Save</button><!--
+        --><button onclick="LM.localSystem.openFile()">Load</button><!--
         --><button onclick=" window.open('assets/Documentation.pdf','_blank')" type="button">Help</button><!--
-        --><button type="button" id="DemoButton" onclick="myCodeMirror.setValue(demoPrograms.getRandomDemo());interpreter.setup();localStorage.setItem('demoPressed', true);this.classList.remove('firstVisitBlink');">Demo</button>
-        <input id="inp" type='file' style="display:none;" onchange="localSystem.readFile(event)" onclick="this.value=null;" />
+        --><button type="button" id="DemoButton" onclick="LM.codeMirror.setValue(LM.demoPrograms.getRandomDemo());LM.interpreter.setup();localStorage.setItem('demoPressed', true);this.classList.remove('firstVisitBlink');">Demo</button>
+        <input id="inp" type='file' style="display:none;" onchange="LM.localSystem.readFile(event)" onclick="this.value=null;" />
       </div>
 
       <div class="areaDiv">
@@ -166,8 +166,8 @@
       <div class="areaDiv" id="variablesDiv">
         <label title="Manipulate the initial value of any global variable defined in the source code. Changes can be observed on the drawing in real time" class="areaTitle brightText" id="variablesTitle">Variables Manipulators</label>
         <div class="dropdown">
-          <button id="slidersAddButton" onclick="variableManipulatorsSliders.showVariablesNames()" class="dropbtn" disabled>Add</button>
-          <button id="slidersClearButton" onclick="variableManipulatorsSliders.clearSliders()" class="dropbtn" disabled>Clear</button>
+          <button id="slidersAddButton" onclick="LM.variableManipulatorsSliders.showVariablesNames()" class="dropbtn" disabled>Add</button>
+          <button id="slidersClearButton" onclick="LM.variableManipulatorsSliders.clearSliders()" class="dropbtn" disabled>Clear</button>
           <div id="variablesNamesDropdown" class="dropdown-content">
           </div>
         </div>
@@ -175,20 +175,20 @@
 
       <div class="areaDiv" id="modelsDiv">
         <label title="Import an .stl or .obj 3D model file from local disk" class="areaTitle brightText">Models</label>
-        <button id="modelsAddButton" onclick="logoModels.openModelFile()" class="dropbtn">Add</button>
-        <input id="modelinp" type='file' style="display:none;" onchange="logoModels.readModelFile(event)" onclick="this.value=null;" accept=".stl,.obj" />
+        <button id="modelsAddButton" onclick="LM.models.openModelFile()" class="dropbtn">Add</button>
+        <input id="modelinp" type='file' style="display:none;" onchange="LM.models.readModelFile(event)" onclick="this.value=null;" accept=".stl,.obj" />
       </div>
 
       <div class="areaDiv" id="imagesDiv">
         <label title="Import any image file from local disk" class="areaTitle brightText">Images</label>
-        <button id="imagesAddButton" onclick="logoImages.openImageFile()" class="dropbtn">Add</button>
-        <input id="imageinp" type='file' style="display:none;" onchange="logoImages.readImageFile(event)" onclick="this.value=null;" accept="image/*"/>
+        <button id="imagesAddButton" onclick="LM.images.openImageFile()" class="dropbtn">Add</button>
+        <input id="imageinp" type='file' style="display:none;" onchange="LM.images.readImageFile(event)" onclick="this.value=null;" accept="image/*"/>
       </div>
 
       <div class="areaDiv" id="soundsDiv">
         <label title="Import any audio file from local disk" class="areaTitle brightText">Sounds</label>
-        <button id="soundAddButton" onclick="logoSounds.openSoundFile()" class="dropbtn">Add</button>
-        <input id="soundinp" type='file' style="display:none;" onchange="logoSounds.readSoundFile(event)" onclick="this.value=null;" accept="audio/*"/>
+        <button id="soundAddButton" onclick="LM.sounds.openSoundFile()" class="dropbtn">Add</button>
+        <input id="soundinp" type='file' style="display:none;" onchange="LM.sounds.readSoundFile(event)" onclick="this.value=null;" accept="audio/*"/>
       </div>
 
 
@@ -197,19 +197,19 @@
 
 
   <div id="pictureControl">
-    <button class="tooltip" id="saveScreenshot" onclick="localSystem.saveScreenshot()">
+    <button class="tooltip" id="saveScreenshot" onclick="LM.localSystem.saveScreenshot()">
       <i class="fa fa-camera" aria-hidden="true"></i>
       <span class="tooltiptext left">Screenshot</span>
     </button>
-    <button class="tooltip" id="record" onclick="localSystem.toggleRecording()">
+    <button class="tooltip" id="record" onclick="LM.localSystem.toggleRecording()">
       <i class="fa fa-video" aria-hidden="true"></i>
       <span class="tooltiptext left">Video</span>
     </button>
-    <button class="tooltip" id="pause" onclick="p5Renderer.togglePause()">
+    <button class="tooltip" id="pause" onclick="LM.p5Renderer.togglePause()">
       <i class="fa fa-pause" aria-hidden="true"></i>
       <span class="tooltiptext left">Redrawing</span>
     </button>
-    <button class="tooltip" id="clearDrawing" onclick="p5Renderer.toggleClearDrawing()">
+    <button class="tooltip" id="clearDrawing" onclick="LM.p5Renderer.toggleClearDrawing()">
       <i class="fas fa-clone" aria-hidden="true"></i>
       <span class="tooltiptext left">Persist draw</span>
     </button>
@@ -217,7 +217,7 @@
       <i class="fas fa-paint-brush" aria-hidden="true"></i>
       <span class="tooltiptext left">Default color</span>
     </button>
-    <input id="colorPicker" type="color" value="#ffffff" style="visibility: hidden; width: 0px;" onchange="logo.setDefaultHexColor(this.value)"/>
+    <input id="colorPicker" type="color" value="#ffffff" style="visibility: hidden; width: 0px;" onchange="LM.logo.setDefaultHexColor(this.value)"/>
   </div>
 
 

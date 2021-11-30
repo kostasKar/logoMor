@@ -17,7 +17,7 @@ class CommandTask  {
     this.argumentTypes = argumentTypes;
     this.arguments =[];
     this.isMove = isMove;
-    interpreter.tasksStack.push(this);
+    LM.interpreter.tasksStack.push(this);
     if (this.argumentTypes.length == 0){
       this.canBeResolved = true;
     } else {
@@ -43,12 +43,12 @@ class CommandTask  {
   resolve(){
     if (this.isMove){CommandTask.movesCount++;}
     var ret =  this.run().toString();
-    interpreter.tasksStack.pop();
+    LM.interpreter.tasksStack.pop();
     return ret;
   }
   
   run(){
-    throwError("command task run() method not implemented");
+    LM.throwError("command task run() method not implemented");
     return "";
   }
   
@@ -58,7 +58,7 @@ class CommandTask  {
 
       case "N":
       if (isNaN(arg)){
-        throwError("Invalid number command argument: " + arg);
+        LM.throwError("Invalid number command argument: " + arg);
         return;
       }
       arg = Number(arg);
@@ -66,7 +66,7 @@ class CommandTask  {
 
       case "S":
       if (!arg.startsWith('"')){
-        throwError("Invalid literal command argument: " + arg);
+        LM.throwError("Invalid literal command argument: " + arg);
         return;
       }
       arg = arg.replace('"', '');
@@ -104,38 +104,38 @@ class CommandTask  {
  * Actual commands tasks. All classes below just inherit the correct parent and implement only their own run()
  */
 //Basic Logo commands
- class FdTask extends CommandTask1NM {run() { logo.forward(this.arguments[0]); return "";}}
- class BkTask extends CommandTask1NM {run() { logo.backward(this.arguments[0]); return "";}}
- class RtTask extends CommandTask1NM {run() { logo.right(this.arguments[0]); return "";}}
- class LtTask extends CommandTask1NM { run() { logo.left(this.arguments[0]); return "";}}
- class UpTask extends CommandTask1NM { run() { logo.up(this.arguments[0]); return "";}}
- class DnTask extends CommandTask1NM { run() { logo.down(this.arguments[0]); return "";}}
- class RrTask extends CommandTask1NM { run() { logo.rollRight(this.arguments[0]); return "";}}
- class RlTask extends CommandTask1NM { run() { logo.rollLeft(this.arguments[0]); return "";}}
- class SpsTask extends CommandTask1N { run() { logo.setPenSize(Math.round(this.arguments[0])); return "";}}
- class StsTask extends CommandTask1N { run() { logo.setTextSize(Math.round(this.arguments[0])); return "";}}
- class ColorTask extends CommandTask3N { run() { logo.color(parseInt(this.arguments[0]), parseInt(this.arguments[1]), parseInt(this.arguments[2])); return "";}}
- class ColorHSBTask extends CommandTask3N { run() { logo.colorHSB(parseInt(this.arguments[0]), parseInt(this.arguments[1]), parseInt(this.arguments[2])); return "";}}
- class ColorAlphaTask extends CommandTask1N{ run() {logo.colorAlpha(parseInt(this.arguments[0])); return "";}}
- class PdTask extends CommandTask0 { run() { logo.penDown(); return "";}}
- class PuTask extends CommandTask0 { run() { logo.penUp(); return "";}}
- class ShowTurtleTask extends CommandTask0 { run() { logo.showTurtle(); return "";}} 
- class HideTurtleTask extends CommandTask0 { run() { logo.hideTurtle(); return "";}} 
- class HomeTask extends CommandTask0M { run() { logo.home(); return "";}}
- class GetXTask extends CommandTask0 { run() { return logo.getx();}}
- class GetYTask extends CommandTask0 { run() { return logo.gety();}}
- class GetZTask extends CommandTask0 { run() { return logo.getz();}}
- class SetXTask extends CommandTask1NM { run() {logo.setx(this.arguments[0]); return "";}}
- class SetYTask extends CommandTask1NM { run() {logo.sety(this.arguments[0]); return "";}}
- class SetZTask extends CommandTask1NM { run() {logo.setz(this.arguments[0]); return "";}}
- class SetXYZTask extends CommandTask3NM { run() {logo.setxyz(this.arguments[0], this.arguments[1], this.arguments[2]); return "";}}
- class PointTask extends CommandTask0{ run() {logo.point(); return "";}}
- class DistTask extends CommandTask3N{ run() {return logo.dist(this.arguments[0], this.arguments[1], this.arguments[2]);}}
- class ArcTask extends CommandTask2N{ run() {logo.arc(this.arguments[0], this.arguments[1]); return "";}}
+ class FdTask extends CommandTask1NM {run() { LM.logo.forward(this.arguments[0]); return "";}}
+ class BkTask extends CommandTask1NM {run() { LM.logo.backward(this.arguments[0]); return "";}}
+ class RtTask extends CommandTask1NM {run() { LM.logo.right(this.arguments[0]); return "";}}
+ class LtTask extends CommandTask1NM { run() { LM.logo.left(this.arguments[0]); return "";}}
+ class UpTask extends CommandTask1NM { run() { LM.logo.up(this.arguments[0]); return "";}}
+ class DnTask extends CommandTask1NM { run() { LM.logo.down(this.arguments[0]); return "";}}
+ class RrTask extends CommandTask1NM { run() { LM.logo.rollRight(this.arguments[0]); return "";}}
+ class RlTask extends CommandTask1NM { run() { LM.logo.rollLeft(this.arguments[0]); return "";}}
+ class SpsTask extends CommandTask1N { run() { LM.logo.setPenSize(Math.round(this.arguments[0])); return "";}}
+ class StsTask extends CommandTask1N { run() { LM.logo.setTextSize(Math.round(this.arguments[0])); return "";}}
+ class ColorTask extends CommandTask3N { run() { LM.logo.color(parseInt(this.arguments[0]), parseInt(this.arguments[1]), parseInt(this.arguments[2])); return "";}}
+ class ColorHSBTask extends CommandTask3N { run() { LM.logo.colorHSB(parseInt(this.arguments[0]), parseInt(this.arguments[1]), parseInt(this.arguments[2])); return "";}}
+ class ColorAlphaTask extends CommandTask1N{ run() {LM.logo.colorAlpha(parseInt(this.arguments[0])); return "";}}
+ class PdTask extends CommandTask0 { run() { LM.logo.penDown(); return "";}}
+ class PuTask extends CommandTask0 { run() { LM.logo.penUp(); return "";}}
+ class ShowTurtleTask extends CommandTask0 { run() { LM.logo.showTurtle(); return "";}} 
+ class HideTurtleTask extends CommandTask0 { run() { LM.logo.hideTurtle(); return "";}} 
+ class HomeTask extends CommandTask0M { run() { LM.logo.home(); return "";}}
+ class GetXTask extends CommandTask0 { run() { return LM.logo.getx();}}
+ class GetYTask extends CommandTask0 { run() { return LM.logo.gety();}}
+ class GetZTask extends CommandTask0 { run() { return LM.logo.getz();}}
+ class SetXTask extends CommandTask1NM { run() {LM.logo.setx(this.arguments[0]); return "";}}
+ class SetYTask extends CommandTask1NM { run() {LM.logo.sety(this.arguments[0]); return "";}}
+ class SetZTask extends CommandTask1NM { run() {LM.logo.setz(this.arguments[0]); return "";}}
+ class SetXYZTask extends CommandTask3NM { run() {LM.logo.setxyz(this.arguments[0], this.arguments[1], this.arguments[2]); return "";}}
+ class PointTask extends CommandTask0{ run() {LM.logo.point(); return "";}}
+ class DistTask extends CommandTask3N{ run() {return LM.logo.dist(this.arguments[0], this.arguments[1], this.arguments[2]);}}
+ class ArcTask extends CommandTask2N{ run() {LM.logo.arc(this.arguments[0], this.arguments[1]); return "";}}
 
 //Output commands:
- class PrintTask extends CommandTask1B { run(){consoleHandler.println(this.arguments[0].replace(/\\s/g, " "), "user"); return "";}}
- class LabelTask extends CommandTask1B { run(){logo.label(this.arguments[0].replace(/\\s/g, " ")); return "";}}
+ class PrintTask extends CommandTask1B { run(){LM.consoleHandler.println(this.arguments[0].replace(/\\s/g, " "), "user"); return "";}}
+ class LabelTask extends CommandTask1B { run(){LM.logo.label(this.arguments[0].replace(/\\s/g, " ")); return "";}}
 
 //Logical commands
  class AndTask extends CommandTask2N { run() {return ((this.arguments[0] != 0) && (this.arguments[1] != 0))? "1" : "0";}}
@@ -144,20 +144,20 @@ class CommandTask  {
  class EqualsTask extends CommandTask2B { run() {return (this.arguments[0] == this.arguments[1])? "1" : "0";}}
 
 //Random number generation
- class RandTask extends CommandTask1N { run() {return Math.floor(logoRandomGenerator.getConsistentOutput() * this.arguments[0]);}}
- class RandCrazyTask extends CommandTask1N { run() {return Math.floor(logoRandomGenerator.getInconsistentOutput() * this.arguments[0]);}}
- class RandSeedTask extends CommandTask1B {run(){logoRandomGenerator.setSeed(this.arguments[0]); return "";}}
+ class RandTask extends CommandTask1N { run() {return Math.floor(LM.randomGenerator.getConsistentOutput() * this.arguments[0]);}}
+ class RandCrazyTask extends CommandTask1N { run() {return Math.floor(LM.randomGenerator.getInconsistentOutput() * this.arguments[0]);}}
+ class RandSeedTask extends CommandTask1B {run(){LM.randomGenerator.setSeed(this.arguments[0]); return "";}}
 
 //Mathematical commands
  class SqrtTask extends CommandTask1N { run() {return Math.sqrt(this.arguments[0]);}}
  class PowTask extends CommandTask2N { run() {return Math.pow(this.arguments[0], this.arguments[1]);}}
  class ModTask extends CommandTask2N { run() {return (Math.floor(this.arguments[0]) % Math.floor(this.arguments[1]));}}
- class CosTask extends CommandTask1N { run() {return Math.cos(p5Renderer.radians(this.arguments[0]));}}
- class SinTask extends CommandTask1N { run() {return Math.sin(p5Renderer.radians(this.arguments[0]));}}
- class TanTask extends CommandTask1N { run() {return Math.tan(p5Renderer.radians(this.arguments[0]));}}
- class ArcCosTask extends CommandTask1N { run() {return p5Renderer.degrees(Math.acos(this.arguments[0]));}}
- class ArcSinTask extends CommandTask1N { run() {return p5Renderer.degrees(Math.asin(this.arguments[0]));}}
- class ArcTanTask extends CommandTask1N { run() {return p5Renderer.degrees(Math.atan(this.arguments[0]));}}
+ class CosTask extends CommandTask1N { run() {return Math.cos(LM.p5Renderer.radians(this.arguments[0]));}}
+ class SinTask extends CommandTask1N { run() {return Math.sin(LM.p5Renderer.radians(this.arguments[0]));}}
+ class TanTask extends CommandTask1N { run() {return Math.tan(LM.p5Renderer.radians(this.arguments[0]));}}
+ class ArcCosTask extends CommandTask1N { run() {return LM.p5Renderer.degrees(Math.acos(this.arguments[0]));}}
+ class ArcSinTask extends CommandTask1N { run() {return LM.p5Renderer.degrees(Math.asin(this.arguments[0]));}}
+ class ArcTanTask extends CommandTask1N { run() {return LM.p5Renderer.degrees(Math.atan(this.arguments[0]));}}
  class LnTask extends CommandTask1N { run() {return Math.log(this.arguments[0]);}}
  class LogTask extends CommandTask1N { run() {return Math.log10(this.arguments[0]);}}
  class ExpTask extends CommandTask1N { run() {return Math.exp(this.arguments[0]);}}
@@ -167,53 +167,53 @@ class CommandTask  {
  class AbsTask extends CommandTask1N { run() {return Math.abs(this.arguments[0]);}}
  class MinTask extends CommandTask2N { run() {return Math.min(this.arguments[0], this.arguments[1]);}}
  class MaxTask extends CommandTask2N { run() {return Math.max(this.arguments[0], this.arguments[1]);}}
- class RadToDegTask extends CommandTask1N { run() {return p5Renderer.degrees(this.arguments[0]);}}
- class DegToRadTask extends CommandTask1N { run() {return p5Renderer.radians(this.arguments[0]);}}
+ class RadToDegTask extends CommandTask1N { run() {return LM.p5Renderer.degrees(this.arguments[0]);}}
+ class DegToRadTask extends CommandTask1N { run() {return LM.p5Renderer.radians(this.arguments[0]);}}
 
 //Timing 
-class TimeTask extends CommandTask0{run(){return ((Date.now()-interpreter.startTime)/1000);}}
-class FrameTask extends CommandTask0{run(){return (p5Renderer.frameCount-interpreter.startFrame);}}
+class TimeTask extends CommandTask0{run(){return ((Date.now()-LM.interpreter.startTime)/1000);}}
+class FrameTask extends CommandTask0{run(){return (LM.p5Renderer.frameCount-LM.interpreter.startFrame);}}
 
 //3d solids
-class BeginShapeTask extends CommandTask0{run(){logo.beginShape(); return "";}}
-class EndShapeTask extends CommandTask0{run(){logo.endShape(); return "";}}
+class BeginShapeTask extends CommandTask0{run(){LM.logo.beginShape(); return "";}}
+class EndShapeTask extends CommandTask0{run(){LM.logo.endShape(); return "";}}
 
 //mouse tasks
-class MouseXTask extends CommandTask0{run(){return logo.mousex();}}
-class MouseYTask extends CommandTask0{run(){return logo.mousey();}}
-class MousePressedTask extends CommandTask0{run(){return logo.mousePressed();}}
+class MouseXTask extends CommandTask0{run(){return LM.logo.mousex();}}
+class MouseYTask extends CommandTask0{run(){return LM.logo.mousey();}}
+class MousePressedTask extends CommandTask0{run(){return LM.logo.mousePressed();}}
 
 //Variable manipulation tasks
-class ThingTask extends CommandTask1S{run(){return memoryController.getVariable(this.arguments[0]);}}
-class IncrementTask extends CommandTask1S{run(){memoryController.setExistingVariable(this.arguments[0], Number(memoryController.getVariable(this.arguments[0])) + 1); return "";}}
-class DecrementTask extends CommandTask1S{run(){memoryController.setExistingVariable(this.arguments[0], Number(memoryController.getVariable(this.arguments[0])) - 1); return "";}}
+class ThingTask extends CommandTask1S{run(){return LM.memoryController.getVariable(this.arguments[0]);}}
+class IncrementTask extends CommandTask1S{run(){LM.memoryController.setExistingVariable(this.arguments[0], Number(LM.memoryController.getVariable(this.arguments[0])) + 1); return "";}}
+class DecrementTask extends CommandTask1S{run(){LM.memoryController.setExistingVariable(this.arguments[0], Number(LM.memoryController.getVariable(this.arguments[0])) - 1); return "";}}
 
 //Literals concatenation
 class WordTask extends CommandTask2B{run(){return '"' + this.arguments[0] + this.arguments[1];}}
 
 //3D Primitives
-class BoxTask extends CommandTask1N{run(){logo.box(this.arguments[0]); return "";}}
-class SphereTask extends CommandTask1N{run(){logo.sphere(this.arguments[0]); return "";}}
-class CylinderTask extends CommandTask2N{run(){logo.cylinder(this.arguments[0], this.arguments[1]); return "";}}
-class ConeTask extends CommandTask2N{run(){logo.cone(this.arguments[0], this.arguments[1]); return "";}}
-class TorusTask extends CommandTask2N{run(){logo.torus(this.arguments[0], this.arguments[1]); return "";}}
-class EllipsoidTask extends CommandTask3N{run(){logo.ellipsoid(this.arguments[0], this.arguments[1], this.arguments[2]); return "";}}
+class BoxTask extends CommandTask1N{run(){LM.logo.box(this.arguments[0]); return "";}}
+class SphereTask extends CommandTask1N{run(){LM.logo.sphere(this.arguments[0]); return "";}}
+class CylinderTask extends CommandTask2N{run(){LM.logo.cylinder(this.arguments[0], this.arguments[1]); return "";}}
+class ConeTask extends CommandTask2N{run(){LM.logo.cone(this.arguments[0], this.arguments[1]); return "";}}
+class TorusTask extends CommandTask2N{run(){LM.logo.torus(this.arguments[0], this.arguments[1]); return "";}}
+class EllipsoidTask extends CommandTask3N{run(){LM.logo.ellipsoid(this.arguments[0], this.arguments[1], this.arguments[2]); return "";}}
 
 //Models
-class ModelTask extends CommandTask2SN { run() {if (logoModels.assertExists(this.arguments[0])){logo.model(logoModels.getModel(this.arguments[0]), this.arguments[1])} return "";}}
+class ModelTask extends CommandTask2SN { run() {if (LM.models.assertExists(this.arguments[0])){LM.logo.model(LM.models.getModel(this.arguments[0]), this.arguments[1])} return "";}}
 
 //Images
-class ImageTask extends CommandTask2SN { run() {if (logoImages.assertExists(this.arguments[0])){logo.image(logoImages.getImage(this.arguments[0]), this.arguments[1])} return "";}}
+class ImageTask extends CommandTask2SN { run() {if (LM.images.assertExists(this.arguments[0])){LM.logo.image(LM.images.getImage(this.arguments[0]), this.arguments[1])} return "";}}
 
 //Sounds
-class PlaySoundTask extends CommandTask1S { run() {if (logoSounds.assertExists(this.arguments[0])){logo.soundPlay(logoSounds.getAudio(this.arguments[0]))} return "";}}
-class StopSoundTask extends CommandTask1S { run() {if (logoSounds.assertExists(this.arguments[0])){logo.soundStop(logoSounds.getAudio(this.arguments[0]))} return "";}}
-class PauseSoundTask extends CommandTask1S { run() {if (logoSounds.assertExists(this.arguments[0])){logo.soundPause(logoSounds.getAudio(this.arguments[0]))} return "";}}
-class IsPLayingSoundTask extends CommandTask1S { run() {return (logoSounds.assertExists(this.arguments[0])) ? logo.soundIsPlaying(logoSounds.getAudio(this.arguments[0])) : 0;}}
-class GetTimeSoundTask extends CommandTask1S { run() {return (logoSounds.assertExists(this.arguments[0])) ? logo.soundGetTime(logoSounds.getAudio(this.arguments[0])) : 0}}
-class GetVolumeSoundTask extends CommandTask1S { run() {return (logoSounds.assertExists(this.arguments[0])) ? logo.soundGetVolume(logoSounds.getAudio(this.arguments[0])) : 0}}
-class SetTimeSoundTask extends CommandTask2SN { run() {if (logoSounds.assertExists(this.arguments[0])){logo.soundSetTime(logoSounds.getAudio(this.arguments[0]), this.arguments[1])} return "";}}
-class SetVolumeSoundTask extends CommandTask2SN { run() {if (logoSounds.assertExists(this.arguments[0])){logo.soundSetVolume(logoSounds.getAudio(this.arguments[0]), this.arguments[1])} return "";}}
+class PlaySoundTask extends CommandTask1S { run() {if (LM.sounds.assertExists(this.arguments[0])){LM.logo.soundPlay(LM.sounds.getAudio(this.arguments[0]))} return "";}}
+class StopSoundTask extends CommandTask1S { run() {if (LM.sounds.assertExists(this.arguments[0])){LM.logo.soundStop(LM.sounds.getAudio(this.arguments[0]))} return "";}}
+class PauseSoundTask extends CommandTask1S { run() {if (LM.sounds.assertExists(this.arguments[0])){LM.logo.soundPause(LM.sounds.getAudio(this.arguments[0]))} return "";}}
+class IsPLayingSoundTask extends CommandTask1S { run() {return (LM.sounds.assertExists(this.arguments[0])) ? LM.logo.soundIsPlaying(LM.sounds.getAudio(this.arguments[0])) : 0;}}
+class GetTimeSoundTask extends CommandTask1S { run() {return (LM.sounds.assertExists(this.arguments[0])) ? LM.logo.soundGetTime(LM.sounds.getAudio(this.arguments[0])) : 0}}
+class GetVolumeSoundTask extends CommandTask1S { run() {return (LM.sounds.assertExists(this.arguments[0])) ? LM.logo.soundGetVolume(LM.sounds.getAudio(this.arguments[0])) : 0}}
+class SetTimeSoundTask extends CommandTask2SN { run() {if (LM.sounds.assertExists(this.arguments[0])){LM.logo.soundSetTime(LM.sounds.getAudio(this.arguments[0]), this.arguments[1])} return "";}}
+class SetVolumeSoundTask extends CommandTask2SN { run() {if (LM.sounds.assertExists(this.arguments[0])){LM.logo.soundSetVolume(LM.sounds.getAudio(this.arguments[0]), this.arguments[1])} return "";}}
 
 //Keyboard
-class KeyPressedTask extends CommandTask0{run(){return logo.keyPressed();}}
+class KeyPressedTask extends CommandTask0{run(){return LM.logo.keyPressed();}}

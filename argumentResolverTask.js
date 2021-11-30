@@ -31,7 +31,7 @@ class ArgumentResolverTask {
     this.stringArgumentSet = false;
     this.stringArgumentCanBeSet = true;
     this.negative = false;
-    interpreter.tasksStack.push(this);
+    LM.interpreter.tasksStack.push(this);
     this.expression = [];
   }
 
@@ -40,12 +40,12 @@ class ArgumentResolverTask {
     
     if (!this.canBeResolved){
       if (arg === ""){
-        throwError("Argument resolver was fed with the result of a no return value task");
+        LM.throwError("Argument resolver was fed with the result of a no return value task");
         return false;
       }
 
       if (arg.startsWith(":")){
-        arg = memoryController.getVariable(arg.replace(":", ""));
+        arg = LM.memoryController.getVariable(arg.replace(":", ""));
       }
 
       if (!isNaN(arg)){
@@ -80,7 +80,7 @@ class ArgumentResolverTask {
   
   resolve(){
     var ret =  this.evaluateExpressionByPrecedence().toString();     
-    interpreter.tasksStack.pop();
+    LM.interpreter.tasksStack.pop();
     return ret; 
   }
 
@@ -93,14 +93,14 @@ class ArgumentResolverTask {
       }
     }
     if (this.expression.length !== 1){
-      throwError("Invalid final expression: " + this.expression.toString());
+      LM.throwError("Invalid final expression: " + this.expression.toString());
     }
     return this.expression[0];
   }
 
   doOperation(operator, left, right){
     if((isNaN(left)) || (isNaN(right)) || (!operators.includes(operator))){
-      throwError("Could not resolve operation: " + left + " " + operator + " " + right);
+      LM.throwError("Could not resolve operation: " + left + " " + operator + " " + right);
       return 0;
     }
     switch (operator){
@@ -114,7 +114,7 @@ class ArgumentResolverTask {
       case ">=": return (left >= right)? 1 : 0;
       case "=":  return (left == right)? 1 : 0;
       default: 
-        throwError("Unimplemented operator: " + operator); 
+        LM.throwError("Unimplemented operator: " + operator);
         return 0;
     }
   }

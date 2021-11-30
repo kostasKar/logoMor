@@ -1,5 +1,5 @@
 
-var logoMatrix = (function(){
+LM.matrix = (function(){
 
   const unitMatrix = [1, 0, 0, 0,
                     0, 1, 0, 0,
@@ -192,12 +192,12 @@ var logoMatrix = (function(){
     },
 
     apply: function(){
-      p5Renderer.applyMatrix(lm[0],lm[1],lm[2],lm[3],lm[4],lm[5],lm[6],lm[7],lm[8],lm[9],lm[10],lm[11],lm[12],lm[13],lm[14],lm[15]);
+      LM.p5Renderer.applyMatrix(lm[0],lm[1],lm[2],lm[3],lm[4],lm[5],lm[6],lm[7],lm[8],lm[9],lm[10],lm[11],lm[12],lm[13],lm[14],lm[15]);
     },
 
     applyInverse: function(){
       var lmi = invertMatrix(lm);
-      p5Renderer.applyMatrix(lmi[0],lmi[1],lmi[2],lmi[3],lmi[4],lmi[5],lmi[6],lmi[7],lmi[8],lmi[9],lmi[10],lmi[11],lmi[12],lmi[13],lmi[14],lmi[15]);
+      LM.p5Renderer.applyMatrix(lmi[0],lmi[1],lmi[2],lmi[3],lmi[4],lmi[5],lmi[6],lmi[7],lmi[8],lmi[9],lmi[10],lmi[11],lmi[12],lmi[13],lmi[14],lmi[15]);
     },
 
     getX: function(){

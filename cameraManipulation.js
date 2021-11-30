@@ -7,7 +7,7 @@
 */
 
 
-var cameraViewControl = (function (){
+LM.cameraViewControl = (function (){
 
   var xRotation;
   var yRotation;
@@ -34,8 +34,8 @@ var cameraViewControl = (function (){
     },
 
     initialize: function(){
-      fov_min = p5Renderer.radians(1);
-      fov_max = p5Renderer.radians(90);
+      fov_min = LM.p5Renderer.radians(1);
+      fov_max = LM.p5Renderer.radians(90);
       cameraEnabled = false;
       this.reset();
     },
@@ -43,10 +43,10 @@ var cameraViewControl = (function (){
     reset: function(){
       centerX = 0;
       centerY = 0;
-      fov = p5Renderer.radians(30);
+      fov = LM.p5Renderer.radians(30);
       xRotation = 0;
       yRotation = 0;
-      autoRotation_lastFrameCount = p5Renderer.frameCount;
+      autoRotation_lastFrameCount = LM.p5Renderer.frameCount;
       autoRotation_lastYRotation = 0;
     },
 
@@ -59,7 +59,7 @@ var cameraViewControl = (function (){
     },
 
     mouseWheelCallback: function(eventDelta) {
-      if (cameraEnabled && p5Renderer.isLooping()){
+      if (cameraEnabled && LM.p5Renderer.isLooping()){
 
         fov += (eventDelta > 0) ? 1/60 : -1/60;
         if (fov < fov_min){
@@ -72,36 +72,36 @@ var cameraViewControl = (function (){
     },
 
     adjust: function(){
-      var cameraZ = (p5Renderer.height/2.0) / Math.tan(fov / 2.0);
-      var aspect = p5Renderer.width / p5Renderer.height;
-      p5Renderer.perspective(fov, aspect, cameraZ/200.0, cameraZ*10.0);
+      var cameraZ = (LM.p5Renderer.height/2.0) / Math.tan(fov / 2.0);
+      var aspect = LM.p5Renderer.width / LM.p5Renderer.height;
+      LM.p5Renderer.perspective(fov, aspect, cameraZ/200.0, cameraZ*10.0);
       
-      if (cameraEnabled && p5Renderer.mouseIsPressed && (p5Renderer.mouseButton == p5Renderer.LEFT)) {
-        xRotation += - (p5Renderer.mouseY - p5Renderer.pmouseY)/(p5Renderer.height) * Math.PI;
-        yRotation += (p5Renderer.mouseX - p5Renderer.pmouseX)/(p5Renderer.height) * Math.PI;
+      if (cameraEnabled && LM.p5Renderer.mouseIsPressed && (LM.p5Renderer.mouseButton == LM.p5Renderer.LEFT)) {
+        xRotation += - (LM.p5Renderer.mouseY - LM.p5Renderer.pmouseY)/(LM.p5Renderer.height) * Math.PI;
+        yRotation += (LM.p5Renderer.mouseX - LM.p5Renderer.pmouseX)/(LM.p5Renderer.height) * Math.PI;
       }
       
-      if (cameraEnabled && p5Renderer.mouseIsPressed && (p5Renderer.mouseButton == p5Renderer.CENTER)) {
-        centerX += (p5Renderer.mouseX - p5Renderer.pmouseX) * (fov / 1.2);
-        centerY += (p5Renderer.mouseY - p5Renderer.pmouseY) * (fov / 1.2);
+      if (cameraEnabled && LM.p5Renderer.mouseIsPressed && (LM.p5Renderer.mouseButton == LM.p5Renderer.CENTER)) {
+        centerX += (LM.p5Renderer.mouseX - LM.p5Renderer.pmouseX) * (fov / 1.2);
+        centerY += (LM.p5Renderer.mouseY - LM.p5Renderer.pmouseY) * (fov / 1.2);
       }
 
       if (document.getElementById("autoRotate").checked){
-        yRotation = autoRotation_lastYRotation + (p5Renderer.frameCount - autoRotation_lastFrameCount) * 0.015;
+        yRotation = autoRotation_lastYRotation + (LM.p5Renderer.frameCount - autoRotation_lastFrameCount) * 0.015;
       } else {
-        autoRotation_lastFrameCount = p5Renderer.frameCount;
+        autoRotation_lastFrameCount = LM.p5Renderer.frameCount;
         autoRotation_lastYRotation = yRotation;
       }
 
-      p5Renderer.translate(centerX, centerY, 0);
-      p5Renderer.rotateX(xRotation);
-      p5Renderer.rotateY(yRotation);
+      LM.p5Renderer.translate(centerX, centerY, 0);
+      LM.p5Renderer.rotateX(xRotation);
+      LM.p5Renderer.rotateY(yRotation);
 
       if (document.getElementById("avatarViewCheckbox").checked){
-        logoMatrix.applyInverse();
+        LM.matrix.applyInverse();
       }
 
-      document.getElementById("fpsValue").innerText = p5Renderer.frameRate().toFixed(1);
+      document.getElementById("fpsValue").innerText = LM.p5Renderer.frameRate().toFixed(1);
       
     }
   }

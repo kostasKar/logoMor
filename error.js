@@ -1,18 +1,18 @@
 
-function throwError(text){
-  interpreter.setError(true);
-  consoleHandler.println("<b>Error:</b> " + text, "error");
-  consoleHandler.println("Line number: " + interpreter.errorLineNumber);
-  consoleHandler.print(interpreter.getStackTrace());
-  consoleHandler.println(memoryController.getMemoryTrace());
-  myCodeMirror.addLineClass(interpreter.errorLineNumber - 1, "background", "cm-error-line");
-  myCodeMirror.scrollIntoView({line:interpreter.errorLineNumber - 1, char:1}, 200);
+LM.throwError = function(text){
+  LM.interpreter.setError(true);
+  LM.consoleHandler.println("<b>Error:</b> " + text, "error");
+  LM.consoleHandler.println("Line number: " + LM.interpreter.errorLineNumber);
+  LM.consoleHandler.print(LM.interpreter.getStackTrace());
+  LM.consoleHandler.println(LM.memoryController.getMemoryTrace());
+  LM.codeMirror.addLineClass(LM.interpreter.errorLineNumber - 1, "background", "cm-error-line");
+  LM.codeMirror.scrollIntoView({line:LM.interpreter.errorLineNumber - 1, char:1}, 200);
 }
 
-function clearError(){
-  if (interpreter.error){
-    myCodeMirror.removeLineClass(interpreter.errorLineNumber - 1, "background", "cm-error-line");
+LM.clearError = function(){
+  if (LM.interpreter.error){
+    LM.codeMirror.removeLineClass(LM.interpreter.errorLineNumber - 1, "background", "cm-error-line");
   }
-  interpreter.setError(false);
+  LM.interpreter.setError(false);
 }
 

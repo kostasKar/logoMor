@@ -1,4 +1,4 @@
-var logoRandomGenerator = (function(){
+LM.randomGenerator = (function(){
 
   var seed;
   var seedableRNG; 

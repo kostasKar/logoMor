@@ -8,17 +8,17 @@ class ProcedureTask {
     this.localVariables = Object.assign({}, procedurePrototype.localVariables);
     this.returnValue = "";
     
-    interpreter.tasksStack.push(this);
+    LM.interpreter.tasksStack.push(this);
     if (this.numOfParameters > 0){
       var art = new ArgumentResolverTask();
     } else {
-      memoryController.pushScope(this.localVariables);
-      this.returnIndex = interpreter.currentIndex + 1;
-      this.returnSourceTokens = interpreter.sourceTokens;
-      interpreter.sourceTokens = this.body;
-      this.returnSourceTokensLineNumbers = interpreter.sourceTokensLineNumbers;
-      interpreter.sourceTokensLineNumbers = this.bodyLineNumbers;
-      interpreter.currentIndex = 0;
+      LM.memoryController.pushScope(this.localVariables);
+      this.returnIndex = LM.interpreter.currentIndex + 1;
+      this.returnSourceTokens = LM.interpreter.sourceTokens;
+      LM.interpreter.sourceTokens = this.body;
+      this.returnSourceTokensLineNumbers = LM.interpreter.sourceTokensLineNumbers;
+      LM.interpreter.sourceTokensLineNumbers = this.bodyLineNumbers;
+      LM.interpreter.currentIndex = 0;
     }
     this.numOfParametersSet = 0;
     this.canBeResolved = false;
@@ -33,13 +33,13 @@ class ProcedureTask {
       this.localVariables[this.body[this.numOfParametersSet + 1].replace(":", "")]  = arg; 
       this.numOfParametersSet++;
       if (this.numOfParametersSet == this.numOfParameters){
-        memoryController.pushScope(this.localVariables);
-        this.returnIndex = interpreter.currentIndex;
-        this.returnSourceTokens = interpreter.sourceTokens;
-        interpreter.sourceTokens = this.body;
-        this.returnSourceTokensLineNumbers = interpreter.sourceTokensLineNumbers;
-        interpreter.sourceTokensLineNumbers = this.bodyLineNumbers;
-        interpreter.currentIndex = this.numOfParametersSet + 1;
+        LM.memoryController.pushScope(this.localVariables);
+        this.returnIndex = LM.interpreter.currentIndex;
+        this.returnSourceTokens = LM.interpreter.sourceTokens;
+        LM.interpreter.sourceTokens = this.body;
+        this.returnSourceTokensLineNumbers = LM.interpreter.sourceTokensLineNumbers;
+        LM.interpreter.sourceTokensLineNumbers = this.bodyLineNumbers;
+        LM.interpreter.currentIndex = this.numOfParametersSet + 1;
       } else {
         var art = new ArgumentResolverTask();
       }
@@ -63,11 +63,11 @@ class ProcedureTask {
   }
   
   resolve(){
-    interpreter.tasksStack.pop();
-    memoryController.popScope();
-    interpreter.sourceTokens = this.returnSourceTokens;
-    interpreter.currentIndex = this.returnIndex;
-    interpreter.sourceTokensLineNumbers = this.returnSourceTokensLineNumbers;
+    LM.interpreter.tasksStack.pop();
+    LM.memoryController.popScope();
+    LM.interpreter.sourceTokens = this.returnSourceTokens;
+    LM.interpreter.currentIndex = this.returnIndex;
+    LM.interpreter.sourceTokensLineNumbers = this.returnSourceTokensLineNumbers;
     return this.returnValue;
   }
   

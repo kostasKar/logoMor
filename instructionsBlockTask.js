@@ -3,9 +3,9 @@
 class InstructionsBlockTask {
 
   constructor(){
-    interpreter.tasksStack.push(this);
-    if (interpreter.currentToken !== "["){
-      throwError("Missing '['");
+    LM.interpreter.tasksStack.push(this);
+    if (LM.interpreter.currentToken !== "["){
+      LM.throwError("Missing '['");
     }
     this.opened = false;
 		this.canBeResolved = false;
@@ -26,23 +26,23 @@ class InstructionsBlockTask {
   }
 
   resolve(){
-  	interpreter.tasksStack.pop();
+  	LM.interpreter.tasksStack.pop();
   	return "";
   }
 
   static findEndOfBlockIndex(){
-    var sourceTokens = interpreter.sourceTokens;
-    var index = interpreter.currentIndex;
+    var sourceTokens = LM.interpreter.sourceTokens;
+    var index = LM.interpreter.currentIndex;
     var bracketDepth = 0;
 
     if (sourceTokens[index] !== '['){
-      throwError("Instruction block missing '['");
+      LM.throwError("Instruction block missing '['");
       return;
     }
 
     do {
       if (index == sourceTokens.length){
-        throwError("Instruction block missing ']'");
+        LM.throwError("Instruction block missing ']'");
         return;
       }
       if (sourceTokens[index] === "[") {bracketDepth++;}
@@ -55,6 +55,6 @@ class InstructionsBlockTask {
   }
 
   static skipBlock(){
-    interpreter.currentIndex = InstructionsBlockTask.findEndOfBlockIndex();
+    LM.interpreter.currentIndex = InstructionsBlockTask.findEndOfBlockIndex();
   }
 }

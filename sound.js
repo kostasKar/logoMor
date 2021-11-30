@@ -1,4 +1,4 @@
-var logoSounds = (function(){
+LM.sounds = (function(){
 
   const audioInputElementId = 'soundinp';
   var loadedSounds = {};
@@ -79,7 +79,7 @@ var logoSounds = (function(){
       if(this.soundExists(name)){
         return true;
       } else {
-        throwError("Invalid sound name: " + name);
+        LM.throwError("Invalid sound name: " + name);
         return false;
       }
     },

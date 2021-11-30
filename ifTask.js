@@ -3,7 +3,7 @@
 class IfTask{
 
   constructor(){
-    interpreter.tasksStack.push(this);
+    LM.interpreter.tasksStack.push(this);
     new ArgumentResolverTask();
     this.canBeResolved = false;
   }
@@ -13,7 +13,7 @@ class IfTask{
       return false;
     } else {
       if (isNaN(arg)){
-        throwError("Invalid if condition: " + arg);
+        LM.throwError("Invalid if condition: " + arg);
         return false;
       }
       if (arg != 0){
@@ -27,7 +27,7 @@ class IfTask{
   }
   
   resolve(){
-    interpreter.tasksStack.pop();
+    LM.interpreter.tasksStack.pop();
     return "";
   }
 

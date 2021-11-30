@@ -6,11 +6,11 @@
 class WhileTask {
 
   constructor(){
-    interpreter.tasksStack.push(this);
+    LM.interpreter.tasksStack.push(this);
     new ArgumentResolverTask();
     this.canBeResolved = false;
     this.conditionSet = false;
-    this.conditionIndex = interpreter.currentIndex + 1;
+    this.conditionIndex = LM.interpreter.currentIndex + 1;
     this.endOfLoopBlockIndexSet = false;
   }
   
@@ -20,7 +20,7 @@ class WhileTask {
     }
     if (!this.conditionSet){
       if (isNaN(arg)){
-        throwError("Invalid while condition: " + arg);
+        LM.throwError("Invalid while condition: " + arg);
         return false;
       }
       if (!this.endOfLoopBlockIndexSet){
@@ -28,15 +28,15 @@ class WhileTask {
         this.endOfLoopBlockIndexSet = true;
       }
       if (arg != 0){
-        new InstructionsBlockTask();
+        new InstructionsBlockTask(); 
       } else if (arg == 0){
-        interpreter.currentIndex = this.endOfLoopBlockIndex;
+        LM.interpreter.currentIndex = this.endOfLoopBlockIndex;
         this.canBeResolved = true;
       }
       this.conditionSet = true;
       return true;
     } else {
-      interpreter.currentIndex = this.conditionIndex;
+      LM.interpreter.currentIndex = this.conditionIndex;
       new ArgumentResolverTask();
       this.conditionSet = false;
       return false;
@@ -44,7 +44,7 @@ class WhileTask {
   }
   
   resolve(){
-    interpreter.tasksStack.pop();
+    LM.interpreter.tasksStack.pop();
     return "";
   }
 

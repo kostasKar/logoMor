@@ -1,4 +1,4 @@
-var logoModels = (function() {
+LM.models = (function() {
 
   var loadedModels = {};
   var currentModelIndex = 1;
@@ -13,7 +13,7 @@ var logoModels = (function() {
       if(this.modelExists(name)){
         return true;
       } else {
-        throwError("Invalid model name: " + name);
+        LM.throwError("Invalid model name: " + name);
         return false;
       }
     },

@@ -5,7 +5,7 @@
 class StaticVariableMakerTask{
 
   constructor(){
-    interpreter.tasksStack.push(this);
+    LM.interpreter.tasksStack.push(this);
     this.canBeResolved = false; 
     this.nameAvailable = false;
     var art = new ArgumentResolverTask();
@@ -14,7 +14,7 @@ class StaticVariableMakerTask{
   tryToTakeInput(arg){
     if (!this.nameAvailable){
       if(!arg.startsWith("\"")){
-        throwError("Static variable maker invalid variable name literal: " + arg);
+        LM.throwError("Static variable maker invalid variable name literal: " + arg);
         return false;
       }
       this.name = arg.replace("\"", "");
@@ -23,11 +23,11 @@ class StaticVariableMakerTask{
       return true;
     } else if (!this.canBeResolved){
       if (!isNaN(arg) || arg.startsWith("\"")){
-        if (!memoryController.staticVariableExists(this.name)){
-          memoryController.setNewStaticVariable(this.name, arg);
+        if (!LM.memoryController.staticVariableExists(this.name)){
+          LM.memoryController.setNewStaticVariable(this.name, arg);
         }
       }else {
-        throwError("Static variable maker invalid argument: " + arg);
+        LM.throwError("Static variable maker invalid argument: " + arg);
         return false;
       }
       this.canBeResolved = true;
@@ -38,7 +38,7 @@ class StaticVariableMakerTask{
   }
   
   resolve(){
-    interpreter.tasksStack.pop();
+    LM.interpreter.tasksStack.pop();
     return "";
   }
 

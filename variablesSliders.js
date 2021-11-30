@@ -1,4 +1,4 @@
-var variableManipulatorsSliders = (function(){
+LM.variableManipulatorsSliders = (function(){
 
 	function createSliderForVar(name, value){
 		if (document.getElementById(name + "slider") != null){
@@ -36,7 +36,7 @@ var variableManipulatorsSliders = (function(){
 		slider.className  = "slider";
 		slider.oninput= function(){
 			sliderValue.value = this.value;
-			p5Renderer.redrawIfPaused();
+			LM.p5Renderer.redrawIfPaused();
 		};
 
 		var maxLabel = document.createElement("label");

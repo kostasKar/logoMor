@@ -1,4 +1,4 @@
-var consoleHandler = (function(){
+LM.consoleHandler = (function(){
 
   const textStyles = ["error", "system", "user"];
   var consoleText = "";

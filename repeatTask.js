@@ -5,7 +5,7 @@
 class RepeatTask{
 
   constructor(){
-    interpreter.tasksStack.push(this);
+    LM.interpreter.tasksStack.push(this);
     new ArgumentResolverTask();
     this.totalExecutionsSet = false;
     this.canBeResolved = false;
@@ -18,7 +18,7 @@ class RepeatTask{
     }
     if (!this.totalExecutionsSet){
       if (isNaN(arg)){
-        throwError("Invalid repeat execution times: " + arg);
+        LM.throwError("Invalid repeat execution times: " + arg);
         return false;
       }
       this.totalExecutions = parseInt(arg);
@@ -26,8 +26,7 @@ class RepeatTask{
         InstructionsBlockTask.skipBlock();
         this.canBeResolved = true;
       } else {
-        this.startIndex = interpreter.currentIndex;
-        this.endOfLoopBlockIndex = InstructionsBlockTask.findEndOfBlockIndex();
+        this.startIndex = LM.interpreter.currentIndex;
         new InstructionsBlockTask();
       }
       this.totalExecutionsSet = true;
@@ -37,7 +36,7 @@ class RepeatTask{
       if (this.executionsMade >= this.totalExecutions){
         this.canBeResolved = true;
       } else {
-        interpreter.currentIndex = this.startIndex;
+        LM.interpreter.currentIndex = this.startIndex;
         new InstructionsBlockTask();
       }
       return false;
@@ -45,7 +44,7 @@ class RepeatTask{
   }
   
   resolve(){
-    interpreter.tasksStack.pop();
+    LM.interpreter.tasksStack.pop();
     return "";
   }
   
@@ -66,7 +65,7 @@ class RepeatTask{
 
 class RepCountTask{
   constructor(){
-    interpreter.tasksStack.push(this);
+    LM.interpreter.tasksStack.push(this);
     this.canBeResolved = true;
   }
 
@@ -75,10 +74,10 @@ class RepCountTask{
   }
 
   resolve(){
-    interpreter.tasksStack.pop();
-    for (let i = interpreter.tasksStack.length-1; i>=0; i--){
-      if ((interpreter.tasksStack[i].constructor.name === 'RepeatTask') && (interpreter.tasksStack[i].totalExecutionsSet)){
-        return (interpreter.tasksStack[i].executionsMade+1).toString();
+    LM.interpreter.tasksStack.pop();
+    for (let i = LM.interpreter.tasksStack.length-1; i>=0; i--){
+      if ((LM.interpreter.tasksStack[i].constructor.name === 'RepeatTask') && (LM.interpreter.tasksStack[i].totalExecutionsSet)){
+        return (LM.interpreter.tasksStack[i].executionsMade+1).toString();
       }
     }
     return "0";

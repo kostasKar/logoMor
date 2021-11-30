@@ -1,4 +1,4 @@
-var logoImages = (function(){
+LM.images = (function(){
 
   var loadedImages = {};
   var currentImageIndex = 1;
@@ -73,7 +73,7 @@ var logoImages = (function(){
       if(this.imageExists(name)){
         return true;
       } else {
-        throwError("Invalid image name: " + name);
+        LM.throwError("Invalid image name: " + name);
         return false;
       }
     },

@@ -1,6 +1,6 @@
 
 //accepted values for "type" field: {"builtin", "move", "keyword"}
-const logomorCommands =
+LM.commands =
 {
   "(": {
     taskConstructor: ParenthesisTask,
@@ -586,11 +586,12 @@ const logomorCommands =
     taskConstructor: null,
     hint: "Stops the execution of a loop",
     type: "builtin"
-  }
+  },
+
 }
 
 //Shortcuts:
-const logomorMoves = Object.keys(logomorCommands).filter(name => logomorCommands[name].type === "move");
-const logomorBuiltins = Object.keys(logomorCommands).filter(name => logomorCommands[name].type === "builtin");
-const logomorKeywords = Object.keys(logomorCommands).filter(name => logomorCommands[name].type === "keyword");
-const hintableCommands = Object.keys(logomorCommands).filter(name => logomorCommands[name].hint != null);
+LM.commandsMoves = Object.keys(LM.commands).filter(name => LM.commands[name].type === "move");
+LM.commandsBuiltins = Object.keys(LM.commands).filter(name => LM.commands[name].type === "builtin");
+LM.commandsKeywords = Object.keys(LM.commands).filter(name => LM.commands[name].type === "keyword");
+LM.commandsHintables = Object.keys(LM.commands).filter(name => LM.commands[name].hint != null);

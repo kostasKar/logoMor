@@ -1,5 +1,5 @@
 
-var p5Renderer = new p5( function(p) {
+LM.p5Renderer = new p5( function(p) {
 
   var labelFont;
   var canvas;
@@ -15,10 +15,10 @@ var p5Renderer = new p5( function(p) {
     p.setAttributes('antialias', true);
     canvas = p.createCanvas(p.windowWidth, p.windowHeight, p.WEBGL);
     canvas.parent('drawCanvas');
-    cameraViewControl.initialize();
-    canvas.doubleClicked(cameraViewControl.reset);
-    canvas.mouseOver(cameraViewControl.enable);
-    canvas.mouseOut(cameraViewControl.disable);
+    LM.cameraViewControl.initialize();
+    canvas.doubleClicked(LM.cameraViewControl.reset);
+    canvas.mouseOver(LM.cameraViewControl.enable);
+    canvas.mouseOut(LM.cameraViewControl.disable);
 
     if (window.location.protocol !== "file:"){
       p.textFont(labelFont);
@@ -30,15 +30,15 @@ var p5Renderer = new p5( function(p) {
     if (clearDrawing){
       p.background(0);
     }
-    cameraViewControl.adjust();
-    logo.start();
-    interpreter.initLogoExecution();
-    interpreter.executeLogo();
-    logo.end();
+    LM.cameraViewControl.adjust();
+    LM.logo.start();
+    LM.interpreter.initLogoExecution();
+    LM.interpreter.executeLogo();
+    LM.logo.end();
   };
 
   p.mouseWheel = function(event){
-    cameraViewControl.mouseWheelCallback(event.delta);
+    LM.cameraViewControl.mouseWheelCallback(event.delta);
   };
 
   p.windowResized = function() {
@@ -47,28 +47,28 @@ var p5Renderer = new p5( function(p) {
   };
 
   p.keyPressed = function() {
-    logo.keyPressedCallback(p.keyCode);
+    LM.logo.keyPressedCallback(p.keyCode);
   }
 
   p.redrawIfPaused = function(){
-    if (!p5Renderer.isLooping()){
-      p5Renderer.redraw();
+    if (!LM.p5Renderer.isLooping()){
+      LM.p5Renderer.redraw();
     }
   }
 
   p.togglePause = function(){
-    if (p5Renderer.isLooping()){
+    if (LM.p5Renderer.isLooping()){
       document.getElementById("pause").firstElementChild.className = "fa fa-play";
       document.getElementById("pause").firstElementChild.style.color = "lime";
       document.getElementById("autoRotate").disabled = true;
       document.getElementById("turnsHelpArrows").disabled = true;
-      p5Renderer.noLoop();
+      LM.p5Renderer.noLoop();
     } else {
       document.getElementById("pause").firstElementChild.className = "fa fa-pause";
       document.getElementById("pause").firstElementChild.style.removeProperty("color");
       document.getElementById("autoRotate").disabled = false;
       document.getElementById("turnsHelpArrows").disabled = false;
-      p5Renderer.loop();
+      LM.p5Renderer.loop();
     }
   }
 

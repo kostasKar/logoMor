@@ -1,4 +1,4 @@
-var localSystem = (function(){
+LM.localSystem = (function(){
 
   var mediaRecorder;
   var recording = false;
@@ -10,7 +10,7 @@ var localSystem = (function(){
     var canvas = document.getElementById("defaultCanvas0");
     videoStream = canvas.captureStream(25);
 
-    var mediaStreamDest = logoSounds.getMediaStreamDest();
+    var mediaStreamDest = LM.sounds.getMediaStreamDest();
     if (mediaStreamDest) {mediaStreamDest.stream.getAudioTracks().forEach(track => videoStream.addTrack(track))};
 
     mediaRecorder = new MediaRecorder(videoStream);
@@ -54,7 +54,7 @@ var localSystem = (function(){
 
   return {
     download: function(){
-        var text = myCodeMirror.getValue();
+        var text = LM.codeMirror.getValue();
         text = text.replace(/\n/g, "\r\n"); // To retain the Line breaks.
         var blob = new Blob([text], { type: "text/plain"});
         var anchor = document.createElement("a");
@@ -76,7 +76,7 @@ var localSystem = (function(){
       if (!file) return;
       var reader = new FileReader();
       reader.onload = function(e) {
-        myCodeMirror.setValue(e.target.result);
+        LM.codeMirror.setValue(e.target.result);
       }
       reader.readAsText(file)
     },

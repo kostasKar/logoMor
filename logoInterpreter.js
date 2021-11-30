@@ -1,4 +1,4 @@
-var interpreter = {
+LM.interpreter = {
 
   sourceTokens: [],     
   sourceTokensLineNumbers: [],
@@ -47,12 +47,12 @@ var interpreter = {
     
     //Here only new tokens should arrive
     if (this.noMoreTokens()){
-      throwError("Unresolved task expects argument");
+      LM.throwError("Unresolved task expects argument");
       return;
     }
 
     //check debugger
-    if (logoDebugger.isEnabled() && logoDebugger.stoppedNewCommand()){
+    if (LM.debugger.isEnabled() && LM.debugger.stoppedNewCommand()){
       this.returnFromMain = true;
       return;
     }
@@ -61,14 +61,14 @@ var interpreter = {
     if (this.currentToken === "return"){ 
       while ((this.stackLength) && (this.headTask.constructor.name !== 'ProcedureTask')){
         if (this.headTask.constructor.name === 'ArgumentResolverTask'){
-          throwError("return statement inside argument");
+          LM.throwError("return statement inside argument");
           return;
         }
         this.tasksStack.pop();
       } 
       if (!this.stackLength){
         this.returnFromMain = true; //This is either an error, or we can use return to exit execution. So no actual error thrown
-        consoleHandler.println("Returned from execution");
+        LM.consoleHandler.println("Returned from execution");
       }
       return;
     } 
@@ -77,13 +77,13 @@ var interpreter = {
     if(this.currentToken === "break"){
       while ((this.stackLength) && (!this.headTask.hasOwnProperty("endOfLoopBlockIndex"))){
         if (this.headTask.constructor.name === 'ArgumentResolverTask'){
-          throwError("break statement inside argument");
+          LM.throwError("break statement inside argument");
           return;
         }
         this.tasksStack.pop();
       } 
       if (!this.stackLength){
-        throwError("break command occurred outside of loop task");
+        LM.throwError("break command occurred outside of loop task");
         return;
       }
       this.currentIndex = this.headTask["endOfLoopBlockIndex"];
@@ -93,38 +93,52 @@ var interpreter = {
 
     
     //If we got here, it means that a new task has to be created and pushed in the tasks Stack
-    taskFactory.checkToken(this.currentToken);
+    this.checkTaskFactory(this.currentToken);
     
   },
 
+  checkTaskFactory: function(token){
+    if ((token in LM.commands) && (LM.commands[token].taskConstructor)){
+      new LM.commands[token].taskConstructor;
+      this.currentIndex++;
+    } else if (token in this.procedurePrototypes){
+      new ProcedureTask(this.procedurePrototypes[token]);
+      this.currentIndex++;
+    } else if (token === "to"){
+      new ProcedurePrototype();
+    } else {
+      LM.throwError("Invalid token: " + token);
+    }
+  },
+
   setup: function(sourceCode = null, setDebugOn = false){
-    logoParser.parse(sourceCode);
-    logoRandomGenerator.initForNewRun();
+    LM.parser.parse(sourceCode);
+    LM.randomGenerator.initForNewRun();
     this.procedurePrototypes = {};
-    memoryController.initStaticVariables();
-    variableManipulatorsSliders.clearSliders();
-    variableManipulatorsSliders.clearListItems();
+    LM.memoryController.initStaticVariables();
+    LM.variableManipulatorsSliders.clearSliders();
+    LM.variableManipulatorsSliders.clearListItems();
 
     this.startTime = Date.now();
-    this.startFrame = p5Renderer.frameCount;
-    clearError();
-    logoDebugger.initForNewRun();
-    logoDebugger.setEnabled(setDebugOn);
+    this.startFrame = LM.p5Renderer.frameCount;
+    LM.clearError();
+    LM.debugger.initForNewRun();
+    LM.debugger.setEnabled(setDebugOn);
     this.movesLimit = document.getElementById("movesLimitInput").value;
-    p5Renderer.redrawIfPaused();
+    LM.p5Renderer.redrawIfPaused();
   },
 
   initLogoExecution: function(){
-    this.sourceTokens = logoParser.mainSourceTokens;
-    this.sourceTokensLineNumbers = logoParser.mainSourceTokensLineNumbers;
+    this.sourceTokens = LM.parser.mainSourceTokens;
+    this.sourceTokensLineNumbers = LM.parser.mainSourceTokensLineNumbers;
     this.currentIndex = 0;
     CommandTask.movesCount = 0;;
-    logoRandomGenerator.initForNewFrame();
+    LM.randomGenerator.initForNewFrame();
     this.tasksStack = [];
-    memoryController.initNonStaticVariables();
-    if (!this.error) {consoleHandler.clear();}
+    LM.memoryController.initNonStaticVariables();
+    if (!this.error) {LM.consoleHandler.clear();}
     this.returnFromMain = false;
-    logoDebugger.initForNewFrame();
+    LM.debugger.initForNewFrame();
   },
 
   executeLogo:function(){
@@ -132,10 +146,10 @@ var interpreter = {
       this.checkNextToken();
     }
     if (CommandTask.movesCount >= this.movesLimit){
-      consoleHandler.println("Stopped: Reached Moves Limit");
-      consoleHandler.println("On line: " + this.sourceTokensLineNumbers[(this.currentIndex)? this.currentIndex - 1 : 0]);
+      LM.consoleHandler.println("Stopped: Reached Moves Limit");
+      LM.consoleHandler.println("On line: " + this.sourceTokensLineNumbers[(this.currentIndex)? this.currentIndex - 1 : 0]);
     }
-    consoleHandler.update();
+    LM.consoleHandler.update();
   },
 
   getStackTrace: function(){

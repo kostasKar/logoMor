@@ -8,7 +8,7 @@ class ParenthesisTask {
   constructor(){
      this.canBeResolved = false;
      this.valueSet = false;
-     interpreter.tasksStack.push(this);
+     LM.interpreter.tasksStack.push(this);
      new ArgumentResolverTask();
   }
   
@@ -30,7 +30,7 @@ class ParenthesisTask {
   }
   
   resolve(){
-    interpreter.tasksStack.pop();
+    LM.interpreter.tasksStack.pop();
     return this.value;
   }
   

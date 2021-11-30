@@ -4,13 +4,13 @@ CodeMirror.registerHelper("textHover", "logomorMode", function(cm, data, node) {
     var token = data.token;
     var tokenName = (token.string) ? token.string.toLowerCase() : null;
     text += '<b>' + token.type + '</b> ' + tokenName;
-    if (hintableCommands.includes(tokenName)) {text += '<br>' + logomorCommands[tokenName].hint;}
+    if (LM.commandsHintables.includes(tokenName)) {text += '<br>' + LM.commands[tokenName].hint;}
     //Easter egg for random number generator:
     if ((tokenName === "rand") || (tokenName === "random")){
-    text += "<br>(Current seed: " + logoRandomGenerator.getSeed() + ")";
+    text += "<br>(Current seed: " + LM.randomGenerator.getSeed() + ")";
     }
   }
   var result = document.createElement('div');
   result.innerHTML = text;
-  return (hintableCommands.includes(tokenName))? result : null;
+  return (LM.commandsHintables.includes(tokenName))? result : null;
 });

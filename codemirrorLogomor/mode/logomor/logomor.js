@@ -67,11 +67,11 @@ CodeMirror.defineMode("logomorMode", function(config) {
 
       if (ch.match(/\w/)){
         stream.eatWhile(/\w/);
-        if (logomorMoves.includes(stream.current().toLowerCase())){
+        if (LM.commandsMoves.includes(stream.current().toLowerCase())){
           return "move";
-        } else if (logomorKeywords.includes(stream.current().toLowerCase())) {
+        } else if (LM.commandsKeywords.includes(stream.current().toLowerCase())) {
           return "command";
-        } else if (logomorBuiltins.includes(stream.current().toLowerCase())){
+        } else if (LM.commandsBuiltins.includes(stream.current().toLowerCase())){
           if (stream.current().toLowerCase() === "to"){
             state.indentation += indentUnit;
           } else if (stream.current().toLowerCase() === "end"){

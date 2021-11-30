@@ -5,7 +5,7 @@
 class IfElseTask {
 
   constructor(){
-    interpreter.tasksStack.push(this);
+    LM.interpreter.tasksStack.push(this);
     new ArgumentResolverTask();
     this.canBeResolved = false;
   }
@@ -15,7 +15,7 @@ class IfElseTask {
       return false;
     } else {
       if (isNaN(arg)){
-        throwError("Invalid ifelse condition: " + arg);
+        LM.throwError("Invalid ifelse condition: " + arg);
         return false;
       }
       if (arg != 0){
@@ -36,7 +36,7 @@ class IfElseTask {
     if (this.conditionValue){
       InstructionsBlockTask.skipBlock();
     }
-    interpreter.tasksStack.pop();
+    LM.interpreter.tasksStack.pop();
     return "";
   }
 

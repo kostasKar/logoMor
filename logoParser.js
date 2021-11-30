@@ -1,4 +1,4 @@
-var logoParser = {
+LM.parser = {
 
 	sourceCodeTxt: "",
 	wholeSourceTokens: [],
@@ -29,7 +29,7 @@ var logoParser = {
 
 	parse: function(sourceCode = null){
 	  if (sourceCode === null){
-		  sourceCode = myCodeMirror.getValue();
+		  sourceCode = LM.codeMirror.getValue();
 	  }
 	  this.sourceCodeTxt = this.prepareSourceCodeText(sourceCode);
 	  this.wholeSourceTokens = this.sourceCodeTxt.trim().split(/[\s]+/).filter(function (el) {return el != "";});

@@ -1,7 +1,7 @@
 
 
 
- function drawCoordinates(p, length){
+ LM.drawCoordinates = function(p, length){
    p.strokeWeight(1);
    p.stroke('#ff0000');
    p.line(0,0,0,length,0,0);
@@ -33,7 +33,7 @@
    p.stroke(255);
  }
  
-  function drawAvatar(p){
+  LM.drawAvatar = function(p){
    p.strokeWeight(1);
    p.stroke('#888888');
    p.fill('#888888');
@@ -46,7 +46,7 @@
    p.stroke(255);
  }
  
-function drawHelpArrows(p,radius){
+LM.drawHelpArrows = function(p,radius){
    p.strokeWeight(1);
    p.textSize(5);
 

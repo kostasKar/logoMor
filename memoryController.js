@@ -1,5 +1,5 @@
 
-var memoryController = (function(){
+LM.memoryController = (function(){
 
     var globalVariables = {};
     var staticVariables =  {};
@@ -45,7 +45,7 @@ var memoryController = (function(){
             if(this.variableExists(name)){
                 getVariableScope(name)[name] = value;
             } else {
-                throwError("Undefined variable: " + name);
+                LM.throwError("Undefined variable: " + name);
             }
         },
 
@@ -61,7 +61,7 @@ var memoryController = (function(){
             if(this.variableExists(name)){
                 return getVariableScope(name)[name];
             } else {
-                throwError("Undefined variable: " + name);
+                LM.throwError("Undefined variable: " + name);
                 return 0;
             }
         },

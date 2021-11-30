@@ -3,7 +3,7 @@
  */
 
 
-var myCodeMirror = (function(){
+LM.codeMirror = (function(){
 
   var cm = CodeMirror.fromTextArea
   (document.getElementById("sourceCodeTextArea"), {
@@ -59,7 +59,7 @@ var myCodeMirror = (function(){
 
 
   CodeMirror.hint.logomor = function (editor) {
-    var list = hintableCommands;
+    var list = LM.commandsHintables;
     var cursor = editor.getCursor();
     var currentLine = editor.getLine(cursor.line);
     var start = cursor.ch;
@@ -94,7 +94,7 @@ var myCodeMirror = (function(){
         hht.id = "hintHelpText";
       }
       hht.style.marginLeft = Element.parentNode.offsetWidth + 2 + "px";
-      hht.innerText = (logomorCommands[completion]) ? logomorCommands[completion].hint || completion : completion;
+      hht.innerText = (LM.commands[completion]) ? LM.commands[completion].hint || completion : completion;
       cm.addWidget({ch:start , line: cursor.line},hht, false);
     });
 

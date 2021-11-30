@@ -1,4 +1,4 @@
-var logoDebugger = (function () {
+LM.debugger = (function () {
 
 	var enabled;
 	var commandsExecuted;
@@ -8,23 +8,23 @@ var logoDebugger = (function () {
 	var previousDebuggingLine;
 
 	function breakPointOnToken(){
- 		return ((myCodeMirror.lineInfo(debuggingLine) != null) && 
-      	  	(myCodeMirror.lineInfo(debuggingLine).gutterMarkers) && 
+ 		return ((LM.codeMirror.lineInfo(debuggingLine) != null) &&
+      	  	(LM.codeMirror.lineInfo(debuggingLine).gutterMarkers) &&
       			(debuggingLine !== previousDebuggingLine));
 	}
 
 	function colorDebuggingLine(){
-		myCodeMirror.addLineClass(debuggingLine, "background", "cm-debug-line");
+		LM.codeMirror.addLineClass(debuggingLine, "background", "cm-debug-line");
 	}
 
 	function clearDebuggingLine(){
-		myCodeMirror.removeLineClass(debuggingLine, "background", "cm-debug-line");
+		LM.codeMirror.removeLineClass(debuggingLine, "background", "cm-debug-line");
 	}
 
 	function showDebuggerOutput(){
-		consoleHandler.println("Debugger: Paused on line " + interpreter.currentTokenLineNumber);
-		consoleHandler.println("Next token: <b>" + interpreter.currentToken + "</b>");
-		consoleHandler.println(memoryController.getMemoryTrace());
+		LM.consoleHandler.println("Debugger: Paused on line " + LM.interpreter.currentTokenLineNumber);
+		LM.consoleHandler.println("Next token: <b>" + LM.interpreter.currentToken + "</b>");
+		LM.consoleHandler.println(LM.memoryController.getMemoryTrace());
 		colorDebuggingLine();
 		document.getElementById("debugContinueButton").disabled = false;
 	  document.getElementById("debugStepButton").disabled = false;
@@ -65,12 +65,12 @@ var logoDebugger = (function () {
 		stoppedNewCommand: function(){
 
 			//function definitions are only parsed on first pass and are not actually commands
-			if (interpreter.currentToken === "to"){
+			if (LM.interpreter.currentToken === "to"){
 				return false;
 			}
 
 			commandsExecuted++;
-			debuggingLine = interpreter.currentTokenLineNumber - 1;
+			debuggingLine = LM.interpreter.currentTokenLineNumber - 1;
 
 			var ret;
 			if ((debugControl === "step") && (commandsExecuted === commandsLimit)){
