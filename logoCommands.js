@@ -2,46 +2,36 @@ LM.logo = (function(){
 
   var penDown;
   var showTurtle;
-  var strokeR, strokeG, strokeB, strokeWght, strokeAlpha, labelTextSize;
-  var shapeBegan;
-  var vertices;
   var lastKeyPressed;
 
   var defaultStyle = {"weight":1, "r":255, "g":255, "b":255, "a":255, "textSize":10};
+  var activeStyle;
 
-  function makeShape(){
-    LM.p5Renderer.pop();
+  function addVertex(){
+    LM.p5Renderer.vertex(LM.matrix.getX(), LM.matrix.getY(), LM.matrix.getZ());
+  }
+
+  function beforeSolids(){
     LM.p5Renderer.push();
-    restoreStrokeStyle(); //for the stroke color
-    LM.p5Renderer.beginShape();
-    for (let i = 0; i < vertices.length; i++) {
-      LM.p5Renderer.vertex(vertices[i][0], vertices[i][1], vertices[i][2]);
-    }
-    LM.p5Renderer.endShape();
+    if (!penDown) {LM.p5Renderer.noStroke();}
+    LM.p5Renderer.fill(activeStyle.r, activeStyle.g, activeStyle.b, activeStyle.a);
     LM.matrix.apply();
   }
 
-  function addVertex(){
-    vertices.push([LM.matrix.getX(), LM.matrix.getY(), LM.matrix.getZ()]);
+  function afterSolids(){
+    LM.p5Renderer.pop();
   }
 
-
   function initStrokeStyle(){
-    strokeWght = defaultStyle.weight;
-    strokeR = defaultStyle.r;
-    strokeG = defaultStyle.g;
-    strokeB = defaultStyle.b;
-    strokeAlpha = defaultStyle.a;
-    labelTextSize = defaultStyle.textSize;
-
+    activeStyle =  Object.assign({}, defaultStyle);
     restoreStrokeStyle();
   }
 
   function restoreStrokeStyle(){
-    LM.p5Renderer.strokeWeight(strokeWght);
-    LM.p5Renderer.stroke(strokeR, strokeG, strokeB, strokeAlpha);
-    LM.p5Renderer.fill(strokeR, strokeG, strokeB, strokeAlpha);
-    LM.p5Renderer.textSize(labelTextSize);
+    LM.p5Renderer.strokeWeight(activeStyle.weight);
+    LM.p5Renderer.stroke(activeStyle.r, activeStyle.g, activeStyle.b, activeStyle.a);
+    LM.p5Renderer.noFill();
+    LM.p5Renderer.textSize(activeStyle.textSize);
   }
 
 
@@ -63,18 +53,17 @@ LM.logo = (function(){
       LM.drawCoordinates(LM.p5Renderer,25);
       penDown = true;
       showTurtle = true;
-      shapeBegan = false;
-      vertices = [];
       initStrokeStyle();
       LM.p5Renderer.push();
       LM.matrix.reset();
+      LM.p5Renderer.beginShape();
+      addVertex();
     },
 
     end: function(){
-      if (shapeBegan){
-        makeShape();
-      }
+      LM.p5Renderer.endShape();
       if (showTurtle){
+        LM.matrix.apply();
         LM.drawAvatar(LM.p5Renderer);
         if (document.getElementById("turnsHelpArrows").checked){
           LM.drawHelpArrows(LM.p5Renderer,15);
@@ -94,112 +83,123 @@ LM.logo = (function(){
     },
 
     beginShape: function(){
-      shapeBegan = true;
-      vertices = [];
+      LM.p5Renderer.endShape()
+      LM.p5Renderer.fill(activeStyle.r, activeStyle.g, activeStyle.b, activeStyle.a);
+      LM.p5Renderer.beginShape();
       addVertex();
     },
 
     endShape: function(){
-      shapeBegan = false;
-      makeShape();
-      vertices = [];
+      LM.p5Renderer.endShape();
+      LM.p5Renderer.noFill();
+      if (penDown){
+        LM.p5Renderer.beginShape();
+        addVertex();
+      }
     },
 
     forward: function(length){
-     if (penDown){
-       LM.p5Renderer.line(0, 0, 0, 0, -length, 0);
-      }
-      LM.p5Renderer.translate(0, -length, 0);
       LM.matrix.translate(0, -length, 0);
-      if (penDown && shapeBegan){
-        addVertex();
+      if (penDown){
+       addVertex();
       }
     },
 
     backward: function(length){
-      if (penDown){
-        LM.p5Renderer.line(0, 0, 0, 0, length, 0);
-      }
-      LM.p5Renderer.translate(0, length, 0);
-      LM.matrix.translate(0, length, 0);
-      if (penDown && shapeBegan){
-        addVertex();
-      }
+      this.forward(-length);
     },
 
     right: function(angle){
-     LM.p5Renderer.rotateZ(LM.p5Renderer.radians(angle));
      LM.matrix.rotateZ(LM.p5Renderer.radians(angle));
     },
 
     left: function(angle){
-     LM.p5Renderer.rotateZ(LM.p5Renderer.radians(-angle));
      LM.matrix.rotateZ(LM.p5Renderer.radians(-angle));
     },
 
     up: function(angle){
-     LM.p5Renderer.rotateX(LM.p5Renderer.radians(-angle));
      LM.matrix.rotateX(LM.p5Renderer.radians(-angle));
     },
 
     down: function(angle){
-     LM.p5Renderer.rotateX(LM.p5Renderer.radians(angle));
      LM.matrix.rotateX(LM.p5Renderer.radians(angle));
     },
 
     rollRight: function(angle){
-     LM.p5Renderer.rotateY(LM.p5Renderer.radians(angle));
      LM.matrix.rotateY(LM.p5Renderer.radians(angle));
     },
 
     rollLeft: function(angle){
-     LM.p5Renderer.rotateY(LM.p5Renderer.radians(-angle));
      LM.matrix.rotateY(LM.p5Renderer.radians(-angle));
     },
 
     arc: function(angle, radius){
-      LM.p5Renderer.noFill();
-      LM.p5Renderer.arc(0, 0, radius*2, radius*2, -LM.p5Renderer.HALF_PI, LM.p5Renderer.radians(angle) - LM.p5Renderer.HALF_PI);
-      restoreStrokeStyle();
+      LM.p5Renderer.arc(LM.matrix.getX(), LM.matrix.getY(), radius*2, radius*2, -LM.p5Renderer.HALF_PI, LM.p5Renderer.radians(angle) - LM.p5Renderer.HALF_PI);
     },
 
     penDown: function(){
-      penDown = true;
+      if (!penDown){
+        penDown = true;
+        LM.p5Renderer.beginShape();
+        addVertex();
+      }
     },
 
     penUp: function(){
-      penDown = false;
+      if (penDown){
+        penDown = false;
+        LM.p5Renderer.endShape();
+      }
     },
 
     setPenSize: function(n){
-     LM.p5Renderer.strokeWeight(n);
-     strokeWght = n;
+      if (penDown){
+        LM.p5Renderer.endShape();
+        LM.p5Renderer.beginShape();
+        addVertex();
+      }
+      LM.p5Renderer.strokeWeight(n);
+      activeStyle.weight = n;
     },
 
     setTextSize: function(n){
       LM.p5Renderer.textSize(n);
-      labelTextSize = n;
+      activeStyle.textSize = n;
     },
 
     color: function(r, g, b){
-     strokeR = r;
-     strokeG = g;
-     strokeB = b;
-     restoreStrokeStyle();
+      if (penDown){
+        LM.p5Renderer.endShape();
+        LM.p5Renderer.beginShape();
+        addVertex();
+      }
+      activeStyle.r = r;
+      activeStyle.g = g;
+      activeStyle.b = b;
+      restoreStrokeStyle();
     },
 
     colorHSB: function(h, s, b){
+      if (penDown){
+        LM.p5Renderer.endShape();
+        LM.p5Renderer.beginShape();
+        addVertex();
+      }
       var c = LM.p5Renderer.color('hsb('+ h + ',' + s + '%,' + b + '%)');
-      strokeR = LM.p5Renderer.red(c);
-      strokeG = LM.p5Renderer.green(c);
-      strokeB = LM.p5Renderer.blue(c);
+      activeStyle.r = LM.p5Renderer.red(c);
+      activeStyle.g = LM.p5Renderer.green(c);
+      activeStyle.b = LM.p5Renderer.blue(c);
       restoreStrokeStyle();
     },
 
     colorAlpha: function(a){
-     LM.p5Renderer.stroke(strokeR, strokeG, strokeB, a);
-     LM.p5Renderer.fill(strokeR, strokeG, strokeB, a);
-     strokeAlpha = a;
+      if (penDown){
+        LM.p5Renderer.endShape();
+        LM.p5Renderer.beginShape();
+        addVertex();
+      }
+      activeStyle.a = a;
+      restoreStrokeStyle();
     },
 
     label: function(word){
@@ -207,21 +207,15 @@ LM.logo = (function(){
     },
 
     point: function(){
-      LM.p5Renderer.point(0,0,0);
+      LM.p5Renderer.point(LM.matrix.getX(), LM.matrix.getY(), LM.matrix.getZ());
     },
 
 
     home: function(){
-      LM.p5Renderer.pop();
-      LM.p5Renderer.push();
-     restoreStrokeStyle();
-     if (penDown){
-       LM.p5Renderer.line(0, 0, 0, LM.matrix.getX(), LM.matrix.getY(), LM.matrix.getZ());
-     }
-     LM.matrix.reset(); 
-     if (penDown && shapeBegan){
-      addVertex();
-    }
+      LM.matrix.reset();
+      if (penDown){
+        addVertex();
+      }
     },
 
     getx: function(){
@@ -241,19 +235,12 @@ LM.logo = (function(){
     },
 
     setxyz: function(newX, newY, newZ){
-      LM.p5Renderer.pop();
-      LM.p5Renderer.push();
-     restoreStrokeStyle();
-     if (penDown){
-       LM.p5Renderer.line(LM.matrix.getX(), LM.matrix.getY(), LM.matrix.getZ(), newX, -newY, newZ);
-     }
-     LM.matrix.setX(newX);
-     LM.matrix.setY(-newY);
-     LM.matrix.setZ(newZ);
-     LM.matrix.apply(); 
-     if (penDown && shapeBegan){
-       addVertex();
-     }
+      LM.matrix.setX(newX);
+      LM.matrix.setY(-newY);
+      LM.matrix.setZ(newZ);
+      if (penDown){
+        addVertex();
+      }
     },
 
     setx: function(newX){
@@ -287,55 +274,65 @@ LM.logo = (function(){
 
     //3D primitives
     box: function(side){
-      if (!penDown) {LM.p5Renderer.noStroke();}
+      beforeSolids();
       LM.p5Renderer.box(side);
-      restoreStrokeStyle();
+      afterSolids();
     },
 
     sphere: function(radius){
-      if (!penDown) {LM.p5Renderer.noStroke();}
+      beforeSolids();
       LM.p5Renderer.sphere(radius);
-      restoreStrokeStyle();
+      afterSolids();
     },
 
     cylinder: function(radius, height){
-      if (!penDown) {LM.p5Renderer.noStroke();}
+      beforeSolids();
       LM.p5Renderer.cylinder(radius, height);
-      restoreStrokeStyle();
+      afterSolids();
     },
 
     cone: function(radius, height){
-      if (!penDown) {LM.p5Renderer.noStroke();}
+      beforeSolids();
       LM.p5Renderer.cone(radius, height);
-      restoreStrokeStyle();
+      afterSolids();
     },
 
     torus: function(radius, tubeRadius){
-      if (!penDown) {LM.p5Renderer.noStroke();}
+      beforeSolids();
       LM.p5Renderer.torus(radius, tubeRadius);
-      restoreStrokeStyle();
+      afterSolids();
     },
 
     ellipsoid: function(radiusX, radiusY, radiusZ){
-      if (!penDown) {LM.p5Renderer.noStroke();}
+      beforeSolids();
       LM.p5Renderer.ellipsoid(radiusX, radiusY, radiusZ);
-      restoreStrokeStyle();
+      afterSolids();
     },
 
     model: function(model, size){
-      if (!penDown) {LM.p5Renderer.noStroke();}
+      beforeSolids();
       var scaleFactor = size/200; //normalized models fit inbetween -100, 100 so 200 size
       LM.p5Renderer.scale(scaleFactor);
       LM.p5Renderer.model(model);
       LM.p5Renderer.scale(1/scaleFactor);
-      restoreStrokeStyle();
+      afterSolids();
     },
 
     image: function(image, height){
+      LM.p5Renderer.endShape();
       var w = image.width;
       var h = image.height;
       var scaleFactor =  height/h;
+      LM.p5Renderer.noStroke();
+      LM.p5Renderer.push();
+      LM.matrix.apply();
       LM.p5Renderer.image(image, 0, 0, w * scaleFactor, h * scaleFactor);
+      LM.p5Renderer.pop();
+      restoreStrokeStyle();
+      if (penDown){
+        LM.p5Renderer.beginShape();
+        addVertex();
+      }
     },
 
     soundPlay: function(audio){
