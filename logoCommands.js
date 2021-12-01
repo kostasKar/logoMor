@@ -61,7 +61,9 @@ LM.logo = (function(){
     },
 
     end: function(){
-      LM.p5Renderer.endShape();
+      if (penDown) {
+        LM.p5Renderer.endShape();
+      }
       if (showTurtle){
         LM.matrix.apply();
         LM.drawAvatar(LM.p5Renderer);
@@ -324,11 +326,13 @@ LM.logo = (function(){
     },
 
     image: function(image, height){
-      LM.p5Renderer.endShape();
+      if(penDown){
+        LM.p5Renderer.endShape();
+        LM.p5Renderer.noStroke();
+      }
       var w = image.width;
       var h = image.height;
       var scaleFactor =  height/h;
-      LM.p5Renderer.noStroke();
       LM.p5Renderer.push();
       LM.matrix.apply();
       LM.p5Renderer.image(image, 0, 0, w * scaleFactor, h * scaleFactor);
