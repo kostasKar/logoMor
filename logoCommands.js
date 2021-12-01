@@ -203,7 +203,12 @@ LM.logo = (function(){
     },
 
     label: function(word){
+      LM.p5Renderer.push();
+      LM.matrix.apply();
+      LM.p5Renderer.fill(activeStyle.r, activeStyle.g, activeStyle.b, activeStyle.a);
       LM.p5Renderer.text(word, 0, 0);
+      LM.p5Renderer.noFill();
+      LM.p5Renderer.pop();
     },
 
     point: function(){

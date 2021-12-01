@@ -11,7 +11,7 @@ LM.interpreter = {
   startFrame: 0,         
   returnFromMain: false,
   movesCount: 0,
-  movesLimit: 1000,  
+  movesLimit: 10000,
 
   get stackLength() {return this.tasksStack.length;},
   get headTask() {return this.tasksStack[this.tasksStack.length - 1];},
