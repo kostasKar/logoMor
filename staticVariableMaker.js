@@ -8,7 +8,8 @@ class StaticVariableMakerTask{
     LM.interpreter.tasksStack.push(this);
     this.canBeResolved = false; 
     this.nameAvailable = false;
-    var art = new ArgumentResolverTask();
+    new ArgumentResolverTask();
+    this.startIndex = LM.interpreter.currentIndex;
   }
   
   tryToTakeInput(arg){
@@ -25,6 +26,10 @@ class StaticVariableMakerTask{
       if (!isNaN(arg) || arg.startsWith("\"")){
         if (!LM.memoryController.staticVariableExists(this.name)){
           LM.memoryController.setNewStaticVariable(this.name, arg);
+        } else {
+          LM.interpreter.sourceTokens.splice(this.startIndex, LM.interpreter.currentIndex - this.startIndex);
+          LM.interpreter.sourceTokensLineNumbers.splice(this.startIndex, LM.interpreter.currentIndex - this.startIndex);
+          LM.interpreter.currentIndex = this.startIndex;
         }
       }else {
         LM.throwError("Static variable maker invalid argument: " + arg);
