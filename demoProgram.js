@@ -269,12 +269,10 @@ LM.demoPrograms.pushDemo(
 'make "diameter 30 \n' + 
 'make "length 100 \n' + 
 'make "legs 5 \n' + 
-'make "r 26 \n' + 
-'make "g 26 \n' + 
-'make "b 26 \n' + 
+'make "hue 36 \n' +
 ' \n' + 
 ';---Actual drawing----------------- \n' + 
-'color :r :g :b \n' + 
+'colorhsb :hue 100 100 \n' +
 'repeat :legs [ \n' + 
 ' repeat 4 [ \n' + 
 '  leg :length :diameter \n' + 
