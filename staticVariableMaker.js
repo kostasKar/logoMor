@@ -20,16 +20,12 @@ class StaticVariableMakerTask{
       }
       this.name = arg.replace("\"", "");
       this.nameAvailable = true;
-      var art = new ArgumentResolverTask();
+      new ArgumentResolverTask();
       return true;
     } else if (!this.canBeResolved){
       if (!isNaN(arg) || arg.startsWith("\"")){
         if (!LM.memoryController.staticVariableExists(this.name)){
           LM.memoryController.setNewStaticVariable(this.name, arg);
-        } else {
-          LM.interpreter.sourceTokens.splice(this.startIndex, LM.interpreter.currentIndex - this.startIndex);
-          LM.interpreter.sourceTokensLineNumbers.splice(this.startIndex, LM.interpreter.currentIndex - this.startIndex);
-          LM.interpreter.currentIndex = this.startIndex;
         }
       }else {
         LM.throwError("Static variable maker invalid argument: " + arg);
