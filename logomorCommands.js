@@ -587,6 +587,11 @@ LM.commands =
     hint: "Stops the execution of a loop",
     type: "builtin"
   },
+  "exists": {
+    taskConstructor: ExistsTask,
+    hint: "exists \"name\nChecks for existence. Returns:\n0:not exist, 1:variable, 2:model, 3:image, 4:sound",
+    type: "keyword"
+  }
 
 }
 

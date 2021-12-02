@@ -214,3 +214,12 @@ class SetVolumeSoundTask extends CommandTask2SN { run() {if (LM.sounds.assertExi
 
 //Keyboard
 class KeyPressedTask extends CommandTask0{run(){return LM.logo.keyPressed();}}
+
+//Asset existence
+class ExistsTask extends  CommandTask1S{run(){
+  if (LM.memoryController.variableExists(this.arguments[0])) {return 1}
+  else if (LM.models.modelExists(this.arguments[0])) {return 2}
+  else if (LM.images.imageExists(this.arguments[0])) {return 3}
+  else if (LM.sounds.soundExists(this.arguments[0])) {return 4}
+  else {return 0}
+}}
