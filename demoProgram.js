@@ -661,7 +661,7 @@ LM.demoPrograms.pushDemo(
 '  repeat :size [\n' + 
 '    setxyz repcount * 10 getitem :name repcount 0\n' + 
 '    color 128 0 (getitem :name repcount) * 255 / :maxnum \n' + 
-'    point\n' + 
+'    box 10\n' +
 '  ]\n' + 
 'end\n' + 
 '\n' + 
