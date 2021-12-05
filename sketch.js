@@ -27,14 +27,17 @@ LM.p5Renderer = new p5( function(p) {
 
   p.draw = function() {
     p.lights();
-    if (clearDrawing){
+    if (clearDrawing) {
       p.background(0);
     }
     LM.cameraViewControl.adjust();
     LM.logo.start();
-    LM.interpreter.initLogoExecution();
-    LM.interpreter.executeLogo();
+    if (LM.retainMode.shouldExecute()) {
+      LM.interpreter.initLogoExecution();
+      LM.interpreter.executeLogo();
+    }
     LM.logo.end();
+    LM.retainMode.completedExecution();
   };
 
   p.mouseWheel = function(event){

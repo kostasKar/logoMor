@@ -36,6 +36,7 @@ LM.parser = {
 	  this.mainSourceTokens = [...this.wholeSourceTokens];
 	  this.mainSourceTokensLineNumbers = this.createLineNumbersArrayForWholeProgram();
 	  console.log(this.mainSourceTokens);
+		LM.retainMode.setForNewSourceTokens(this.mainSourceTokens);
 	}
 
 }

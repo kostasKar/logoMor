@@ -462,7 +462,7 @@ label.debugControls {
   margin-bottom: 8px;
 }
 
-#fpsLabel, #fpsValue{
+#fpsLabel, #fpsValue, #retainModeLabel, #retainModeValue{
   margin: 1px;
 }
 

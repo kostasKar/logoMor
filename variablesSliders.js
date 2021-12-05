@@ -36,7 +36,7 @@ LM.variableManipulatorsSliders = (function(){
 		slider.className  = "slider";
 		slider.oninput= function(){
 			sliderValue.value = this.value;
-			LM.p5Renderer.redrawIfPaused();
+			LM.retainMode.fireExecution();
 		};
 
 		var maxLabel = document.createElement("label");

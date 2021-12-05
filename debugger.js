@@ -55,11 +55,13 @@ LM.debugger = (function () {
 		stepPressed: function(){
 			commandsLimit++;
 			debugControl =  "step";
+			LM.retainMode.fireExecution();
 		},
 
 		continuePressed: function(){
 			commandsLimit++;
 			debugControl = "breakpoint";
+			LM.retainMode.fireExecution();
 		},
 
 		stoppedNewCommand: function(){

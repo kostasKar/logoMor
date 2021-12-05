@@ -11,7 +11,7 @@ LM.interpreter = {
   startFrame: 0,         
   returnFromMain: false,
   movesCount: 0,
-  movesLimit: 10000,
+  movesLimit: Infinity,
 
   get stackLength() {return this.tasksStack.length;},
   get headTask() {return this.tasksStack[this.tasksStack.length - 1];},
@@ -125,7 +125,7 @@ LM.interpreter = {
     LM.clearError();
     LM.debugger.initForNewRun();
     LM.debugger.setEnabled(setDebugOn);
-    this.movesLimit = document.getElementById("movesLimitInput").value;
+    this.movesLimit = document.getElementById("movesLimitInput").value || Infinity;
     LM.p5Renderer.redrawIfPaused();
   },
 
