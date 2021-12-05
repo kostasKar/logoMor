@@ -4,11 +4,26 @@ LM.logo = (function(){
   var showTurtle;
   var lastKeyPressed;
 
-  var defaultStyle = {"weight":1, "r":255, "g":255, "b":255, "a":255, "textSize":10};
+  var defaultStyle = {"weight":1, "r":255, "g":255, "b":255, "a":255, "textSize":10, "fill":false};
   var activeStyle;
 
   function addVertex(){
-    LM.p5Renderer.vertex(LM.matrix.getX(), LM.matrix.getY(), LM.matrix.getZ());
+    //LM.p5Renderer.vertex(LM.matrix.getX(), LM.matrix.getY(), LM.matrix.getZ());
+    LM.modelMaker.addVertex(LM.matrix.getX(), LM.matrix.getY(), LM.matrix.getZ());
+  }
+
+  function addStartVertex(){
+    LM.modelMaker.addStartVertex(LM.matrix.getX(), LM.matrix.getY(), LM.matrix.getZ());
+  }
+
+  function startNewShape(){
+    // LM.p5Renderer.beginShape();
+    LM.modelMaker.startNewModel(activeStyle);
+  }
+
+  function endNewShape(){
+    // LM.p5Renderer.endShape();
+    LM.modelMaker.endNewModel();
   }
 
   function beforeSolids(){
@@ -32,6 +47,9 @@ LM.logo = (function(){
     LM.p5Renderer.stroke(activeStyle.r, activeStyle.g, activeStyle.b, activeStyle.a);
     LM.p5Renderer.noFill();
     LM.p5Renderer.textSize(activeStyle.textSize);
+    if (activeStyle.fill){
+      LM.p5Renderer.fill(activeStyle.r, activeStyle.g, activeStyle.b, activeStyle.a);
+    }
   }
 
 
@@ -56,14 +74,16 @@ LM.logo = (function(){
       initStrokeStyle();
       LM.p5Renderer.push();
       LM.matrix.reset();
-      LM.p5Renderer.beginShape();
-      addVertex();
+      LM.modelMaker.clearModels();
+      startNewShape();
+      addStartVertex();
     },
 
     end: function(){
       if (penDown) {
-        LM.p5Renderer.endShape();
+        endNewShape();
       }
+      LM.modelMaker.displayAllModels();
       if (showTurtle){
         LM.matrix.apply();
         LM.drawAvatar(LM.p5Renderer);
@@ -85,18 +105,18 @@ LM.logo = (function(){
     },
 
     beginShape: function(){
-      LM.p5Renderer.endShape()
-      LM.p5Renderer.fill(activeStyle.r, activeStyle.g, activeStyle.b, activeStyle.a);
-      LM.p5Renderer.beginShape();
-      addVertex();
+      endNewShape()
+      activeStyle.fill = true;
+      startNewShape();
+      addStartVertex();
     },
 
     endShape: function(){
-      LM.p5Renderer.endShape();
-      LM.p5Renderer.noFill();
+      endNewShape();
+      activeStyle.fill = false;
       if (penDown){
-        LM.p5Renderer.beginShape();
-        addVertex();
+        startNewShape();
+        addStartVertex();
       }
     },
 
@@ -142,26 +162,25 @@ LM.logo = (function(){
     penDown: function(){
       if (!penDown){
         penDown = true;
-        LM.p5Renderer.beginShape();
-        addVertex();
+        addStartVertex();
       }
     },
 
     penUp: function(){
       if (penDown){
         penDown = false;
-        LM.p5Renderer.endShape();
+        endNewShape();
       }
     },
 
     setPenSize: function(n){
-      if (penDown){
-        LM.p5Renderer.endShape();
-        LM.p5Renderer.beginShape();
-        addVertex();
-      }
       LM.p5Renderer.strokeWeight(n);
       activeStyle.weight = n;
+      if (penDown){
+        endNewShape();
+        startNewShape();
+        addStartVertex();
+      }
     },
 
     setTextSize: function(n){
@@ -170,38 +189,38 @@ LM.logo = (function(){
     },
 
     color: function(r, g, b){
-      if (penDown){
-        LM.p5Renderer.endShape();
-        LM.p5Renderer.beginShape();
-        addVertex();
-      }
       activeStyle.r = r;
       activeStyle.g = g;
       activeStyle.b = b;
       restoreStrokeStyle();
+      if (penDown){
+        endNewShape();
+        startNewShape();
+        addStartVertex();
+      }
     },
 
     colorHSB: function(h, s, b){
-      if (penDown){
-        LM.p5Renderer.endShape();
-        LM.p5Renderer.beginShape();
-        addVertex();
-      }
       var c = LM.p5Renderer.color('hsb('+ h + ',' + s + '%,' + b + '%)');
       activeStyle.r = LM.p5Renderer.red(c);
       activeStyle.g = LM.p5Renderer.green(c);
       activeStyle.b = LM.p5Renderer.blue(c);
       restoreStrokeStyle();
+      if (penDown){
+        endNewShape();
+        startNewShape();
+        addStartVertex();
+      }
     },
 
     colorAlpha: function(a){
-      if (penDown){
-        LM.p5Renderer.endShape();
-        LM.p5Renderer.beginShape();
-        addVertex();
-      }
       activeStyle.a = a;
       restoreStrokeStyle();
+      if (penDown){
+        endNewShape();
+        startNewShape();
+        addStartVertex();
+      }
     },
 
     label: function(word){
