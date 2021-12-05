@@ -82,8 +82,8 @@ LM.logo = (function(){
     },
 
     end: function(){
-      if ((penDown) && (LM.retainMode.shouldExecute())) {
-        endNewShape();
+      if (LM.retainMode.shouldExecute()) {
+        LM.modelMaker.endAnyPendingModel();
       }
       LM.modelMaker.displayAllModels();
       if (showTurtle){

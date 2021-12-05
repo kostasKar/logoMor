@@ -4,6 +4,7 @@ LM.modelMaker = (function(){
   let currentModel;
   let currentModelIndex = 0;
   let currentVertexIndex = 0;
+  let modelStarted = false;
 
   let previousModels = [];
 
@@ -25,6 +26,7 @@ LM.modelMaker = (function(){
       currentModel.gid = Math.random().toString(36).substring(2);
       currentModel.logoStyle = Object.assign({}, style);
       currentVertexIndex = 0;
+      modelStarted = true;
     },
 
     endNewModel: function(){
@@ -33,6 +35,13 @@ LM.modelMaker = (function(){
       }
       models.push(currentModel);
       currentModelIndex++;
+      modelStarted = false;
+    },
+
+    endAnyPendingModel: function(){
+      if(modelStarted){
+        this.endNewModel();
+      }
     },
 
     addVertex: function(x, y, z){
@@ -60,7 +69,6 @@ LM.modelMaker = (function(){
 
     displayAllModels: function(){
       for(const m of models){
-        console.log(m.gid);
         setStyle(m.logoStyle);
         LM.p5Renderer.model(m);
       }
