@@ -52,6 +52,7 @@
   <script src='memoryController.js'></script>
   <script src="logoInterpreter.js"></script>
   <script src="sketchModelMaker.js"></script>
+  <script src="retainMode.js"></script>
   <script src="logoCommands.js"></script>
   <script src="randomGenerator.js"></script>
   <script src="demoProgram.js"></script>
@@ -88,7 +89,8 @@
     <label>Middle Click: Pan </label> 
     <label>Scroll Wheel: Zoom </label>
     <label>Double Click: Reset View</label>
-    <span id="fpsLabel">Fps: </span><span id="fpsValue"></span>
+    <label id="retainModeLabel">Retained mode: <span id="retainModeValue">On</span></label>
+    <label id="fpsLabel">Fps: <span id="fpsValue"></span></label>
     <div class="onoffswitch tooltip">
       <span class="tooltiptext right">Auto-Rotate</span>    
       <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="autoRotate" tabindex="0">
@@ -145,7 +147,7 @@
         <button title="Start debugging" class="debugControls" id="debugButton" onclick="LM.interpreter.setup(null, true)">Debug</button>
         <button title="Run to breakpoint" class="debugControls" id="debugContinueButton" onclick="LM.debugger.continuePressed()" disabled>Continue</button>
         <button title="Run next command" class="debugControls" id="debugStepButton" onclick="LM.debugger.stepPressed()" disabled>Step</button>
-        <input  id="movesLimitInput" type="number" name="quantity" min="0" value="10000" onchange="LM.interpreter.movesLimit = this.value; LM.p5Renderer.redrawIfPaused()">
+        <input  id="movesLimitInput" type="number" name="quantity" min="0" value="10000" onchange="LM.interpreter.movesLimit = this.value; LM.retainMode.fireExecution()">
         <label title="Maximum number of move commands per frame" class="subtleText1" id="movesLimitLabel">Moves Limit:</label>
       </div>
 

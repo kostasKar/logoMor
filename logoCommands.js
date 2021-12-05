@@ -69,18 +69,20 @@ LM.logo = (function(){
 
     start: function(){
       LM.drawCoordinates(LM.p5Renderer,25);
-      penDown = true;
-      showTurtle = true;
-      initStrokeStyle();
-      LM.p5Renderer.push();
-      LM.matrix.reset();
-      LM.modelMaker.clearModels();
-      startNewShape();
-      addStartVertex();
+      if (LM.retainMode.shouldExecute()) {
+        penDown = true;
+        showTurtle = true;
+        initStrokeStyle();
+        LM.p5Renderer.push();
+        LM.matrix.reset();
+        LM.modelMaker.clearModels();
+        startNewShape();
+        addStartVertex();
+      }
     },
 
     end: function(){
-      if (penDown) {
+      if ((penDown) && (LM.retainMode.shouldExecute())) {
         endNewShape();
       }
       LM.modelMaker.displayAllModels();
@@ -93,7 +95,7 @@ LM.logo = (function(){
           LM.drawCoordinates(LM.p5Renderer,10);
         }
       }
-      LM.p5Renderer.pop();
+      if (LM.retainMode.shouldExecute()){LM.p5Renderer.pop();}
     },
 
     showTurtle: function(){
