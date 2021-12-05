@@ -1,6 +1,6 @@
 LM.retainMode = (function(){
 
-  const unretainableTokens = ["randcrazy", "randomcrazy", "static", "time", "frame", "box"];
+  const unretainableTokens = Object.keys(LM.commands).filter(name => LM.commands[name].retainable === false);
   var isRetainable;
   var fireOnce;
 
