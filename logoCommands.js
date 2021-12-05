@@ -158,7 +158,10 @@ LM.logo = (function(){
     },
 
     arc: function(angle, radius){
-      LM.p5Renderer.arc(LM.matrix.getX(), LM.matrix.getY(), radius*2, radius*2, -LM.p5Renderer.HALF_PI, LM.p5Renderer.radians(angle) - LM.p5Renderer.HALF_PI);
+      LM.p5Renderer.push();
+      LM.matrix.apply();
+      LM.p5Renderer.arc(0, 0, radius*2, radius*2, -LM.p5Renderer.HALF_PI, LM.p5Renderer.radians(angle) - LM.p5Renderer.HALF_PI);
+      LM.p5Renderer.pop();
     },
 
     penDown: function(){

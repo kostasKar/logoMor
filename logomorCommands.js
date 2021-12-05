@@ -564,7 +564,7 @@ LM.commands =
     taskConstructor: ArcTask,
     hint: "arc :angle :radius\nDraws an arc with center the avatar position. The angle of the arc starts at the y axis of the avatar and is drawn clockwise. Avatar does not move ",
     type: "keyword",
-    retainable: true
+    retainable: false
   },
   "box": {
     taskConstructor: BoxTask,
