@@ -37,7 +37,13 @@ LM.modelMaker = (function(){
 
     addVertex: function(x, y, z){
       currentModel.vertices.push(new p5.Vector(x, y, z));
-      currentModel.faces.push([currentVertexIndex -1, currentVertexIndex, currentVertexIndex]);
+      if(currentModel.logoStyle.fill){
+        if (currentVertexIndex >= 2){
+          currentModel.faces.push([currentVertexIndex -2, currentVertexIndex - 1, currentVertexIndex]);
+        }
+      } else {
+        currentModel.faces.push([currentVertexIndex -1, currentVertexIndex, currentVertexIndex]);
+      }
       currentVertexIndex++;
     },
 
