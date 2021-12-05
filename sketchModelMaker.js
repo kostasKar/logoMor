@@ -22,7 +22,7 @@ LM.modelMaker = (function(){
 
     startNewModel: function(style){
       currentModel = new p5.Geometry();
-      currentModel.gid = Date.now().toString();
+      currentModel.gid = Math.random().toString(36).substring(2);
       currentModel.logoStyle = Object.assign({}, style);
       currentVertexIndex = 0;
     },
