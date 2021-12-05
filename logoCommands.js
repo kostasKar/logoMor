@@ -169,7 +169,6 @@ LM.logo = (function(){
     penUp: function(){
       if (penDown){
         penDown = false;
-        endNewShape();
       }
     },
 
