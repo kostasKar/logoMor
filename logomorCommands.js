@@ -504,19 +504,19 @@ LM.commands =
     taskConstructor: MouseXTask,
     hint: "The X coordinate of the mouse position  ",
     type: "keyword",
-    retainable: true
+    retainable: false
   },
   "mousey": {
     taskConstructor: MouseYTask,
     hint: "The Y coordinate of the mouse position   ",
     type: "keyword",
-    retainable: true
+    retainable: false
   },
   "mousepressed": {
     taskConstructor: MousePressedTask,
     hint: "Returns the mouse button state. 0: not pressed, 1: left button, 2: right button, 3: middle button ",
     type: "keyword",
-    retainable: true
+    retainable: false
   },
   "thing": {
     taskConstructor: ThingTask,
