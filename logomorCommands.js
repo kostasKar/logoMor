@@ -294,7 +294,7 @@ LM.commands =
     taskConstructor: LabelTask,
     hint: "label :val\nDraws text on the drawing  ",
     type: "keyword",
-    retainable: true
+    retainable: false
   },
   "and": {
     taskConstructor: AndTask,
