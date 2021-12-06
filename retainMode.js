@@ -3,6 +3,7 @@ LM.retainMode = (function(){
   const unretainableTokens = Object.keys(LM.commands).filter(name => LM.commands[name].retainable === false);
   var isRetainable;
   var fireOnce;
+  var forcedOn = false;
 
 
   return {
@@ -14,7 +15,8 @@ LM.retainMode = (function(){
     },
 
     shouldExecute: function(){
-      return ((!isRetainable) || (fireOnce));
+      return ((fireOnce) ||
+              ((!isRetainable) && (!forcedOn)));
     },
 
     completedExecution(){
@@ -23,7 +25,16 @@ LM.retainMode = (function(){
 
     fireExecution: function(){
       fireOnce = true;
+    },
+
+    setForcedOn: function(setVal){
+      forcedOn = setVal;
+    },
+
+    isForcedOn: function(){
+      return forcedOn;
     }
+
 
   }
 

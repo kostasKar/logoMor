@@ -126,7 +126,6 @@ LM.interpreter = {
     LM.debugger.initForNewRun();
     LM.debugger.setEnabled(setDebugOn);
     this.movesLimit = document.getElementById("movesLimitInput").value || Infinity;
-    LM.p5Renderer.redrawIfPaused();
   },
 
   initLogoExecution: function(){

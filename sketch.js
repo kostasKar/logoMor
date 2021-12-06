@@ -53,25 +53,15 @@ LM.p5Renderer = new p5( function(p) {
     LM.logo.keyPressedCallback(p.keyCode);
   }
 
-  p.redrawIfPaused = function(){
-    if (!LM.p5Renderer.isLooping()){
-      LM.p5Renderer.redraw();
-    }
-  }
-
   p.togglePause = function(){
-    if (LM.p5Renderer.isLooping()){
+    if (!LM.retainMode.isForcedOn()){
       document.getElementById("pause").firstElementChild.className = "fa fa-play";
       document.getElementById("pause").firstElementChild.style.color = "lime";
-      document.getElementById("autoRotate").disabled = true;
-      document.getElementById("turnsHelpArrows").disabled = true;
-      LM.p5Renderer.noLoop();
+      LM.retainMode.setForcedOn(true);
     } else {
       document.getElementById("pause").firstElementChild.className = "fa fa-pause";
       document.getElementById("pause").firstElementChild.style.removeProperty("color");
-      document.getElementById("autoRotate").disabled = false;
-      document.getElementById("turnsHelpArrows").disabled = false;
-      LM.p5Renderer.loop();
+      LM.retainMode.setForcedOn(false);
     }
   }
 
