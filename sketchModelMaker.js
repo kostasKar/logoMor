@@ -5,9 +5,7 @@ LM.modelMaker = (function(){
   let currentModelIndex = 0;
   let currentVertexIndex = 0;
   let modelStarted = false;
-
-  let previousModels = [];
-
+  let modelIsDifferent = false;
 
   function setStyle(s){
     LM.p5Renderer.strokeWeight(s.weight);
@@ -19,6 +17,20 @@ LM.modelMaker = (function(){
     }
   }
 
+  function checkIfModelIsDifferentSoFar(){
+    if(!modelIsDifferent){
+      if((models[currentModel]) &&
+        (models[currentModel].vertices[currentVertexIndex]) &&
+        (models[currentModelIndex].vertices[currentVertexIndex].x === currentModel.vertices[currentVertexIndex].x) &&
+        (models[currentModelIndex].vertices[currentVertexIndex].y === currentModel.vertices[currentVertexIndex].y) &&
+        (models[currentModelIndex].vertices[currentVertexIndex].z === currentModel.vertices[currentVertexIndex].z)){
+        return;
+      } else {
+        modelIsDifferent = true;
+      }
+    }
+  }
+
   return {
 
     startNewModel: function(style){
@@ -27,6 +39,7 @@ LM.modelMaker = (function(){
       currentModel.logoStyle = Object.assign({}, style);
       currentVertexIndex = 0;
       modelStarted = true;
+      modelIsDifferent = false;
     },
 
     endNewModel: function(){
@@ -34,10 +47,10 @@ LM.modelMaker = (function(){
       if(currentModel.vertices.length < 2){
         return;
       }
-      if((previousModels[currentModelIndex]) && (JSON.stringify(currentModel.vertices) === JSON.stringify(previousModels[currentModelIndex].vertices))){
-          currentModel.gid = previousModels[currentModelIndex].gid;
+      if(!modelIsDifferent){
+          currentModel.gid = models[currentModelIndex].gid;
       }
-      models.push(currentModel);
+      models.splice(currentModelIndex, 1, currentModel);
       currentModelIndex++;
       modelStarted = false;
     },
@@ -50,6 +63,7 @@ LM.modelMaker = (function(){
 
     addVertex: function(x, y, z){
       currentModel.vertices.push(new p5.Vector(x, y, z));
+      checkIfModelIsDifferentSoFar();
       if(currentModel.logoStyle.fill){
         if (currentVertexIndex >= 2){
           currentModel.faces.push([currentVertexIndex -2, currentVertexIndex - 1, currentVertexIndex]);
@@ -62,16 +76,16 @@ LM.modelMaker = (function(){
 
     addStartVertex: function(x, y, z){
       currentModel.vertices.push(new p5.Vector(x, y, z));
+      checkIfModelIsDifferentSoFar();
       currentVertexIndex++;
     },
 
     clearModels: function(){
-      previousModels = [...models];
-      models = [];
       currentModelIndex = 0;
     },
 
     displayAllModels: function(){
+      models.splice(currentModelIndex);
       for(const m of models){
         setStyle(m.logoStyle);
         LM.p5Renderer.model(m);
