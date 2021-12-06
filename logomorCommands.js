@@ -612,7 +612,7 @@ LM.commands =
     taskConstructor: ImageTask,
     hint: "image \"name :height\nDraws an imported image ",
     type: "keyword",
-    retainable: false
+    retainable: true
   },
   "sound_play": {
     taskConstructor: PlaySoundTask,

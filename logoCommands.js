@@ -313,22 +313,7 @@ LM.logo = (function(){
     },
 
     image: function(image, height){
-      if(penDown){
-        LM.p5Renderer.endShape();
-        LM.p5Renderer.noStroke();
-      }
-      var w = image.width;
-      var h = image.height;
-      var scaleFactor =  height/h;
-      LM.p5Renderer.push();
-      LM.matrix.apply();
-      LM.p5Renderer.image(image, 0, 0, w * scaleFactor, h * scaleFactor);
-      LM.p5Renderer.pop();
-      restoreStrokeStyle();
-      if (penDown){
-        LM.p5Renderer.beginShape();
-        addVertex();
-      }
+      LM.modelMaker.addImage(LM.matrix.getMatrix(), image, height);
     },
 
     soundPlay: function(audio){

@@ -9,6 +9,7 @@ LM.modelMaker = (function(){
 
   let primitives = [];
   let solids = [];
+  let images = [];
 
   function setStyle(s, penDown = true){
     LM.p5Renderer.strokeWeight(s.weight);
@@ -92,6 +93,7 @@ LM.modelMaker = (function(){
       currentModelIndex = 0;
       primitives = [];
       solids = [];
+      images = [];
     },
 
     displayAllModels: function(){
@@ -102,6 +104,7 @@ LM.modelMaker = (function(){
       }
       this.displayAllPrimitives();
       this.displayAllSolids();
+      this.displayAllImages();
     },
 
     addPrimitive: function(style, penDown, matrix, type, ...args){
@@ -137,6 +140,22 @@ LM.modelMaker = (function(){
         LM.p5Renderer.scale(s.scaleFactor);
         LM.p5Renderer.model(s.model);
         LM.p5Renderer.scale(1/s.scaleFactor);
+        LM.p5Renderer.pop();
+      }
+    },
+
+    addImage: function(matrix, image, height){
+      images.push({matrix: matrix, image: image, height: height});
+    },
+
+    displayAllImages: function(){
+      for(const im of images){
+        let w = im.image.width;
+        let h = im.image.height;
+        let scaleFactor =  im.height/h;
+        LM.p5Renderer.push();
+        LM.p5Renderer.applyMatrix(im.matrix);
+        LM.p5Renderer.image(im.image, 0, 0, w * scaleFactor, h * scaleFactor);
         LM.p5Renderer.pop();
       }
     }
