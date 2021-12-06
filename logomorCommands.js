@@ -546,7 +546,7 @@ LM.commands =
     taskConstructor: PointTask,
     hint: "Draws a point at the current avatar position ",
     type: "keyword",
-    retainable: true
+    retainable: false
   },
   "dist": {
     taskConstructor: DistTask,
