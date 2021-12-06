@@ -30,6 +30,10 @@ LM.modelMaker = (function(){
     },
 
     endNewModel: function(){
+      //discard any undrawable model
+      if(currentModel.vertices.length < 2){
+        return;
+      }
       if((previousModels[currentModelIndex]) && (JSON.stringify(currentModel.vertices) === JSON.stringify(previousModels[currentModelIndex].vertices))){
           currentModel.gid = previousModels[currentModelIndex].gid;
       }
