@@ -26,17 +26,6 @@ LM.logo = (function(){
     LM.modelMaker.endNewModel();
   }
 
-  function beforeSolids(){
-    LM.p5Renderer.push();
-    if (!penDown) {LM.p5Renderer.noStroke();}
-    LM.p5Renderer.fill(activeStyle.r, activeStyle.g, activeStyle.b, activeStyle.a);
-    LM.matrix.apply();
-  }
-
-  function afterSolids(){
-    LM.p5Renderer.pop();
-  }
-
   function initStrokeStyle(){
     activeStyle =  Object.assign({}, defaultStyle);
     restoreStrokeStyle();
@@ -158,10 +147,7 @@ LM.logo = (function(){
     },
 
     arc: function(angle, radius){
-      LM.p5Renderer.push();
-      LM.matrix.apply();
-      LM.p5Renderer.arc(0, 0, radius*2, radius*2, -LM.p5Renderer.HALF_PI, LM.p5Renderer.radians(angle) - LM.p5Renderer.HALF_PI);
-      LM.p5Renderer.pop();
+      LM.modelMaker.addPrimitive(activeStyle, penDown, LM.matrix.getMatrix(), "arc", 0, 0, radius*2, radius*2, -LM.p5Renderer.HALF_PI, LM.p5Renderer.radians(angle) - LM.p5Renderer.HALF_PI);
     },
 
     penDown: function(){
@@ -228,16 +214,11 @@ LM.logo = (function(){
     },
 
     label: function(word){
-      LM.p5Renderer.push();
-      LM.matrix.apply();
-      LM.p5Renderer.fill(activeStyle.r, activeStyle.g, activeStyle.b, activeStyle.a);
-      LM.p5Renderer.text(word, 0, 0);
-      LM.p5Renderer.noFill();
-      LM.p5Renderer.pop();
+      LM.modelMaker.addPrimitive(activeStyle, penDown, LM.matrix.getMatrix(), "text", word, 0, 0);
     },
 
     point: function(){
-      LM.p5Renderer.point(LM.matrix.getX(), LM.matrix.getY(), LM.matrix.getZ());
+      LM.modelMaker.addPrimitive(activeStyle, penDown, LM.matrix.getMatrix(), "point", 0, 0, 0);
     },
 
 
@@ -304,48 +285,31 @@ LM.logo = (function(){
 
     //3D primitives
     box: function(side){
-      beforeSolids();
-      LM.p5Renderer.box(side);
-      afterSolids();
+      LM.modelMaker.addPrimitive(activeStyle, penDown, LM.matrix.getMatrix(), "box", side);
     },
 
     sphere: function(radius){
-      beforeSolids();
-      LM.p5Renderer.sphere(radius);
-      afterSolids();
+      LM.modelMaker.addPrimitive(activeStyle, penDown, LM.matrix.getMatrix(), "sphere", radius);
     },
 
     cylinder: function(radius, height){
-      beforeSolids();
-      LM.p5Renderer.cylinder(radius, height);
-      afterSolids();
+      LM.modelMaker.addPrimitive(activeStyle, penDown, LM.matrix.getMatrix(), "cylinder", radius, height);
     },
 
     cone: function(radius, height){
-      beforeSolids();
-      LM.p5Renderer.cone(radius, height);
-      afterSolids();
+      LM.modelMaker.addPrimitive(activeStyle, penDown, LM.matrix.getMatrix(), "cone", radius, height);
     },
 
     torus: function(radius, tubeRadius){
-      beforeSolids();
-      LM.p5Renderer.torus(radius, tubeRadius);
-      afterSolids();
+      LM.modelMaker.addPrimitive(activeStyle, penDown, LM.matrix.getMatrix(), "torus", radius, tubeRadius);
     },
 
     ellipsoid: function(radiusX, radiusY, radiusZ){
-      beforeSolids();
-      LM.p5Renderer.ellipsoid(radiusX, radiusY, radiusZ);
-      afterSolids();
+      LM.modelMaker.addPrimitive(activeStyle, penDown, LM.matrix.getMatrix(), "ellipsoid", radiusX, radiusY, radiusZ);
     },
 
     model: function(model, size){
-      beforeSolids();
-      var scaleFactor = size/200; //normalized models fit inbetween -100, 100 so 200 size
-      LM.p5Renderer.scale(scaleFactor);
-      LM.p5Renderer.model(model);
-      LM.p5Renderer.scale(1/scaleFactor);
-      afterSolids();
+      LM.modelMaker.addSolid(activeStyle, penDown, LM.matrix.getMatrix(), model, size/200);
     },
 
     image: function(image, height){

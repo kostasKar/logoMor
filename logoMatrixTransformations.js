@@ -200,6 +200,10 @@ LM.matrix = (function(){
       LM.p5Renderer.applyMatrix(lmi[0],lmi[1],lmi[2],lmi[3],lmi[4],lmi[5],lmi[6],lmi[7],lmi[8],lmi[9],lmi[10],lmi[11],lmi[12],lmi[13],lmi[14],lmi[15]);
     },
 
+    getMatrix: function(){
+      return [...lm];
+    },
+
     getX: function(){
       return lm[12];
     },

@@ -294,7 +294,7 @@ LM.commands =
     taskConstructor: LabelTask,
     hint: "label :val\nDraws text on the drawing  ",
     type: "keyword",
-    retainable: false
+    retainable: true
   },
   "and": {
     taskConstructor: AndTask,
@@ -546,7 +546,7 @@ LM.commands =
     taskConstructor: PointTask,
     hint: "Draws a point at the current avatar position ",
     type: "keyword",
-    retainable: false
+    retainable: true
   },
   "dist": {
     taskConstructor: DistTask,
@@ -564,49 +564,49 @@ LM.commands =
     taskConstructor: ArcTask,
     hint: "arc :angle :radius\nDraws an arc with center the avatar position. The angle of the arc starts at the y axis of the avatar and is drawn clockwise. Avatar does not move ",
     type: "keyword",
-    retainable: false
+    retainable: true
   },
   "box": {
     taskConstructor: BoxTask,
     hint: "box :sidelength\nDraws a solid box ",
     type: "keyword",
-    retainable: false
+    retainable: true
   },
   "sphere": {
     taskConstructor: SphereTask,
     hint: "sphere :radius \nDraws a solid sphere",
     type: "keyword",
-    retainable: false
+    retainable: true
   },
   "cylinder": {
     taskConstructor: CylinderTask,
     hint: "cylinder :radius :height\nDraws a solid cylinder ",
     type: "keyword",
-    retainable: false
+    retainable: true
   },
   "cone": {
     taskConstructor: ConeTask,
     hint: "cone :baseradius :height\nDraws a solid cone ",
     type: "keyword",
-    retainable: false
+    retainable: true
   },
   "torus": {
     taskConstructor: TorusTask,
     hint: "torus :radius :tubeRadius\nDraws a solid torus ",
     type: "keyword",
-    retainable: false
+    retainable: true
   },
   "ellipsoid": {
     taskConstructor: EllipsoidTask,
     hint: "ellipsoid :radiusX :radiusY :radiusZ\nDraws a solid ellipsoid ",
     type: "keyword",
-    retainable: false
+    retainable: true
   },
   "model": {
     taskConstructor: ModelTask,
     hint: "model \"name :size\nDraws an imported 3D object object, sized to fit inside a cube of side length :size",
     type: "keyword",
-    retainable: false
+    retainable: true
   },
   "image": {
     taskConstructor: ImageTask,

@@ -7,13 +7,21 @@ LM.modelMaker = (function(){
   let modelStarted = false;
   let modelIsDifferent = false;
 
-  function setStyle(s){
+  let primitives = [];
+  let solids = [];
+
+  function setStyle(s, penDown = true){
     LM.p5Renderer.strokeWeight(s.weight);
-    LM.p5Renderer.stroke(s.r, s.g, s.b, s.a);
-    LM.p5Renderer.noFill();
+    if (penDown) {
+      LM.p5Renderer.stroke(s.r, s.g, s.b, s.a);
+    } else {
+      LM.p5Renderer.noStroke();
+    }
     LM.p5Renderer.textSize(s.textSize);
     if (s.fill){
       LM.p5Renderer.fill(s.r, s.g, s.b, s.a);
+    } else {
+      LM.p5Renderer.noFill();
     }
   }
 
@@ -82,6 +90,8 @@ LM.modelMaker = (function(){
 
     clearModels: function(){
       currentModelIndex = 0;
+      primitives = [];
+      solids = [];
     },
 
     displayAllModels: function(){
@@ -90,7 +100,48 @@ LM.modelMaker = (function(){
         setStyle(m.logoStyle);
         LM.p5Renderer.model(m);
       }
+      this.displayAllPrimitives();
+      this.displayAllSolids();
+    },
+
+    addPrimitive: function(style, penDown, matrix, type, ...args){
+      primitives.push({type:type, style: Object.assign({},style), penDown: penDown, matrix: matrix, args: args});
+    },
+
+    displayAllPrimitives: function(){
+      for(const p of primitives){
+        if (p.type !== "arc"){
+          p.style.fill = true;
+        }
+        if ((p.type === "arc")||(p.type === "point")){
+          p.penDown = true;
+        }
+        setStyle(p.style, p.penDown);
+        LM.p5Renderer.push();
+        LM.p5Renderer.applyMatrix(p.matrix);
+        LM.p5Renderer[p.type](...p.args);
+        LM.p5Renderer.pop();
+      }
+    },
+
+    addSolid: function(style, penDown, matrix, model, scaleFactor){
+      solids.push({model:model, style: Object.assign({},style), penDown: penDown, matrix: matrix, scaleFactor: scaleFactor});
+    },
+
+    displayAllSolids: function(){
+      for (const s of solids){
+        s.style.fill = true;
+        setStyle(s.style, s.penDown);
+        LM.p5Renderer.push();
+        LM.p5Renderer.applyMatrix(s.matrix);
+        LM.p5Renderer.scale(s.scaleFactor);
+        LM.p5Renderer.model(s.model);
+        LM.p5Renderer.scale(1/s.scaleFactor);
+        LM.p5Renderer.pop();
+      }
     }
+
+
 
   }
 
