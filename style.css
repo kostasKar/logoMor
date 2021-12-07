@@ -653,5 +653,13 @@ label.debugControls {
 
 }
 
+#paintBrushIcon {
+  color: #FFFFFF;
+  filter: brightness(67%);
+}
+
+#colorPickerButton:hover #paintBrushIcon {
+  filter:brightness(87%);
+}
 
 
