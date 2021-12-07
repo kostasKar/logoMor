@@ -28,8 +28,8 @@ LM.sketchBuffer = (function(){
 
   function checkIfModelIsDifferentSoFar(){
     if(!modelIsDifferent){
-      if((models[currentModel]) &&
-        (models[currentModel].vertices[currentVertexIndex]) &&
+      if((models[currentModelIndex]) &&
+        (models[currentModelIndex].vertices[currentVertexIndex]) &&
         (models[currentModelIndex].vertices[currentVertexIndex].x === currentModel.vertices[currentVertexIndex].x) &&
         (models[currentModelIndex].vertices[currentVertexIndex].y === currentModel.vertices[currentVertexIndex].y) &&
         (models[currentModelIndex].vertices[currentVertexIndex].z === currentModel.vertices[currentVertexIndex].z)){
