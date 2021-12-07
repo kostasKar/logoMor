@@ -33,6 +33,18 @@ LM.retainMode = (function(){
 
     isForcedOn: function(){
       return forcedOn;
+    },
+
+    togglePause: function(){
+      if (!forcedOn){
+        document.getElementById("pause").firstElementChild.className = "fa fa-play";
+        document.getElementById("pause").firstElementChild.style.color = "lime";
+        forcedOn = true;
+      } else {
+        document.getElementById("pause").firstElementChild.className = "fa fa-pause";
+        document.getElementById("pause").firstElementChild.style.removeProperty("color");
+        forcedOn = false;
+      }
     }
 
 

@@ -8,7 +8,6 @@ LM.logo = (function(){
   var activeStyle;
 
   function addVertex(){
-    //LM.p5Renderer.vertex(LM.matrix.getX(), LM.matrix.getY(), LM.matrix.getZ());
     LM.modelMaker.addVertex(LM.matrix.getX(), LM.matrix.getY(), LM.matrix.getZ());
   }
 
@@ -17,30 +16,16 @@ LM.logo = (function(){
   }
 
   function startNewShape(){
-    // LM.p5Renderer.beginShape();
     LM.modelMaker.startNewModel(activeStyle);
   }
 
   function endNewShape(){
-    // LM.p5Renderer.endShape();
     LM.modelMaker.endNewModel();
   }
 
   function initStrokeStyle(){
     activeStyle =  Object.assign({}, defaultStyle);
-    restoreStrokeStyle();
   }
-
-  function restoreStrokeStyle(){
-    LM.p5Renderer.strokeWeight(activeStyle.weight);
-    LM.p5Renderer.stroke(activeStyle.r, activeStyle.g, activeStyle.b, activeStyle.a);
-    LM.p5Renderer.noFill();
-    LM.p5Renderer.textSize(activeStyle.textSize);
-    if (activeStyle.fill){
-      LM.p5Renderer.fill(activeStyle.r, activeStyle.g, activeStyle.b, activeStyle.a);
-    }
-  }
-
 
 
   return {
@@ -62,7 +47,6 @@ LM.logo = (function(){
         penDown = true;
         showTurtle = true;
         initStrokeStyle();
-        LM.p5Renderer.push();
         LM.matrix.reset();
         LM.modelMaker.clearModels();
         startNewShape();
@@ -84,7 +68,6 @@ LM.logo = (function(){
           LM.drawCoordinates(LM.p5Renderer,10);
         }
       }
-      if (LM.retainMode.shouldExecute()){LM.p5Renderer.pop();}
     },
 
     showTurtle: function(){
@@ -164,7 +147,6 @@ LM.logo = (function(){
     },
 
     setPenSize: function(n){
-      LM.p5Renderer.strokeWeight(n);
       activeStyle.weight = n;
       if (penDown){
         endNewShape();
@@ -174,7 +156,6 @@ LM.logo = (function(){
     },
 
     setTextSize: function(n){
-      LM.p5Renderer.textSize(n);
       activeStyle.textSize = n;
     },
 
@@ -182,7 +163,6 @@ LM.logo = (function(){
       activeStyle.r = r;
       activeStyle.g = g;
       activeStyle.b = b;
-      restoreStrokeStyle();
       if (penDown){
         endNewShape();
         startNewShape();
@@ -195,7 +175,6 @@ LM.logo = (function(){
       activeStyle.r = LM.p5Renderer.red(c);
       activeStyle.g = LM.p5Renderer.green(c);
       activeStyle.b = LM.p5Renderer.blue(c);
-      restoreStrokeStyle();
       if (penDown){
         endNewShape();
         startNewShape();
@@ -205,7 +184,6 @@ LM.logo = (function(){
 
     colorAlpha: function(a){
       activeStyle.a = a;
-      restoreStrokeStyle();
       if (penDown){
         endNewShape();
         startNewShape();
@@ -220,7 +198,6 @@ LM.logo = (function(){
     point: function(){
       LM.modelMaker.addPrimitive(activeStyle, penDown, LM.matrix.getMatrix(), "point", 0, 0, 0);
     },
-
 
     home: function(){
       LM.matrix.reset();
@@ -275,13 +252,12 @@ LM.logo = (function(){
     },
 
     mousePressed: function(){
-      var mouseCodes = {};
+      const mouseCodes = {};
       mouseCodes[LM.p5Renderer.LEFT] = 1;
       mouseCodes[LM.p5Renderer.RIGHT] = 2;
       mouseCodes[LM.p5Renderer.CENTER] = 3;
       return (LM.cameraViewControl.isCameraEnabled() && LM.p5Renderer.mouseIsPressed) ? mouseCodes[LM.p5Renderer.mouseButton] : 0;
     },
-
 
     //3D primitives
     box: function(side){

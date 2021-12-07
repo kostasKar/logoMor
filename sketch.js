@@ -53,18 +53,6 @@ LM.p5Renderer = new p5( function(p) {
     LM.logo.keyPressedCallback(p.keyCode);
   }
 
-  p.togglePause = function(){
-    if (!LM.retainMode.isForcedOn()){
-      document.getElementById("pause").firstElementChild.className = "fa fa-play";
-      document.getElementById("pause").firstElementChild.style.color = "lime";
-      LM.retainMode.setForcedOn(true);
-    } else {
-      document.getElementById("pause").firstElementChild.className = "fa fa-pause";
-      document.getElementById("pause").firstElementChild.style.removeProperty("color");
-      LM.retainMode.setForcedOn(false);
-    }
-  }
-
   p.toggleClearDrawing = function(){
     if (clearDrawing){
       clearDrawing = false;
