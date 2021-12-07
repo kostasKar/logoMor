@@ -105,6 +105,12 @@ LM.sketchBuffer = (function(){
       if(currentModel.vertices.length < 2){
         return;
       }
+
+      //close any open solid face
+      if ((currentVertexIndex % 2) === 0){
+        currentModel.faces.push([currentVertexIndex -2, currentVertexIndex - 1, 0]);
+      }
+
       if(!modelIsDifferent){
           currentModel.gid = models[currentModelIndex].gid;
       }
@@ -122,8 +128,8 @@ LM.sketchBuffer = (function(){
     addVertex: function(x, y, z){
       currentModel.vertices.push(new p5.Vector(x, y, z));
       checkIfModelIsDifferentSoFar();
-      if(currentModel.logoStyle.fill){
-        if (currentVertexIndex >= 2){
+      if(currentModel.logoStyle.fill){ //so we are making a solid
+        if ((currentVertexIndex >= 2) && ((currentVertexIndex % 2) === 0)){
           currentModel.faces.push([currentVertexIndex -2, currentVertexIndex - 1, currentVertexIndex]);
         }
       } else {
