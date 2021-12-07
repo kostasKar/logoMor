@@ -164,6 +164,10 @@ LM.sketchBuffer = (function(){
       images.push({matrix: matrix, image: image, height: height});
     },
 
+    getModels: function(){
+      return models;
+    }
+
   }
 
 })();

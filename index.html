@@ -52,6 +52,7 @@
   <script src='memoryController.js'></script>
   <script src="logoInterpreter.js"></script>
   <script src="sketchBuffer.js"></script>
+  <script src="stlCreator.js"></script>
   <script src="retainMode.js"></script>
   <script src="logoCommands.js"></script>
   <script src="randomGenerator.js"></script>
@@ -207,6 +208,10 @@
     <button class="tooltip" id="record" onclick="LM.localSystem.toggleRecording()">
       <i class="fa fa-video" aria-hidden="true"></i>
       <span class="tooltiptext left">Video</span>
+    </button>
+    <button class="tooltip" id="exportToSTLButton" onclick="LM.stlCreator.createASCIISTL()">
+      <i class="fas fa-industry" aria-hidden="true"></i>
+      <span class="tooltiptext left">Export to STL</span>
     </button>
     <button class="tooltip" id="pause" onclick="LM.retainMode.togglePause()">
       <i class="fa fa-pause" aria-hidden="true"></i>
