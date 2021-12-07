@@ -5,13 +5,20 @@ LM.retainMode = (function(){
   var fireOnce;
   var forcedOn = false;
 
+  function updateRetainedModeIndication(){
+    if (isRetainable || forcedOn){
+      document.getElementById("retainModeValue").innerText = "On";
+    } else {
+      document.getElementById("retainModeValue").innerText = "Off";
+    }
+  }
 
   return {
 
     setForNewSourceTokens: function(sourceTokens) {
       isRetainable = (sourceTokens.findIndex((element) => unretainableTokens.includes(element)) === -1);
       fireOnce = true;
-      document.getElementById("retainModeValue").innerText = (isRetainable)? "On" : "Off";
+      updateRetainedModeIndication();
     },
 
     shouldExecute: function(){
@@ -40,10 +47,12 @@ LM.retainMode = (function(){
         document.getElementById("pause").firstElementChild.className = "fa fa-play";
         document.getElementById("pause").firstElementChild.style.color = "lime";
         forcedOn = true;
+        updateRetainedModeIndication();
       } else {
         document.getElementById("pause").firstElementChild.className = "fa fa-pause";
         document.getElementById("pause").firstElementChild.style.removeProperty("color");
         forcedOn = false;
+        updateRetainedModeIndication();
       }
     }
 
