@@ -107,7 +107,7 @@ LM.sketchBuffer = (function(){
       }
 
       //close any open solid face
-      if ((currentVertexIndex % 2) === 0){
+      if ((currentModel.logoStyle.fill) && ((currentVertexIndex % 2) === 0)){
         currentModel.faces.push([currentVertexIndex -2, currentVertexIndex - 1, 0]);
       }
 
