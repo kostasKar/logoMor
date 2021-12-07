@@ -53,6 +53,7 @@ The interpreter accepts the basic UCBLogo commands with many additions:
 - Real-time variable manipulation sliders
 - Verbose error messages with stack and variables trace
 - Screenshot and video capturing, code online sharing
+- Solid object drawings can be exported as STL files
 - Various sketching support tools (orientation assistant, avatar view etc.)
 - Various pre-loaded demos
 
