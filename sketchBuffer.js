@@ -1,4 +1,4 @@
-LM.modelMaker = (function(){
+LM.sketchBuffer = (function(){
 
   let models = [];
   let currentModel;
@@ -37,6 +37,55 @@ LM.modelMaker = (function(){
       } else {
         modelIsDifferent = true;
       }
+    }
+  }
+
+  function displayAllModels(){
+    models.splice(currentModelIndex);
+    for(const m of models){
+      setStyle(m.logoStyle);
+      LM.p5Renderer.model(m);
+    }
+  }
+
+  function displayAllPrimitives(){
+    for(const p of primitives){
+      if (p.type !== "arc"){
+        p.style.fill = true;
+      }
+      if ((p.type === "arc")||(p.type === "point")){
+        p.penDown = true;
+      }
+      setStyle(p.style, p.penDown);
+      LM.p5Renderer.push();
+      LM.p5Renderer.applyMatrix(p.matrix);
+      LM.p5Renderer[p.type](...p.args);
+      LM.p5Renderer.pop();
+    }
+  }
+
+  function displayAllSolids(){
+    for (const s of solids){
+      s.style.fill = true;
+      setStyle(s.style, s.penDown);
+      LM.p5Renderer.push();
+      LM.p5Renderer.applyMatrix(s.matrix);
+      LM.p5Renderer.scale(s.scaleFactor);
+      LM.p5Renderer.model(s.model);
+      LM.p5Renderer.scale(1/s.scaleFactor);
+      LM.p5Renderer.pop();
+    }
+  }
+
+  function displayAllImages(){
+    for(const im of images){
+      let w = im.image.width;
+      let h = im.image.height;
+      let scaleFactor =  im.height/h;
+      LM.p5Renderer.push();
+      LM.p5Renderer.applyMatrix(im.matrix);
+      LM.p5Renderer.image(im.image, 0, 0, w * scaleFactor, h * scaleFactor);
+      LM.p5Renderer.pop();
     }
   }
 
@@ -89,78 +138,31 @@ LM.modelMaker = (function(){
       currentVertexIndex++;
     },
 
-    clearModels: function(){
+    clear: function(){
       currentModelIndex = 0;
       primitives = [];
       solids = [];
       images = [];
     },
 
-    displayAllModels: function(){
-      models.splice(currentModelIndex);
-      for(const m of models){
-        setStyle(m.logoStyle);
-        LM.p5Renderer.model(m);
-      }
-      this.displayAllPrimitives();
-      this.displayAllSolids();
-      this.displayAllImages();
+    drawBufferedItems: function(){
+      displayAllModels();
+      displayAllPrimitives();
+      displayAllSolids();
+      displayAllImages();
     },
 
     addPrimitive: function(style, penDown, matrix, type, ...args){
       primitives.push({type:type, style: Object.assign({},style), penDown: penDown, matrix: matrix, args: args});
     },
 
-    displayAllPrimitives: function(){
-      for(const p of primitives){
-        if (p.type !== "arc"){
-          p.style.fill = true;
-        }
-        if ((p.type === "arc")||(p.type === "point")){
-          p.penDown = true;
-        }
-        setStyle(p.style, p.penDown);
-        LM.p5Renderer.push();
-        LM.p5Renderer.applyMatrix(p.matrix);
-        LM.p5Renderer[p.type](...p.args);
-        LM.p5Renderer.pop();
-      }
-    },
-
     addSolid: function(style, penDown, matrix, model, scaleFactor){
       solids.push({model:model, style: Object.assign({},style), penDown: penDown, matrix: matrix, scaleFactor: scaleFactor});
-    },
-
-    displayAllSolids: function(){
-      for (const s of solids){
-        s.style.fill = true;
-        setStyle(s.style, s.penDown);
-        LM.p5Renderer.push();
-        LM.p5Renderer.applyMatrix(s.matrix);
-        LM.p5Renderer.scale(s.scaleFactor);
-        LM.p5Renderer.model(s.model);
-        LM.p5Renderer.scale(1/s.scaleFactor);
-        LM.p5Renderer.pop();
-      }
     },
 
     addImage: function(matrix, image, height){
       images.push({matrix: matrix, image: image, height: height});
     },
-
-    displayAllImages: function(){
-      for(const im of images){
-        let w = im.image.width;
-        let h = im.image.height;
-        let scaleFactor =  im.height/h;
-        LM.p5Renderer.push();
-        LM.p5Renderer.applyMatrix(im.matrix);
-        LM.p5Renderer.image(im.image, 0, 0, w * scaleFactor, h * scaleFactor);
-        LM.p5Renderer.pop();
-      }
-    }
-
-
 
   }
 

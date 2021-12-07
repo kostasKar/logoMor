@@ -8,19 +8,19 @@ LM.logo = (function(){
   var activeStyle;
 
   function addVertex(){
-    LM.modelMaker.addVertex(LM.matrix.getX(), LM.matrix.getY(), LM.matrix.getZ());
+    LM.sketchBuffer.addVertex(LM.matrix.getX(), LM.matrix.getY(), LM.matrix.getZ());
   }
 
   function addStartVertex(){
-    LM.modelMaker.addStartVertex(LM.matrix.getX(), LM.matrix.getY(), LM.matrix.getZ());
+    LM.sketchBuffer.addStartVertex(LM.matrix.getX(), LM.matrix.getY(), LM.matrix.getZ());
   }
 
   function startNewShape(){
-    LM.modelMaker.startNewModel(activeStyle);
+    LM.sketchBuffer.startNewModel(activeStyle);
   }
 
   function endNewShape(){
-    LM.modelMaker.endNewModel();
+    LM.sketchBuffer.endNewModel();
   }
 
   function initStrokeStyle(){
@@ -39,27 +39,15 @@ LM.logo = (function(){
       defaultStyle.r = parseInt(result[1], 16);
       defaultStyle.g = parseInt(result[2], 16);
       defaultStyle.b = parseInt(result[3], 16);
-    },  
-
-    start: function(){
-      LM.drawCoordinates(LM.p5Renderer,25);
-      if (LM.retainMode.shouldExecute()) {
-        penDown = true;
-        showTurtle = true;
-        initStrokeStyle();
-        LM.matrix.reset();
-        LM.modelMaker.clearModels();
-        startNewShape();
-        addStartVertex();
-      }
     },
 
-    end: function(){
-      if (LM.retainMode.shouldExecute()) {
-        LM.modelMaker.endAnyPendingModel();
-      }
-      LM.modelMaker.displayAllModels();
+    startDrawing: function(){
+      LM.drawCoordinates(LM.p5Renderer,25);
+    },
+
+    endDrawing: function(){
       if (showTurtle){
+        LM.p5Renderer.push();
         LM.matrix.apply();
         LM.drawAvatar(LM.p5Renderer);
         if (document.getElementById("turnsHelpArrows").checked){
@@ -67,7 +55,22 @@ LM.logo = (function(){
         } else {
           LM.drawCoordinates(LM.p5Renderer,10);
         }
+        LM.p5Renderer.pop();
       }
+    },
+
+    startExecution: function(){
+      penDown = true;
+      showTurtle = true;
+      initStrokeStyle();
+      LM.matrix.reset();
+      LM.sketchBuffer.clear();
+      startNewShape();
+      addStartVertex();
+    },
+
+    endExecution: function(){
+      LM.sketchBuffer.endAnyPendingModel();
     },
 
     showTurtle: function(){
@@ -130,7 +133,7 @@ LM.logo = (function(){
     },
 
     arc: function(angle, radius){
-      LM.modelMaker.addPrimitive(activeStyle, penDown, LM.matrix.getMatrix(), "arc", 0, 0, radius*2, radius*2, -LM.p5Renderer.HALF_PI, LM.p5Renderer.radians(angle) - LM.p5Renderer.HALF_PI);
+      LM.sketchBuffer.addPrimitive(activeStyle, penDown, LM.matrix.getMatrix(), "arc", 0, 0, radius*2, radius*2, -LM.p5Renderer.HALF_PI, LM.p5Renderer.radians(angle) - LM.p5Renderer.HALF_PI);
     },
 
     penDown: function(){
@@ -192,11 +195,11 @@ LM.logo = (function(){
     },
 
     label: function(word){
-      LM.modelMaker.addPrimitive(activeStyle, penDown, LM.matrix.getMatrix(), "text", word, 0, 0);
+      LM.sketchBuffer.addPrimitive(activeStyle, penDown, LM.matrix.getMatrix(), "text", word, 0, 0);
     },
 
     point: function(){
-      LM.modelMaker.addPrimitive(activeStyle, penDown, LM.matrix.getMatrix(), "point", 0, 0, 0);
+      LM.sketchBuffer.addPrimitive(activeStyle, penDown, LM.matrix.getMatrix(), "point", 0, 0, 0);
     },
 
     home: function(){
@@ -252,44 +255,50 @@ LM.logo = (function(){
     },
 
     mousePressed: function(){
-      const mouseCodes = {};
-      mouseCodes[LM.p5Renderer.LEFT] = 1;
-      mouseCodes[LM.p5Renderer.RIGHT] = 2;
-      mouseCodes[LM.p5Renderer.CENTER] = 3;
-      return (LM.cameraViewControl.isCameraEnabled() && LM.p5Renderer.mouseIsPressed) ? mouseCodes[LM.p5Renderer.mouseButton] : 0;
+      if (LM.cameraViewControl.isCameraEnabled() && LM.p5Renderer.mouseIsPressed){
+        switch(LM.p5Renderer.mouseButton){
+          case LM.p5Renderer.LEFT:
+            return 1;
+          case LM.p5Renderer.RIGHT:
+            return 2;
+          case LM.p5Renderer.CENTER:
+            return 3;
+        }
+      } else {
+        return 0;
+      }
     },
 
-    //3D primitives
     box: function(side){
-      LM.modelMaker.addPrimitive(activeStyle, penDown, LM.matrix.getMatrix(), "box", side);
+      LM.sketchBuffer.addPrimitive(activeStyle, penDown, LM.matrix.getMatrix(), "box", side);
     },
 
     sphere: function(radius){
-      LM.modelMaker.addPrimitive(activeStyle, penDown, LM.matrix.getMatrix(), "sphere", radius);
+      LM.sketchBuffer.addPrimitive(activeStyle, penDown, LM.matrix.getMatrix(), "sphere", radius);
     },
 
     cylinder: function(radius, height){
-      LM.modelMaker.addPrimitive(activeStyle, penDown, LM.matrix.getMatrix(), "cylinder", radius, height);
+      LM.sketchBuffer.addPrimitive(activeStyle, penDown, LM.matrix.getMatrix(), "cylinder", radius, height);
     },
 
     cone: function(radius, height){
-      LM.modelMaker.addPrimitive(activeStyle, penDown, LM.matrix.getMatrix(), "cone", radius, height);
+      LM.sketchBuffer.addPrimitive(activeStyle, penDown, LM.matrix.getMatrix(), "cone", radius, height);
     },
 
     torus: function(radius, tubeRadius){
-      LM.modelMaker.addPrimitive(activeStyle, penDown, LM.matrix.getMatrix(), "torus", radius, tubeRadius);
+      LM.sketchBuffer.addPrimitive(activeStyle, penDown, LM.matrix.getMatrix(), "torus", radius, tubeRadius);
     },
 
     ellipsoid: function(radiusX, radiusY, radiusZ){
-      LM.modelMaker.addPrimitive(activeStyle, penDown, LM.matrix.getMatrix(), "ellipsoid", radiusX, radiusY, radiusZ);
+      LM.sketchBuffer.addPrimitive(activeStyle, penDown, LM.matrix.getMatrix(), "ellipsoid", radiusX, radiusY, radiusZ);
     },
 
     model: function(model, size){
-      LM.modelMaker.addSolid(activeStyle, penDown, LM.matrix.getMatrix(), model, size/200);
+      LM.sketchBuffer.addSolid(activeStyle, penDown, LM.matrix.getMatrix(), model, size/200);
     },
 
     image: function(image, height){
-      LM.modelMaker.addImage(LM.matrix.getMatrix(), image, height);
+      LM.sketchBuffer.addImage(LM.matrix.getMatrix(), image, height);
     },
 
     soundPlay: function(audio){

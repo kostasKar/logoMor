@@ -31,12 +31,15 @@ LM.p5Renderer = new p5( function(p) {
       p.background(0);
     }
     LM.cameraViewControl.adjust();
-    LM.logo.start();
+    LM.logo.startDrawing();
     if (LM.retainMode.shouldExecute()) {
+      LM.logo.startExecution();
       LM.interpreter.initLogoExecution();
       LM.interpreter.executeLogo();
+      LM.logo.endExecution();
     }
-    LM.logo.end();
+    LM.logo.endDrawing();
+    LM.sketchBuffer.drawBufferedItems();
     LM.retainMode.completedExecution();
   };
 
