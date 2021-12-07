@@ -8,7 +8,7 @@ LM.interpreter = {
   error: false,
   errorLineNumber: 0,     
   startTime: 0, 
-  startFrame: 0,         
+  frameCount: 0,
   returnFromMain: false,
   movesCount: 0,
   movesLimit: Infinity,
@@ -121,7 +121,7 @@ LM.interpreter = {
     LM.variableManipulatorsSliders.clearListItems();
 
     this.startTime = Date.now();
-    this.startFrame = LM.p5Renderer.frameCount;
+    this.frameCount = 1;
     LM.clearError();
     LM.debugger.initForNewRun();
     LM.debugger.setEnabled(setDebugOn);
@@ -150,6 +150,7 @@ LM.interpreter = {
       LM.consoleHandler.println("On line: " + this.sourceTokensLineNumbers[(this.currentIndex)? this.currentIndex - 1 : 0]);
     }
     LM.consoleHandler.update();
+    this.frameCount++;
   },
 
   getStackTrace: function(){
