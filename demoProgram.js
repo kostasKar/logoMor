@@ -441,128 +441,6 @@ LM.demoPrograms.pushDemo(
 ';print :functioncalls \n');
 
 LM.demoPrograms.pushDemo(
-';---------Demo Data structures-------------- \n' + 
-';The commands "word" and "thing" and the ability \n' + 
-';of variables to hold literals as values, enable \n' + 
-';us to create variables dynamically! \n' + 
-';In this example we provide functions to create  \n' + 
-';data structures as arrays, stacks and queues \n' + 
-';We also make trivial demonstration of a static \n' + 
-';array that can be filled interactively \n' + 
-' \n' + 
-' \n' + 
-';----------Array implementation------------- \n' + 
-'to makearray :name :size \n' + 
-'  repeat :size [ \n' + 
-'    static word :name repcount 0 \n' + 
-'    make word :name repcount 0 \n' + 
-'  ] \n' + 
-'end \n' + 
-' \n' + 
-'to staticarray :name :size \n' + 
-'  repeat :size [ \n' + 
-'    static word :name repcount 0 \n' + 
-'  ] \n' + 
-'end \n' + 
-' \n' + 
-'to getitem :name :index \n' + 
-'  return thing word :name :index \n' + 
-'end \n' + 
-' \n' + 
-'to setitem :name :index :value \n' + 
-'  make word :name :index :value \n' + 
-'end \n' + 
-' \n' + 
-' \n' + 
-';----------Stack implementation------------- \n' + 
-'to makestack :name \n' + 
-'  static word :name "index 0 \n' + 
-'  make word :name "index 0 \n' + 
-'end \n' + 
-' \n' + 
-'to staticstack :name \n' + 
-'  static word :name "index 0 \n' + 
-'end \n' + 
-' \n' + 
-'to push :name :value \n' + 
-'  increment word :name "index \n' + 
-'  static word :name thing word :name "index :value \n' + 
-'  make word :name thing word :name "index :value \n' + 
-'end \n' + 
-' \n' + 
-'to pop :name \n' + 
-'  make "ret thing word :name thing word :name "index \n' + 
-'  decrement word :name "index \n' + 
-'  return :ret \n' + 
-'end \n' + 
-' \n' + 
-'to stackpeek :name \n' + 
-'  return thing word :name thing word :name "index \n' + 
-'end \n' + 
-' \n' + 
-'to stacklength :name \n' + 
-'  return thing word :name "index \n' + 
-'end \n' + 
-' \n' + 
-' \n' + 
-';----------Queue implementation------------- \n' + 
-'to makequeue :name \n' + 
-'  static word :name "front 0 \n' + 
-'  make word :name "front 0 \n' + 
-'  static word :name "rear 0 \n' + 
-'  make word :name "rear 0 \n' + 
-'end \n' + 
-' \n' + 
-'to staticqueue :name \n' + 
-'  static word :name "front 0 \n' + 
-'  static word :name "rear 0 \n' + 
-'end \n' + 
-' \n' + 
-'to enqueue :name :value \n' + 
-'  static word :name thing word :name "rear :value \n' + 
-'  make word :name thing word :name "rear :value \n' + 
-'  increment word :name "rear \n' + 
-'end \n' + 
-' \n' + 
-'to dequeue :name  \n' + 
-'  make "ret thing word :name thing word :name "front \n' + 
-'  increment word :name "front \n' + 
-'  return :ret \n' + 
-'end \n' + 
-' \n' + 
-'to queuepeek :name  \n' + 
-'  return thing word :name thing word :name "front \n' + 
-'end \n' + 
-' \n' + 
-'to queuelength :name \n' + 
-'  return thing word :name "rear - thing word :name "front  \n' + 
-'end \n' + 
-' \n' + 
-' \n' + 
-' \n' + 
-' \n' + 
-';------Interactive static array demo-------- \n' + 
-'hideturtle \n' + 
-'penup \n' + 
-'label "click\\sanywhere \n' + 
-' \n' + 
-'static "index 0 \n' + 
-'staticarray "x 500 \n' + 
-'staticarray "y 500 \n' + 
-' \n' + 
-'if mousepressed[ \n' + 
-'  increment "index \n' + 
-'  setitem "x :index round mousex \n' + 
-'  setitem "y :index round mousey \n' + 
-'] \n' + 
-' \n' + 
-'repeat :index [ \n' + 
-'  setxyz getitem "x repcount getitem "y repcount getz \n' + 
-'  label  word word getitem "x repcount "\\s getitem "y repcount \n' + 
-'  point \n' + 
-'] \n');
-
-LM.demoPrograms.pushDemo(
 ';-------Demo Sorting algorithms----------\n' + 
 '\n' + 
 ';----------------------------------------\n' + 
@@ -1108,3 +986,48 @@ LM.demoPrograms.pushDemo(
 'coloralpha 255\n' + 
 'drawarray :currentarray\n' + 
 'checkgeneration\n');
+
+LM.demoPrograms.pushDemo(
+'; Demo Soccer Ball\n' +
+'\n' +
+'to pentagonLeft :l\n' +
+'  repeat 5 [fd :l lt 360/5]\n' +
+'end\n' +
+'\n' +
+'to exagonRight :l\n' +
+'  repeat 6 [fd :l rt 360/6]\n' +
+'end\n' +
+'\n' +
+'to pentagonLeftRecursive :l :n\n' +
+'  ifelse :n = 0 [\n' +
+'    pentagonLeft :l\n' +
+'  ][\n' +
+'    repeat 5 [\n' +
+'      rl :angle \n' +
+'      exagonRightRecursive :l :n - 1 \n' +
+'      rr :angle fd :l lt 360/5\n' +
+'    ]\n' +
+'  ]\n' +
+'end\n' +
+'\n' +
+'to exagonRightRecursive :l :n\n' +
+'  ifelse :n = 0 [\n' +
+'    exagonRight :l\n' +
+'  ][\n' +
+'    repeat 3 [\n' +
+'      rr :angle \n' +
+'      pentagonLeftRecursive :l :n - 1 \n' +
+'      rl :angle fd :l rt 360/6 fd :l rt 360/6\n' +
+'    ]\n' +
+'  ]\n' +
+'end\n' +
+'\n' +
+'make "size 50\n' +
+'make "n 5\n' +
+'make "angle 37.3775\n' +
+'\n' +
+';for :n = 5 it creates the full ball\n' +
+';choose either starting point:\n' +
+'\n' +
+'exagonRightRecursive :size :n\n' +
+'; pentagonLeftRecursive :size :n\n');
