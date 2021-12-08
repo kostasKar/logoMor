@@ -6,6 +6,8 @@ LM.sketchBuffer = (function(){
   let currentVertexIndex = 0;
   let modelStarted = false;
   let modelIsDifferent = false;
+  let faceStarted = false;
+  let faceVertexModulo = 0;
 
   let primitives = [];
   let solids = [];
@@ -19,11 +21,7 @@ LM.sketchBuffer = (function(){
       LM.p5Renderer.noStroke();
     }
     LM.p5Renderer.textSize(s.textSize);
-    if (s.fill){
-      LM.p5Renderer.fill(s.r, s.g, s.b, s.a);
-    } else {
-      LM.p5Renderer.noFill();
-    }
+    LM.p5Renderer.fill(s.r, s.g, s.b, s.a);
   }
 
   function checkIfModelIsDifferentSoFar(){
@@ -50,13 +48,13 @@ LM.sketchBuffer = (function(){
 
   function displayAllPrimitives(){
     for(const p of primitives){
-      if (p.type !== "arc"){
-        p.style.fill = true;
-      }
       if ((p.type === "arc")||(p.type === "point")){
         p.penDown = true;
       }
       setStyle(p.style, p.penDown);
+      if (p.type === "arc"){
+        LM.p5Renderer.noFill();
+      }
       LM.p5Renderer.push();
       LM.p5Renderer.applyMatrix(p.matrix);
       LM.p5Renderer[p.type](...p.args);
@@ -66,7 +64,6 @@ LM.sketchBuffer = (function(){
 
   function displayAllSolids(){
     for (const s of solids){
-      s.style.fill = true;
       setStyle(s.style, s.penDown);
       LM.p5Renderer.push();
       LM.p5Renderer.applyMatrix(s.matrix);
@@ -102,12 +99,12 @@ LM.sketchBuffer = (function(){
 
     endNewModel: function(){
       //discard any undrawable model
-      if(currentModel.vertices.length < 2){
+      if(currentModel.faces.length === 0){
         return;
       }
 
       //close any open solid face
-      if ((currentModel.logoStyle.fill) && ((currentVertexIndex % 2) === 0)){
+      if ((faceStarted) && ((currentVertexIndex % 2) === faceVertexModulo)){
         currentModel.faces.push([currentVertexIndex -2, currentVertexIndex - 1, 0]);
       }
 
@@ -119,6 +116,15 @@ LM.sketchBuffer = (function(){
       modelStarted = false;
     },
 
+    startFace: function(){
+      faceStarted = true;
+      faceVertexModulo = currentVertexIndex % 2;
+    },
+
+    endFace: function(){
+      faceStarted = false;
+    },
+
     endAnyPendingModel: function(){
       if(modelStarted){
         this.endNewModel();
@@ -128,8 +134,8 @@ LM.sketchBuffer = (function(){
     addVertex: function(x, y, z){
       currentModel.vertices.push(new p5.Vector(x, y, z));
       checkIfModelIsDifferentSoFar();
-      if(currentModel.logoStyle.fill){ //so we are making a solid
-        if ((currentVertexIndex >= 2) && ((currentVertexIndex % 2) === 0)){
+      if(faceStarted){ //so we are making a solid
+        if ((currentVertexIndex >= 2) && ((currentVertexIndex % 2) === faceVertexModulo)){
           currentModel.faces.push([currentVertexIndex -2, currentVertexIndex - 1, currentVertexIndex]);
         }
       } else {

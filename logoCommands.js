@@ -4,7 +4,7 @@ LM.logo = (function(){
   var showTurtle;
   var lastKeyPressed;
 
-  var defaultStyle = {"weight":1, "r":255, "g":255, "b":255, "a":255, "textSize":10, "fill":false};
+  var defaultStyle = {"weight":1, "r":255, "g":255, "b":255, "a":255, "textSize":10};
   var activeStyle;
 
   function addVertex(){
@@ -82,17 +82,13 @@ LM.logo = (function(){
     },
 
     beginShape: function(){
-      endNewShape()
-      activeStyle.fill = true;
-      startNewShape();
+      LM.sketchBuffer.startFace();
       addStartVertex();
     },
 
     endShape: function(){
-      endNewShape();
-      activeStyle.fill = false;
+      LM.sketchBuffer.endFace();
       if (penDown){
-        startNewShape();
         addStartVertex();
       }
     },

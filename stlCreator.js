@@ -1,6 +1,10 @@
 LM.stlCreator = (function(){
 
   function saveSTLFile(stlText){
+    if (stlText === ""){
+      alert("Only solid objects drawings can be exported to STL files\nTry creating one using the beginface, endface commands");
+      return;
+    }
     var blob = new Blob([stlText], { type: "text/plain"});
     var anchor = document.createElement("a");
     anchor.download = "logomorExport.stl";
@@ -12,36 +16,49 @@ LM.stlCreator = (function(){
     document.body.removeChild(anchor);
   }
 
+  function createStlObject(){
+
+    let out = [];
+    let modelsBuf = LM.sketchBuffer.getModels();
+    for (const m of modelsBuf){
+      for (const f of m.faces){
+        if ((new Set(f)).size !== f.length){ //only proceed if all elements unique
+          continue;
+        }
+        let normalVector = m._getFaceNormal(m.faces.indexOf(f));
+        out.push({
+          normal: [normalVector.x, normalVector.y, normalVector.z],
+          vertices: [m.vertices[f[0]], m.vertices[f[1]], m.vertices[f[2]]]
+        });
+      }
+    }
+    return out;
+  }
+
+  function stlObjToString(obj){
+    if (obj.length === 0){
+      return "";
+    }
+    let outputTxt = "";
+    outputTxt += "solid logomor_solid \n";
+    for (let f of obj){
+      outputTxt += `\tfacet normal ${f.normal[0]} ${f.normal[1]} ${f.normal[2]}\n`;
+      outputTxt += `\t\touter loop\n`;
+      for (let v of f.vertices){
+        outputTxt += `\t\t\tvertex ${v.x} ${v.y} ${v.z}\n`;
+      }
+      outputTxt += `\t\tendloop\n`;
+      outputTxt += `\tendfacet\n`;
+    }
+    outputTxt += "endsolid \n";
+    return outputTxt;
+  }
+
   return {
 
     createASCIISTL: function(){
-      let feasible = false;
-      let modelsBuf = LM.sketchBuffer.getModels();
-      let outputTxt = "";
-      outputTxt += "solid logomor_solid \n";
-      for (const m of modelsBuf.filter(el => el.logoStyle.fill)){
-        feasible = true;
-        for (const f of m.faces){
-          let normalVector = m._getFaceNormal(m.faces.indexOf(f));
-          if ((normalVector.x === 0) && (normalVector.y === 0) && (normalVector.z === 0)){
-            continue;
-          }
-          outputTxt += "\tfacet normal " + normalVector.x + " " + normalVector.y + " " + normalVector.z + "\n";
-          outputTxt += "\t\touter loop\n"
-          for (const vertexIndex of f){
-            outputTxt += "\t\t\tvertex " + m.vertices[vertexIndex].x + " " + m.vertices[vertexIndex].y + " " + m.vertices[vertexIndex].z + "\n";
-          }
-          outputTxt += "\t\tendloop\n";
-          outputTxt += "\tendfacet\n";
-        }
-      }
-      outputTxt += "endsolid \n";
-      if (feasible) {
-        saveSTLFile(outputTxt);
-      } else {
-        alert("Only solid objects drawings can be exported to STL files\nTry creating one using the beginface, endface commands");
-      }
-    },
+      saveSTLFile(stlObjToString(createStlObject()));
+    }
 
   }
 
