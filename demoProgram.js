@@ -988,36 +988,32 @@ LM.demoPrograms.pushDemo(
 'checkgeneration\n');
 
 LM.demoPrograms.pushDemo(
-'; Demo Soccer Ball\n' +
-'\n' +
-'to pentagonLeft :l\n' +
-'  repeat 5 [fd :l lt 360/5]\n' +
-'end\n' +
-'\n' +
-'to exagonRight :l\n' +
-'  repeat 6 [fd :l rt 360/6]\n' +
-'end\n' +
+';----------Demo Soccer Ball------------\n' +
+'; Implemetation using Mutual Recursion\n' +
+';--------------------------------------\n' +
 '\n' +
 'to pentagonLeftRecursive :l :n\n' +
 '  ifelse :n = 0 [\n' +
-'    pentagonLeft :l\n' +
+'    repeat 5 [fd :l lt 360/5]\n' +
 '  ][\n' +
 '    repeat 5 [\n' +
 '      rl :angle \n' +
-'      exagonRightRecursive :l :n - 1 \n' +
-'      rr :angle fd :l lt 360/5\n' +
+'      exagonRightRecursive :l :n-1 \n' +
+'      rr :angle \n' +
+'      fd :l lt 360/5\n' +
 '    ]\n' +
 '  ]\n' +
 'end\n' +
 '\n' +
 'to exagonRightRecursive :l :n\n' +
 '  ifelse :n = 0 [\n' +
-'    exagonRight :l\n' +
+'    repeat 6 [fd :l rt 360/6]\n' +
 '  ][\n' +
 '    repeat 3 [\n' +
 '      rr :angle \n' +
-'      pentagonLeftRecursive :l :n - 1 \n' +
-'      rl :angle fd :l rt 360/6 fd :l rt 360/6\n' +
+'      pentagonLeftRecursive :l :n-1 \n' +
+'      rl :angle fd :l rt 360/6 \n' +
+'      fd :l rt 360/6\n' +
 '    ]\n' +
 '  ]\n' +
 'end\n' +
