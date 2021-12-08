@@ -1021,6 +1021,7 @@ LM.demoPrograms.pushDemo(
 'make "size 50\n' +
 'make "n 5\n' +
 'make "angle 37.3775\n' +
+'sps 3\n' +
 '\n' +
 ';for :n = 5 it creates the full ball\n' +
 ';choose either starting point:\n' +
