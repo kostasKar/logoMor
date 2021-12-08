@@ -64,7 +64,7 @@ LM.logo = (function(){
       showTurtle = true;
       initStrokeStyle();
       LM.matrix.reset();
-      LM.sketchBuffer.clear();
+      LM.sketchBuffer.init();
       startNewShape();
       addStartVertex();
     },

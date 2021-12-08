@@ -144,11 +144,16 @@ LM.sketchBuffer = (function(){
       currentVertexIndex++;
     },
 
-    clear: function(){
+    init: function(){
       currentModelIndex = 0;
       primitives = [];
       solids = [];
       images = [];
+    },
+
+    clear: function(){
+      this.init();
+      models = [];
     },
 
     drawBufferedItems: function(){
