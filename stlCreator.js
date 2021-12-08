@@ -23,6 +23,9 @@ LM.stlCreator = (function(){
         feasible = true;
         for (const f of m.faces){
           let normalVector = m._getFaceNormal(m.faces.indexOf(f));
+          if ((normalVector.x === 0) && (normalVector.y === 0) && (normalVector.z === 0)){
+            continue;
+          }
           outputTxt += "\tfacet normal " + normalVector.x + " " + normalVector.y + " " + normalVector.z + "\n";
           outputTxt += "\t\touter loop\n"
           for (const vertexIndex of f){
