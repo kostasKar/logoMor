@@ -290,71 +290,74 @@ LM.demoPrograms.pushDemo(
 'fd :radius   \n');
 
 LM.demoPrograms.pushDemo(
-';---Demo pinball game---------------     \n' + 
-'     \n' + 
-'make "width 300    \n' + 
-'make "height 500 \n' + 
-'make "radius 30    \n' + 
-'make "barpos mousex \n' + 
-'    \n' + 
-'static "locationX rand :width     \n' + 
-'static "locationY 0     \n' + 
-'static "velocityX 2   \n' + 
-'static "velocityY 8 \n' + 
-'static "lose 0 \n' + 
-'static "score 0 \n' + 
-' \n' + 
-'     \n' + 
-'make "locationX :locationX + :velocityX     \n' + 
-'make "locationY :locationY + :velocityY     \n' + 
-' \n' + 
-'if :lose [pu  setxyz :width/2 :height/2 0 label "you\\slost home return] \n' + 
-'     \n' + 
-' \n' + 
-'if (:locationX<0)[     \n' + 
-'  make "velocityX -:velocityX  \n' + 
-'  make "locationX 0     \n' + 
-']     \n' + 
-'  \n' + 
-'if (:locationX>:width) [     \n' + 
-'  make "velocityX -:velocityX       \n' + 
-'  make "locationX :width     \n' + 
-']   \n' + 
-'     \n' + 
-'if (:locationY<0)[     \n' + 
-' make "velocityY :velocityY*-1   \n' + 
-' make "locationY 0   \n' + 
-' ifelse (abs (:locationx+:radius-(:barpos+25)))> 50  \n' + 
-'  [ make "lose 1]  \n' + 
-'  [ make "score :score+1] \n' + 
-']     \n' + 
-'   \n' + 
-'if (:locationY>:height)[     \n' + 
-' make "velocityY -:velocityY     \n' + 
-' make "locationY :height    \n' + 
-']     \n' + 
-'     \n' + 
-'to circle :r  \n' +    
+';---Demo pinball game---------------     \n' +
+'     \n' +
+'make "width 300    \n' +
+'make "height 500 \n' +
+'make "radius 30    \n' +
+'make "barpos mousex \n' +
+'    \n' +
+'static "locationX rand :width     \n' +
+'static "locationY 0     \n' +
+'static "velocityX 2   \n' +
+'static "velocityY 8 \n' +
+'static "lose 0 \n' +
+'static "score 0 \n' +
+'static "previousmousex mousex\n' +
+'\n' +
+'     \n' +
+'make "locationX :locationX + :velocityX     \n' +
+'make "locationY :locationY + :velocityY     \n' +
+' \n' +
+'if :lose [pu  setxyz :width/2 :height/2 0 label "you\\slost home return] \n' +
+'     \n' +
+' \n' +
+'if (:locationX<0)[     \n' +
+'  make "velocityX -:velocityX  \n' +
+'  make "locationX 0     \n' +
+']     \n' +
+'  \n' +
+'if (:locationX>:width) [     \n' +
+'  make "velocityX -:velocityX       \n' +
+'  make "locationX :width     \n' +
+']   \n' +
+'     \n' +
+'if (:locationY<0)[     \n' +
+' make "velocityY :velocityY*-1   \n' +
+' make "locationY 0   \n' +
+' make "velocityX :velocityX + 0.1* (mousex - :previousmousex) \n' +
+' ifelse (abs (:locationx+:radius-(:barpos+25)))> 50  \n' +
+'  [ make "lose 1]  \n' +
+'  [ make "score :score+1] \n' +
+']     \n' +
+'   \n' +
+'if (:locationY>:height)[     \n' +
+' make "velocityY -:velocityY     \n' +
+' make "locationY :height    \n' +
+']     \n' +
+'     \n' +
+'to circle :r  \n' +
 '  setx getx + :r  \n' +
 '  arc 360 :r  \n' +
 '  setx getx - :r  \n' +
-'end  \n' +  
-'     \n' + 
-'penup     \n' + 
-'setxyz :locationX :locationY 0     \n' + 
-'circle :radius    \n' + 
-'home     \n' + 
-'pendown    \n' + 
-'fd :height+:radius rt 90    \n' + 
-'fd :width+(:radius*2) rt 90    \n' + 
-'fd :height+(:radius*2) rt 90   \n' + 
-'pu fd :width+(:radius*2) rt 90    pd \n' + 
-'fd :radius bk :radius \n' + 
-'rt 90 pu fd :barpos pd fd 50  \n' + 
-'print "score \n' + 
-'print :score \n');
+'end  \n' +
+'     \n' +
+'penup     \n' +
+'setxyz :locationX :locationY 0     \n' +
+'circle :radius    \n' +
+'home     \n' +
+'pendown    \n' +
+'fd :height+:radius rt 90    \n' +
+'fd :width+(:radius*2) rt 90    \n' +
+'fd :height+(:radius*2) rt 90   \n' +
+'pu fd :width+(:radius*2) rt 90    pd \n' +
+'fd :radius bk :radius \n' +
+'rt 90 pu fd :barpos pd fd 50  \n' +
+'print "score \n' +
+'print :score \n' +
+'make "previousmousex mousex\n');
 
-LM.demoPrograms.pushDemo(
+	LM.demoPrograms.pushDemo(
 ';--------Demo Fibonacci spiral--------- \n' + 
 ' \n' + 
 ';Recursive fibonacci just for reference \n' + 
