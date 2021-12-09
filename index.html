@@ -230,7 +230,7 @@
 
 
   <script>
-    if(localStorage.getItem("demoPressed") === null){
+    if((localStorage.getItem("demoPressed") === null) && (!window.location.search.includes("code"))){
       document.getElementById("DemoButton").classList.add("firstVisitBlink");
     }
   </script>
