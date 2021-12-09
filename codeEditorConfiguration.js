@@ -21,7 +21,7 @@ LM.codeMirror = (function(){
       'Ctrl-;': function (cm) { cm.execCommand('toggleComment') }
     },
     textHover: true,
-    hoverDelay: 750,
+//    hoverDelay: 750,
     gutters: ["CodeMirror-linenumbers", "breakpoints"]
   });
 
