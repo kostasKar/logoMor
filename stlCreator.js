@@ -2,7 +2,7 @@ LM.stlCreator = (function(){
 
   function saveSTLFile(stlText){
     if (stlText === ""){
-      alert("Only solid objects drawings can be exported to STL files\nTry creating one using the beginface, endface commands");
+      alert("Only solid objects drawings can be exported to STL\nTry creating one using the commands beginface, endface");
       return;
     }
     var blob = new Blob([stlText], { type: "text/plain"});
