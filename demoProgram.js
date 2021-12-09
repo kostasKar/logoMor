@@ -112,7 +112,7 @@ LM.demoPrograms.pushDemo(
 ';-----Global Variables-------------  \n' + 
 ';-see auto generated sliders below- \n' + 
 'make "length 250 \n' +
-'make "depth 8 \n' +
+'make "depth 7 \n' +
 ' \n' + 
 ';----drawing----------------------- \n' + 
 'SierpinskiFractal :length :depth \n' +
