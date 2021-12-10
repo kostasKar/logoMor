@@ -33,6 +33,7 @@
     position(e);
     if (tt.style.opacity != null)
       tt.style.opacity = 1;
+      tt.classList.add("delayedTransition");
     return tt;
   }
   function rm(elt) {
@@ -45,6 +46,7 @@
     if (tt.style.opacity == null)
       rm(tt);
     tt.style.opacity = 0;
+    tt.classList.remove("delayedTransition");
     setTimeout(function() {
       rm(tt);
     }, 600);

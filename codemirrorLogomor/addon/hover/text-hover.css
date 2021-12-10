@@ -12,13 +12,20 @@
 	z-index: 100;
 	opacity: 0;
 	white-space: pre-wrap;
+
 	transition: opacity .4s;
 	-moz-transition: opacity .4s;
 	-webkit-transition: opacity .4s;
 	-o-transition: opacity .4s;
 	-ms-transition: opacity .4s;
+
 }
 
-/*.CodeMirror-hover {
-	outline: 1px solid grey;
-}*/
+
+.delayedTransition {
+	transition-delay:  .75s;
+	-moz-transition-delay:  .75s;
+	-webkit-transition-delay:  .75s;
+	-o-transition-delay:  .75s;
+	-ms-transition-delay:  .75s;
+}
