@@ -223,3 +223,6 @@ class ExistsTask extends  CommandTask1S{run(){
   else if (LM.sounds.soundExists(this.arguments[0])) {return 4}
   else {return 0}
 }}
+
+//Execution control
+class WaitTask extends  CommandTask1N {run(){LM.waitHandler.handleCommand(this); return "";}}

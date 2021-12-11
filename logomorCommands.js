@@ -709,8 +709,13 @@ LM.commands =
     hint: "exists \"name\nChecks for existence. Returns:\n0:not exist, 1:variable, 2:model, 3:image, 4:sound",
     type: "keyword",
     retainable: true
+  },
+  "wait": {
+    taskConstructor: WaitTask,
+    hint: "wait :time\nDelays further execution for :time 60ths of a second",
+    type: "builtin",
+    retainable: false
   }
-
 }
 
 //Shortcuts:
