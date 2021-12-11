@@ -122,6 +122,22 @@ button:disabled {
   outline: none !important;
 }
 
+#projectNameInputField {
+  background: black;
+  font-size:14px;
+  width: 280px;
+  padding: 2px;
+  color: #666666;
+  position: relative;
+  border: 1px solid #333333;
+  border-radius: 3px;
+  margin-bottom: 4px;
+  margin-top: 2px;
+  font-family: 'JetBrains Mono', monospace;
+  float: left;
+  direction: ltr;
+}
+
 #consoleTextArea{
   white-space: pre;
   height: 150px;
@@ -131,9 +147,6 @@ button:disabled {
   margin-bottom: 2px;
   padding: 5px;
 }
-
-#consoleTextArea ::-moz-selection { background: #444444; }
-#consoleTextArea ::selection { background: #444444; }
 
 #sourceCodeContainer {
   position: relative;
@@ -380,11 +393,11 @@ label.debugControls {
 }
 
 ::-moz-selection { /* Code for Firefox */
-  background: #aaaaaa;
+  background: #444444;
 }
 
 ::selection {
-  background: #aaaaaa;
+  background: #444444;
 }
 
 /*Variables Sliders*/

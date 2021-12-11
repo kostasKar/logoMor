@@ -135,6 +135,10 @@
 
       <div id="sourceCodeEditorTitleDiv">
         <label class="areaTitle brightText">Source Code Editor</label>
+      </div>
+
+      <div>
+        <input type="text" id="projectNameInputField" placeholder="Sketch Name">
         <button title="Create a shareable link with the source code" class="editorButton" id="copyCodeButton" onclick="LM.codeMirror.copyShareableSourceCodeLink()">Share</button>
         <button title="Increase editor font size" class="editorButton" onclick="LM.codeMirror.increaseEditorFontSize()"><i class="fa fa-plus" aria-hidden="true"></i></button>
         <button title="Decrease editor font size" class="editorButton" onclick="LM.codeMirror.decreaseEditorFontSize()"><i class="fa fa-minus" aria-hidden="true"></i></button>
@@ -159,7 +163,7 @@
         --><button type="button" id="saveButton" onclick="LM.localSystem.download()">Save</button><!--
         --><button onclick="LM.localSystem.openFile()">Load</button><!--
         --><button onclick=" window.open('assets/Documentation.pdf','_blank')" type="button">Help</button><!--
-        --><button type="button" id="DemoButton" onclick="LM.codeMirror.setValue(LM.demoPrograms.getRandomDemo());LM.interpreter.setup();localStorage.setItem('demoPressed', true);this.classList.remove('firstVisitBlink');">Demo</button>
+        --><button type="button" id="DemoButton" onclick="LM.demoPrograms.loadRandomDemo();LM.interpreter.setup();localStorage.setItem('demoPressed', true);this.classList.remove('firstVisitBlink');">Demo</button>
         <input id="inp" type='file' style="display:none;" onchange="LM.localSystem.readFile(event)" onclick="this.value=null;" />
       </div>
 
