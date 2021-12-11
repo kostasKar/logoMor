@@ -692,9 +692,21 @@ LM.commands =
     type: "builtin",
     retainable: true
   },
+  "stop": {
+    taskConstructor: null,
+    hint: "stops function execution",
+    type: "builtin",
+    retainable: true
+  },
   "return": {
     taskConstructor: null,
     hint: "return :val\nReturns a value from a function or stops main program execution (if used outside of a function and without any argument)",
+    type: "builtin",
+    retainable: true
+  },
+  "output": {
+    taskConstructor: null,
+    hint: "output :val\nReturns a value from a function",
     type: "builtin",
     retainable: true
   },

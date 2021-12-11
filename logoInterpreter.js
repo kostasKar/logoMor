@@ -59,7 +59,7 @@ LM.interpreter = {
     }
     
     //Return occurred inside another task inside a proc. So several pops are needed for the proc to 'see' the return command
-    if (this.currentToken === "return"){ 
+    if ((this.currentToken === "return") || (this.currentToken === "output") || (this.currentToken === "stop")){
       while ((this.stackLength) && (this.headTask.constructor.name !== 'ProcedureTask')){
         if (this.headTask.constructor.name === 'ArgumentResolverTask'){
           LM.throwError("return statement inside argument");
@@ -67,7 +67,7 @@ LM.interpreter = {
         }
         this.tasksStack.pop();
       } 
-      if (!this.stackLength){
+      if ((this.currentToken === "return") && (!this.stackLength)){
         this.returnFromMain = true; //This is either an error, or we can use return to exit execution. So no actual error thrown
         LM.consoleHandler.println("Returned from execution");
       }

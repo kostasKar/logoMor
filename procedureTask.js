@@ -49,11 +49,11 @@ class ProcedureTask {
       this.canBeResolved = true;
       this.waitingReturnValue = false;
       return true;
-    } else if (arg === "return"){
+    } else if ((arg === "return") || (arg === "output")){
       this.waitingReturnValue = true;
       var art = new ArgumentResolverTask();
       return true;
-    }  else if (arg === "end"){
+    }  else if ((arg === "end") || (arg === "stop")){
       this.canBeResolved = true;
       return true;
     } else {
