@@ -1,36 +1,34 @@
 LM.waitHandler = (function(){
 
-  let waitingWaitCommandId = 0;
-  let currentWaitCommandId = 0;
-  let currentWaitCommandStartTime = 0;
-  let currentWaitCommandPeriod = 0;
+  let activeWaitCommandIndex = 0;
+  let activeWaitCommandEndTime = 0;
+  let currentWaitCommandIndex = 0;
 
   return {
 
     initForNewFrame: function(){
-      currentWaitCommandId = 0;
+      currentWaitCommandIndex = 0;
     },
 
     initForNewRun: function(){
-      waitingWaitCommandId = 0;
-      currentWaitCommandStartTime = 0;
+      activeWaitCommandIndex = 0;
+      activeWaitCommandEndTime = 0;
     },
 
-    handleCommand: function(task){
-      if (currentWaitCommandId === waitingWaitCommandId){
-        if (currentWaitCommandStartTime === 0) { //first appearance
-          currentWaitCommandStartTime = Date.now();
-          currentWaitCommandPeriod = task.arguments[0] * (1000 / 60);
+    handleCommand: function(periodMs){
+      if (currentWaitCommandIndex === activeWaitCommandIndex){
+        if (activeWaitCommandEndTime === 0) { //first appearance
+          activeWaitCommandEndTime = Date.now() + periodMs;
         }
-        if (Date.now() - currentWaitCommandStartTime < currentWaitCommandPeriod){ //still waiting
+        if (Date.now() < activeWaitCommandEndTime){ //still waiting
           LM.interpreter.returnFromMain = true;
         } else { //just finished waiting
-          currentWaitCommandStartTime = 0;
-          waitingWaitCommandId++;
-          currentWaitCommandId++;
+          activeWaitCommandEndTime = 0;
+          activeWaitCommandIndex++;
+          currentWaitCommandIndex++;
         }
       } else {
-        currentWaitCommandId++;
+        currentWaitCommandIndex++;
       }
     }
 

@@ -225,4 +225,4 @@ class ExistsTask extends  CommandTask1S{run(){
 }}
 
 //Execution control
-class WaitTask extends  CommandTask1N {run(){LM.waitHandler.handleCommand(this); return "";}}
+class WaitTask extends  CommandTask1N {run(){LM.waitHandler.handleCommand(this.arguments[0] * (1000 / 60)); return "";}}
