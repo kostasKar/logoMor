@@ -98,7 +98,7 @@ LM.sketchBuffer = (function(){
     },
 
     endNewModel: function(){
-      //discard any undrawable model
+      //discard any non drawable model
       if(currentModel.faces.length === 0){
         return;
       }
@@ -108,7 +108,7 @@ LM.sketchBuffer = (function(){
         currentModel.faces.push([currentVertexIndex -2, currentVertexIndex - 1, 0]);
       }
 
-      if(!modelIsDifferent){
+      if((!modelIsDifferent) && (currentModel.vertices.length === models[currentModelIndex].vertices.length)){
           currentModel.gid = models[currentModelIndex].gid;
       }
       models.splice(currentModelIndex, 1, currentModel);
