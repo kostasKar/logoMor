@@ -127,7 +127,7 @@ button:disabled {
   font-size:14px;
   width: 280px;
   padding: 2px;
-  color: #666666;
+  color: #888888;
   position: relative;
   border: 1px solid #333333;
   border-radius: 3px;
@@ -208,7 +208,7 @@ button:disabled {
   font-size:14px;
   width: 80px;
   padding: 2px;
-  color: #666666;
+  color: #888888;
   position: relative;
   float: right;
   border: 1px solid #333333;
