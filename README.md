@@ -8,23 +8,23 @@ LogoMor is an interpreter and visualizer for the Logo programming language, with
 
 ## Screenshots
 
-![123317157-58d16400-d536-11eb-87f0-98e5b21f84b0](https://user-images.githubusercontent.com/13304797/142780799-7d36714c-a6c6-470f-a19b-c84fa9e2a8aa.png)
+![sierpinski](https://user-images.githubusercontent.com/13304797/142780799-7d36714c-a6c6-470f-a19b-c84fa9e2a8aa.png)
 
-![image](https://user-images.githubusercontent.com/13304797/106599557-ea2d4300-6561-11eb-87c5-66ad295d0782.png)
+![tree](https://user-images.githubusercontent.com/13304797/106599557-ea2d4300-6561-11eb-87c5-66ad295d0782.png)
 
-![123316919-1871e600-d536-11eb-8ad7-d7a3d408bb9b](https://user-images.githubusercontent.com/13304797/142780815-48843f08-4eb6-47cb-90fa-3a4fad474470.png)
+![tetris](https://user-images.githubusercontent.com/13304797/142780815-48843f08-4eb6-47cb-90fa-3a4fad474470.png)
 
-![image](https://user-images.githubusercontent.com/13304797/106599718-22cd1c80-6562-11eb-9f80-c06113cd9779.png)
+![rotationArrows](https://user-images.githubusercontent.com/13304797/106599718-22cd1c80-6562-11eb-9f80-c06113cd9779.png)
 
-![LogoMorScreenshot2021-12-3-19-58-58](https://user-images.githubusercontent.com/13304797/144654278-be0b9230-7343-4ee2-aba2-a3fcd8089ed5.png)
+![randomFractal](https://user-images.githubusercontent.com/13304797/144654278-be0b9230-7343-4ee2-aba2-a3fcd8089ed5.png)
 
-![image](https://user-images.githubusercontent.com/13304797/144769194-a83fe130-4d1b-4aad-95e5-95b03ea9ee8e.png)
+![starfish](https://user-images.githubusercontent.com/13304797/146267799-b5c989b2-4260-4d18-83b9-528e8afc2a6f.png)
 
-![123317671-f2991100-d536-11eb-9fe2-e09da34d768c](https://user-images.githubusercontent.com/13304797/142780852-a65d6b01-5a97-48ed-8b25-b1b23faf8e18.png)
+![CrazyCubes](https://user-images.githubusercontent.com/13304797/142780852-a65d6b01-5a97-48ed-8b25-b1b23faf8e18.png)
 
-![123317910-3f7ce780-d537-11eb-8c1b-aaced81ba5f7](https://user-images.githubusercontent.com/13304797/142780862-b73b6a54-545a-45d6-9401-84e6e090db7a.png)
+![Teapot](https://user-images.githubusercontent.com/13304797/142780862-b73b6a54-545a-45d6-9401-84e6e090db7a.png)
 
-![123318191-9edaf780-d537-11eb-992c-a2e87195e55c](https://user-images.githubusercontent.com/13304797/142780867-95832e74-b798-47e2-a39a-8842fbaa9116.png)
+![GameOfLife](https://user-images.githubusercontent.com/13304797/142780867-95832e74-b798-47e2-a39a-8842fbaa9116.png)
 
 ## Technologies
 
