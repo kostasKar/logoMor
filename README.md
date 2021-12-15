@@ -8,23 +8,23 @@ LogoMor is an interpreter and visualizer for the Logo programming language, with
 
 ## Screenshots
 
-![sierpinski](https://user-images.githubusercontent.com/13304797/142780799-7d36714c-a6c6-470f-a19b-c84fa9e2a8aa.png)
+![sierpinski](https://user-images.githubusercontent.com/13304797/146269740-e223f900-5d2f-4075-be33-99c45ac00b43.png)
 
 ![tree](https://user-images.githubusercontent.com/13304797/106599557-ea2d4300-6561-11eb-87c5-66ad295d0782.png)
 
-![tetris](https://user-images.githubusercontent.com/13304797/142780815-48843f08-4eb6-47cb-90fa-3a4fad474470.png)
+![tetris](https://user-images.githubusercontent.com/13304797/146269582-60cbaf51-b2b0-4e7b-993e-b2c313aa8257.png)
 
-![rotationArrows](https://user-images.githubusercontent.com/13304797/106599718-22cd1c80-6562-11eb-9f80-c06113cd9779.png)
+![rotationArrows](https://user-images.githubusercontent.com/13304797/146270207-3801e853-178c-49c0-8257-cb54ea13fc2f.png)
 
 ![randomFractal](https://user-images.githubusercontent.com/13304797/144654278-be0b9230-7343-4ee2-aba2-a3fcd8089ed5.png)
 
 ![starfish](https://user-images.githubusercontent.com/13304797/146267799-b5c989b2-4260-4d18-83b9-528e8afc2a6f.png)
 
-![CrazyCubes](https://user-images.githubusercontent.com/13304797/142780852-a65d6b01-5a97-48ed-8b25-b1b23faf8e18.png)
+![crazyCubes](https://user-images.githubusercontent.com/13304797/146268917-ccc1ed26-3093-4c3a-bfa5-65977b2a8a0a.png)
 
-![Teapot](https://user-images.githubusercontent.com/13304797/142780862-b73b6a54-545a-45d6-9401-84e6e090db7a.png)
+![teapot](https://user-images.githubusercontent.com/13304797/146268497-c0e3d855-b826-4519-84c1-6dab15dad5d8.png)
 
-![GameOfLife](https://user-images.githubusercontent.com/13304797/142780867-95832e74-b798-47e2-a39a-8842fbaa9116.png)
+![gameOfLife](https://user-images.githubusercontent.com/13304797/146268701-cbb6c402-d693-4fe5-90a5-4350d942075f.png)
 
 ## Technologies
 
