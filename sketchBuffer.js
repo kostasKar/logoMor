@@ -133,10 +133,15 @@ LM.sketchBuffer = (function(){
 
     addVertex: function(x, y, z){
       currentModel.vertices.push(new p5.Vector(x, y, z));
+      currentModel.vertexNormals.push(new p5.Vector());
       checkIfModelIsDifferentSoFar();
       if(faceStarted){ //so we are making a solid
         if ((currentVertexIndex >= 2) && ((currentVertexIndex % 2) === faceVertexModulo)){
           currentModel.faces.push([currentVertexIndex -2, currentVertexIndex - 1, currentVertexIndex]);
+          let vertexNormal = currentModel._getFaceNormal(currentModel.faces.length - 1);
+          currentModel.vertexNormals[currentVertexIndex].add(vertexNormal);
+          currentModel.vertexNormals[currentVertexIndex - 1].add(vertexNormal);
+          currentModel.vertexNormals[currentVertexIndex - 2].add(vertexNormal);
         }
       } else {
         currentModel.faces.push([currentVertexIndex -1, currentVertexIndex, currentVertexIndex]);
@@ -146,6 +151,7 @@ LM.sketchBuffer = (function(){
 
     addStartVertex: function(x, y, z){
       currentModel.vertices.push(new p5.Vector(x, y, z));
+      currentModel.vertexNormals.push(new p5.Vector());
       checkIfModelIsDifferentSoFar();
       currentVertexIndex++;
     },
