@@ -12,7 +12,7 @@ LogoMor is an interpreter and visualizer for the Logo programming language, with
 
 ![tree](https://user-images.githubusercontent.com/13304797/106599557-ea2d4300-6561-11eb-87c5-66ad295d0782.png)
 
-![tetris](https://user-images.githubusercontent.com/13304797/146338218-130cd4c0-338a-4745-867a-e615ff57302f.png)
+![tetris](https://user-images.githubusercontent.com/13304797/146338316-b0864674-6a95-430b-a43e-0557d2850d57.png)
 
 ![rotationArrows](https://user-images.githubusercontent.com/13304797/146270207-3801e853-178c-49c0-8257-cb54ea13fc2f.png)
 
