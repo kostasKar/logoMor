@@ -1,18 +1,18 @@
 LM.consoleHandler = (function(){
 
-  const textStyles = ["error", "system", "user"];
+  const textStyle = {SYSTEM:"system", ERROR:"error", USER:"user"};
   var consoleText = "";
   var previousConsoleText = "";
 
   function makeStyled(text, style){
     switch (style){
-      case "error":
+      case textStyle.ERROR:
       text = "<span class='error-output'>" +  text + "</span>";
       break;
-      case "system":
+      case textStyle.SYSTEM:
       text = "<span class='system-output'>" +  text + "</span>";
       break;
-      case "user":
+      case textStyle.USER:
       break;
     }
     return text;
@@ -20,11 +20,13 @@ LM.consoleHandler = (function(){
 
   return {
 
-    print: function(text, style = "system"){
+    style: textStyle,
+
+    print: function(text, style = textStyle.SYSTEM){
       consoleText += makeStyled(text, style);
     },
 
-    println: function(text, style = "system"){
+    println: function(text, style = textStyle.SYSTEM){
       this.print(text, style);
       consoleText += "<br>";
     },
