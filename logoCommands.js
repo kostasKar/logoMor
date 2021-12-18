@@ -94,7 +94,7 @@ LM.logo = (function(){
     },
 
     forward: function(length){
-      LM.matrix.translate(0, -length, 0);
+      LM.matrix.translateY(-length);
       if (penDown){
        addVertex();
       }

@@ -6,7 +6,7 @@ LM.matrix = (function(){
                     0, 0, 1, 0,
                     0, 0, 0, 1];
                     
-  var lm = [...unitMatrix];
+  let lm = [...unitMatrix];
 
   function multiply4x4Matrices(a, b){
     return [
@@ -33,7 +33,7 @@ LM.matrix = (function(){
   }
 
   function invertMatrix(m) {
-    var r = [];
+    let r = [];
 
     r[0] = m[5]*m[10]*m[15] - m[5]*m[14]*m[11] - m[6]*m[9]*m[15] + m[6]*m[13]*m[11] + m[7]*m[9]*m[14] - m[7]*m[13]*m[10];
     r[1] = -m[1]*m[10]*m[15] + m[1]*m[14]*m[11] + m[2]*m[9]*m[15] - m[2]*m[13]*m[11] - m[3]*m[9]*m[14] + m[3]*m[13]*m[10];
@@ -55,14 +55,14 @@ LM.matrix = (function(){
     r[14] = -m[0]*m[5]*m[14] + m[0]*m[13]*m[6] + m[1]*m[4]*m[14] - m[1]*m[12]*m[6] - m[2]*m[4]*m[13] + m[2]*m[12]*m[5];
     r[15] = m[0]*m[5]*m[10] - m[0]*m[9]*m[6] - m[1]*m[4]*m[10] + m[1]*m[8]*m[6] + m[2]*m[4]*m[9] - m[2]*m[8]*m[5];
 
-    var det = m[0]*r[0] + m[1]*r[4] + m[2]*r[8] + m[3]*r[12];
-    for (var i = 0; i < 16; i++) r[i] /= det;
+    let det = m[0]*r[0] + m[1]*r[4] + m[2]*r[8] + m[3]*r[12];
+    for (let i = 0; i < 16; i++) r[i] /= det;
     return r;
-  };
+  }
 
   function multiplyToLogoMatrix(m){
     lm = multiply4x4Matrices(lm, m);
-  };
+  }
 
   //Faster shortcuts for specific tranformations
   //Only calculates the affected cells of lm for a Y-translation
@@ -140,7 +140,7 @@ LM.matrix = (function(){
 
   return {
 
-    translate: function(x, y, z){
+    translateY: function(y){
       //anyway we are only tranlating on y axis, so just using that
       translateYLogoMatrix(y);
       /*
@@ -192,12 +192,12 @@ LM.matrix = (function(){
     },
 
     apply: function(){
-      LM.p5Renderer.applyMatrix(lm[0],lm[1],lm[2],lm[3],lm[4],lm[5],lm[6],lm[7],lm[8],lm[9],lm[10],lm[11],lm[12],lm[13],lm[14],lm[15]);
+      LM.p5Renderer.applyMatrix(...lm);
     },
 
     applyInverse: function(){
-      var lmi = invertMatrix(lm);
-      LM.p5Renderer.applyMatrix(lmi[0],lmi[1],lmi[2],lmi[3],lmi[4],lmi[5],lmi[6],lmi[7],lmi[8],lmi[9],lmi[10],lmi[11],lmi[12],lmi[13],lmi[14],lmi[15]);
+      let lmi = invertMatrix(lm);
+      LM.p5Renderer.applyMatrix(...lmi);
     },
 
     getMatrix: function(){
