@@ -41,6 +41,7 @@ LM.p5Renderer = new p5( function(p) {
     LM.logo.endDrawing();
     LM.sketchBuffer.drawBufferedItems();
     LM.retainMode.completedExecution();
+    LM.positionInfo.update();
   };
 
   p.mouseWheel = function(event){

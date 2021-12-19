@@ -65,6 +65,7 @@
   <script src="sound.js"></script>
   <script src="waitHandler.js"></script>
   <script src="seedrandom.min.js"></script>
+  <script src="positionInfo.js"></script>
   <script src="sketch.js"></script>
   <script src="codeEditorConfiguration.js" defer></script>
 
@@ -113,6 +114,14 @@
       <span class="tooltiptext right">Avatar view</span>    
       <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="avatarViewCheckbox" tabindex="0">
       <label class="onoffswitch-label" for="avatarViewCheckbox">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+      </label>
+    </div>
+    <div class="onoffswitch tooltip">
+      <span class="tooltiptext right">Avatar info</span>
+      <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="positionInfoCheckbox" tabindex="0">
+      <label class="onoffswitch-label" for="positionInfoCheckbox">
         <span class="onoffswitch-inner"></span>
         <span class="onoffswitch-switch"></span>
       </label>
@@ -231,6 +240,35 @@
       <span class="tooltiptext left">Default color</span>
     </button>
     <input id="colorPicker" type="color" value="#ffffff" style="visibility: hidden; width: 0px;" onchange="LM.logo.setDefaultHexColor(this.value); document.getElementById('paintBrushIcon').style.color = this.value;"/>
+  </div>
+
+  <div id="positionInfoWidget">
+    <table id = "positionInfoTable" class = "codeFont">
+      <tr>
+        <th>X</th>
+        <td></td>
+      </tr>
+      <tr>
+        <th>Y</th>
+        <td></td>
+      </tr>
+      <tr>
+        <th>Z</th>
+        <td></td>
+      </tr>
+      <tr>
+        <th>Theta</th>
+        <td></td>
+      </tr>
+      <tr>
+        <th>Phi</th>
+        <td></td>
+      </tr>
+      <tr>
+        <th>R</th>
+        <td></td>
+      </tr>
+    </table>
   </div>
 
 
