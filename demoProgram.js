@@ -555,7 +555,7 @@ codeText:
 ;xory: 1 for the X coordinate, 0 for the Y 
 to getboxcoordinate :shape :orient :boxnum :xory   
    
-	if :shape = 1[ ;square tetromino 
+  if :shape = 1[ ;square tetromino 
     if :boxnum = 1 [make "x 0 make "y 0] 
     if :boxnum = 2 [make "x 0 make "y 1] 
     if :boxnum = 3 [make "x 1 make "y 1] 
@@ -603,7 +603,7 @@ end
  
 ;applies the rotation to the shape 
 to rotatecoordinate :x :y :orient :xory 
-	if :orient = 0 [ifelse :xory [return :x][return :y]] 
+  if :orient = 0 [ifelse :xory [return :x][return :y]] 
   if :orient = 1 [ifelse :xory [return :y][return -:x]] 
   if :orient = 2 [ifelse :xory [return -:x][return -:y]] 
   if :orient = 3 [ifelse :xory [return -:y][return :x]] 
@@ -619,7 +619,7 @@ to shapegenerator :s :o
 end 
  
 to setcolor :s 
-	colorhsb (mod :s 7)*(360/7) :colorsaturation 100 
+  colorhsb (mod :s 7)*(360/7) :colorsaturation 100 
 end 
  
 to getrandomshape  
@@ -639,47 +639,55 @@ to checkpositiony
 end 
  
 to checkkeyboard 
-  static "keyalreadypressed 0 
+  static "upkeyalreadypressed 0 
+  static "sidekeyalreadypressed 0 
   static "previouskeytime 0
+  static "delay 0
   
   ifelse not keypressed [
-    make "keyalreadypressed 0
+    make "upkeyalreadypressed 0
+    make "sidekeyalreadypressed 0
+    make "delay 0
   ][
-    
-    if and keypressed = 38 not :keyalreadypressed[  ;up separate presses
+    ;up separate pressings
+    if and keypressed = 38 not :upkeyalreadypressed[  
       make "currentorientation  mod (:currentorientation + 1) 4 
       if shapeinterferes [ 
         make "currentorientation  mod (:currentorientation - 1) 4 
       ] 
-      make "keyalreadypressed 1
+      make "upkeyalreadypressed 1
       stop
     ]
-    
-    if and keypressed = 39 time - :previouskeytime > :keydelay[ ;right continuous with delay
+    ;right continuous with delay. Larger delay for initial press 
+    if and keypressed = 39 time - :previouskeytime > :delay [ 
       make "xpos min :xpos + 1 :width 
       if shapeinterferes [ 
         decrement "xpos 
       ] 
       make "previouskeytime time
+      ifelse :sidekeyalreadypressed [make "delay :keydelay][make "delay :keyfirstdelay]
+      make "sidekeyalreadypressed 1 
       stop
     ] 
-    
-    if and keypressed = 37 time - :previouskeytime > :keydelay[ ;left continuous with delay
+    ;left continuous with delay. Larger delay for initial press
+    if and keypressed = 37 time - :previouskeytime > :delay [
       make "xpos max :xpos - 1 0 
       if shapeinterferes [ 
         increment "xpos 
       ] 
       make "previouskeytime time
+      ifelse :sidekeyalreadypressed [make "delay :keydelay][make "delay :keyfirstdelay]
+      make "sidekeyalreadypressed 1
       stop
     ]
-    
-    if keypressed = 40 [ ;down continuous without delay
-	  	decrement "ypos 
+    ;down continuous without delay
+    if keypressed = 40 [ 
+      decrement "ypos 
       stop
-  	] 
+    ] 
     
   ]
-	
+  
 end 
  
 to drawcurrentshape 
@@ -690,7 +698,7 @@ to drawcurrentshape
 end 
  
 to drawnextshape  
-	pu 
+  pu 
   setxyz -:d*4 :height*:d 0 
   pd 
   shapegenerator :nextshape 0 
@@ -721,13 +729,13 @@ to boxvalue :x :y
   if :y < 1 [return 10] 
   if :x > :width [decrement "xpos return 0] 
   if :x < 1 [increment "xpos return 0]   
-	return thing boxvariable :x :y 
+  return thing boxvariable :x :y 
 end 
  
 to shapetouched  
   repeat 4 [ 
     if boxvalue :xpos + getboxcoordinate :currentshape :currentorientation repcount 1 :ypos + (getboxcoordinate :currentshape :currentorientation repcount 0) - 1 [return 1] 
-	] 
+  ] 
   return 0 
 end 
  
@@ -760,8 +768,8 @@ end
  
 to shapeinterferes  
   repeat 4[ 
-  	if boxvalue :xpos + getboxcoordinate :currentshape :currentorientation repcount 1 :ypos + getboxcoordinate :currentshape :currentorientation repcount 0 [return 1] 
-	] 
+    if boxvalue :xpos + getboxcoordinate :currentshape :currentorientation repcount 1 :ypos + getboxcoordinate :currentshape :currentorientation repcount 0 [return 1] 
+  ] 
   return 0 
 end 
  
@@ -770,12 +778,12 @@ to clearrow :r
     repeat :width [ 
       make boxvariable repcount :r thing boxvariable repcount :r + 1
     ] 
-	increment "r     
+  increment "r     
   ] 
 end 
  
 to checkforfullrows 
-	make "r :ypos + 2 
+  make "r :ypos + 2 
   until :r < :ypos - 2 [ 
     make "foundempty 0 
     repeat :width [ 
@@ -797,7 +805,7 @@ end
  
 to drawborders 
   color 255 255 255 
-	pu  
+  pu  
   setxyz :d/2 :d/2 (0)  
   pd  
   fd :height*:d  
@@ -818,7 +826,7 @@ to drawscore
 end 
  
 to dogameover  
-	color 100 100 100 
+  color 100 100 100 
   drawplacedshapes 
   drawscore 
   pu 
@@ -835,7 +843,8 @@ make "width 10
 make "height 25 
 make "d 10 
 make "dt 0.5 
-make "keydelay 0.08 
+make "keyfirstdelay 0.1
+make "keydelay 0.04 
 make "colorsaturation 50 
  
 static "score 0 
