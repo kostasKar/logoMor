@@ -55,6 +55,10 @@ LM.p5Renderer = new p5( function(p) {
 
   p.keyPressed = function() {
     LM.logo.keyPressedCallback(p.keyCode);
+    //prevent accidental scrolling of the control column by pressing the arrrow keys
+    if((LM.cameraViewControl.isEnabled()) && ((p.keyCode === 38) || (p.keyCode === 40))){
+      return false; //prevent default browser behaviour
+    }
   }
 
   p.toggleClearDrawing = function(){

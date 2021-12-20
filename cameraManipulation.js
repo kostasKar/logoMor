@@ -58,6 +58,10 @@ LM.cameraViewControl = (function (){
       cameraEnabled = false;
     },
 
+    isEnabled: function(){
+      return cameraEnabled;
+    },
+
     mouseWheelCallback: function(eventDelta) {
       if (cameraEnabled && LM.p5Renderer.isLooping()){
 
