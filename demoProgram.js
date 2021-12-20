@@ -639,31 +639,47 @@ to checkpositiony
 end 
  
 to checkkeyboard 
-  static "previouskeytime 0 
-  if and keypressed time - :previouskeytime > :debouncetime [ 
-    make "previouskeytime time 
-    if keypressed = 38 [  ;up 
+  static "keyalreadypressed 0 
+  static "previouskeytime 0
+  
+  ifelse not keypressed [
+    make "keyalreadypressed 0
+  ][
+    
+    if and keypressed = 38 not :keyalreadypressed[  ;up separate presses
       make "currentorientation  mod (:currentorientation + 1) 4 
       if shapeinterferes [ 
         make "currentorientation  mod (:currentorientation - 1) 4 
       ] 
-    ]  
-    if keypressed = 39 [ ;right 
+      make "keyalreadypressed 1
+      stop
+    ]
+    
+    if and keypressed = 39 time - :previouskeytime > :keydelay[ ;right continuous with delay
       make "xpos min :xpos + 1 :width 
       if shapeinterferes [ 
         decrement "xpos 
       ] 
-    ]	 
-    if keypressed = 37 [ ;left 
+      make "previouskeytime time
+      stop
+    ] 
+    
+    if and keypressed = 37 time - :previouskeytime > :keydelay[ ;left continuous with delay
       make "xpos max :xpos - 1 0 
       if shapeinterferes [ 
         increment "xpos 
       ] 
-    ]	  
-  ] 
-	if keypressed = 40 [ ;down without debounce
-	  decrement "ypos 
-  ] 
+      make "previouskeytime time
+      stop
+    ]
+    
+    if keypressed = 40 [ ;down continuous without delay
+	  	decrement "ypos 
+      stop
+  	] 
+    
+  ]
+	
 end 
  
 to drawcurrentshape 
@@ -819,7 +835,7 @@ make "width 10
 make "height 25 
 make "d 10 
 make "dt 0.5 
-make "debouncetime 0.1 
+make "keydelay 0.08 
 make "colorsaturation 50 
  
 static "score 0 
