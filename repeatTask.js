@@ -27,6 +27,7 @@ class RepeatTask{
         this.canBeResolved = true;
       } else {
         this.startIndex = LM.interpreter.currentIndex;
+        this.endOfLoopBlockIndex = InstructionsBlockTask.findEndOfBlockIndex();
         new InstructionsBlockTask();
       }
       this.totalExecutionsSet = true;

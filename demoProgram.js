@@ -752,26 +752,28 @@ end
 to clearrow :r 
   until :r > :height [ 
     repeat :width [ 
-      make boxvariable repcount :r thing boxvariable repcount :r + 1	 
+      make boxvariable repcount :r thing boxvariable repcount :r + 1
     ] 
-		increment "r     
+	increment "r     
   ] 
 end 
  
 to checkforfullrows 
-	make "r :height 
-  until :r = 0 [ 
+	make "r :ypos + 2 
+  until :r < :ypos - 2 [ 
     make "foundempty 0 
     repeat :width [ 
       if not boxvalue repcount :r [ 
         make "foundempty 1 
+        break
       ] 
-    ] 
+    ]
     if not :foundempty [ 
       clearrow :r 
       increment "score 
     ] 
     decrement "r 
+    if not :r [break]
   ] 
 end 
  
@@ -839,10 +841,9 @@ ht
 if :gameover [ dogameover return ] 
 checkpositiony 
 if not shapetouched [ checkkeyboard ] 
-if shapetouched [ shapeplace bringnew ] 
+if shapetouched [ shapeplace checkforfullrows bringnew] 
 drawcurrentshape 
 drawplacedshapes 
-checkforfullrows 
 drawscore 
 drawborders 
 drawnextshape`});
