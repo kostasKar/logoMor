@@ -659,10 +659,11 @@ to checkkeyboard
       stop
     ]
     ;right continuous with delay. Larger delay for initial press 
-    if and keypressed = 39 time - :previouskeytime > :delay [ 
+    if and keypressed = 39 time - :previouskeytime >= :delay [ 
       make "xpos min :xpos + 1 :width 
       if shapeinterferes [ 
         decrement "xpos 
+        stop
       ] 
       make "previouskeytime time
       ifelse :sidekeyalreadypressed [make "delay :keydelay][make "delay :keyfirstdelay]
@@ -670,10 +671,11 @@ to checkkeyboard
       stop
     ] 
     ;left continuous with delay. Larger delay for initial press
-    if and keypressed = 37 time - :previouskeytime > :delay [
+    if and keypressed = 37 time - :previouskeytime >= :delay [
       make "xpos max :xpos - 1 0 
       if shapeinterferes [ 
         increment "xpos 
+        stop
       ] 
       make "previouskeytime time
       ifelse :sidekeyalreadypressed [make "delay :keydelay][make "delay :keyfirstdelay]
@@ -683,6 +685,9 @@ to checkkeyboard
     ;down continuous without delay
     if keypressed = 40 [ 
       decrement "ypos 
+      if shapeinterferes [ 
+        increment "ypos 
+      ] 
       stop
     ] 
     
@@ -885,7 +890,7 @@ if :once [
 ht 
 if :gameover [ dogameover return ] 
 checkpositiony 
-if not shapetouched [ checkkeyboard ] 
+checkkeyboard 
 if shapetouched [ shapeplace checkforfullrows bringnew] 
 drawcurrentshape 
 drawplacedshapes 
