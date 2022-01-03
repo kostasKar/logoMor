@@ -653,7 +653,7 @@ to checkkeyboard
     if and keypressed = 38 not :upkeyalreadypressed[  
       make "currentorientation  mod (:currentorientation + 1) 4 
       if shapeinterferes [ 
-        make "currentorientation  mod (:currentorientation - 1) 4 
+        trywallkick
       ] 
       make "upkeyalreadypressed 1
       stop
@@ -689,6 +689,24 @@ to checkkeyboard
   ]
   
 end 
+
+to trywallkick 
+  if :wallkickright [
+    repeat 2 [
+      decrement "xpos
+      if not shapeinterferes [stop]
+    ]
+    make "xpos :xpos + 2
+  ]
+  if :wallkickleft [
+    repeat 2 [
+      increment "xpos
+      if not shapeinterferes [stop]
+    ]
+    make "xpos :xpos - 2
+  ]
+  make "currentorientation  mod (:currentorientation + 3) 4 
+end
  
 to drawcurrentshape 
   pu  
@@ -727,8 +745,8 @@ end
  
 to boxvalue :x :y 
   if :y < 1 [return 10] 
-  if :x > :width [decrement "xpos return 0] 
-  if :x < 1 [increment "xpos return 0]   
+  if :x > :width [make "wallkickright 1 return 10] 
+  if :x < 1 [make "wallkickleft 1 return 10]   
   return thing boxvariable :x :y 
 end 
  
@@ -846,6 +864,8 @@ make "dt 0.5
 make "keyfirstdelay 0.1
 make "keydelay 0.04 
 make "colorsaturation 50 
+make "wallkickright 0
+make "wallkickleft 0
  
 static "score 0 
 static "gameover 0 
