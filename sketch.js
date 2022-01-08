@@ -3,7 +3,6 @@ LM.p5Renderer = new p5( function(p) {
 
   var labelFont;
   var canvas;
-  var clearDrawing = true;
 
   p.preload = function(){
     if (window.location.protocol !== "file:"){
@@ -27,7 +26,7 @@ LM.p5Renderer = new p5( function(p) {
 
   p.draw = function() {
     p.lights();
-    if (clearDrawing) {
+    if (!document.getElementById("persistDrawCheckBox").checked) {
       p.background(0);
     }
     LM.cameraViewControl.adjust();
@@ -50,7 +49,6 @@ LM.p5Renderer = new p5( function(p) {
 
   p.windowResized = function() {
     p.resizeCanvas(p.windowWidth, p.windowHeight);
-    document.getElementById("fullscreenButton").firstElementChild.className = p.fullscreen()? "fa fa-compress" : "fa fa-expand";
   };
 
   p.keyPressed = function() {
@@ -58,16 +56,6 @@ LM.p5Renderer = new p5( function(p) {
     //prevent accidental scrolling of the control column by pressing the arrrow keys
     if((LM.cameraViewControl.isEnabled()) && ((p.keyCode === 38) || (p.keyCode === 40))){
       return false; //prevent default browser behaviour
-    }
-  }
-
-  p.toggleClearDrawing = function(){
-    if (clearDrawing){
-      clearDrawing = false;
-      document.getElementById("clearDrawing").firstElementChild.style.color = "red";
-    } else {
-      clearDrawing = true;
-      document.getElementById("clearDrawing").firstElementChild.style.removeProperty("color");
     }
   }
 

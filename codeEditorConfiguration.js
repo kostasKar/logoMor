@@ -118,7 +118,9 @@ LM.codeMirror = (function(){
   const resizeObserver = new ResizeObserver(function(){cm.refresh();});
   resizeObserver.observe(document.getElementById('sourceCodeContainer'));
 
-  cm.getWrapperElement().style["font-size"] = "14px"; //redundand but needed for the font sizing functions  below
+  cm.defaultFontSize = "14px";
+
+  cm.getWrapperElement().style["font-size"] = cm.defaultFontSize; //redundand but needed for the font sizing functions  below
 
   //Custom methods for cm:
   cm.increaseEditorFontSize = function(){
@@ -128,6 +130,11 @@ LM.codeMirror = (function(){
 
   cm.decreaseEditorFontSize =  function(){
     this.getWrapperElement().style["font-size"] = parseInt(this.getWrapperElement().style["font-size"]) - 2 + "px";
+    this.refresh();
+  }
+
+  cm.resetEditorFontSize =  function(){
+    this.getWrapperElement().style["font-size"] = cm.defaultFontSize;
     this.refresh();
   }
 

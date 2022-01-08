@@ -6,8 +6,8 @@ LM.demoPrograms = (function(){
 
 	return {
 
-		pushDemo: function(demoString){
-			programmsArray.splice(Math.floor(Math.random()*programmsArray.length), 0, demoString);
+		pushDemo: function(demo){
+			programmsArray.push(demo);
 		},
 
 		loadRandomDemo: function(){
@@ -15,6 +15,22 @@ LM.demoPrograms = (function(){
 			let demo = programmsArray[previousIndex];
 			document.getElementById("projectNameInputField").value = demo.title;
 			LM.codeMirror.setValue(demo.codeText);
+		},
+
+		populateExamples: function(el){
+			el = el.nextElementSibling;
+			if (!el.firstChild){
+				for(let i = 0; i < programmsArray.length; i++){
+					let d = document.createElement("div");
+					d.innerText = programmsArray[i].title;
+					d.onclick = function () {
+						document.getElementById("projectNameInputField").value = programmsArray[i].title;
+						LM.codeMirror.setValue(programmsArray[i].codeText);
+						LM.interpreter.setup();
+					}
+					el.appendChild(d);
+				}
+			}
 		}
 
 	}

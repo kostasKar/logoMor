@@ -125,17 +125,18 @@ button:disabled {
 #projectNameInputField {
   background: black;
   font-size:14px;
-  width: 280px;
+  width: 200px;
   padding: 2px;
   color: #888888;
   position: relative;
-  border: 1px solid #333333;
+  border: 0px solid #333333;
   border-radius: 3px;
   margin-bottom: 4px;
   margin-top: 2px;
+  margin-right: 5px;
   font-family: 'JetBrains Mono', monospace;
-  float: left;
-  direction: ltr;
+  float: right;
+  direction: rtl;
 }
 
 #consoleTextArea{
@@ -700,3 +701,77 @@ label.debugControls {
   text-align: right;
 }
 
+
+
+
+
+/* #menubar .menu-dropdown .menu-dropdown-button .menu-dropdown-content*/
+
+#menubar{
+  direction:ltr;
+  font-size: 12px;
+  background-color: #222222;
+}
+
+.menu-dropdown {
+  position: relative;
+  display: inline-block;
+  color: white;
+}
+
+.menu-dropdown-button {
+  background-color: #222222;
+  color: white;
+  padding: 5px;
+  font-size: 12px;
+  border: none;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.menu-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #444444;
+  min-width: 180px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+.menu-dropdown-content.left {
+  right: 0;
+}
+
+/* Links inside the dropdown */
+.menu-dropdown-content div {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.menu-dropdown-content div:hover {
+  background-color: #2c9694;
+  cursor: pointer;}
+
+/* Show the dropdown menu on hover */
+.menu-dropdown:hover .menu-dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.menu-dropdown:hover .menu-dropdown-button {
+  /*background-color: #2c9694;*/
+  cursor: default;
+}
+
+#colorPicker{
+  width: 15px;
+  height: 15px;
+  margin: 0px;
+  padding: 0px;
+  display:inline-block;
+  border: none;
+  cursor: pointer;
+  float: right;
+}
