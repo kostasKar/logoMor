@@ -106,12 +106,13 @@
   <div id ="controlsColumnScroll">
     <div id="controlsColumn">
 
-      <div id="menubar" class="areaDiv">
+      <div id="menubar">
         <div class="menu-dropdown">
           <div class="menu-dropdown-button">File</div>
           <div class="menu-dropdown-content">
             <div onclick="LM.localSystem.download()">Save</div>
             <div onclick="LM.localSystem.openFile()">Load</div>
+            <input id="inp" type='file' style="display:none;" onchange="LM.localSystem.readFile(event)" onclick="this.value=null;" />
             <div onclick="LM.codeMirror.copyShareableSourceCodeLink()">Share</div>
             <hr class="HorizontalRule">
             <div onclick="LM.stlCreator.createASCIISTL()">Export STL</div>
@@ -162,8 +163,8 @@
         </div>
       </div>
 
-      <div class="areaDiv">
-        <label class="areaTitle brightText">Source Code Editor</label>
+      <div id="editorPanelheader" class="panelHeader">
+        <label>Source Code Editor</label>
         <input type="text" id="projectNameInputField" placeholder="Sketch Name">
       </div>
 
@@ -172,27 +173,26 @@
       </div>
       <div id="pull-tab"></div>
 
-      <div class="areaDiv" id="movesLimitDiv">
-        <button title="Start debugging" class="debugControls" id="debugButton" onclick="LM.interpreter.setup(null, true)">Debug</button>
-        <button title="Run to breakpoint" class="debugControls" id="debugContinueButton" onclick="LM.debugger.continuePressed()" disabled>Continue</button>
-        <button title="Run next command" class="debugControls" id="debugStepButton" onclick="LM.debugger.stepPressed()" disabled>Step</button>
+      <div class="buttonsGroup" id="debugButtons">
+        <button title="Start debugging" class="debugControls" id="debugButton" onclick="LM.interpreter.setup(null, true)">Debug</button><!--
+        --><button title="Run to breakpoint" class="debugControls" id="debugContinueButton" onclick="LM.debugger.continuePressed()" disabled>Continue</button><!--
+        --><button title="Run next command" class="debugControls" id="debugStepButton" onclick="LM.debugger.stepPressed()" disabled>Step</button>
         <input  id="movesLimitInput" type="number" name="quantity" min="0" placeholder="Infinite" onchange="LM.interpreter.movesLimit = this.value || Infinity; LM.retainMode.fireExecution()">
         <label title="Maximum number of move commands per frame" class="subtleText1" id="movesLimitLabel">Moves Limit:</label>
       </div>
 
-      <div class="areaDiv" id = "buttonDiv">
+      <div class="buttonsGroup" id = "executeButtons">
         <button id="playButton" onclick="LM.interpreter.setup()">Run</button><!-- just to get rid of the space between the inline-blocks
         --><button id="stopButton" onclick="LM.interpreter.setup(''); LM.sounds.stopAllAudio()">Stop</button>
-        <input id="inp" type='file' style="display:none;" onchange="LM.localSystem.readFile(event)" onclick="this.value=null;" />
       </div>
 
-      <div class="areaDiv">
-        <label title="Program output (print command), system and error messages dispayed here" class="areaTitle brightText">Console</label>
-        <div readonly id="consoleTextArea" class="codeFont brightText"></div>
+      <div class="panelHeader">
+        <label title="Program output (print command), system and error messages dispayed here">Console</label>
       </div>
+      <div readonly id="consoleTextArea" class="codeFont brightText"></div>
 
-      <div class="areaDiv" id="variablesDiv">
-        <label title="Manipulate the initial value of any global variable defined in the source code. Changes can be observed on the drawing in real time" class="areaTitle brightText" id="variablesTitle">Variables Manipulators</label>
+      <div class="panelHeader" id="variablesDiv">
+        <label title="Manipulate the initial value of any global variable defined in the source code. Changes can be observed on the drawing in real time" id="variablesTitle">Variables Manipulators</label>
         <div class="dropdown">
           <button id="slidersAddButton" onclick="LM.variableManipulatorsSliders.showVariablesNames()" class="dropbtn" disabled>Add</button>
           <button id="slidersClearButton" onclick="LM.variableManipulatorsSliders.clearSliders()" class="dropbtn" disabled>Clear</button>
@@ -201,20 +201,20 @@
         </div>
       </div>
 
-      <div class="areaDiv" id="modelsDiv">
-        <label title="Import an .stl or .obj 3D model file from local disk" class="areaTitle brightText">Models</label>
+      <div class="panelHeader" id="modelsDiv">
+        <label title="Import an .stl or .obj 3D model file from local disk" >Models</label>
         <button id="modelsAddButton" onclick="LM.models.openModelFile()" class="dropbtn">Add</button>
         <input id="modelinp" type='file' style="display:none;" onchange="LM.models.readModelFile(event)" onclick="this.value=null;" accept=".stl,.obj" />
       </div>
 
-      <div class="areaDiv" id="imagesDiv">
-        <label title="Import any image file from local disk" class="areaTitle brightText">Images</label>
+      <div class="panelHeader" id="imagesDiv">
+        <label title="Import any image file from local disk" >Images</label>
         <button id="imagesAddButton" onclick="LM.images.openImageFile()" class="dropbtn">Add</button>
         <input id="imageinp" type='file' style="display:none;" onchange="LM.images.readImageFile(event)" onclick="this.value=null;" accept="image/*"/>
       </div>
 
-      <div class="areaDiv" id="soundsDiv">
-        <label title="Import any audio file from local disk" class="areaTitle brightText">Sounds</label>
+      <div class="panelHeader" id="soundsDiv">
+        <label title="Import any audio file from local disk" >Sounds</label>
         <button id="soundAddButton" onclick="LM.sounds.openSoundFile()" class="dropbtn">Add</button>
         <input id="soundinp" type='file' style="display:none;" onchange="LM.sounds.readSoundFile(event)" onclick="this.value=null;" accept="audio/*"/>
       </div>

@@ -27,29 +27,11 @@ canvas {
   box-sizing: border-box;
 }
 
-button {
-  background-color: #222222; 
-  color: #aaaaaa;
-  border-color: #333333;
-  border-style: solid;
-  border-width: 3px;
-  border-radius: 6px;
-  outline: none !important;
-  text-decoration: none;
-  text-align: center;
-  cursor: pointer;
-  font-size: 16px;
-}
 
-button:hover:not([disabled]) {
-  color: #dddddd;
-  background-color: #333333;
-}
 
-button:disabled {
-  color: #555555;
-  cursor: auto ;
-}
+
+
+
 
 #consoleTextArea, .CodeMirror {
   position:relative;
@@ -57,8 +39,7 @@ button:disabled {
   background-color: #111111;
   border-color: #333333;
   border-style: solid;
-  border-width: 3px;
-  border-radius: 4px;
+  border-width: 1px;
   font-size: 14px;
 }
 
@@ -106,6 +87,8 @@ button:disabled {
   overflow: auto;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+  background-color: #222222;
+  padding-right: 10px;
 }
 
 #controlsColumnScroll::-webkit-scrollbar {
@@ -113,41 +96,17 @@ button:disabled {
 }
 
 #controlsColumn {
-  margin-right: 25px;
-  margin-top: 10px;
   direction: rtl;
+  background-color: #222222;
 }
 
 #controlsColumn :focus{
   outline: none !important;
 }
 
-#projectNameInputField {
-  background: black;
-  font-size:14px;
-  width: 200px;
-  padding: 2px;
-  color: #888888;
-  position: relative;
-  border: 0px solid #333333;
-  border-radius: 3px;
-  margin-bottom: 4px;
-  margin-top: 2px;
-  margin-right: 5px;
-  font-family: 'JetBrains Mono', monospace;
-  float: right;
-  direction: rtl;
-}
 
-#consoleTextArea{
-  white-space: pre;
-  height: 150px;
-  min-height: 150px;
-  resize: vertical;
-  overflow: auto;
-  margin-bottom: 2px;
-  padding: 5px;
-}
+
+
 
 #sourceCodeContainer {
   position: relative;
@@ -200,9 +159,7 @@ button:disabled {
   margin: 7px 5px 0px 4px;
 }
 
-#movesLimitLabel {
-  float: right;
-}
+
 
 #movesLimitDiv input {
   background: black;
@@ -217,28 +174,12 @@ button:disabled {
   margin-top: 3px;
 }
 
-button.debugControls{
-  border-width: 2px;
-  padding: 1px 5px;
-  font-size: 11px;
-  margin: 5px 3px 0px 4px;
-  float: left;
-}
+
 
 label.debugControls {
   float: left;
 }
 
-#buttonDiv button {
-  padding: 10px 0px;
-  display: inline-block;
-  margin: 4px 4px;
-  width: 61px;
-}
-
-#buttonDiv input{
-  float:right;
-}
 
 #sourceCodeEditorTitleDiv {
   direction: ltr;
@@ -774,4 +715,73 @@ label.debugControls {
   border: none;
   cursor: pointer;
   float: right;
+}
+
+.panelHeader{
+  direction: ltr;
+  background-color: #222222;
+  color: white;
+  font-size: 14px;
+  padding: 5px;
+}
+
+#projectNameInputField {
+  background-color: inherit;
+  border: none;
+  color: #cccccc;
+  float: right;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.buttonsGroup {
+  display: block;
+  background-color: #222222;
+  direction: ltr;
+}
+
+.buttonsGroup button {
+  color: white;
+  padding: 5px;
+  background-color: #222222;
+  margin: 0;
+  border: 1px solid #555555;
+}
+
+.buttonsGroup button:hover:not([disabled]) {
+  background-color: #555555;
+}
+
+.buttonsGroup button:disabled {
+  color: #555555;
+  cursor: auto ;
+}
+
+#movesLimitInput {
+  background-color: #222222;
+  border: none;
+  color: white;
+  width: 100px;
+  float: right;
+  margin-top: 5px;
+}
+
+#movesLimitLabel {
+  margin-top: 7px;
+  margin-right: 5px;
+  font-size: 12px;
+  color: white;
+  float: right;
+}
+
+#consoleTextArea{
+  white-space: pre;
+  height: 150px;
+  min-height: 150px;
+  resize: vertical;
+  overflow: auto;
+  margin-bottom: 2px;
+  padding: 5px;
+  direction: ltr;
+  background-color: #222222;
 }
