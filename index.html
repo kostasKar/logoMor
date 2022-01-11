@@ -239,10 +239,10 @@
   </button>
   <div id="view-settings-dropdown" class="menu-dropdown-content left">
     <div onclick="LM.p5Renderer.fullscreen(!LM.p5Renderer.fullscreen())">Fullscreen</div>
-    <div><input type="checkbox" id="autoRotate">&nbsp;Auto-Rotate</div>
-    <div><input type="checkbox" id="turnsHelpArrows">&nbsp;Rotation Arrows</div>
-    <div><input type="checkbox" id="avatarViewCheckbox">&nbsp;Avatar View</div>
-    <div><input type="checkbox" id="persistDrawCheckBox">&nbsp;Persist Draw</div>
+    <div onclick="document.getElementById('autoRotate').click()"><input type="checkbox" id="autoRotate">&nbsp;Auto-Rotate</div>
+    <div onclick="document.getElementById('turnsHelpArrows').click()"><input type="checkbox" id="turnsHelpArrows">&nbsp;Rotation Arrows</div>
+    <div onclick="document.getElementById('avatarViewCheckbox').click()"><input type="checkbox" id="avatarViewCheckbox">&nbsp;Avatar View</div>
+    <div onclick="document.getElementById('persistDrawCheckBox').click()"><input type="checkbox" id="persistDrawCheckBox">&nbsp;Persist Draw</div>
   </div>
   <script>
     function toggleViewSettingsDropdown(){
