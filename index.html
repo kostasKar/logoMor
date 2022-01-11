@@ -83,187 +83,224 @@
 </head>
 <body>
 
-  <div id="p5_loading"></div>
-  <div id="CameraInstructions" class="subtleText1">
-    <image id="logoIcon" src="favicon.png"></image>
-    <h1 class="brightText"> <span class="bigger">L</span>OGO<span class="bigger">M</span>OR</h1>
-    <h2 class="brightText">3D Logo Interpreter</h2>
-    <label>Left Click: Rotate </label> 
-    <label>Middle Click: Pan </label> 
-    <label>Scroll Wheel: Zoom </label>
-    <label>Double Click: Reset View</label>
-    <label title="Static sketches automatically enable high speed rendering" id="retainModeLabel">Retained Mode: <span id="retainModeValue">On</span></label>
-    <label id="fpsLabel">Fps: <span id="fpsValue"></span></label>
-  </div>
 
-  <div id="copyright" class="subtleText2">&copy; 2021 Kostas Karouzos 
-    <a href = "mailto: &#099;&#107;&#046;&#107;&#097;&#114;&#111;&#117;&#122;&#111;&#115;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;">&#099;&#107;&#046;&#107;&#097;&#114;&#111;&#117;&#122;&#111;&#115;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;</a>
-    <a href="https://github.com/kostasKar/logoMor" class="fab fa-github" target="_blank"></a>
-  </div> 
 
-  <div id="drawCanvas"></div>
 
-  <div id ="controlsColumnScroll">
-    <div id="controlsColumn">
 
-      <div id="menubar">
-        <div class="menu-dropdown">
-          <div class="menu-dropdown-button">File</div>
-          <div class="menu-dropdown-content">
-            <div onclick="LM.localSystem.download()">Save</div>
-            <div onclick="LM.localSystem.openFile()">Load</div>
-            <input id="inp" type='file' style="display:none;" onchange="LM.localSystem.readFile(event)" onclick="this.value=null;" />
-            <div onclick="LM.codeMirror.copyShareableSourceCodeLink()">Share</div>
-            <hr class="HorizontalRule">
-            <div onclick="LM.stlCreator.createASCIISTL()">Export STL</div>
-          </div>
-        </div>
-        <div class="menu-dropdown">
-          <div class="menu-dropdown-button">Editor</div>
-          <div class="menu-dropdown-content">
-            <div onclick="LM.codeMirror.setValue('')">Clear</div>
-            <div onclick="LM.codeMirror.increaseEditorFontSize()">Zoom in</div>
-            <div onclick="LM.codeMirror.decreaseEditorFontSize()">Zoom out</div>
-            <div onclick="LM.codeMirror.resetEditorFontSize()">Reset Zoom</div>
-          </div>
-        </div>
-        <div class="menu-dropdown">
-          <div class="menu-dropdown-button">View</div>
-          <div class="menu-dropdown-content">
-            <div onclick="LM.p5Renderer.fullscreen(!LM.p5Renderer.fullscreen())">Fullscreen</div>
-            <div><input type="checkbox" id="autoRotate">&nbsp;Auto-Rotate</div>
-            <div><input type="checkbox" id="turnsHelpArrows">&nbsp;Rotation Arrows</div>
-            <div><input type="checkbox" id="avatarViewCheckbox">&nbsp;Avatar View</div>
-            <div><input type="checkbox" id="positionInfoCheckbox">&nbsp;Avatar Info</div>
-            <div><input type="checkbox" id="persistDrawCheckBox">&nbsp;Persist Draw</div>
-          </div>
-        </div>
-        <div class="menu-dropdown">
-          <div class="menu-dropdown-button">Drawing</div>
-          <div class="menu-dropdown-content">
-            <div onclick="document.getElementById('colorPicker').click()">Default color<input id="colorPicker" type="color" value="#ffffff" onchange="LM.logo.setDefaultHexColor(this.value);"/></div>
-          </div>
-        </div>
-        <div class="menu-dropdown">
-          <div class="menu-dropdown-button">Capture</div>
-          <div class="menu-dropdown-content">
-            <div onclick="LM.localSystem.saveScreenshot()">Screenshot</div>
-            <div onclick="LM.localSystem.toggleRecording()">Video</div>
-          </div>
-        </div>
-        <div class="menu-dropdown">
-          <div class="menu-dropdown-button" onmouseover="LM.demoPrograms.populateExamples(this)">Examples</div>
-          <div class="menu-dropdown-content left"></div>
-        </div>
-        <div class="menu-dropdown">
-          <div class="menu-dropdown-button">Help</div>
-          <div class="menu-dropdown-content left">
-            <div onclick="window.open('assets/Documentation.pdf','_blank')">Documentation</div>
-          </div>
+
+
+
+
+
+
+
+
+<div id="p5_loading"></div>
+<div id="CameraInstructions" class="subtleText1">
+  <image id="logoIcon" src="favicon.png"></image>
+  <h1 class="brightText"> <span class="bigger">L</span>OGO<span class="bigger">M</span>OR</h1>
+  <h2 class="brightText">3D Logo Interpreter</h2>
+  <label>Left Click: Rotate </label>
+  <label>Middle Click: Pan </label>
+  <label>Scroll Wheel: Zoom </label>
+  <label>Double Click: Reset View</label>
+  <label title="Static sketches automatically enable high speed rendering" id="retainModeLabel">Retained Mode: <span id="retainModeValue">On</span></label>
+  <label id="fpsLabel">Fps: <span id="fpsValue"></span></label>
+</div>
+
+<div id="copyright" class="subtleText2">&copy; 2021 Kostas Karouzos
+  <a href = "mailto: &#099;&#107;&#046;&#107;&#097;&#114;&#111;&#117;&#122;&#111;&#115;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;">&#099;&#107;&#046;&#107;&#097;&#114;&#111;&#117;&#122;&#111;&#115;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;</a>
+  <a href="https://github.com/kostasKar/logoMor" class="fab fa-github" target="_blank"></a>
+</div>
+
+<div id="drawCanvas"></div>
+
+<div id ="controlsColumnScroll">
+  <div id="controlsColumn">
+
+    <div id="menubar">
+      <div class="menu-dropdown">
+        <div class="menu-dropdown-button">File</div>
+        <div class="menu-dropdown-content">
+          <div onclick="LM.localSystem.download()">Save</div>
+          <div onclick="LM.localSystem.openFile()">Load</div>
+          <input id="inp" type='file' style="display:none;" onchange="LM.localSystem.readFile(event)" onclick="this.value=null;" />
+          <div onclick="LM.codeMirror.copyShareableSourceCodeLink()">Share</div>
+          <hr class="HorizontalRule">
+          <div onclick="LM.stlCreator.createASCIISTL()">Export STL</div>
         </div>
       </div>
-
-      <div id="editorPanelheader" class="panelHeader">
-        <label>Source Code Editor</label>
-        <input type="text" id="projectNameInputField" placeholder="Sketch Name">
-      </div>
-
-      <div id="sourceCodeContainer">
-        <textarea class="codeFont brightText" id="sourceCodeTextArea" spellcheck="false" placeholder="Logo code here..."></textarea>
-      </div>
-      <div id="pull-tab"></div>
-
-      <div class="buttonsGroup" id="debugButtons">
-        <button title="Start debugging" class="debugControls" id="debugButton" onclick="LM.interpreter.setup(null, true)">Debug</button><!--
-        --><button title="Run to breakpoint" class="debugControls" id="debugContinueButton" onclick="LM.debugger.continuePressed()" disabled>Continue</button><!--
-        --><button title="Run next command" class="debugControls" id="debugStepButton" onclick="LM.debugger.stepPressed()" disabled>Step</button>
-        <input  id="movesLimitInput" type="number" name="quantity" min="0" placeholder="Infinite" onchange="LM.interpreter.movesLimit = this.value || Infinity; LM.retainMode.fireExecution()">
-        <label title="Maximum number of move commands per frame" class="subtleText1" id="movesLimitLabel">Moves Limit:</label>
-      </div>
-
-      <div class="buttonsGroup" id = "executeButtons">
-        <button id="playButton" onclick="LM.interpreter.setup()">Run</button><!-- just to get rid of the space between the inline-blocks
-        --><button id="stopButton" onclick="LM.interpreter.setup(''); LM.sounds.stopAllAudio()">Stop</button>
-      </div>
-
-      <div class="panelHeader">
-        <label title="Program output (print command), system and error messages dispayed here">Console</label>
-      </div>
-      <div readonly id="consoleTextArea" class="codeFont brightText"></div>
-
-      <div class="panelHeader" id="variablesDiv">
-        <label title="Manipulate the initial value of any global variable defined in the source code. Changes can be observed on the drawing in real time" id="variablesTitle">Variables Manipulators</label>
-        <div class="dropdown">
-          <button id="slidersAddButton" onclick="LM.variableManipulatorsSliders.showVariablesNames()" class="dropbtn" disabled>Add</button>
-          <button id="slidersClearButton" onclick="LM.variableManipulatorsSliders.clearSliders()" class="dropbtn" disabled>Clear</button>
-          <div id="variablesNamesDropdown" class="dropdown-content">
-          </div>
+      <div class="menu-dropdown">
+        <div class="menu-dropdown-button">Editor</div>
+        <div class="menu-dropdown-content">
+          <div onclick="LM.codeMirror.setValue('')">Clear</div>
+          <div onclick="LM.codeMirror.increaseEditorFontSize()">Zoom in</div>
+          <div onclick="LM.codeMirror.decreaseEditorFontSize()">Zoom out</div>
+          <div onclick="LM.codeMirror.resetEditorFontSize()">Reset Zoom</div>
         </div>
       </div>
-
-      <div class="panelHeader" id="modelsDiv">
-        <label title="Import an .stl or .obj 3D model file from local disk" >Models</label>
-        <button id="modelsAddButton" onclick="LM.models.openModelFile()" class="dropbtn">Add</button>
-        <input id="modelinp" type='file' style="display:none;" onchange="LM.models.readModelFile(event)" onclick="this.value=null;" accept=".stl,.obj" />
+<!--      <div class="menu-dropdown">-->
+<!--        <div class="menu-dropdown-button">View</div>-->
+<!--        <div class="menu-dropdown-content">-->
+<!--          <div onclick="LM.p5Renderer.fullscreen(!LM.p5Renderer.fullscreen())">Fullscreen</div>-->
+<!--          <div><input type="checkbox" id="autoRotate">&nbsp;Auto-Rotate</div>-->
+<!--          <div><input type="checkbox" id="turnsHelpArrows">&nbsp;Rotation Arrows</div>-->
+<!--          <div><input type="checkbox" id="avatarViewCheckbox">&nbsp;Avatar View</div>-->
+<!--          <div><input type="checkbox" id="positionInfoCheckbox">&nbsp;Avatar Info</div>-->
+<!--          <div><input type="checkbox" id="persistDrawCheckBox">&nbsp;Persist Draw</div>-->
+<!--        </div>-->
+<!--      </div>-->
+      <div class="menu-dropdown">
+        <div class="menu-dropdown-button">Drawing</div>
+        <div class="menu-dropdown-content">
+          <div onclick="document.getElementById('colorPicker').click()">Default color<input id="colorPicker" type="color" value="#ffffff" onchange="LM.logo.setDefaultHexColor(this.value);"/></div>
+        </div>
       </div>
-
-      <div class="panelHeader" id="imagesDiv">
-        <label title="Import any image file from local disk" >Images</label>
-        <button id="imagesAddButton" onclick="LM.images.openImageFile()" class="dropbtn">Add</button>
-        <input id="imageinp" type='file' style="display:none;" onchange="LM.images.readImageFile(event)" onclick="this.value=null;" accept="image/*"/>
+      <div class="menu-dropdown">
+        <div class="menu-dropdown-button">Capture</div>
+        <div class="menu-dropdown-content">
+          <div onclick="LM.localSystem.saveScreenshot()">Screenshot</div>
+          <div onclick="LM.localSystem.toggleRecording()">Video</div>
+        </div>
       </div>
-
-      <div class="panelHeader" id="soundsDiv">
-        <label title="Import any audio file from local disk" >Sounds</label>
-        <button id="soundAddButton" onclick="LM.sounds.openSoundFile()" class="dropbtn">Add</button>
-        <input id="soundinp" type='file' style="display:none;" onchange="LM.sounds.readSoundFile(event)" onclick="this.value=null;" accept="audio/*"/>
+      <div class="menu-dropdown">
+        <div class="menu-dropdown-button" onmouseover="LM.demoPrograms.populateExamples(this)">Examples</div>
+        <div class="menu-dropdown-content"></div>
       </div>
-
-
+      <div class="menu-dropdown">
+        <div class="menu-dropdown-button">Help</div>
+        <div class="menu-dropdown-content">
+          <div onclick="window.open('assets/Documentation.pdf','_blank')">Documentation</div>
+        </div>
+      </div>
     </div>
+
+    <div id="editorPanelheader" class="panelHeader">
+      <label>Source Code Editor</label>
+      <input type="text" id="projectNameInputField" placeholder="Sketch Name">
+    </div>
+
+    <div id="sourceCodeContainer">
+      <textarea class="codeFont brightText" id="sourceCodeTextArea" spellcheck="false" placeholder="Logo code here...&#13;&#10;Press 'Demo' to load random example programs"></textarea>
+    </div>
+    <div id="pull-tab"></div>
+
+    <div class="areaDiv" id="movesLimitDiv">
+      <button title="Start debugging" class="debugControls" id="debugButton" onclick="LM.interpreter.setup(null, true)">Debug</button>
+      <button title="Run to breakpoint" class="debugControls" id="debugContinueButton" onclick="LM.debugger.continuePressed()" disabled>Continue</button>
+      <button title="Run next command" class="debugControls" id="debugStepButton" onclick="LM.debugger.stepPressed()" disabled>Step</button>
+      <input  id="movesLimitInput" type="number" name="quantity" min="0" placeholder="Infinite" onchange="LM.interpreter.movesLimit = this.value || Infinity; LM.retainMode.fireExecution()">
+      <label title="Maximum number of move commands per frame" class="subtleText1" id="movesLimitLabel">Moves Limit:</label>
+    </div>
+
+    <div class="areaDiv" id = "buttonDiv">
+      <button id="playButton" onclick="LM.interpreter.setup()">Run</button><!-- just to get rid of the space between the inline-blocks
+        --><button id="stopButton" onclick="LM.interpreter.setup(''); LM.sounds.stopAllAudio()">Stop</button>
+    </div>
+
+    <div class="areaDiv">
+      <label title="Program output (print command), system and error messages dispayed here" class="areaTitle brightText">Console</label>
+      <div readonly id="consoleTextArea" class="codeFont brightText"></div>
+    </div>
+
+    <div class="areaDiv" id="variablesDiv">
+      <label title="Manipulate the initial value of any global variable defined in the source code. Changes can be observed on the drawing in real time" class="areaTitle brightText" id="variablesTitle">Variables Manipulators</label>
+      <div class="dropdown">
+        <button id="slidersAddButton" onclick="LM.variableManipulatorsSliders.showVariablesNames()" class="dropbtn" disabled>Add</button>
+        <button id="slidersClearButton" onclick="LM.variableManipulatorsSliders.clearSliders()" class="dropbtn" disabled>Clear</button>
+        <div id="variablesNamesDropdown" class="dropdown-content">
+        </div>
+      </div>
+    </div>
+
+    <div class="areaDiv" id="modelsDiv">
+      <label title="Import an .stl or .obj 3D model file from local disk" class="areaTitle brightText">Models</label>
+      <button id="modelsAddButton" onclick="LM.models.openModelFile()" class="dropbtn">Add</button>
+      <input id="modelinp" type='file' style="display:none;" onchange="LM.models.readModelFile(event)" onclick="this.value=null;" accept=".stl,.obj" />
+    </div>
+
+    <div class="areaDiv" id="imagesDiv">
+      <label title="Import any image file from local disk" class="areaTitle brightText">Images</label>
+      <button id="imagesAddButton" onclick="LM.images.openImageFile()" class="dropbtn">Add</button>
+      <input id="imageinp" type='file' style="display:none;" onchange="LM.images.readImageFile(event)" onclick="this.value=null;" accept="image/*"/>
+    </div>
+
+    <div class="areaDiv" id="soundsDiv">
+      <label title="Import any audio file from local disk" class="areaTitle brightText">Sounds</label>
+      <button id="soundAddButton" onclick="LM.sounds.openSoundFile()" class="dropbtn">Add</button>
+      <input id="soundinp" type='file' style="display:none;" onchange="LM.sounds.readSoundFile(event)" onclick="this.value=null;" accept="audio/*"/>
+    </div>
+
+
   </div>
+</div>
 
 
-  <div id="pictureControl">
-    <button class="tooltip" id="record" onclick="LM.localSystem.toggleRecording()">
-      <i class="fa fa-video" aria-hidden="true"></i>
-      <span class="tooltiptext left">Video</span>
-    </button>
-    <button class="tooltip" id="pause" onclick="LM.retainMode.togglePause()">
-      <i class="fa fa-pause" aria-hidden="true"></i>
-      <span class="tooltiptext left">Redrawing</span>
-    </button>
+<div id="pictureControl">
+  <button class="tooltip" id="saveScreenshot" onclick="LM.localSystem.saveScreenshot()">
+    <i class="fa fa-camera" aria-hidden="true"></i>
+    <span class="tooltiptext left">Screenshot</span>
+  </button>
+  <button class="tooltip" id="record" onclick="LM.localSystem.toggleRecording()">
+    <i class="fa fa-video" aria-hidden="true"></i>
+    <span class="tooltiptext left">Video</span>
+  </button>
+  <button class="tooltip" id="pause" onclick="LM.retainMode.togglePause()">
+    <i class="fa fa-pause" aria-hidden="true"></i>
+    <span class="tooltiptext left">Redrawing</span>
+  </button>
+  <button class="tooltip dropdown-button" id="viewSettings" onclick="toggleViewSettingsDropdown()">
+    <i class="fa fa-cog" aria-hidden="true"></i>
+    <span class="tooltiptext left">View settings</span>
+  </button>
+  <div id="view-settings-dropdown" class="menu-dropdown-content left">
+    <div onclick="LM.p5Renderer.fullscreen(!LM.p5Renderer.fullscreen())">Fullscreen</div>
+    <div><input type="checkbox" id="autoRotate">&nbsp;Auto-Rotate</div>
+    <div><input type="checkbox" id="turnsHelpArrows">&nbsp;Rotation Arrows</div>
+    <div><input type="checkbox" id="avatarViewCheckbox">&nbsp;Avatar View</div>
+    <div><input type="checkbox" id="positionInfoCheckbox">&nbsp;Avatar Info</div>
+    <div><input type="checkbox" id="persistDrawCheckBox">&nbsp;Persist Draw</div>
   </div>
+  <script>
+    function toggleViewSettingsDropdown(){
+      let s = document.getElementById("view-settings-dropdown").style;
+      if (s.display === "block"){
+        s.display = "none";
+      } else {
+        s.display = "block";
+      }
+    }
+  </script>
+</div>
 
-  <div id="positionInfoWidget">
-    <table id = "positionInfoTable" class = "codeFont">
-      <tr>
-        <th style="color:#ff9595">X</th>
-        <td></td>
-      </tr>
-      <tr>
-        <th style="color:#95ff95">Y</th>
-        <td></td>
-      </tr>
-      <tr>
-        <th style="color:#9595ff">Z</th>
-        <td></td>
-      </tr>
-      <tr>
-        <th>Theta</th>
-        <td></td>
-      </tr>
-      <tr>
-        <th>Phi</th>
-        <td></td>
-      </tr>
-      <tr>
-        <th>R</th>
-        <td></td>
-      </tr>
-    </table>
-  </div>
-
+<div id="positionInfoWidget">
+  <table id = "positionInfoTable" class = "codeFont">
+    <tr>
+      <th style="color:#ff9595">X</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th style="color:#95ff95">Y</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th style="color:#9595ff">Z</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Theta</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Phi</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>R</th>
+      <td></td>
+    </tr>
+  </table>
+</div>
 
   <script>
     if((localStorage.getItem("demoPressed") === null) && (!window.location.search.includes("code"))){

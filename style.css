@@ -27,11 +27,29 @@ canvas {
   box-sizing: border-box;
 }
 
+button {
+  background-color: #222222;
+  color: #aaaaaa;
+  border-color: #333333;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 6px;
+  outline: none !important;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  font-size: 16px;
+}
 
+button:hover:not([disabled]) {
+  color: #dddddd;
+  background-color: #333333;
+}
 
-
-
-
+button:disabled {
+  color: #555555;
+  cursor: auto ;
+}
 
 #consoleTextArea, .CodeMirror {
   position:relative;
@@ -39,7 +57,8 @@ canvas {
   background-color: #111111;
   border-color: #333333;
   border-style: solid;
-  border-width: 1px;
+  border-width: 3px;
+  border-radius: 4px;
   font-size: 14px;
 }
 
@@ -56,8 +75,8 @@ canvas {
 }
 
 
-/* 
-  Screenshot and video record buttons 
+/*
+  Screenshot and video record buttons
 */
 
 #pictureControl{
@@ -87,8 +106,6 @@ canvas {
   overflow: auto;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
-  background-color: #222222;
-  padding-right: 10px;
 }
 
 #controlsColumnScroll::-webkit-scrollbar {
@@ -96,17 +113,24 @@ canvas {
 }
 
 #controlsColumn {
+  margin-right: 25px;
+  margin-top: 10px;
   direction: rtl;
-  background-color: #222222;
 }
 
 #controlsColumn :focus{
   outline: none !important;
 }
 
-
-
-
+#consoleTextArea{
+  white-space: pre;
+  height: 150px;
+  min-height: 150px;
+  resize: vertical;
+  overflow: auto;
+  margin-bottom: 2px;
+  padding: 5px;
+}
 
 #sourceCodeContainer {
   position: relative;
@@ -131,21 +155,21 @@ canvas {
 }
 
 #pull-tab {
-    height: 0px;
-    width: 0px;
-    border-top: 8px solid ;
-    border-left: 8px solid ;
-    border-right: 8px solid ;
-    border-bottom: 8px solid ;
-    border-top-color: transparent;
-    border-right-color: transparent;
-    border-left-color: #555555;
-    border-bottom-color: #555555;
-    float: left;
-    pointer-events: none;
-    z-index: 3;
-    position:relative;
-    margin: -16px 0px;
+  height: 0px;
+  width: 0px;
+  border-top: 8px solid ;
+  border-left: 8px solid ;
+  border-right: 8px solid ;
+  border-bottom: 8px solid ;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-left-color: #555555;
+  border-bottom-color: #555555;
+  float: left;
+  pointer-events: none;
+  z-index: 3;
+  position:relative;
+  margin: -16px 0px;
 }
 
 
@@ -159,7 +183,9 @@ canvas {
   margin: 7px 5px 0px 4px;
 }
 
-
+#movesLimitLabel {
+  float: right;
+}
 
 #movesLimitDiv input {
   background: black;
@@ -174,12 +200,28 @@ canvas {
   margin-top: 3px;
 }
 
-
+button.debugControls{
+  border-width: 2px;
+  padding: 1px 5px;
+  font-size: 11px;
+  margin: 5px 3px 0px 4px;
+  float: left;
+}
 
 label.debugControls {
   float: left;
 }
 
+#buttonDiv button {
+  padding: 10px 0px;
+  display: inline-block;
+  margin: 4px 4px;
+  width: 61px;
+}
+
+#buttonDiv input{
+  float:right;
+}
 
 #sourceCodeEditorTitleDiv {
   direction: ltr;
@@ -190,12 +232,13 @@ label.debugControls {
   width: 414px;
   direction: ltr;
   position: relative;
+  font-size: 14px;
 }
 
 .areaTitle {
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 14px;
   margin: 4px 2px;
 }
 
@@ -264,7 +307,7 @@ label.debugControls {
 .slider {
   -webkit-appearance: none;  /* Override default CSS styles */
   appearance: none;
-  width: 260px; 
+  width: 260px;
   height: 10px; /* Specified height */
   background: #333333; /* Grey background */
   outline: none; /* Remove outline */
@@ -288,7 +331,7 @@ label.debugControls {
   height: 25px; /* Slider handle height */
   background: #666666; /* Green background */
   cursor: pointer; /* Cursor on hover */
-  border-radius: 50%; 
+  border-radius: 50%;
 }
 
 .slider::-moz-range-thumb {
@@ -296,7 +339,7 @@ label.debugControls {
   height: 25px; /* Slider handle height */
   background: #666666 ; /* Green background */
   cursor: pointer; /* Cursor on hover */
-  border-radius: 50%; 
+  border-radius: 50%;
 }
 
 .sliderNameValue{
@@ -437,45 +480,45 @@ label.debugControls {
 }
 
 .onoffswitch {
-    position: relative;
-    margin-bottom: 15px;
-    width: 30px;
-    top: 10px;
-    left: 0px;
-    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+  position: relative;
+  margin-bottom: 15px;
+  width: 30px;
+  top: 10px;
+  left: 0px;
+  -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
 }
 .onoffswitch-checkbox {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
 }
 .onoffswitch-label {
-    display: block; overflow: hidden; cursor: pointer;
-    height: 11px; padding: 0; line-height: 11px;
-    border: 0px solid #FFFFFF; border-radius: 18px;
-    background-color: #333333;
+  display: block; overflow: hidden; cursor: pointer;
+  height: 11px; padding: 0; line-height: 11px;
+  border: 0px solid #FFFFFF; border-radius: 18px;
+  background-color: #333333;
 }
 .onoffswitch-label:before {
-    content: "";
-    display: block; width: 18px; margin: -3.5px;
-    background: #555555;
-    position: absolute; top: 0; bottom: 0;
-    right: 15px;
-    border-radius: 18px;
+  content: "";
+  display: block; width: 18px; margin: -3.5px;
+  background: #555555;
+  position: absolute; top: 0; bottom: 0;
+  right: 15px;
+  border-radius: 18px;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label {
-    background-color: #333333;
+  background-color: #333333;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
-   border-color: #5D5D5D;
+  border-color: #5D5D5D;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-    margin-left: 0;
+  margin-left: 0;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label:before {
-    right: 0px; 
-    background-color: #A3A3A3; 
-    box-shadow: 5px 5px 18px 0px rgba(120, 120, 120, 0.5);
+  right: 0px;
+  background-color: #A3A3A3;
+  box-shadow: 5px 5px 18px 0px rgba(120, 120, 120, 0.5);
 }
 
 /*Tooltips*/
@@ -651,7 +694,6 @@ label.debugControls {
 #menubar{
   direction:ltr;
   font-size: 12px;
-  background-color: #222222;
 }
 
 .menu-dropdown {
@@ -661,7 +703,6 @@ label.debugControls {
 }
 
 .menu-dropdown-button {
-  background-color: #222222;
   color: white;
   padding: 5px;
   font-size: 12px;
@@ -676,10 +717,11 @@ label.debugControls {
   min-width: 180px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 10;
+  font-size: 12px;
 }
 
 .menu-dropdown-content.left {
-  right: 0;
+  transform: translate(-70%);
 }
 
 /* Links inside the dropdown */
@@ -697,6 +739,10 @@ label.debugControls {
 
 /* Show the dropdown menu on hover */
 .menu-dropdown:hover .menu-dropdown-content {
+  display: block;
+}
+
+.button-with-dropdown-content:hover .menu-dropdown-content {
   display: block;
 }
 
@@ -719,10 +765,9 @@ label.debugControls {
 
 .panelHeader{
   direction: ltr;
-  background-color: #222222;
   color: white;
   font-size: 14px;
-  padding: 5px;
+  margin: 4px;
 }
 
 #projectNameInputField {
