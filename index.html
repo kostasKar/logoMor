@@ -133,10 +133,12 @@
       <div class="menu-dropdown">
         <div class="menu-dropdown-button">Editor</div>
         <div class="menu-dropdown-content">
-          <div onclick="LM.codeMirror.setValue('')">Clear</div>
+          <div onclick="LM.codeMirror.undo()">Undo</div>
+          <div onclick="LM.codeMirror.redo()">Redo</div>
           <div onclick="LM.codeMirror.increaseEditorFontSize()">Zoom in</div>
           <div onclick="LM.codeMirror.decreaseEditorFontSize()">Zoom out</div>
           <div onclick="LM.codeMirror.resetEditorFontSize()">Reset Zoom</div>
+          <div onclick="LM.codeMirror.setValue('')">Clear</div>
         </div>
       </div>
 <!--      <div class="menu-dropdown">-->
@@ -258,7 +260,6 @@
     <div><input type="checkbox" id="autoRotate">&nbsp;Auto-Rotate</div>
     <div><input type="checkbox" id="turnsHelpArrows">&nbsp;Rotation Arrows</div>
     <div><input type="checkbox" id="avatarViewCheckbox">&nbsp;Avatar View</div>
-    <div><input type="checkbox" id="positionInfoCheckbox">&nbsp;Avatar Info</div>
     <div><input type="checkbox" id="persistDrawCheckBox">&nbsp;Persist Draw</div>
   </div>
   <script>
@@ -266,40 +267,13 @@
       let s = document.getElementById("view-settings-dropdown").style;
       if (s.display === "block"){
         s.display = "none";
+        document.getElementById("viewSettings").style.backgroundColor = "#222222";
       } else {
         s.display = "block";
+        document.getElementById("viewSettings").style.backgroundColor = "#333333";
       }
     }
   </script>
-</div>
-
-<div id="positionInfoWidget">
-  <table id = "positionInfoTable" class = "codeFont">
-    <tr>
-      <th style="color:#ff9595">X</th>
-      <td></td>
-    </tr>
-    <tr>
-      <th style="color:#95ff95">Y</th>
-      <td></td>
-    </tr>
-    <tr>
-      <th style="color:#9595ff">Z</th>
-      <td></td>
-    </tr>
-    <tr>
-      <th>Theta</th>
-      <td></td>
-    </tr>
-    <tr>
-      <th>Phi</th>
-      <td></td>
-    </tr>
-    <tr>
-      <th>R</th>
-      <td></td>
-    </tr>
-  </table>
 </div>
 
   <script>
