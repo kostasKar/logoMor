@@ -51,6 +51,10 @@ button:disabled {
   cursor: auto ;
 }
 
+.activeButton {
+  background-color: #333333;
+}
+
 #consoleTextArea, .CodeMirror {
   position:relative;
   width: 100%;
@@ -751,6 +755,10 @@ label.debugControls {
   margin-top: 2px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 12px;
+}
+
+#projectNameInputField:hover {
+  color: #eeeeee;
 }
 
 .buttonsGroup {

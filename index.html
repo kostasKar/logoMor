@@ -135,9 +135,11 @@
         <div class="menu-dropdown-content">
           <div onclick="LM.codeMirror.undo()">Undo</div>
           <div onclick="LM.codeMirror.redo()">Redo</div>
+          <hr class="HorizontalRule">
           <div onclick="LM.codeMirror.increaseEditorFontSize()">Zoom in</div>
           <div onclick="LM.codeMirror.decreaseEditorFontSize()">Zoom out</div>
           <div onclick="LM.codeMirror.resetEditorFontSize()">Reset Zoom</div>
+          <hr class="HorizontalRule">
           <div onclick="LM.codeMirror.setValue('')">Clear</div>
         </div>
       </div>
@@ -267,10 +269,10 @@
       let s = document.getElementById("view-settings-dropdown").style;
       if (s.display === "block"){
         s.display = "none";
-        document.getElementById("viewSettings").style.backgroundColor = "#222222";
+        document.getElementById("viewSettings").classList.remove("activeButton");
       } else {
         s.display = "block";
-        document.getElementById("viewSettings").style.backgroundColor = "#333333";
+        document.getElementById("viewSettings").classList.add("activeButton");
       }
     }
   </script>
