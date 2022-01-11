@@ -688,7 +688,7 @@ label.debugControls {
 .menu-dropdown-content {
   display: none;
   position: absolute;
-  background-color: #444444;
+  background-color: #333333;
   min-width: 180px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 10;
@@ -723,7 +723,7 @@ label.debugControls {
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .menu-dropdown:hover .menu-dropdown-button {
-  /*background-color: #2c9694;*/
+  background-color: #333333;
   cursor: default;
 }
 

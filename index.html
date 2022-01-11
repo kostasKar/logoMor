@@ -136,37 +136,19 @@
           <div onclick="LM.codeMirror.undo()">Undo</div>
           <div onclick="LM.codeMirror.redo()">Redo</div>
           <hr class="HorizontalRule">
-          <div onclick="LM.codeMirror.increaseEditorFontSize()">Zoom in</div>
-          <div onclick="LM.codeMirror.decreaseEditorFontSize()">Zoom out</div>
+          <div onclick="LM.codeMirror.increaseEditorFontSize()">Zoom In</div>
+          <div onclick="LM.codeMirror.decreaseEditorFontSize()">Zoom Out</div>
           <div onclick="LM.codeMirror.resetEditorFontSize()">Reset Zoom</div>
           <hr class="HorizontalRule">
           <div onclick="LM.codeMirror.setValue('')">Clear</div>
         </div>
       </div>
-<!--      <div class="menu-dropdown">-->
-<!--        <div class="menu-dropdown-button">View</div>-->
-<!--        <div class="menu-dropdown-content">-->
-<!--          <div onclick="LM.p5Renderer.fullscreen(!LM.p5Renderer.fullscreen())">Fullscreen</div>-->
-<!--          <div><input type="checkbox" id="autoRotate">&nbsp;Auto-Rotate</div>-->
-<!--          <div><input type="checkbox" id="turnsHelpArrows">&nbsp;Rotation Arrows</div>-->
-<!--          <div><input type="checkbox" id="avatarViewCheckbox">&nbsp;Avatar View</div>-->
-<!--          <div><input type="checkbox" id="positionInfoCheckbox">&nbsp;Avatar Info</div>-->
-<!--          <div><input type="checkbox" id="persistDrawCheckBox">&nbsp;Persist Draw</div>-->
-<!--        </div>-->
-<!--      </div>-->
       <div class="menu-dropdown">
         <div class="menu-dropdown-button">Sketch</div>
         <div class="menu-dropdown-content">
-          <div onclick="document.getElementById('colorPicker').click()">Default color<input id="colorPicker" type="color" value="#ffffff" onchange="LM.logo.setDefaultHexColor(this.value);"/></div>
+          <div onclick="document.getElementById('colorPicker').click()">Default Color<input id="colorPicker" type="color" value="#ffffff" onchange="LM.logo.setDefaultHexColor(this.value);"/></div>
         </div>
       </div>
-<!--      <div class="menu-dropdown">-->
-<!--        <div class="menu-dropdown-button">Capture</div>-->
-<!--        <div class="menu-dropdown-content">-->
-<!--          <div onclick="LM.localSystem.saveScreenshot()">Screenshot</div>-->
-<!--          <div onclick="LM.localSystem.toggleRecording()">Video</div>-->
-<!--        </div>-->
-<!--      </div>-->
       <div class="menu-dropdown">
         <div class="menu-dropdown-button" onmouseover="LM.demoPrograms.populateExamples(this)">Examples</div>
         <div class="menu-dropdown-content"></div>
@@ -234,8 +216,6 @@
       <button id="soundAddButton" onclick="LM.sounds.openSoundFile()" class="dropbtn">Add</button>
       <input id="soundinp" type='file' style="display:none;" onchange="LM.sounds.readSoundFile(event)" onclick="this.value=null;" accept="audio/*"/>
     </div>
-
-
   </div>
 </div>
 
