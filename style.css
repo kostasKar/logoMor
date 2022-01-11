@@ -765,7 +765,7 @@ label.debugControls {
 
 .panelHeader{
   direction: ltr;
-  color: white;
+  color: #dddddd;
   font-size: 14px;
   margin: 4px;
 }
@@ -777,6 +777,9 @@ label.debugControls {
   float: right;
   text-align: right;
   margin-right: 10px;
+  margin-top: 2px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
 }
 
 .buttonsGroup {
