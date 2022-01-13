@@ -734,8 +734,17 @@ label.debugControls {
   padding: 0px;
   display:inline-block;
   border: none;
+  outline:none;
   cursor: pointer;
   float: right;
+  -webkit-appearance: none;
+}
+
+#colorPicker::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+#colorPicker::-webkit-color-swatch {
+  border: none;
 }
 
 .panelHeader{
