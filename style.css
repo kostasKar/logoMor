@@ -34,6 +34,19 @@ canvas {
   box-sizing: border-box;
 }
 
+.brightText {
+  color: #dddddd;
+}
+
+.subtleText1 {
+  color: #666666;
+}
+
+.subtleText2 {
+  color: #555555;
+}
+
+
 /*
   ------------- Button styling ---------------
  */
@@ -113,79 +126,15 @@ canvas {
   margin-left: 80px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#consoleTextArea, .CodeMirror {
-  position:relative;
-  width: 100%;
-  background-color: #111111;
-  border-color: #333333;
-  border-style: solid;
-  border-width: 3px;
-  border-radius: 4px;
-  font-size: 14px;
-}
-
-.brightText {
-  color: #dddddd;
-}
-
-.subtleText1 {
-  color: #666666;
-}
-
-.subtleText2 {
-  color: #555555;
-}
-
-
 /*
-  Screenshot and video record buttons
-*/
+  -----------General page layout--------
+ */
 
-#pictureControl{
+#viewPanelControls{
   float : right;
   margin-right: 12px;
   margin-top: 30px;
 }
-
-
-
-
-
-/*
-  Logo control column
- */
 
 #controlsColumnScroll{
   float: right;
@@ -202,26 +151,14 @@ canvas {
 #controlsColumn {
   margin-right: 25px;
   margin-top: 10px;
-  direction: rtl;
 }
 
 #controlsColumn :focus{
   outline: none !important;
 }
 
-#consoleTextArea{
-  white-space: pre;
-  height: 150px;
-  min-height: 150px;
-  resize: vertical;
-  overflow: auto;
-  margin-bottom: 2px;
-  padding: 5px;
-}
-
 #sourceCodeContainer {
   position: relative;
-  direction: rtl;
   resize: both;
   overflow: auto;
   min-height: 414px;
@@ -231,7 +168,68 @@ canvas {
   z-index: 1;
 }
 
-#sourceCodeTextArea, .CodeMirror {
+.rtl{
+  direction: rtl;
+}
+
+
+
+/*
+  ----------Camera instructions----------
+ */
+
+#CameraInstructions {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 14px;
+}
+
+#CameraInstructions label{
+  display:block;
+  margin: 1px;
+}
+
+#logoIcon {
+  height: 30px;
+  margin-bottom: -8px;
+}
+
+#CameraInstructions h1 {
+  font-size: 16px;
+  font-weight: normal;
+  margin-top: 5px;
+  margin-bottom: 4px;
+  display: inline-block;
+}
+
+#CameraInstructions h1 .bigger{
+  font-size: 18px;
+}
+
+#CameraInstructions h2 {
+  font-size: 12px;
+  font-weight: normal;
+  margin-top: 2px;
+  margin-bottom: 8px;
+}
+
+#fpsLabel, #fpsValue, #retainModeLabel, #retainModeValue{
+  margin: 1px;
+}
+
+
+/*
+  Editor and console
+ */
+.CodeMirror {
+  position:relative;
+  background-color: #111111;
+  border-color: #333333;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 4px;
+  font-size: 14px;
   height: inherit !important;
   min-height: 414px;
   overflow: auto;
@@ -239,6 +237,23 @@ canvas {
 
 .CodeMirror-scroll{
   min-height: 400px !important;
+}
+
+#consoleTextArea{
+  position:relative;
+  background-color: #111111;
+  border-color: #333333;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 4px;
+  font-size: 14px;
+  white-space: pre;
+  height: 150px;
+  min-height: 150px;
+  resize: vertical;
+  overflow: auto;
+  margin-bottom: 2px;
+  padding: 5px;
 }
 
 #pull-tab {
@@ -258,6 +273,28 @@ canvas {
   position:relative;
   margin: -16px 0px;
 }
+
+/*
+   Sectors of the controls column
+ */
+
+.areaDiv {
+  direction: ltr;
+  position: relative;
+}
+
+.fixedWidth {
+  width: 414px;
+}
+
+.areaTitle {
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+}
+
+
 
 
 #movesLimitDiv {
@@ -285,21 +322,7 @@ canvas {
   margin-top: 3px;
 }
 
-.areaDiv {
-  direction: ltr;
-  position: relative;
-}
 
-.fixedWidth {
-  width: 414px;
-}
-
-.areaTitle {
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  margin: 4px 2px;
-}
 
 .modelDiv, .imageDiv, .soundDiv {
   width: 100%; /* Width of the outside container */
@@ -442,46 +465,7 @@ canvas {
 
 .hide {display: none !important;}
 
-/*View control column*/
-#CameraInstructions {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  font-size: 14px;
-}
 
-#CameraInstructions label{
-  display:block;
-  margin: 1px;
-}
-
-#logoIcon {
-  height: 30px;
-  margin-bottom: -8px;
-}
-
-#CameraInstructions h1 {
-  font-size: 16px;
-  font-weight: normal;
-  margin-top: 5px;
-  margin-bottom: 4px;
-  display: inline-block;
-}
-
-#CameraInstructions h1 .bigger{
-  font-size: 18px;
-}
-
-#CameraInstructions h2 {
-  font-size: 12px;
-  font-weight: normal;
-  margin-top: 2px;
-  margin-bottom: 8px;
-}
-
-#fpsLabel, #fpsValue, #retainModeLabel, #retainModeValue{
-  margin: 1px;
-}
 
 
 /*Tooltips*/

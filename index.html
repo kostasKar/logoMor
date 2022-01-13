@@ -116,7 +116,7 @@
 <div id="drawCanvas"></div>
 
 <div id ="controlsColumnScroll">
-  <div id="controlsColumn">
+  <div id="controlsColumn" class="rtl">
 
     <div id="menubar">
       <div class="menu-dropdown">
@@ -166,8 +166,8 @@
       <input type="text" id="projectNameInputField" placeholder="Sketch Name" onClick="this.select();">
     </div>
 
-    <div id="sourceCodeContainer">
-      <textarea class="codeFont brightText" id="sourceCodeTextArea" spellcheck="false" placeholder="Logo code here...&#13;&#10;Press 'Demo' to load random example programs"></textarea>
+    <div id="sourceCodeContainer" class="rtl">
+      <textarea class="codeFont" id="sourceCodeTextArea" spellcheck="false" placeholder="Logo code here..."></textarea>
     </div>
     <div id="pull-tab"></div>
 
@@ -230,7 +230,7 @@
 </div>
 
 
-<div id="pictureControl">
+<div id="viewPanelControls">
   <button class="tooltip btn circularButton" id="collapseControlsColumn" onclick="document.getElementById('controlsColumnScroll').classList.toggle('hide')">
     <i class="fa fa-code" aria-hidden="true"></i>
     <span class="tooltiptext left">Code Column</span>
