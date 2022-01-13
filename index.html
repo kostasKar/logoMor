@@ -172,19 +172,19 @@
     <div id="pull-tab"></div>
 
     <div class="areaDiv" id="movesLimitDiv">
-      <button title="Start debugging" class="debugControls" id="debugButton" onclick="LM.interpreter.setup(null, true)">Debug</button>
-      <button title="Run to breakpoint" class="debugControls" id="debugContinueButton" onclick="LM.debugger.continuePressed()" disabled>Continue</button>
-      <button title="Run next command" class="debugControls" id="debugStepButton" onclick="LM.debugger.stepPressed()" disabled>Step</button>
+      <button title="Start debugging" class="btn smallButton" id="debugButton" onclick="LM.interpreter.setup(null, true)">Debug</button><!--
+      --><button title="Run to breakpoint" class="btn smallButton" id="debugContinueButton" onclick="LM.debugger.continuePressed()" disabled>Continue</button><!--
+      --><button title="Run next command" class="btn smallButton" id="debugStepButton" onclick="LM.debugger.stepPressed()" disabled>Step</button>
       <input  id="movesLimitInput" type="number" name="quantity" min="0" placeholder="Infinite" onchange="LM.interpreter.movesLimit = this.value || Infinity; LM.retainMode.fireExecution()">
       <label title="Maximum number of move commands per frame" class="subtleText1" id="movesLimitLabel">Moves Limit:</label>
     </div>
 
     <div class="areaDiv" id = "buttonDiv">
-      <button id="playButton" onclick="LM.interpreter.setup()">Run</button><!-- just to get rid of the space between the inline-blocks
-        --><button id="stopButton" onclick="LM.interpreter.setup(''); LM.sounds.stopAllAudio()">Stop</button>
+      <button class="btn bigButton" id="playButton" onclick="LM.interpreter.setup()">Run</button><!-- just to get rid of the space between the inline-blocks
+        --><button class="btn bigButton" id="stopButton" onclick="LM.interpreter.setup(''); LM.sounds.stopAllAudio()">Stop</button>
     </div>
 
-    <div class="areaDiv">
+    <div class="areaDiv" id="consoleDiv">
       <label title="Program output (print command), system and error messages dispayed here" class="areaTitle brightText">Console</label>
       <div readonly id="consoleTextArea" class="codeFont brightText"></div>
     </div>
@@ -192,8 +192,8 @@
     <div class="areaDiv" id="variablesDiv">
       <label title="Manipulate the initial value of any global variable defined in the source code. Changes can be observed on the drawing in real time" class="areaTitle brightText" id="variablesTitle">Variables Manipulators</label>
       <div class="dropdown">
-        <button id="slidersAddButton" onclick="LM.variableManipulatorsSliders.showVariablesNames()" class="dropbtn" disabled>Add</button>
-        <button id="slidersClearButton" onclick="LM.variableManipulatorsSliders.clearSliders()" class="dropbtn" disabled>Clear</button>
+        <button class="dropbtn btn mediumButton" id="slidersAddButton" onclick="LM.variableManipulatorsSliders.showVariablesNames()" disabled>Add</button><!--
+        --><button class="dropbtn btn mediumButton" id="slidersClearButton" onclick="LM.variableManipulatorsSliders.clearSliders()" disabled>Clear</button>
         <div id="variablesNamesDropdown" class="dropdown-content">
         </div>
       </div>
@@ -201,7 +201,7 @@
 
     <div class="areaDiv" id="assetsDiv">
       <label title="Import models, images or sounds from local disk" class="areaTitle brightText">Assets</label>
-      <button id="assetsAddButton" onclick="toggleAddAssetsDropdown()" class="dropbtn">Add</button>
+      <button id="assetsAddButton" class="btn mediumButton dropbtn" onclick="toggleAddAssetsDropdown()">Add</button>
       <div id="assetsDropDown" class="dropdown-content menu-dropdown-content">
         <div title="Import an .stl or .obj 3D model file from local disk" onclick="LM.models.openModelFile()">Model</div>
         <div title="Import any image file from local disk" onclick="LM.images.openImageFile()">Image</div>
@@ -231,23 +231,23 @@
 
 
 <div id="pictureControl">
-  <button class="tooltip" id="collapseControlsColumn" onclick="document.getElementById('controlsColumnScroll').classList.toggle('hide')">
+  <button class="tooltip btn circularButton" id="collapseControlsColumn" onclick="document.getElementById('controlsColumnScroll').classList.toggle('hide')">
     <i class="fa fa-code" aria-hidden="true"></i>
     <span class="tooltiptext left">Code Column</span>
   </button>
-  <button class="tooltip" id="saveScreenshot" onclick="LM.localSystem.saveScreenshot()">
+  <button class="tooltip btn circularButton" id="saveScreenshot" onclick="LM.localSystem.saveScreenshot()">
     <i class="fa fa-camera" aria-hidden="true"></i>
     <span class="tooltiptext left">Screenshot</span>
   </button>
-  <button class="tooltip" id="record" onclick="LM.localSystem.toggleRecording()">
+  <button class="tooltip btn circularButton" id="record" onclick="LM.localSystem.toggleRecording()">
     <i class="fa fa-video" aria-hidden="true"></i>
     <span class="tooltiptext left">Video</span>
   </button>
-  <button class="tooltip" id="pause" onclick="LM.retainMode.togglePause()">
+  <button class="tooltip btn circularButton" id="pause" onclick="LM.retainMode.togglePause()">
     <i class="fa fa-pause" aria-hidden="true"></i>
     <span class="tooltiptext left">Redrawing</span>
   </button>
-  <button class="tooltip dropdown-button" id="viewSettings" onclick="toggleViewSettingsDropdown()">
+  <button class="tooltip btn circularButton dropdown-button" id="viewSettings" onclick="toggleViewSettingsDropdown()">
     <i class="fa fa-cog" aria-hidden="true"></i>
     <span class="tooltiptext left">View settings</span>
   </button>

@@ -40,7 +40,7 @@ LM.sounds = (function(){
     sourceNode.connect(audioCtx.destination);
 
     var deleteButton = document.createElement("button");
-    deleteButton.className = "fa fa-times deleteSoundButton";
+    deleteButton.className = "fa fa-times deleteButton";
     deleteButton.onclick = function() {removeSound(this.parentNode.id)};
     soundDiv.appendChild(deleteButton);
 

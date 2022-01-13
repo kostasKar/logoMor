@@ -97,7 +97,7 @@ LM.models = (function() {
     new p5(sketch, modelDiv);
 
     var deleteButton = document.createElement("button");
-    deleteButton.className = "fa fa-times deleteModelButton";
+    deleteButton.className = "fa fa-times deleteButton afterAsset";
     deleteButton.onclick = function() {removeModel(this.parentNode.id)};
     modelDiv.appendChild(deleteButton);
   }

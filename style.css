@@ -27,33 +27,118 @@ canvas {
   box-sizing: border-box;
 }
 
-button {
+/*
+  ------------- Button styling ---------------
+ */
+
+.btn {
   background-color: #222222;
   color: #aaaaaa;
   border-color: #333333;
   border-style: solid;
-  border-width: 3px;
-  border-radius: 6px;
-  outline: none !important;
+  outline: none;
   text-decoration: none;
   text-align: center;
   cursor: pointer;
-  font-size: 16px;
+  border-radius: 6px;
 }
 
-button:hover:not([disabled]) {
+.btn:hover:not([disabled]) ,.activeButton{
   color: #dddddd;
   background-color: #333333;
 }
 
-button:disabled {
+.btn:disabled {
   color: #555555;
   cursor: auto ;
 }
 
-.activeButton {
-  background-color: #333333;
+.bigButton {
+  padding: 10px 0px;
+  margin: 4px 4px;
+  width: 61px;
+  border-width: 3px;
+  font-size: 16px;
 }
+
+.mediumButton {
+  padding: 5px 5px;
+  margin: 4px 4px;
+  border-width: 3px;
+  font-size: 14px;
+}
+
+.smallButton {
+  padding: 1px 5px;
+  border-width: 2px;
+  font-size: 11px;
+  margin: 5px 3px 0px 4px;
+}
+
+.circularButton{
+  border-width: 3px;
+  width: 50px;
+  height: 50px;
+  display: block;
+  margin: 6px 2px;
+  border-radius: 50%;
+  font-size: 16px;
+}
+
+.deleteButton {
+  background-color: black;
+  border: none;
+  color: #cc8888;
+  padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 5px 5px;
+  cursor: pointer;
+}
+
+.deleteButton:hover {
+  color: white;
+}
+
+.afterAsset {
+  margin-left: 80px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #consoleTextArea, .CodeMirror {
   position:relative;
@@ -90,13 +175,7 @@ button:disabled {
   margin-top: 30px;
 }
 
-#pictureControl button{
-  width: 50px;
-  height: 50px;
-  display: block;
-  margin: 6px 2px;
-  border-radius: 50%;
-}
+
 
 
 
@@ -204,23 +283,8 @@ button:disabled {
   margin-top: 3px;
 }
 
-button.debugControls{
-  border-width: 2px;
-  padding: 1px 5px;
-  font-size: 11px;
-  margin: 5px 3px 0px 4px;
-  float: left;
-}
-
 label.debugControls {
   float: left;
-}
-
-#buttonDiv button {
-  padding: 10px 0px;
-  display: inline-block;
-  margin: 4px 4px;
-  width: 61px;
 }
 
 #buttonDiv input{
@@ -279,32 +343,6 @@ label.debugControls {
   width: 270px;
   height: 20px;
   margin: 0px 0px -4px 3px;
-}
-
-.deleteModelButton, .deleteImageButton, .deleteSoundButton {
-  background-color: black;
-  border: none;
-  color: #cc8888;
-  padding: 5px 5px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  margin: 4px 0px;
-  cursor: pointer;
-  margin-left: 80px;
-}
-
-.playSoundButton, .stopSoundButton, .deleteSoundButton {
-  background-color: black;
-  border: none;
-  padding: 5px 5px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  margin: 5px 5px;
-  cursor: pointer;
 }
 
 /* The slider itself */
@@ -390,11 +428,6 @@ label.debugControls {
 }
 
 /*Variables Sliders*/
-.dropbtn {
-  padding: 5px 5px;
-  margin: 4px 0px;
-  font-size: 14px;
-}
 
 .dropdown {
   position: relative;
@@ -468,62 +501,6 @@ label.debugControls {
   margin: 1px;
 }
 
-#fullscreenButton {
-  position: relative;
-  top: 5px;
-  background: none;
-  border: none;
-  padding: 2px 4px;
-  width: 25;
-  height:25;
-  color: #555555;
-  font-size: 15px;
-  cursor: pointer;
-  outline: none !important;
-  margin-top: 3px;
-}
-
-.onoffswitch {
-  position: relative;
-  margin-bottom: 15px;
-  width: 30px;
-  top: 10px;
-  left: 0px;
-  -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
-}
-.onoffswitch-checkbox {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-}
-.onoffswitch-label {
-  display: block; overflow: hidden; cursor: pointer;
-  height: 11px; padding: 0; line-height: 11px;
-  border: 0px solid #FFFFFF; border-radius: 18px;
-  background-color: #333333;
-}
-.onoffswitch-label:before {
-  content: "";
-  display: block; width: 18px; margin: -3.5px;
-  background: #555555;
-  position: absolute; top: 0; bottom: 0;
-  right: 15px;
-  border-radius: 18px;
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label {
-  background-color: #333333;
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
-  border-color: #5D5D5D;
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-  margin-left: 0;
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label:before {
-  right: 0px;
-  background-color: #A3A3A3;
-  box-shadow: 5px 5px 18px 0px rgba(120, 120, 120, 0.5);
-}
 
 /*Tooltips*/
 .tooltip .tooltiptext {
@@ -595,14 +572,6 @@ label.debugControls {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-
-.editorButton {
-  border-width: 2px;
-  padding: 1px 5px;
-  font-size: 11px;
-  margin: 4px 4px;
-  float: right;
 }
 
 @keyframes blinkingBorder {
@@ -770,28 +739,6 @@ label.debugControls {
   color: #eeeeee;
 }
 
-.buttonsGroup {
-  display: block;
-  background-color: #222222;
-  direction: ltr;
-}
-
-.buttonsGroup button {
-  color: white;
-  padding: 5px;
-  background-color: #222222;
-  margin: 0;
-  border: 1px solid #555555;
-}
-
-.buttonsGroup button:hover:not([disabled]) {
-  background-color: #555555;
-}
-
-.buttonsGroup button:disabled {
-  color: #555555;
-  cursor: auto ;
-}
 
 #movesLimitInput {
   background-color: #222222;

@@ -40,7 +40,7 @@ LM.images = (function(){
     new p5(sketch, imageDiv);
 
     var deleteButton = document.createElement("button");
-    deleteButton.className = "fa fa-times deleteImageButton";
+    deleteButton.className = "fa fa-times deleteButton afterAsset";
     deleteButton.style.marginLeft = 30 + loadedImages[name].width / loadedImages[name].height * 50 + 'px';
     deleteButton.onclick = function() {removeImage(this.parentNode.id)};
     imageDiv.appendChild(deleteButton);
