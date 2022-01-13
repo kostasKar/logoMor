@@ -161,8 +161,8 @@
       </div>
     </div>
 
-    <div id="editorPanelheader" class="panelHeader">
-      <label>Source Code Editor</label>
+    <div id="editorPanelheader" class="areaDiv">
+      <label class="areaTitle brightText">Source Code Editor</label>
       <input type="text" id="projectNameInputField" placeholder="Sketch Name" onClick="this.select();">
     </div>
 
@@ -171,7 +171,7 @@
     </div>
     <div id="pull-tab"></div>
 
-    <div class="areaDiv" id="movesLimitDiv">
+    <div class="areaDiv fixedWidth" id="movesLimitDiv">
       <button title="Start debugging" class="btn smallButton" id="debugButton" onclick="LM.interpreter.setup(null, true)">Debug</button><!--
       --><button title="Run to breakpoint" class="btn smallButton" id="debugContinueButton" onclick="LM.debugger.continuePressed()" disabled>Continue</button><!--
       --><button title="Run next command" class="btn smallButton" id="debugStepButton" onclick="LM.debugger.stepPressed()" disabled>Step</button>
@@ -179,18 +179,18 @@
       <label title="Maximum number of move commands per frame" class="subtleText1" id="movesLimitLabel">Moves Limit:</label>
     </div>
 
-    <div class="areaDiv" id = "buttonDiv">
+    <div class="areaDiv fixedWidth" id = "buttonDiv">
       <button class="btn bigButton" id="playButton" onclick="LM.interpreter.setup()">Run</button><!-- just to get rid of the space between the inline-blocks
         --><button class="btn bigButton" id="stopButton" onclick="LM.interpreter.setup(''); LM.sounds.stopAllAudio()">Stop</button>
     </div>
 
-    <div class="areaDiv" id="consoleDiv">
+    <div class="areaDiv fixedWidth" id="consoleDiv">
       <label title="Program output (print command), system and error messages dispayed here" class="areaTitle brightText">Console</label>
       <div readonly id="consoleTextArea" class="codeFont brightText"></div>
     </div>
 
-    <div class="areaDiv" id="variablesDiv">
-      <label title="Manipulate the initial value of any global variable defined in the source code. Changes can be observed on the drawing in real time" class="areaTitle brightText" id="variablesTitle">Variables Manipulators</label>
+    <div class="areaDiv fixedWidth" id="variablesDiv">
+      <label title="Manipulate the initial value of any global variable defined in the source code. Changes can be observed on the drawing in real time" class="areaTitle brightText">Variables Manipulators</label>
       <div class="dropdown">
         <button class="dropbtn btn mediumButton" id="slidersAddButton" onclick="LM.variableManipulatorsSliders.showVariablesNames()" disabled>Add</button><!--
         --><button class="dropbtn btn mediumButton" id="slidersClearButton" onclick="LM.variableManipulatorsSliders.clearSliders()" disabled>Clear</button>
@@ -199,7 +199,7 @@
       </div>
     </div>
 
-    <div class="areaDiv" id="assetsDiv">
+    <div class="areaDiv fixedWidth" id="assetsDiv">
       <label title="Import models, images or sounds from local disk" class="areaTitle brightText">Assets</label>
       <button id="assetsAddButton" class="btn mediumButton dropbtn" onclick="toggleAddAssetsDropdown()">Add</button>
       <div id="assetsDropDown" class="dropdown-content menu-dropdown-content">

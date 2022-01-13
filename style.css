@@ -2,7 +2,6 @@
   -------------- General Rules --------------
  */
 
-
 body {
   margin: 0;
   padding: 0;
@@ -15,6 +14,14 @@ body, button {
 
 .codeFont, .CodeMirror, .CodeMirror-hints {
   font-family: Consolas, monospace !important;
+}
+
+::-moz-selection { /* Code for Firefox */
+  background: #444444;
+}
+
+::selection {
+  background: #444444;
 }
 
 canvas {
@@ -138,8 +145,6 @@ canvas {
 
 
 
-
-
 #consoleTextArea, .CodeMirror {
   position:relative;
   width: 100%;
@@ -169,7 +174,6 @@ canvas {
 */
 
 #pictureControl{
-  display: inline-block;
   float : right;
   margin-right: 12px;
   margin-top: 30px;
@@ -261,12 +265,10 @@ canvas {
   margin: 5px 0px 2px 0px;
 }
 
-#movesLimitDiv label{
-  font-size: 12px;
-  margin: 7px 5px 0px 4px;
-}
-
 #movesLimitLabel {
+  margin-top: 7px;
+  margin-right: 5px;
+  font-size: 12px;
   float: right;
 }
 
@@ -283,24 +285,13 @@ canvas {
   margin-top: 3px;
 }
 
-label.debugControls {
-  float: left;
-}
-
-#buttonDiv input{
-  float:right;
-}
-
-#sourceCodeEditorTitleDiv {
-  direction: ltr;
-  position: relative;
-}
-
 .areaDiv {
-  width: 414px;
   direction: ltr;
   position: relative;
-  font-size: 14px;
+}
+
+.fixedWidth {
+  width: 414px;
 }
 
 .areaTitle {
@@ -308,16 +299,6 @@ label.debugControls {
   display: inline-block;
   font-size: 14px;
   margin: 4px 2px;
-}
-
-#variablesTitle {
-  display: inline-block;
-}
-
-.sliderContainer {
-  width: 100%; /* Width of the outside container */
-  margin: 10px 0px 10px 10px;
-  padding: 5px;
 }
 
 .modelDiv, .imageDiv, .soundDiv {
@@ -344,6 +325,13 @@ label.debugControls {
   height: 20px;
   margin: 0px 0px -4px 3px;
 }
+
+.sliderContainer {
+  width: 100%; /* Width of the outside container */
+  margin: 10px 0px 10px 10px;
+  padding: 5px;
+}
+
 
 /* The slider itself */
 .slider {
@@ -419,13 +407,7 @@ label.debugControls {
   Margin-right: 21px;
 }
 
-::-moz-selection { /* Code for Firefox */
-  background: #444444;
-}
 
-::selection {
-  background: #444444;
-}
 
 /*Variables Sliders*/
 
@@ -716,12 +698,6 @@ label.debugControls {
   border: none;
 }
 
-.panelHeader{
-  direction: ltr;
-  color: #dddddd;
-  font-size: 14px;
-  margin: 4px;
-}
 
 #projectNameInputField {
   background-color: inherit;
@@ -739,7 +715,6 @@ label.debugControls {
   color: #eeeeee;
 }
 
-
 #movesLimitInput {
   background-color: #222222;
   border: none;
@@ -747,25 +722,6 @@ label.debugControls {
   width: 100px;
   float: right;
   margin-top: 5px;
-}
-
-#movesLimitLabel {
-  margin-top: 7px;
-  margin-right: 5px;
-  font-size: 12px;
-  color: #666666;
-  float: right;
-}
-
-#consoleTextArea{
-  white-space: pre;
-  height: 150px;
-  min-height: 150px;
-  resize: vertical;
-  overflow: auto;
-  margin-bottom: 2px;
-  padding: 5px;
-  direction: ltr;
 }
 
 .assetsIcon{
