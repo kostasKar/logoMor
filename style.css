@@ -655,7 +655,9 @@ canvas {
 /* Change color of dropdown links on hover */
 .menu-dropdown-content div:hover {
   background-color: #2c9694;
-  cursor: pointer;}
+  color: white;
+  cursor: pointer;
+}
 
 /* Show the dropdown menu on hover */
 .menu-dropdown:hover .menu-dropdown-content {
@@ -698,6 +700,7 @@ canvas {
 
 .dropdown li:hover {
   background-color: #2c9694;
+  color: white;
   cursor: pointer;
 }
 
