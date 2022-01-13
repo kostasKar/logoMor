@@ -608,7 +608,11 @@ canvas {
 
 
 
-/* #menubar .menu-dropdown .menu-dropdown-button .menu-dropdown-content*/
+/*
+  Menus and dropdowns.
+  dropdown is for the variables dropdown and also used for the assets dropdown. Hides on click away
+  menu dropdown is for the menu items. Hides on mouse away
+ */
 
 #menubar{
   direction:ltr;
@@ -618,11 +622,9 @@ canvas {
 .menu-dropdown {
   position: relative;
   display: inline-block;
-  color: white;
 }
 
 .menu-dropdown-button {
-  color: white;
   padding: 5px;
   font-size: 12px;
   border: none;
@@ -645,7 +647,6 @@ canvas {
 
 /* Links inside the dropdown */
 .menu-dropdown-content div {
-  color: white;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
@@ -681,7 +682,7 @@ canvas {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #222222;
+  background-color: #333333;
   z-index: 10;
   min-width: 160px;
   overflow: auto;
@@ -689,14 +690,14 @@ canvas {
 }
 
 .dropdown-content li {
-  color: white;
+  color: #dddddd;
   padding: 5px 10px;
   text-decoration: none;
   display: block;
 }
 
 .dropdown li:hover {
-  background-color: #333333;
+  background-color: #2c9694;
   cursor: pointer;
 }
 
@@ -705,25 +706,9 @@ canvas {
 .hide {display: none !important;}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*
+  The project name input. Editable but not as a normal text input field
+ */
 #projectNameInputField {
   background-color: inherit;
   border: none;

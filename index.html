@@ -118,7 +118,7 @@
 <div id ="controlsColumnScroll">
   <div id="controlsColumn" class="rtl">
 
-    <div id="menubar">
+    <div id="menubar" class="brightText">
       <div class="menu-dropdown">
         <div class="menu-dropdown-button">File</div>
         <div class="menu-dropdown-content">
@@ -202,7 +202,7 @@
     <div class="areaDiv fixedWidth" id="assetsDiv">
       <label title="Import models, images or sounds from local disk" class="areaTitle brightText">Assets</label>
       <button id="assetsAddButton" class="btn mediumButton dropbtn" onclick="toggleAddAssetsDropdown()">Add</button>
-      <div id="assetsDropDown" class="dropdown-content menu-dropdown-content">
+      <div id="assetsDropDown" class="dropdown-content menu-dropdown-content brightText">
         <div title="Import an .stl or .obj 3D model file from local disk" onclick="LM.models.openModelFile()">Model</div>
         <div title="Import any image file from local disk" onclick="LM.images.openImageFile()">Image</div>
         <div title="Import any audio file from local disk" onclick="LM.sounds.openSoundFile()">Sound</div>
@@ -251,8 +251,8 @@
     <i class="fa fa-cog" aria-hidden="true"></i>
     <span class="tooltiptext left">View settings</span>
   </button>
-  <div id="view-settings-dropdown" class="menu-dropdown-content left">
-    <div onclick="LM.p5Renderer.fullscreen(!LM.p5Renderer.fullscreen())">Fullscreen</div>
+  <div id="view-settings-dropdown" class="menu-dropdown-content left brightText">
+    <div onclick="LM.p5Renderer.fullscreen(!LM.p5Renderer.fullscreen());toggleViewSettingsDropdown()">Fullscreen</div>
     <div onclick="document.getElementById('autoRotate').click()"><input type="checkbox" id="autoRotate" style="pointer-events:none">&nbsp;Auto-Rotate</div>
     <div onclick="document.getElementById('turnsHelpArrows').click()"><input type="checkbox" id="turnsHelpArrows" style="pointer-events:none">&nbsp;Rotation Arrows</div>
     <div onclick="document.getElementById('avatarViewCheckbox').click()"><input type="checkbox" id="avatarViewCheckbox" style="pointer-events:none">&nbsp;Avatar View</div>
