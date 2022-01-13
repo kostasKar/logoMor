@@ -425,7 +425,7 @@ label.debugControls {
 
 .show {display: block !important;}
 
-
+.hide {display: none !important;}
 
 /*View control column*/
 #CameraInstructions {

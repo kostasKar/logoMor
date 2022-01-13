@@ -231,6 +231,10 @@
 
 
 <div id="pictureControl">
+  <button class="tooltip" id="collapseControlsColumn" onclick="document.getElementById('controlsColumnScroll').classList.toggle('hide')">
+    <i class="fa fa-code" aria-hidden="true"></i>
+    <span class="tooltiptext left">Code Column</span>
+  </button>
   <button class="tooltip" id="saveScreenshot" onclick="LM.localSystem.saveScreenshot()">
     <i class="fa fa-camera" aria-hidden="true"></i>
     <span class="tooltiptext left">Screenshot</span>
