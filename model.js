@@ -72,7 +72,9 @@ LM.models = (function() {
     modelName.value = name;
     modelName.name = name;
     modelName.onchange = function() {renameModel(this)};
-    
+    let icon = document.createElement("span");
+    icon.className = "fa fa-cube assetsIcon";
+
     let sketch = function(p) {
       p.setup = function(){
         let canvas = p.createCanvas(50, 50, p.WEBGL);
@@ -90,6 +92,7 @@ LM.models = (function() {
     };
 
     container.appendChild(modelDiv);
+    modelDiv.appendChild(icon);
     modelDiv.appendChild(modelName);
     new p5(sketch, modelDiv);
 

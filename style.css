@@ -423,7 +423,7 @@ label.debugControls {
   cursor: pointer;
 }
 
-.show {display: block;}
+.show {display: block !important;}
 
 
 
@@ -810,4 +810,9 @@ label.debugControls {
   margin-bottom: 2px;
   padding: 5px;
   direction: ltr;
+}
+
+.assetsIcon{
+  margin-right: 8px;
+  color: #888888;
 }

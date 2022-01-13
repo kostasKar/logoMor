@@ -13,7 +13,9 @@ LM.images = (function(){
     imageName.value = name;
     imageName.name = name;
     imageName.onchange = function() {renameImage(this)};
-    
+    let icon = document.createElement("span");
+    icon.className = "fa fa-image assetsIcon";
+
     let sketch = function(p) {
       p.setup = function(){
         var w = loadedImages[name].width;
@@ -33,6 +35,7 @@ LM.images = (function(){
     };
 
     container.appendChild(imageDiv);
+    imageDiv.appendChild(icon);
     imageDiv.appendChild(imageName);
     new p5(sketch, imageDiv);
 

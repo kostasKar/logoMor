@@ -163,7 +163,7 @@
 
     <div id="editorPanelheader" class="panelHeader">
       <label>Source Code Editor</label>
-      <input type="text" id="projectNameInputField" placeholder="Sketch Name">
+      <input type="text" id="projectNameInputField" placeholder="Sketch Name" onClick="this.select();">
     </div>
 
     <div id="sourceCodeContainer">
@@ -199,23 +199,33 @@
       </div>
     </div>
 
-    <div class="areaDiv" id="modelsDiv">
-      <label title="Import an .stl or .obj 3D model file from local disk" class="areaTitle brightText">Models</label>
-      <button id="modelsAddButton" onclick="LM.models.openModelFile()" class="dropbtn">Add</button>
-      <input id="modelinp" type='file' style="display:none;" onchange="LM.models.readModelFile(event)" onclick="this.value=null;" accept=".stl,.obj" />
-    </div>
+    <div class="areaDiv" id="assetsDiv">
+      <label title="Import models, images or sounds from local disk" class="areaTitle brightText">Assets</label>
+      <button id="assetsAddButton" onclick="toggleAddAssetsDropdown()" class="dropbtn">Add</button>
+      <div id="assetsDropDown" class="dropdown-content menu-dropdown-content">
+        <div title="Import an .stl or .obj 3D model file from local disk" onclick="LM.models.openModelFile()">Model</div>
+        <div title="Import any image file from local disk" onclick="LM.images.openImageFile()">Image</div>
+        <div title="Import any audio file from local disk" onclick="LM.sounds.openSoundFile()">Sound</div>
+      </div>
+      <div class="areaDiv" id="modelsDiv">
+        <input id="modelinp" type='file' style="display:none;" onchange="LM.models.readModelFile(event)" onclick="this.value=null;" accept=".stl,.obj" />
+      </div>
 
-    <div class="areaDiv" id="imagesDiv">
-      <label title="Import any image file from local disk" class="areaTitle brightText">Images</label>
-      <button id="imagesAddButton" onclick="LM.images.openImageFile()" class="dropbtn">Add</button>
-      <input id="imageinp" type='file' style="display:none;" onchange="LM.images.readImageFile(event)" onclick="this.value=null;" accept="image/*"/>
-    </div>
+      <div class="areaDiv" id="imagesDiv">
+        <input id="imageinp" type='file' style="display:none;" onchange="LM.images.readImageFile(event)" onclick="this.value=null;" accept="image/*"/>
+      </div>
 
-    <div class="areaDiv" id="soundsDiv">
-      <label title="Import any audio file from local disk" class="areaTitle brightText">Sounds</label>
-      <button id="soundAddButton" onclick="LM.sounds.openSoundFile()" class="dropbtn">Add</button>
-      <input id="soundinp" type='file' style="display:none;" onchange="LM.sounds.readSoundFile(event)" onclick="this.value=null;" accept="audio/*"/>
+      <div class="areaDiv" id="soundsDiv">
+        <input id="soundinp" type='file' style="display:none;" onchange="LM.sounds.readSoundFile(event)" onclick="this.value=null;" accept="audio/*"/>
+      </div>
     </div>
+    <script>
+      function toggleAddAssetsDropdown(){
+        document.getElementById("assetsDropDown").classList.toggle("show");
+      }
+    </script>
+
+
   </div>
 </div>
 
