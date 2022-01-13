@@ -114,7 +114,6 @@ canvas {
   text-decoration: none;
   display: inline-block;
   font-size: 14px;
-  margin: 5px 5px;
   cursor: pointer;
 }
 
@@ -274,6 +273,47 @@ canvas {
   margin: -16px 0px;
 }
 
+#hintHelpText{
+  border: 1px solid #333333;
+  border-radius: 3px;
+  font-size: 12px;
+  background-color: #49483E;
+  color: #aaaaaa;
+  z-index: 5;
+  padding: 5px;
+}
+
+.system-output{
+  color: #cacaa2;
+}
+
+.error-output{
+  color: #ee9999;
+}
+
+.variablesTraceTable {
+  font-size: 14px;
+  border-collapse: collapse;
+  width: 300px;
+  border: 1px solid #616138;
+}
+
+.variablesTraceTable th {
+  font-size: 14px;
+  border-bottom: 1px solid #616138;
+  border-top: 1px solid #616138;
+  paddin-left: 3px;
+}
+.variablesTraceTable td {
+  width: 150px;
+  max-width: 150px;
+  padding-left: 3px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+
+}
+
 /*
    Sectors of the controls column
  */
@@ -295,6 +335,11 @@ canvas {
 }
 
 
+
+
+/*
+  Debug and moves limit area TODO maybe merge to buttonsDiv
+ */
 
 
 #movesLimitDiv {
@@ -322,10 +367,11 @@ canvas {
   margin-top: 3px;
 }
 
-
+/*
+  Assets section
+ */
 
 .modelDiv, .imageDiv, .soundDiv {
-  width: 100%; /* Width of the outside container */
   margin-left: 10px;
   padding: 5px;
   height: 51px;
@@ -348,6 +394,16 @@ canvas {
   height: 20px;
   margin: 0px 0px -4px 3px;
 }
+
+.assetsIcon{
+  margin-right: 8px;
+  color: #888888;
+}
+
+
+/*
+  Variables Sliders section
+ */
 
 .sliderContainer {
   width: 100%; /* Width of the outside container */
@@ -432,43 +488,10 @@ canvas {
 
 
 
-/*Variables Sliders*/
+/*
+  Tooltips for hints of buttons
+ */
 
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #222222;
-  z-index: 10;
-  min-width: 160px;
-  overflow: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-.dropdown-content li {
-  color: white;
-  padding: 5px 10px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown li:hover {
-  background-color: #333333;
-  cursor: pointer;
-}
-
-.show {display: block !important;}
-
-.hide {display: none !important;}
-
-
-
-
-/*Tooltips*/
 .tooltip .tooltiptext {
   display: none;
   white-space: nowrap;
@@ -496,7 +519,10 @@ canvas {
   display: inline-block;
 }
 
-/*Footer*/
+
+/*
+  Footer
+ */
 #copyright {
   position: fixed;
   bottom: 15px;
@@ -513,6 +539,10 @@ canvas {
   color: #777777;
   cursor: pointer;
 }
+
+/*
+ The loading 'gif'
+ */
 
 #p5_loading {
   position: fixed;
@@ -545,50 +575,7 @@ canvas {
   100% {border-color: #aa8a77;}
 }
 
-.firstVisitBlink {
-  animation: blinkingBorder 1s ease infinite;
-}
 
-#hintHelpText{
-  border: 1px solid #333333;
-  border-radius: 3px;
-  font-size: 12px;
-  background-color: #49483E;
-  color: #aaaaaa;
-  z-index: 5;
-  padding: 5px;
-}
-
-.system-output{
-  color: #cacaa2;
-}
-
-.error-output{
-  color: #ee9999;
-}
-
-.variablesTraceTable {
-  font-size: 14px;
-  border-collapse: collapse;
-  width: 300px;
-  border: 1px solid #616138;
-}
-
-.variablesTraceTable th {
-  font-size: 14px;
-  border-bottom: 1px solid #616138;
-  border-top: 1px solid #616138;
-  paddin-left: 3px;
-}
-.variablesTraceTable td {
-  width: 150px;
-  max-width: 150px;
-  padding-left: 3px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-
-}
 
 #paintBrushIcon {
   color: #FFFFFF;
@@ -598,6 +585,28 @@ canvas {
 #colorPickerButton:hover #paintBrushIcon {
   filter:brightness(87%);
 }
+
+#colorPicker{
+  width: 15px;
+  height: 15px;
+  margin: 0px;
+  padding: 0px;
+  display:inline-block;
+  border: none;
+  outline:none;
+  cursor: pointer;
+  float: right;
+  -webkit-appearance: none;
+}
+
+#colorPicker::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+#colorPicker::-webkit-color-swatch {
+  border: none;
+}
+
+
 
 /* #menubar .menu-dropdown .menu-dropdown-button .menu-dropdown-content*/
 
@@ -662,25 +671,57 @@ canvas {
   cursor: default;
 }
 
-#colorPicker{
-  width: 15px;
-  height: 15px;
-  margin: 0px;
-  padding: 0px;
-  display:inline-block;
-  border: none;
-  outline:none;
-  cursor: pointer;
-  float: right;
-  -webkit-appearance: none;
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
 }
 
-#colorPicker::-webkit-color-swatch-wrapper {
-  padding: 0;
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #222222;
+  z-index: 10;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
-#colorPicker::-webkit-color-swatch {
-  border: none;
+
+.dropdown-content li {
+  color: white;
+  padding: 5px 10px;
+  text-decoration: none;
+  display: block;
 }
+
+.dropdown li:hover {
+  background-color: #333333;
+  cursor: pointer;
+}
+
+.show {display: block !important;}
+
+.hide {display: none !important;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #projectNameInputField {
@@ -699,16 +740,5 @@ canvas {
   color: #eeeeee;
 }
 
-#movesLimitInput {
-  background-color: #222222;
-  border: none;
-  color: white;
-  width: 100px;
-  float: right;
-  margin-top: 5px;
-}
 
-.assetsIcon{
-  margin-right: 8px;
-  color: #888888;
-}
+
