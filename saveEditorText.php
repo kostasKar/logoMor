@@ -4,11 +4,13 @@
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 	$id = $_POST['id'];
-	$code = $_POST['editorCode'];
+	$obj->sourceCode = $_POST['editorCode'];
+	$obj->projectName = $_POST['projectName'];
+
 	if ($id != null) {		
 		$filename =  "savedFiles/" . $id . ".txt";
 		$file = fopen($filename, "w");
-		fwrite($file, $code);
+		fwrite($file, json_encode($obj));
 		fclose($file);
 	}
 } else if ($_SERVER['REQUEST_METHOD'] === 'GET'){

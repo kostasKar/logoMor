@@ -143,15 +143,16 @@ LM.codeMirror = (function(){
     //!change this to false to create a link with the whole source code in the uri - server not involved
     const saveToServer = true;
 
-    var sourceCodeText = this.getValue();
-    var completeURL = window.location.href.split('?')[0];
+    let sourceCodeText = this.getValue();
+    let projectName = document.getElementById("projectNameInputField").value;
+    let completeURL = window.location.href.split('?')[0];
 
     if (saveToServer){
-      var uniqueId = Date.now();
+      let uniqueId = Date.now();
       const xhttp = new XMLHttpRequest();
       xhttp.open("POST", "saveEditorText.php");
       xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      xhttp.send("editorCode=" + encodeURIComponent(sourceCodeText) + "&id=" + encodeURIComponent(uniqueId));
+      xhttp.send("editorCode=" + encodeURIComponent(sourceCodeText) + "&id=" + encodeURIComponent(uniqueId) + "&projectName=" + encodeURIComponent(projectName));
       completeURL= completeURL + "?codeid=" + uniqueId;
     } else {
       if (sourceCodeText !== ""){
@@ -160,7 +161,7 @@ LM.codeMirror = (function(){
     }
 
     if ((saveToServer) || (completeURL.length < 5000)){
-      var dummy = document.createElement("textarea");
+      let dummy = document.createElement("textarea");
       document.body.appendChild(dummy);
       dummy.value = completeURL;
       dummy.select();
@@ -183,7 +184,14 @@ LM.codeMirror = (function(){
 
       const xhttp = new XMLHttpRequest();
       xhttp.onload = function () {
-        cm.setValue(this.responseText);
+        let responseText = this.responseText;
+        if (responseText.startsWith("{")){
+          let obj = JSON.parse(responseText);
+          cm.setValue(obj.sourceCode);
+          document.getElementById("projectNameInputField").value = obj.projectName;
+        } else {
+          cm.setValue(this.responseText);
+        }
       }
       xhttp.open("GET", "saveEditorText.php?id=" + urlParams.get('codeid'), true);
       xhttp.send();
