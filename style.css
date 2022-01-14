@@ -708,20 +708,52 @@ canvas {
 /*
   The project name input. Editable but not as a normal text input field
  */
-#projectNameInputField {
+#projectNameContainer {
   background-color: inherit;
   border: none;
   color: #cccccc;
-  float: right;
   text-align: right;
   margin-right: 10px;
-  margin-top: 3px;
+  margin-top: 2px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 12px;
+  display:inline-block;
+  float: right;
 }
 
-#projectNameInputField:hover {
+#projectNameContainer:not(.editing):hover {
   color: #eeeeee;
+  cursor: pointer;
+}
+
+#projectNameInputField{
+  background-color: inherit;
+  color: inherit;
+  border: none;
+  text-align: right;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  display:inline-block;
+  cursor: inherit;
+}
+
+#projectNameContainer:not(.editing)::after{
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f303";
+  /*margin-left:-5px;*/
+}
+
+#projectNameContainer.editing input{
+  border: 1px solid #aaaaaa;
+  text-align: left;
+  border-radius: 3px;
+  padding:1px 3px;
 }
 
 

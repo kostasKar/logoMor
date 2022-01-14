@@ -151,7 +151,7 @@
           <div onclick="LM.interpreter.setup()">Run</div>
           <div onclick="LM.interpreter.setup('')">Stop</div>
           <hr class="HorizontalRule">
-          <div onclick="document.getElementById('colorPicker').click()">Default Color<input id="colorPicker" type="color" value="#ffffff" onchange="LM.logo.setDefaultHexColor(this.value);"/></div>
+          <div onclick="document.getElementById('colorPicker').click()">Default Pen Color<input id="colorPicker" type="color" value="#ffffff" onchange="LM.logo.setDefaultHexColor(this.value);"/></div>
         </div>
       </div>
       <div class="menu-dropdown">
@@ -169,7 +169,13 @@
 
     <div id="editorPanelheader" class="areaDiv">
       <label class="areaTitle brightText">Source Code Editor</label>
-      <input type="text" id="projectNameInputField" placeholder="Sketch Name" onClick="this.select();">
+      <div onclick="document.getElementById('projectNameInputField').focus()" id="projectNameContainer">
+        <input type="text" id="projectNameInputField" placeholder="Sketch Name"
+               onfocusin="this.select();document.getElementById('projectNameContainer').classList.add('editing')"
+               onchange="this.blur()"
+               onkeyup="if(event.key === 'Enter'){this.blur()}"
+               onfocusout="document.getElementById('projectNameContainer').classList.remove('editing')">
+      </div>
     </div>
 
     <div id="sourceCodeContainer" class="rtl">
