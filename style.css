@@ -664,10 +664,6 @@ canvas {
   display: block;
 }
 
-.button-with-dropdown-content:hover .menu-dropdown-content {
-  display: block;
-}
-
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .menu-dropdown:hover .menu-dropdown-button {
   background-color: #333333;
