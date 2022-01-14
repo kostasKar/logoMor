@@ -328,10 +328,10 @@ canvas {
 }
 
 .areaTitle {
-  text-decoration: none;
   display: inline-block;
   font-size: 14px;
-  margin: 4px 2px;
+  margin: 2px 2px;
+  text-transform: uppercase;
 }
 
 
@@ -719,7 +719,7 @@ canvas {
   float: right;
   text-align: right;
   margin-right: 10px;
-  margin-top: 2px;
+  margin-top: 3px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 12px;
 }
