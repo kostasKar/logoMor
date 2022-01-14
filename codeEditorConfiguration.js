@@ -167,7 +167,7 @@ LM.codeMirror = (function(){
       dummy.select();
       document.execCommand("copy");
       document.body.removeChild(dummy);
-      alert("Link with source code copied to clipboard");
+      prompt("Link with source code copied to clipboard", completeURL);
     } else {
       alert("Source code too long to create share link\nSave and share the source code file instead");
     }
