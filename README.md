@@ -8,7 +8,7 @@ LogoMor is an interpreter and visualizer for the Logo programming language, with
 
 ## Screenshots
 
-![sierpinski](https://user-images.githubusercontent.com/13304797/149676533-33340b89-5872-42b4-9831-cfd6b6b97ab7.png)
+![sierpinski](https://user-images.githubusercontent.com/13304797/149678009-dc9827dd-afa9-45be-a320-e935903c2a28.png)
 
 ![tree](https://user-images.githubusercontent.com/13304797/149676617-68e6633c-ea95-4e75-963a-faec4a7f7ac7.png)
 
