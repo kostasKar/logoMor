@@ -63,7 +63,7 @@ canvas {
   border-radius: 6px;
 }
 
-.btn:hover:not([disabled]) ,.activeButton{
+.btn:hover:not([disabled]){
   color: #dddddd;
   background-color: #333333;
 }
@@ -123,6 +123,14 @@ canvas {
 
 .afterAsset {
   margin-left: 80px;
+}
+
+#viewSettings:not(.expanded)::before{
+  font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f078";
+}
+
+#viewSettings.expanded::before{
+  font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f077";
 }
 
 /*
@@ -644,6 +652,7 @@ canvas {
 .dropdown-content.left {
   transform: translate(-70%);
 }
+
 
 /* Links inside the dropdown */
 .dropdown-content div ,.dropdown-content li {

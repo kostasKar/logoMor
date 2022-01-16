@@ -260,7 +260,6 @@
     <span class="tooltiptext left">Redrawing</span>
   </button>
   <button class="tooltip btn circularButton" id="viewSettings" onclick="toggleViewSettingsDropdown()">
-    <i class="fa fa-cog" aria-hidden="true"></i>
     <span class="tooltiptext left">View Settings</span>
   </button>
   <div id="view-settings-dropdown" class="dropdown-content left">
@@ -275,10 +274,11 @@
       let s = document.getElementById("view-settings-dropdown").style;
       if (s.display === "block"){
         s.display = "none";
-        document.getElementById("viewSettings").classList.remove("activeButton");
+        document.getElementById("viewSettings").classList.remove("expanded");
+
       } else {
         s.display = "block";
-        document.getElementById("viewSettings").classList.add("activeButton");
+        document.getElementById("viewSettings").classList.add("expanded");
       }
     }
   </script>
