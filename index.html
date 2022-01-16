@@ -118,10 +118,10 @@
 <div id ="controlsColumnScroll">
   <div id="controlsColumn" class="rtl">
 
-    <div id="menubar" class="brightText">
-      <div class="menu-dropdown">
-        <div class="menu-dropdown-button">File</div>
-        <div class="menu-dropdown-content">
+    <div class="menubar">
+      <div class="show-on-hover dropdown">
+        <div class="dropdown-button">File</div>
+        <div class="dropdown-content">
           <div onclick="LM.localSystem.download()">Save</div>
           <div onclick="LM.localSystem.openFile()">Load</div>
           <input id="inp" type='file' style="display:none;" onchange="LM.localSystem.readFile(event)" onclick="this.value=null;" />
@@ -130,9 +130,9 @@
           <div onclick="LM.stlCreator.createASCIISTL()">Export STL</div>
         </div>
       </div>
-      <div class="menu-dropdown">
-        <div class="menu-dropdown-button">Editor</div>
-        <div class="menu-dropdown-content">
+      <div class="show-on-hover dropdown">
+        <div class="dropdown-button">Editor</div>
+        <div class="dropdown-content">
           <div onclick="LM.codeMirror.setValue('')">Clear</div>
           <hr class="HorizontalRule">
           <div onclick="LM.codeMirror.undo()">Undo</div>
@@ -145,22 +145,22 @@
           <div onclick="let chbx = document.getElementById('toggleHoverHint'); chbx.click(); LM.codeMirror.setOption('textHover', (chbx.checked? true : false))"><input checked type="checkbox" id="toggleHoverHint" style="pointer-events:none"> Hints on Hover</div>
         </div>
       </div>
-      <div class="menu-dropdown">
-        <div class="menu-dropdown-button">Sketch</div>
-        <div class="menu-dropdown-content">
+      <div class="show-on-hover dropdown">
+        <div class="dropdown-button">Sketch</div>
+        <div class="dropdown-content">
           <div onclick="LM.interpreter.setup()">Run</div>
           <div onclick="LM.interpreter.setup('')">Stop</div>
           <hr class="HorizontalRule">
           <div onclick="document.getElementById('colorPicker').click()">Default Pen Color<input id="colorPicker" type="color" value="#ffffff" onchange="LM.logo.setDefaultHexColor(this.value);"/></div>
         </div>
       </div>
-      <div class="menu-dropdown">
-        <div class="menu-dropdown-button" onmouseover="LM.demoPrograms.populateExamples(this)">Examples</div>
-        <div class="menu-dropdown-content"></div>
+      <div class="show-on-hover dropdown">
+        <div class="dropdown-button" onmouseover="LM.demoPrograms.populateExamples(this)">Examples</div>
+        <div class="dropdown-content"></div>
       </div>
-      <div class="menu-dropdown">
-        <div class="menu-dropdown-button">Help</div>
-        <div class="menu-dropdown-content">
+      <div class="show-on-hover dropdown">
+        <div class="dropdown-button">Help</div>
+        <div class="dropdown-content">
           <div onclick="window.open('assets/Documentation.pdf','_blank')">Documentation</div>
           <div onclick="window.open('https://github.com/kostasKar/logoMor','_blank')">GitHub Page</div>
         </div>
@@ -259,11 +259,11 @@
     <i class="fa fa-pause" aria-hidden="true"></i>
     <span class="tooltiptext left">Redrawing</span>
   </button>
-  <button class="tooltip btn circularButton dropdown-button" id="viewSettings" onclick="toggleViewSettingsDropdown()">
+  <button class="tooltip btn circularButton" id="viewSettings" onclick="toggleViewSettingsDropdown()">
     <i class="fa fa-cog" aria-hidden="true"></i>
     <span class="tooltiptext left">View Settings</span>
   </button>
-  <div id="view-settings-dropdown" class="menu-dropdown-content left brightText">
+  <div id="view-settings-dropdown" class="dropdown-content left">
     <div onclick="LM.p5Renderer.fullscreen(!LM.p5Renderer.fullscreen());toggleViewSettingsDropdown()">Fullscreen</div>
     <div onclick="document.getElementById('autoRotate').click()"><input type="checkbox" id="autoRotate" style="pointer-events:none">&nbsp;Auto-Rotate</div>
     <div onclick="document.getElementById('turnsHelpArrows').click()"><input type="checkbox" id="turnsHelpArrows" style="pointer-events:none">&nbsp;Rotation Arrows</div>

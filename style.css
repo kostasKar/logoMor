@@ -511,8 +511,8 @@ canvas {
 
 .tooltip .tooltiptext.left {
   position: absolute;
-  width: 130px;
-  margin-left: -170px;
+  width: 140px;
+  margin-left: -180px;
 }
 
 .tooltip:hover .tooltiptext {
@@ -614,24 +614,23 @@ canvas {
   menu dropdown is for the menu items. Hides on mouse away
  */
 
-#menubar{
-  direction:ltr;
-  font-size: 12px;
+.menubar {
+  direction: ltr;
 }
 
-.menu-dropdown {
+.dropdown {
   position: relative;
   display: inline-block;
 }
 
-.menu-dropdown-button {
+.dropdown-button {
   padding: 5px;
   font-size: 12px;
   border: none;
+  color: #dddddd;
 }
 
-/* Dropdown Content (Hidden by Default) */
-.menu-dropdown-content {
+.dropdown-content {
   display: none;
   position: absolute;
   background-color: #333333;
@@ -639,65 +638,35 @@ canvas {
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 10;
   font-size: 12px;
+  color: #dddddd;
 }
 
-.menu-dropdown-content.left {
+.dropdown-content.left {
   transform: translate(-70%);
 }
 
 /* Links inside the dropdown */
-.menu-dropdown-content div {
+.dropdown-content div ,.dropdown-content li {
   padding: 12px 16px;
-  text-decoration: none;
   display: block;
 }
 
-/* Change color of dropdown links on hover */
-.menu-dropdown-content div:hover {
+.dropdown-content div:hover ,.dropdown-content li:hover {
   background-color: #2c9694;
   color: white;
   cursor: pointer;
 }
 
+
 /* Show the dropdown menu on hover */
-.menu-dropdown:hover .menu-dropdown-content {
+.show-on-hover.dropdown:hover .dropdown-content {
   display: block;
 }
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.menu-dropdown:hover .menu-dropdown-button {
+.show-on-hover.dropdown:hover .dropdown-button {
   background-color: #333333;
   cursor: default;
-}
-
-
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #333333;
-  z-index: 10;
-  min-width: 160px;
-  overflow: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-.dropdown-content li {
-  color: #dddddd;
-  padding: 5px 10px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown li:hover {
-  background-color: #2c9694;
-  color: white;
-  cursor: pointer;
 }
 
 .show {display: block !important;}
