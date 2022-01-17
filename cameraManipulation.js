@@ -19,8 +19,18 @@ LM.cameraViewControl = (function (){
   var cameraEnabled;
   var autoRotation_lastFrameCount;
   var autoRotation_lastYRotation;
+  var autoRotate = false;
+  var avatarView = false;
 
   return {
+    toggleAutoRotate(){
+      autoRotate = !autoRotate;
+    },
+
+    toggleAvatarView(){
+      avatarView = !avatarView;
+    },
+
     getFov: function(){
       return fov;
     },
@@ -90,7 +100,7 @@ LM.cameraViewControl = (function (){
         centerY += (LM.p5Renderer.mouseY - LM.p5Renderer.pmouseY) * (fov / 1.2);
       }
 
-      if (document.getElementById("autoRotate").checked){
+      if (autoRotate){
         yRotation = autoRotation_lastYRotation + (LM.p5Renderer.frameCount - autoRotation_lastFrameCount) * 0.015;
       } else {
         autoRotation_lastFrameCount = LM.p5Renderer.frameCount;
@@ -101,7 +111,7 @@ LM.cameraViewControl = (function (){
       LM.p5Renderer.rotateX(xRotation);
       LM.p5Renderer.rotateY(yRotation);
 
-      if (document.getElementById("avatarViewCheckbox").checked){
+      if (avatarView){
         LM.matrix.applyInverse();
       }
 

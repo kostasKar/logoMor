@@ -6,6 +6,7 @@ LM.logo = (function(){
 
   var defaultStyle = {"weight":1, "r":255, "g":255, "b":255, "a":255, "textSize":10};
   var activeStyle;
+  var showHelpArrows = false;
 
   function addVertex(){
     LM.sketchBuffer.addVertex(LM.matrix.getX(), LM.matrix.getY(), LM.matrix.getZ());
@@ -30,6 +31,10 @@ LM.logo = (function(){
 
   return {
 
+    toggleHelpArrows(){
+      showHelpArrows = !showHelpArrows;
+    },
+
     keyPressedCallback:function(key){
       lastKeyPressed = key;
     },
@@ -50,7 +55,7 @@ LM.logo = (function(){
         LM.p5Renderer.push();
         LM.matrix.apply();
         LM.drawAvatar(LM.p5Renderer);
-        if (document.getElementById("turnsHelpArrows").checked){
+        if (showHelpArrows){
           LM.drawHelpArrows(LM.p5Renderer,15);
         } else {
           LM.drawCoordinates(LM.p5Renderer,10);

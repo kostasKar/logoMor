@@ -105,6 +105,15 @@ canvas {
   font-size: 16px;
 }
 
+.circularButton.checked{
+  background-color: #2c9694;
+  color: white;
+}
+
+.circularButton.checked:hover{
+  background-color: #3ac4c2;
+}
+
 .deleteButton {
   background-color: black;
   border: none;
@@ -131,6 +140,12 @@ canvas {
 
 #viewSettings.expanded::before{
   font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f077";
+}
+
+#extraControls{
+  display: none;
+  background-color: #333333;
+  border-radius: 25px;
 }
 
 /*

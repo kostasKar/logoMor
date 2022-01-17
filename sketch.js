@@ -3,6 +3,7 @@ LM.p5Renderer = new p5( function(p) {
 
   var labelFont;
   var canvas;
+  var persistDraw = false;
 
   p.preload = function(){
     if (window.location.protocol !== "file:"){
@@ -26,7 +27,7 @@ LM.p5Renderer = new p5( function(p) {
 
   p.draw = function() {
     p.lights();
-    if (!document.getElementById("persistDrawCheckBox").checked) {
+    if (!persistDraw) {
       p.background(0);
     }
     LM.cameraViewControl.adjust();
@@ -56,6 +57,10 @@ LM.p5Renderer = new p5( function(p) {
     if((LM.cameraViewControl.isEnabled()) && ((p.keyCode === 38) || (p.keyCode === 40))){
       return false; //prevent default browser behaviour
     }
+  };
+
+  p.togglePersistDraw = function(){
+    persistDraw = !persistDraw;
   }
 
 });

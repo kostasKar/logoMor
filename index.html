@@ -262,16 +262,35 @@
   <button class="tooltip btn circularButton" id="viewSettings" onclick="toggleViewSettingsDropdown()">
     <span class="tooltiptext left">View Settings</span>
   </button>
-  <div id="view-settings-dropdown" class="dropdown-content left">
-    <div onclick="LM.p5Renderer.fullscreen(!LM.p5Renderer.fullscreen());toggleViewSettingsDropdown()">Fullscreen</div>
-    <div onclick="document.getElementById('autoRotate').click()"><input type="checkbox" id="autoRotate" style="pointer-events:none">&nbsp;Auto-Rotate</div>
-    <div onclick="document.getElementById('turnsHelpArrows').click()"><input type="checkbox" id="turnsHelpArrows" style="pointer-events:none">&nbsp;Rotation Arrows</div>
-    <div onclick="document.getElementById('avatarViewCheckbox').click()"><input type="checkbox" id="avatarViewCheckbox" style="pointer-events:none">&nbsp;Avatar View</div>
-    <div onclick="document.getElementById('persistDrawCheckBox').click()"><input type="checkbox" id="persistDrawCheckBox" style="pointer-events:none">&nbsp;Persist Draw</div>
+  <div id="extraControls">
+    <button class="tooltip btn circularButton" onclick="toggleButton(this);LM.p5Renderer.fullscreen(!LM.p5Renderer.fullscreen())">
+      <i class="fa fa-expand" aria-hidden="true"></i>
+      <span class="tooltiptext left">Fullscreen</span>
+    </button>
+    <button class="tooltip btn circularButton" onclick="toggleButton(this);LM.cameraViewControl.toggleAutoRotate()">
+      <i class="fa fa-sync-alt" aria-hidden="true"></i>
+      <span class="tooltiptext left">Auto-Rotate</span>
+    </button>
+    <button class="tooltip btn circularButton" onclick="toggleButton(this);LM.logo.toggleHelpArrows()">
+      <i class="fa fa-compass" aria-hidden="true"></i>
+      <span class="tooltiptext left">Orientation</span>
+    </button>
+    <button class="tooltip btn circularButton" onclick="toggleButton(this);LM.cameraViewControl.toggleAvatarView()">
+      <i class="fa fa-crosshairs" aria-hidden="true"></i>
+      <span class="tooltiptext left">Track Avatar</span>
+    </button>
+    <button class="tooltip btn circularButton" onclick="toggleButton(this);LM.p5Renderer.togglePersistDraw()">
+      <i class="fa fa-clone" aria-hidden="true"></i>
+      <span class="tooltiptext left">Persist Draw</span>
+    </button>
   </div>
   <script>
+    function toggleButton(el){
+      el.classList.toggle("checked");
+    }
+
     function toggleViewSettingsDropdown(){
-      let s = document.getElementById("view-settings-dropdown").style;
+      let s = document.getElementById("extraControls").style;
       if (s.display === "block"){
         s.display = "none";
         document.getElementById("viewSettings").classList.remove("expanded");
