@@ -626,6 +626,11 @@ canvas {
   direction: ltr;
 }
 
+.HorizontalRule{
+  border: none;
+  border-bottom: 1px solid #666666;
+}
+
 .dropdown {
   position: relative;
   display: inline-block;
