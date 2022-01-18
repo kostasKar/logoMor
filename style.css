@@ -105,12 +105,12 @@ canvas {
   font-size: 16px;
 }
 
-.circularButton.checked{
+.toggleButton.checked{
   background-color: #2c9694;
   color: white;
 }
 
-.circularButton.checked:hover{
+.toggleButton.checked:hover{
   background-color: #3ac4c2;
 }
 
@@ -599,17 +599,11 @@ canvas {
 }
 
 
+/*
+  Color picker styling
+ */
 
-#paintBrushIcon {
-  color: #FFFFFF;
-  filter: brightness(67%);
-}
-
-#colorPickerButton:hover #paintBrushIcon {
-  filter:brightness(87%);
-}
-
-#colorPicker{
+.colorPickerInput{
   width: 15px;
   height: 15px;
   margin: 0px;
@@ -622,10 +616,10 @@ canvas {
   -webkit-appearance: none;
 }
 
-#colorPicker::-webkit-color-swatch-wrapper {
+.colorPickerInput::-webkit-color-swatch-wrapper {
   padding: 0;
 }
-#colorPicker::-webkit-color-swatch {
+.colorPickerInput::-webkit-color-swatch {
   border: none;
 }
 

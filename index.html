@@ -151,7 +151,7 @@
           <div onclick="LM.interpreter.setup()">Run</div>
           <div onclick="LM.interpreter.setup('')">Stop</div>
           <hr class="HorizontalRule">
-          <div onclick="document.getElementById('colorPicker').click()">Default Pen Color<input id="colorPicker" type="color" value="#ffffff" onchange="LM.logo.setDefaultHexColor(this.value);"/></div>
+          <div onclick="document.getElementById('defaultPenColorPicker').click()">Default Pen Color<input id="defaultPenColorPicker" class="colorPickerInput" type="color" value="#ffffff" onchange="LM.logo.setDefaultHexColor(this.value);"/></div>
         </div>
       </div>
       <div class="show-on-hover dropdown">
@@ -213,7 +213,7 @@
 
     <div class="areaDiv fixedWidth" id="assetsDiv">
       <label title="Import models, images or sounds from local disk" class="areaTitle brightText">Assets</label>
-      <button id="assetsAddButton" class="btn mediumButton dropbtn" onclick="toggleAddAssetsDropdown()">Add</button>
+      <button id="assetsAddButton" class="btn mediumButton dropbtn">Add</button>
       <div id="assetsDropDown" class="dropdown-content menu-dropdown-content brightText">
         <div title="Import an .stl or .obj 3D model file from local disk" onclick="LM.models.openModelFile()">Model</div>
         <div title="Import any image file from local disk" onclick="LM.images.openImageFile()">Image</div>
@@ -232,9 +232,7 @@
       </div>
     </div>
     <script>
-      function toggleAddAssetsDropdown(){
-        document.getElementById("assetsDropDown").classList.toggle("show");
-      }
+      document.getElementById("assetsAddButton").addEventListener("click", function(){document.getElementById("assetsDropDown").classList.toggle("show")})
     </script>
 
 
@@ -259,47 +257,38 @@
     <i class="fa fa-pause" aria-hidden="true"></i>
     <span class="tooltiptext left">Redrawing</span>
   </button>
-  <button class="tooltip btn circularButton" id="viewSettings" onclick="toggleViewSettingsDropdown()">
+  <button class="tooltip btn circularButton" id="viewSettings">
     <span class="tooltiptext left">View Settings</span>
   </button>
   <div id="extraControls">
-    <button class="tooltip btn circularButton" onclick="toggleButton(this);LM.p5Renderer.fullscreen(!LM.p5Renderer.fullscreen())">
+    <button class="tooltip btn circularButton toggleButton" onclick="LM.p5Renderer.fullscreen(!LM.p5Renderer.fullscreen())">
       <i class="fa fa-expand" aria-hidden="true"></i>
       <span class="tooltiptext left">Fullscreen</span>
     </button>
-    <button class="tooltip btn circularButton" onclick="toggleButton(this);LM.cameraViewControl.toggleAutoRotate()">
+    <button class="tooltip btn circularButton toggleButton" onclick="LM.cameraViewControl.toggleAutoRotate()">
       <i class="fa fa-sync-alt" aria-hidden="true"></i>
       <span class="tooltiptext left">Auto-Rotate</span>
     </button>
-    <button class="tooltip btn circularButton" onclick="toggleButton(this);LM.logo.toggleHelpArrows()">
+    <button class="tooltip btn circularButton toggleButton" onclick="LM.logo.toggleHelpArrows()">
       <i class="fa fa-compass" aria-hidden="true"></i>
       <span class="tooltiptext left">Orientation</span>
     </button>
-    <button class="tooltip btn circularButton" onclick="toggleButton(this);LM.cameraViewControl.toggleAvatarView()">
+    <button class="tooltip btn circularButton toggleButton" onclick="LM.cameraViewControl.toggleAvatarView()">
       <i class="fa fa-crosshairs" aria-hidden="true"></i>
       <span class="tooltiptext left">Track Avatar</span>
     </button>
-    <button class="tooltip btn circularButton" onclick="toggleButton(this);LM.p5Renderer.togglePersistDraw()">
+    <button class="tooltip btn circularButton toggleButton" onclick="LM.p5Renderer.togglePersistDraw()">
       <i class="fa fa-clone" aria-hidden="true"></i>
       <span class="tooltiptext left">Persist Draw</span>
     </button>
   </div>
   <script>
-    function toggleButton(el){
-      el.classList.toggle("checked");
-    }
+    document.getElementsByClassName('toggleButton').forEach(el => {el.addEventListener('click', function(){el.classList.toggle('checked')})});
 
-    function toggleViewSettingsDropdown(){
-      let s = document.getElementById("extraControls").style;
-      if (s.display === "block"){
-        s.display = "none";
-        document.getElementById("viewSettings").classList.remove("expanded");
-
-      } else {
-        s.display = "block";
-        document.getElementById("viewSettings").classList.add("expanded");
-      }
-    }
+    document.getElementById('viewSettings').addEventListener('click',function(){
+      document.getElementById("extraControls").classList.toggle("show");
+      this.classList.toggle("expanded");
+    })
   </script>
 </div>
 
