@@ -1085,3 +1085,85 @@ sps 3
 
 exagonRightRecursive :size :n
 ; pentagonLeftRecursive :size :n`});
+
+LM.demoPrograms.pushDemo({
+title: "Solid Logomor Icon",
+codeText:
+`;-------Solid Logomor Icon ---------
+; Parametric, check variables manipulators
+; Can be exported to STl and 3D printed!
+
+make "bigside 45
+make "smallside 15
+
+to bigface
+  beginface
+  fd :bigside rt 90 fd :smallside rt 90 fd :bigside rt 90 fd :smallside
+  endface
+  rt 90
+end
+
+to smallface
+  beginface
+  fd (:bigside - :smallside) rt 90 fd :smallside rt 90 fd (:bigside - :smallside) rt 90 fd :smallside
+  endface
+  rt 90
+end
+
+to filler
+  beginface
+  fd (:bigside-2*:smallside) rt 90 fd :smallside rt 90 fd (:bigside-2*:smallside) rt 90 fd :smallside
+  endface
+  rt 90
+end
+
+to cap
+  beginface
+  fd :smallside rt 90 fd :smallside rt 90 fd :smallside rt 90 fd :smallside
+  endface
+  rt 90
+end
+
+ht
+colorhsb 180 100 100
+rt 90 rr 90
+cap
+rl 90 lt 90
+bigface
+pu dn 90 fd :smallside up 90 rl 90 pd
+smallface
+pu dn 90 fd :smallside up 90 rl 90 pd
+smallface
+pu dn 90 fd :smallside up 90 rl 90 pd
+bigface
+pu rl 90 lt 90 fd :smallside rt 90 fd (:bigside - :smallside) lt 90 pd
+smallface
+pu dn 90 fd :smallside up 90 rl 90 pd
+filler
+pu dn 90 fd :smallside up 90 rl 90 bk :smallside pd
+smallface
+pu dn 90 fd :smallside up 90 rl 90 pd
+colorhsb 0 100 100
+bigface
+pu fd :bigside dn 90 fd :smallside rt 90 pd
+colorhsb 180 100 100
+bigface
+pu dn 90 fd :smallside up 90 rl 90 pd
+smallface
+pu dn 90 fd :smallside up 90 rl 90 fd :smallside pd
+smallface
+pu dn 90 fd :smallside up 90 rl 90 pd
+colorhsb 0 100 100
+smallface
+pu fd (:bigside-2*:smallside) dn 90 rl 90  fd :smallside pd
+colorhsb 180 100 100
+smallface
+pu dn 90 fd :smallside up 90 rl 90 pd
+smallface
+pu dn 90 fd :smallside up 90 rl 90 pd
+smallface
+pu dn 90 fd :smallside up 90 rl 90 bk :smallside pd
+bigface
+pu fd :bigside dn 90 pd
+cap
+`})
