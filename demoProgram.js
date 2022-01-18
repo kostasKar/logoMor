@@ -1125,45 +1125,46 @@ to cap
 end
 
 ht
+pu
 colorhsb 180 100 100
 rt 90 rr 90
 cap
 rl 90 lt 90
 bigface
-pu dn 90 fd :smallside up 90 rl 90 pd
+dn 90 fd :smallside up 90 rl 90 
 smallface
-pu dn 90 fd :smallside up 90 rl 90 pd
+dn 90 fd :smallside up 90 rl 90 
 smallface
-pu dn 90 fd :smallside up 90 rl 90 pd
+dn 90 fd :smallside up 90 rl 90 
 bigface
-pu rl 90 lt 90 fd :smallside rt 90 fd (:bigside - :smallside) lt 90 pd
+rl 90 lt 90 fd :smallside rt 90 fd (:bigside - :smallside) lt 90 
 smallface
-pu dn 90 fd :smallside up 90 rl 90 pd
+dn 90 fd :smallside up 90 rl 90 
 filler
-pu dn 90 fd :smallside up 90 rl 90 bk :smallside pd
+dn 90 fd :smallside up 90 rl 90 bk :smallside 
 smallface
-pu dn 90 fd :smallside up 90 rl 90 pd
+dn 90 fd :smallside up 90 rl 90 
 colorhsb 0 100 100
 bigface
-pu fd :bigside dn 90 fd :smallside rt 90 pd
+fd :bigside dn 90 fd :smallside rt 90 
 colorhsb 180 100 100
 bigface
-pu dn 90 fd :smallside up 90 rl 90 pd
+dn 90 fd :smallside up 90 rl 90 
 smallface
-pu dn 90 fd :smallside up 90 rl 90 fd :smallside pd
+dn 90 fd :smallside up 90 rl 90 fd :smallside 
 smallface
-pu dn 90 fd :smallside up 90 rl 90 pd
+dn 90 fd :smallside up 90 rl 90 
 colorhsb 0 100 100
 smallface
-pu fd (:bigside-2*:smallside) dn 90 rl 90  fd :smallside pd
+fd (:bigside-2*:smallside) dn 90 rl 90  fd :smallside 
 colorhsb 180 100 100
 smallface
-pu dn 90 fd :smallside up 90 rl 90 pd
+dn 90 fd :smallside up 90 rl 90 
 smallface
-pu dn 90 fd :smallside up 90 rl 90 pd
+dn 90 fd :smallside up 90 rl 90 
 smallface
-pu dn 90 fd :smallside up 90 rl 90 bk :smallside pd
+dn 90 fd :smallside up 90 rl 90 bk :smallside 
 bigface
-pu fd :bigside dn 90 pd
+fd :bigside dn 90 
 cap
 `});

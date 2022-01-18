@@ -1,7 +1,7 @@
 LM.sketchBuffer = (function(){
 
   let models = [];
-  let currentModel;
+  let currentModel = {};
   let currentModelIndex = 0;
   let currentVertexIndex = 0;
   let modelStarted = false;
@@ -13,9 +13,9 @@ LM.sketchBuffer = (function(){
   let solids = [];
   let images = [];
 
-  function setStyle(s, penDown = true){
+  function setStyle(s){
     LM.p5Renderer.strokeWeight(s.weight);
-    if (penDown) {
+    if (s.penDown) {
       LM.p5Renderer.stroke(s.r, s.g, s.b, s.a);
     } else {
       LM.p5Renderer.noStroke();
@@ -49,9 +49,9 @@ LM.sketchBuffer = (function(){
   function displayAllPrimitives(){
     for(const p of primitives){
       if ((p.type === "arc")||(p.type === "point")){
-        p.penDown = true;
+        p.style.penDown = true;
       }
-      setStyle(p.style, p.penDown);
+      setStyle(p.style);
       if (p.type === "arc"){
         LM.p5Renderer.noFill();
       }
@@ -64,7 +64,7 @@ LM.sketchBuffer = (function(){
 
   function displayAllSolids(){
     for (const s of solids){
-      setStyle(s.style, s.penDown);
+      setStyle(s.style);
       LM.p5Renderer.push();
       LM.p5Renderer.applyMatrix(s.matrix);
       LM.p5Renderer.scale(s.scaleFactor);
@@ -89,12 +89,17 @@ LM.sketchBuffer = (function(){
   return {
 
     startNewModel: function(style){
-      currentModel = new p5.Geometry();
-      currentModel.gid = Math.random().toString(36).substring(2);
-      currentModel.logoStyle = Object.assign({}, style);
-      currentVertexIndex = 0;
-      modelStarted = true;
-      modelIsDifferent = false;
+      if((Object.keys(currentModel).length === 0) || (JSON.stringify(style) !== JSON.stringify(currentModel.logoStyle))){
+        if (Object.keys(currentModel).length !== 0){
+          this.endNewModel();
+        }
+        currentModel = new p5.Geometry();
+        currentModel.gid = Math.random().toString(36).substring(2);
+        currentModel.logoStyle = Object.assign({}, style);
+        currentVertexIndex = 0;
+        modelStarted = true;
+        modelIsDifferent = false;
+      }
     },
 
     endNewModel: function(){
@@ -157,6 +162,7 @@ LM.sketchBuffer = (function(){
     },
 
     init: function(){
+      currentModel = {};
       currentModelIndex = 0;
       primitives = [];
       solids = [];
@@ -175,12 +181,12 @@ LM.sketchBuffer = (function(){
       displayAllImages();
     },
 
-    addPrimitive: function(style, penDown, matrix, type, ...args){
-      primitives.push({type:type, style: Object.assign({},style), penDown: penDown, matrix: matrix, args: args});
+    addPrimitive: function(style, matrix, type, ...args){
+      primitives.push({type:type, style: Object.assign({},style), matrix: matrix, args: args});
     },
 
-    addSolid: function(style, penDown, matrix, model, scaleFactor){
-      solids.push({model:model, style: Object.assign({},style), penDown: penDown, matrix: matrix, scaleFactor: scaleFactor});
+    addSolid: function(style, matrix, model, scaleFactor){
+      solids.push({model:model, style: Object.assign({},style), matrix: matrix, scaleFactor: scaleFactor});
     },
 
     addImage: function(matrix, image, height){
