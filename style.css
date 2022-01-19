@@ -748,5 +748,23 @@ canvas {
   padding:1px 3px;
 }
 
+/*
+  the light source manipulation element
+ */
+#lightSource{
+  display: none;
+  position:fixed;
+  z-index:10;
+  width: 80px;
+  height: 80px;
+  top: calc(50% - 40px);
+  left: calc(50% - 40px);
+  background-color: #dddddd;
+  border-radius: 50%;
+  box-shadow: 0 0 50px #dddddd;
+}
 
+#lightSource:hover {
+  cursor:move;
+}
 

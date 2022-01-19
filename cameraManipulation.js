@@ -9,25 +9,42 @@
 
 LM.cameraViewControl = (function (){
 
-  var xRotation;
-  var yRotation;
-  var centerX;
-  var centerY;
-  var fov;
-  var fov_min;
-  var fov_max;
-  var cameraEnabled;
-  var autoRotation_lastFrameCount;
-  var autoRotation_lastYRotation;
-  var autoRotate = false;
-  var avatarView = false;
+  let xRotation;
+  let yRotation;
+  let centerX;
+  let centerY;
+  let fov;
+  let fov_min;
+  let fov_max;
+  let cameraEnabled;
+  let autoRotation_lastFrameCount;
+  let autoRotation_lastYRotation;
+  let autoRotate = false;
+  let avatarView = false;
+
+  let lightSourceSetting = false;
+  let lightSourceDirX = 0;
+  let lightSourceDirY = 0;
 
   return {
-    toggleAutoRotate(){
+    setLightSourceSettingMode: function(enabled){
+      lightSourceSetting = enabled;
+    },
+
+    isLightSourceSettingModeEnabled: function(){
+      return lightSourceSetting;
+    },
+
+    setLightSource: function(x, y){
+      lightSourceDirX = -(x / LM.p5Renderer.width - 0.5) * 2;
+      lightSourceDirY = -(y / LM.p5Renderer.height - 0.5) * 2;
+    },
+
+    toggleAutoRotate: function(){
       autoRotate = !autoRotate;
     },
 
-    toggleAvatarView(){
+    toggleAvatarView: function(){
       avatarView = !avatarView;
     },
 
@@ -86,18 +103,24 @@ LM.cameraViewControl = (function (){
     },
 
     adjust: function(){
+
+      LM.p5Renderer.ambientLight(128, 128, 128);
+      LM.p5Renderer.directionalLight(128, 128, 128, lightSourceDirX, lightSourceDirY, -1)
+
       var cameraZ = (LM.p5Renderer.height/2.0) / Math.tan(fov / 2.0);
       var aspect = LM.p5Renderer.width / LM.p5Renderer.height;
       LM.p5Renderer.perspective(fov, aspect, cameraZ/200.0, cameraZ*10.0);
-      
-      if (cameraEnabled && LM.p5Renderer.mouseIsPressed && (LM.p5Renderer.mouseButton == LM.p5Renderer.LEFT)) {
-        xRotation += - (LM.p5Renderer.mouseY - LM.p5Renderer.pmouseY)/(LM.p5Renderer.height) * Math.PI;
-        yRotation += (LM.p5Renderer.mouseX - LM.p5Renderer.pmouseX)/(LM.p5Renderer.height) * Math.PI;
-      }
-      
-      if (cameraEnabled && LM.p5Renderer.mouseIsPressed && (LM.p5Renderer.mouseButton == LM.p5Renderer.CENTER)) {
-        centerX += (LM.p5Renderer.mouseX - LM.p5Renderer.pmouseX) * (fov / 1.2);
-        centerY += (LM.p5Renderer.mouseY - LM.p5Renderer.pmouseY) * (fov / 1.2);
+
+      if (!lightSourceSetting) {
+        if (cameraEnabled && LM.p5Renderer.mouseIsPressed && (LM.p5Renderer.mouseButton == LM.p5Renderer.LEFT)) {
+          xRotation += -(LM.p5Renderer.mouseY - LM.p5Renderer.pmouseY) / (LM.p5Renderer.height) * Math.PI;
+          yRotation += (LM.p5Renderer.mouseX - LM.p5Renderer.pmouseX) / (LM.p5Renderer.height) * Math.PI;
+        }
+
+        if (cameraEnabled && LM.p5Renderer.mouseIsPressed && (LM.p5Renderer.mouseButton == LM.p5Renderer.CENTER)) {
+          centerX += (LM.p5Renderer.mouseX - LM.p5Renderer.pmouseX) * (fov / 1.2);
+          centerY += (LM.p5Renderer.mouseY - LM.p5Renderer.pmouseY) * (fov / 1.2);
+        }
       }
 
       if (autoRotate){

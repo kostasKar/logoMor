@@ -1,9 +1,9 @@
 
 LM.p5Renderer = new p5( function(p) {
 
-  var labelFont;
-  var canvas;
-  var persistDraw = false;
+  let labelFont;
+  let canvas;
+  let persistDraw = false;
 
   p.preload = function(){
     if (window.location.protocol !== "file:"){
@@ -26,7 +26,6 @@ LM.p5Renderer = new p5( function(p) {
   };
 
   p.draw = function() {
-    p.lights();
     if (!persistDraw) {
       p.background(0);
     }

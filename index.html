@@ -281,6 +281,10 @@
       <i class="fa fa-clone" aria-hidden="true"></i>
       <span class="tooltiptext left">Persist Draw</span>
     </button>
+    <button class="tooltip btn circularButton toggleButton" onclick="document.getElementById('lightSource').classList.toggle('show')">
+      <i class="fa fa-sun" aria-hidden="true"></i>
+      <span class="tooltiptext left">Light Source</span>
+    </button>
   </div>
   <script>
     document.getElementsByClassName('toggleButton').forEach(el => {el.addEventListener('click', function(){el.classList.toggle('checked')})});
@@ -291,6 +295,27 @@
     })
   </script>
 </div>
+
+<div id="lightSource"></div>
+<script>
+  document.getElementById("lightSource").addEventListener('mousedown', function(e) {
+    LM.cameraViewControl.setLightSourceSettingMode(true);
+  }, true);
+
+  document.addEventListener('mouseup', function() {
+    LM.cameraViewControl.setLightSourceSettingMode(false);
+  }, true);
+
+  document.addEventListener('mousemove', function(event) {
+    if (LM.cameraViewControl.isLightSourceSettingModeEnabled()) {
+      LM.cameraViewControl.setLightSource(event.clientX, event.clientY);
+      let el = document.getElementById("lightSource");
+      el.style.left = event.clientX - el.offsetWidth/2 + "px";
+      el.style.top = event.clientY - el.offsetHeight/2  + "px";
+    }
+  }, true);
+
+</script>
 
 
 </body>
