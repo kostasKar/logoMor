@@ -23,8 +23,16 @@ LM.cameraViewControl = (function (){
   let avatarView = false;
 
   let lightSourceSetting = false;
-  let lightSourceDirX = 0;
-  let lightSourceDirY = 0;
+  let lightSourceX = 0;
+  let lightSourceY = 0;
+
+  function getLightSourceDirX(){
+    return -((lightSourceX - centerX) / (LM.p5Renderer.width / 2));
+  }
+
+  function getLightSourceDirY(){
+    return -((lightSourceY - centerY) / (LM.p5Renderer.height / 2));
+  }
 
   return {
     setLightSourceSettingMode: function(enabled){
@@ -36,8 +44,8 @@ LM.cameraViewControl = (function (){
     },
 
     setLightSource: function(x, y){
-      lightSourceDirX = -(x / LM.p5Renderer.width - 0.5) * 2;
-      lightSourceDirY = -(y / LM.p5Renderer.height - 0.5) * 2;
+      lightSourceX = x - LM.p5Renderer.width / 2;
+      lightSourceY = y - LM.p5Renderer.height / 2;
     },
 
     toggleAutoRotate: function(){
@@ -105,7 +113,7 @@ LM.cameraViewControl = (function (){
     adjust: function(){
 
       LM.p5Renderer.ambientLight(128, 128, 128);
-      LM.p5Renderer.directionalLight(128, 128, 128, lightSourceDirX, lightSourceDirY, -1)
+      LM.p5Renderer.directionalLight(128, 128, 128, getLightSourceDirX(), getLightSourceDirY(), -1);
 
       var cameraZ = (LM.p5Renderer.height/2.0) / Math.tan(fov / 2.0);
       var aspect = LM.p5Renderer.width / LM.p5Renderer.height;
