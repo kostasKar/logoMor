@@ -1092,9 +1092,11 @@ codeText:
 `;-------Solid Logomor Icon ---------
 ; Parametric, check variables manipulators
 ; Can be exported to STl and 3D printed!
+; Increase "units number to make a solid chain
 
 make "bigside 45
 make "smallside 15
+make "units 1 
 
 to bigface
   beginface
@@ -1126,45 +1128,48 @@ end
 
 ht
 pu
-colorhsb 180 100 100
-rt 90 rr 90
-cap
-rl 90 lt 90
-bigface
-dn 90 fd :smallside up 90 rl 90 
-smallface
-dn 90 fd :smallside up 90 rl 90 
-smallface
-dn 90 fd :smallside up 90 rl 90 
-bigface
-rl 90 lt 90 fd :smallside rt 90 fd (:bigside - :smallside) lt 90 
-smallface
-dn 90 fd :smallside up 90 rl 90 
-filler
-dn 90 fd :smallside up 90 rl 90 bk :smallside 
-smallface
-dn 90 fd :smallside up 90 rl 90 
-colorhsb 0 100 100
-bigface
-fd :bigside dn 90 fd :smallside rt 90 
-colorhsb 180 100 100
-bigface
-dn 90 fd :smallside up 90 rl 90 
-smallface
-dn 90 fd :smallside up 90 rl 90 fd :smallside 
-smallface
-dn 90 fd :smallside up 90 rl 90 
-colorhsb 0 100 100
-smallface
-fd (:bigside-2*:smallside) dn 90 rl 90  fd :smallside 
-colorhsb 180 100 100
-smallface
-dn 90 fd :smallside up 90 rl 90 
-smallface
-dn 90 fd :smallside up 90 rl 90 
-smallface
-dn 90 fd :smallside up 90 rl 90 bk :smallside 
-bigface
-fd :bigside dn 90 
-cap
+repeat :units [
+  colorhsb 180 100 100
+  rt 90 rr 90
+  cap
+  rl 90 lt 90
+  bigface
+  dn 90 fd :smallside up 90 rl 90 
+  smallface
+  dn 90 fd :smallside up 90 rl 90 
+  smallface
+  dn 90 fd :smallside up 90 rl 90 
+  bigface
+  rl 90 lt 90 fd :smallside rt 90 fd (:bigside - :smallside) lt 90 
+  smallface
+  dn 90 fd :smallside up 90 rl 90 
+  filler
+  dn 90 fd :smallside up 90 rl 90 bk :smallside 
+  smallface
+  dn 90 fd :smallside up 90 rl 90 
+  colorhsb 0 100 100
+  bigface
+  fd :bigside dn 90 fd :smallside rt 90 
+  colorhsb 180 100 100
+  bigface
+  dn 90 fd :smallside up 90 rl 90 
+  smallface
+  dn 90 fd :smallside up 90 rl 90 fd :smallside 
+  smallface
+  dn 90 fd :smallside up 90 rl 90 
+  colorhsb 0 100 100
+  smallface
+  fd (:bigside-2*:smallside) dn 90 rl 90  fd :smallside 
+  colorhsb 180 100 100
+  smallface
+  dn 90 fd :smallside up 90 rl 90 
+  smallface
+  dn 90 fd :smallside up 90 rl 90 
+  smallface
+  dn 90 fd :smallside up 90 rl 90 bk :smallside 
+  bigface
+  fd :bigside dn 90 
+  cap
+]
+
 `});
