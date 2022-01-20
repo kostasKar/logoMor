@@ -25,6 +25,9 @@ LM.cameraViewControl = (function (){
   let lightSourceSetting = false;
   let lightSourceX = 0;
   let lightSourceY = 0;
+  let lightSourceColorR = 128;
+  let lightSourceColorG = 128;
+  let lightSourceColorB = 128;
 
   function getLightSourceDirX(){
     return -((lightSourceX - centerX) / (LM.p5Renderer.width / 2));
@@ -46,6 +49,13 @@ LM.cameraViewControl = (function (){
     setLightSource: function(x, y){
       lightSourceX = x - LM.p5Renderer.width / 2;
       lightSourceY = y - LM.p5Renderer.height / 2;
+    },
+
+    setLightSourceColor: function (hexColor){
+      let rgbArray = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
+      lightSourceColorR = parseInt(rgbArray[1], 16);
+      lightSourceColorG = parseInt(rgbArray[2], 16);
+      lightSourceColorB = parseInt(rgbArray[3], 16);
     },
 
     toggleAutoRotate: function(){
@@ -113,7 +123,7 @@ LM.cameraViewControl = (function (){
     adjust: function(){
 
       LM.p5Renderer.ambientLight(128, 128, 128);
-      LM.p5Renderer.directionalLight(128, 128, 128, getLightSourceDirX(), getLightSourceDirY(), -1);
+      LM.p5Renderer.directionalLight(lightSourceColorR, lightSourceColorG, lightSourceColorB, getLightSourceDirX(), getLightSourceDirY(), -1);
 
       var cameraZ = (LM.p5Renderer.height/2.0) / Math.tan(fov / 2.0);
       var aspect = LM.p5Renderer.width / LM.p5Renderer.height;

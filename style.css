@@ -762,9 +762,18 @@ canvas {
   background-color: #dddddd;
   border-radius: 50%;
   box-shadow: 0 0 50px #dddddd;
+  text-align: center;
+}
+
+#lightSource input{
+  display:none;
+  margin-top:80px;
 }
 
 #lightSource:hover {
   cursor:move;
 }
 
+#lightSource:hover input{
+  display:initial;
+}

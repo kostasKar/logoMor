@@ -296,7 +296,10 @@
   </script>
 </div>
 
-<div id="lightSource"></div>
+<div id="lightSource">
+  <input id="lightSourceColorPicker" type="color" value="#808080" onchange="LM.cameraViewControl.setLightSourceColor(this.value)">
+</div>
+
 <script>
   document.getElementById("lightSource").addEventListener('mousedown', function(e) {
     LM.cameraViewControl.setLightSourceSettingMode(true);
