@@ -20,7 +20,7 @@ LogoMor is an interpreter and visualizer for the Logo programming language, with
 
 ![crazyCubes](https://user-images.githubusercontent.com/13304797/149676944-84acfa22-0d5a-4229-afc4-53cb837ddf49.png)
 
-![teapot](https://user-images.githubusercontent.com/13304797/149677033-695ef80c-7040-44bc-ae65-306b4be201b1.png)
+![teapot](https://user-images.githubusercontent.com/13304797/150615655-b8d54fbc-4190-43ac-8b37-951e880088fb.png)
 
 ![gameOfLife](https://user-images.githubusercontent.com/13304797/149677062-0f4b209f-634b-4334-bdcf-e5b967c8f037.png)
 
