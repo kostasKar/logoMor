@@ -269,7 +269,7 @@ canvas {
   border-width: 3px;
   border-radius: 4px;
   font-size: 14px;
-  white-space: pre;
+  white-space: pre-wrap;
   height: 150px;
   min-height: 150px;
   resize: vertical;
