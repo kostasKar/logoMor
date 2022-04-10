@@ -161,7 +161,7 @@ LM.interpreter = {
     for (let i=0; i<this.tasksStack.length; i++){
       traceText += "  " + this.tasksStack[i].constructor.name.replace("Task", " task");
       if (this.tasksStack[i].constructor.name === 'ProcedureTask'){
-        traceText += " <b>" + this.tasksStack[i].body[0] + "</b>\n";
+        traceText += " <b>" + this.tasksStack[i].procedureName + "</b>\n";
       } else {
         traceText += "\n";
       }

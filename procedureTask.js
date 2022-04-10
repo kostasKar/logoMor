@@ -2,15 +2,16 @@
 class ProcedureTask {
   
   constructor(procedurePrototype){
+    this.procedureName = procedurePrototype.procedureName;
     this.body = procedurePrototype.body;
     this.bodyLineNumbers = procedurePrototype.bodyLineNumbers;
-    this.numOfParameters = procedurePrototype.numOfParameters;
-    this.localVariables = Object.assign({}, procedurePrototype.localVariables);
+    this.parameters = procedurePrototype.parameters;
+    this.localVariables = {};
     this.returnValue = "";
     
     LM.interpreter.tasksStack.push(this);
-    if (this.numOfParameters > 0){
-      var art = new ArgumentResolverTask();
+    if (this.parameters.length > 0){
+      new ArgumentResolverTask();
     } else {
       LM.memoryController.pushScope(this.localVariables);
       this.returnIndex = LM.interpreter.currentIndex + 1;
@@ -18,7 +19,7 @@ class ProcedureTask {
       LM.interpreter.sourceTokens = this.body;
       this.returnSourceTokensLineNumbers = LM.interpreter.sourceTokensLineNumbers;
       LM.interpreter.sourceTokensLineNumbers = this.bodyLineNumbers;
-      LM.interpreter.currentIndex = 0;
+      LM.interpreter.currentIndex = 1;
     }
     this.numOfParametersSet = 0;
     this.canBeResolved = false;
@@ -29,19 +30,19 @@ class ProcedureTask {
     if (this.canBeResolved){ 
       return false;
     }
-    if (this.numOfParametersSet < this.numOfParameters){
-      this.localVariables[this.body[this.numOfParametersSet + 1].replace(":", "")]  = arg; 
+    if (this.numOfParametersSet < this.parameters.length){
+      this.localVariables[this.parameters[this.numOfParametersSet]]  = arg;
       this.numOfParametersSet++;
-      if (this.numOfParametersSet == this.numOfParameters){
+      if (this.numOfParametersSet == this.parameters.length){
         LM.memoryController.pushScope(this.localVariables);
         this.returnIndex = LM.interpreter.currentIndex;
         this.returnSourceTokens = LM.interpreter.sourceTokens;
         LM.interpreter.sourceTokens = this.body;
         this.returnSourceTokensLineNumbers = LM.interpreter.sourceTokensLineNumbers;
         LM.interpreter.sourceTokensLineNumbers = this.bodyLineNumbers;
-        LM.interpreter.currentIndex = this.numOfParametersSet + 1;
+        LM.interpreter.currentIndex = this.numOfParametersSet + 2;
       } else {
-        var art = new ArgumentResolverTask();
+        new ArgumentResolverTask();
       }
       return true;
     } else if (this.waitingReturnValue){
@@ -51,7 +52,7 @@ class ProcedureTask {
       return true;
     } else if ((arg === "return") || (arg === "output")){
       this.waitingReturnValue = true;
-      var art = new ArgumentResolverTask();
+      new ArgumentResolverTask();
       return true;
     }  else if ((arg === "end") || (arg === "stop")){
       this.canBeResolved = true;

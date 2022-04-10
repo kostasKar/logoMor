@@ -11,6 +11,7 @@ class ProcedurePrototype {
       LM.throwError("Incomplete function definition");
       return;
     }
+    let startIndex = i; //start index at 'to' token
     i++;//skip the 'to'
     if(sourceTokens[i] in LM.interpreter.procedurePrototypes){
       LM.throwError("Redefinition of function with name: " + sourceTokens[i]);
@@ -20,13 +21,11 @@ class ProcedurePrototype {
       LM.throwError("Cannot use keyword as function name: " + sourceTokens[i]);
       return;
     }
-    let startIndex = i; //start index at procedure name
+    this.procedureName = sourceTokens[i];
     i++;//skip the procedure name
-    this.localVariables = {};
-    this.numOfParameters = 0;
+    this.parameters = [];
     while (sourceTokens[i].match(":.*")){
-      this.localVariables[sourceTokens[i].replace(":", "")] = 0.0;
-      this.numOfParameters++;
+      this.parameters.push(sourceTokens[i].replace(":", ""));
       i++;
       if (i == sourceTokens.length){
         LM.throwError("Missing 'end'");
@@ -41,10 +40,8 @@ class ProcedurePrototype {
       i++;
     }
     let endIndex = i;
-    LM.interpreter.procedurePrototypes[sourceTokens[startIndex]] = this;
+    LM.interpreter.procedurePrototypes[this.procedureName] = this;
     this.body = sourceTokens.splice(startIndex, (endIndex+1)-startIndex);//cut the body from sourceTokens and put it in body
-    sourceTokens.splice(LM.interpreter.currentIndex, 1); //remove 'to'
     this.bodyLineNumbers = LM.interpreter.sourceTokensLineNumbers.splice(startIndex, (endIndex+1)-startIndex);
-    LM.interpreter.sourceTokensLineNumbers.splice(LM.interpreter.currentIndex, 1);
   }
 }
