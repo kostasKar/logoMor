@@ -26,7 +26,7 @@ LogoMor is an interpreter and visualizer for the Logo programming language, with
 
 ## Technologies
 
-Logo interpreter in vanilla JavaScript  
+Interpreter written from scratch in vanilla JavaScript  
 UI in HTML5 and CSS3  
 p5.js and WebGL hardware accelerated rendering  
 CodeMirror with custom mode 
