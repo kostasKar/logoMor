@@ -48,6 +48,19 @@ LM.p5Renderer = new p5( function(p) {
 
   p.windowResized = function() {
     p.resizeCanvas(p.windowWidth, p.windowHeight);
+    if (!document.fullscreenElement){
+      document.getElementById("fullScreenToggleButton").classList.remove("checked");
+    }
+  };
+
+  p.toggleFullscreen = function(){
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      }
+    }
   };
 
   p.keyPressed = function() {
