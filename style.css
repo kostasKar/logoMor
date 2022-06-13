@@ -6,7 +6,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--body-background-color);
+  background-color: var(--bckgnd-color);
 }
 
 body, button {
@@ -18,11 +18,11 @@ body, button {
 }
 
 ::-moz-selection { /* Code for Firefox */
-  background: var(--selection-background-color);
+  background: var(--light-gray-1-color);
 }
 
 ::selection {
-  background: var(--selection-background-color);
+  background: var(--light-gray-1-color);
 }
 
 canvas {
@@ -36,15 +36,15 @@ canvas {
 }
 
 .brightText {
-  color: var(--bright-text-color);
+  color: var(--text-main-color);
 }
 
 .subtleText1 {
-  color: var(--subtle1-text-color);
+  color: var(--text-secondary-color);
 }
 
 .subtleText2 {
-  color: var(--subtle2-text-color);
+  color: var(--text-secondary-color);
 }
 
 
@@ -53,9 +53,9 @@ canvas {
  */
 
 .btn {
-  background-color: var(--btn-background-color);
-  color: var(--btn-color);
-  border-color: var(--btn-border-color);
+  background-color: var(--light-gray-1-color);
+  color: var(--text-main-color);
+  border-color: var(--light-gray-1-color);
   border-style: solid;
   outline: none;
   text-decoration: none;
@@ -66,8 +66,8 @@ canvas {
 
 .btn:hover:not([disabled]){
   color: var(--btn-hover-color);
-  background-color: var(--btn-hover-background-color);
-  border-color: var(--btn-hover-border-color);
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
 }
 
 .btn:disabled {
@@ -108,18 +108,18 @@ canvas {
 }
 
 .toggleButton.checked{
-  background-color: var(--toggle-btn-background-color);
+  background-color: var(--accent-color);
   color: var(--toggle-button-color);
 }
 
 .toggleButton.checked:hover{
-  background-color: var(--toggle-btn-background-color-hover);
+  background-color: var(--accent-color);
 }
 
 .deleteButton {
   background-color: var(--delete-btn-background-color);
   border: none;
-  color: var(--delete-btn-color);
+  color: var(--text-secondary-color);
   padding: 5px 5px;
   text-align: center;
   text-decoration: none;
@@ -129,7 +129,7 @@ canvas {
 }
 
 .deleteButton:hover {
-  color: var(--delete-btn-color-hover);
+  color: var(--text-secondary-color);
 }
 
 .afterAsset {
@@ -146,7 +146,7 @@ canvas {
 
 #extraControls{
   display: none;
-  background-color: var(--btn-border-color);
+  background-color: var(--light-gray-1-color);
   border-radius: 25px;
 }
 
@@ -248,8 +248,8 @@ canvas {
  */
 .CodeMirror {
   position:relative;
-  background-color: var(--console-background-color);
-  border-color: var(--console-border-color);
+  background-color: var(--light-gray-2-color);
+  border-color: var(--light-gray-1-color);
   border-style: solid;
   border-width: 3px;
   border-radius: 4px;
@@ -265,8 +265,8 @@ canvas {
 
 #consoleTextArea{
   position:relative;
-  background-color: var(--console-background-color);
-  border-color: var(--console-border-color);
+  background-color: var(--light-gray-2-color);
+  border-color: var(--light-gray-1-color);
   border-style: solid;
   border-width: 3px;
   border-radius: 4px;
@@ -299,11 +299,11 @@ canvas {
 }
 
 #hintHelpText{
-  border: 1px solid var(--hint-text-border-color);
+  border: 1px solid var(--light-gray-1-color);
   border-radius: 3px;
   font-size: 12px;
-  background-color: var(--hint-text-background-color);
-  color: var(--hint-text-color);
+  background-color: var(--light-gray-1-color);
+  color: var(--text-main-color);
   z-index: 5;
   padding: 5px;
 }
@@ -380,14 +380,14 @@ canvas {
 }
 
 #movesLimitDiv input {
-  background: var(--moves-limit-background-color);
+  background: var(--bckgnd-color);
   font-size:14px;
   width: 80px;
   padding: 2px;
-  color: var(--moves-limit-color);
+  color: var(--text-secondary-color);
   position: relative;
   float: right;
-  border: 1px solid var(--moves-limit-border-color);
+  border: 1px solid var(--light-gray-1-color);
   border-radius: 3px;
   margin-top: 3px;
 }
@@ -403,14 +403,14 @@ canvas {
 }
 
 .modelName, .imageName, .soundName {
-  color: var(--asset-color);
+  color: var(--text-secondary-color);
   font-size: 18px;
   display: inline-block;
   margin-top: 13px;
-  background: var(--asset-background-color);
+  background: var(--bckgnd-color);
   width: 100px;
   outline: none;
-  border: 1px solid var(--asset-border-color);
+  border: 1px solid var(--light-gray-1-color);
   border-radius: 3px;
 }
 
@@ -422,7 +422,7 @@ canvas {
 
 .assetsIcon{
   margin-right: 8px;
-  color: var(--asset-icon-color);
+  color: var(--text-secondary-color);
 }
 
 
@@ -443,7 +443,7 @@ canvas {
   appearance: none;
   width: 260px;
   height: 10px; /* Specified height */
-  background: var(--slider-range-border-color); /* Grey background */
+  background: var(--light-gray-1-color); /* Grey background */
   outline: none; /* Remove outline */
   opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
   -webkit-transition: .2s; /* 0.2 seconds transition on hover */
@@ -463,7 +463,7 @@ canvas {
   appearance: none;
   width: 25px; /* Set a specific slider handle width */
   height: 25px; /* Slider handle height */
-  background: var(--slider-background-color); /* Green background */
+  background: var(--slider-background-color);
   cursor: pointer; /* Cursor on hover */
   border-radius: 50%;
 }
@@ -471,7 +471,7 @@ canvas {
 .slider::-moz-range-thumb {
   width: 25px; /* Set a specific slider handle width */
   height: 25px; /* Slider handle height */
-  background: var(--slider-background-color) ; /* Green background */
+  background: var(--slider-background-color) ; 
   cursor: pointer; /* Cursor on hover */
   border-radius: 50%;
 }
@@ -482,31 +482,31 @@ canvas {
 }
 
 .sliderVarName{
-  color: var(--slider-text-color);
+  color: var(--text-secondary-color);
   font-size: 16px;
 }
 
 .sliderValue{
-  color: var(--slider-text-color);
+  color: var(--text-secondary-color);
   font-size: 16px;
   margin-left: 5px;
 }
 
 .rangeLabel{
-  color: var(--slider-range-color);
+  color: var(--text-secondary-color);
   font-size: 14px;
   Margin-right: 5px;
 }
 
 .rangeInput{
-  color: var(--slider-range-color);
+  color: var(--text-secondary-color);
   font-size: 14px;
   display: inline-block;
   margin-top: 13px;
-  background: var(--slider-range-background-color);
+  background: var(--bckgnd-color);
   width: 80px;
   outline: none;
-  border: 1px solid var(--slider-range-border-color);
+  border: 1px solid var(--light-gray-1-color);
   border-radius: 3px;
   Margin-right: 21px;
 }
@@ -521,8 +521,8 @@ canvas {
   display: none;
   white-space: nowrap;
   padding: 2px 15px 2px 15px;
-  background-color: var(--tooltip-background-color);
-  color: var(--tooltip-color);
+  background-color: var(--light-gray-1-color);
+  color: var(--text-secondary-color);
   text-align: center;
   border-radius: 15px;
   font-size: 14px;
@@ -556,12 +556,12 @@ canvas {
 }
 
 #copyright a, a:visited{
-  color: var(--copyright-visited-color);
+  color: var(--text-secondary-color);
   text-decoration: none;
 }
 
 #copyright a:hover{
-  color: var(--copyright-hover-color);
+  color: var(--text-secondary-color);
   cursor: pointer;
 }
 
@@ -634,7 +634,7 @@ canvas {
 
 .HorizontalRule{
   border: none;
-  border-bottom: 1px solid var(--horizontal-rule-color);
+  border-bottom: 1px solid var(--light-gray-2-color);
 }
 
 .dropdown {
@@ -646,18 +646,18 @@ canvas {
   padding: 5px;
   font-size: 12px;
   border: none;
-  color: var(--dropdown-btn-color);
+  color: var(--text-main-color);
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: var(--dropdown-content-background-color);
+  background-color: var(--light-gray-1-color);
   min-width: 180px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 10;
   font-size: 12px;
-  color: var(--dropdown-content-color);
+  color: var(--text-main-color);
 }
 
 .dropdown-content.left {
@@ -672,7 +672,7 @@ canvas {
 }
 
 .dropdown-content div:hover ,.dropdown-content li:hover {
-  background-color: var(--dropdown-content-hover-background-color);
+  background-color: var(--accent-color);
   color: var(--dropdown-content-hover-color);
   cursor: pointer;
 }
@@ -685,7 +685,7 @@ canvas {
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .show-on-hover.dropdown:hover .dropdown-button {
-  background-color: var(--dropdown-content-background-color);
+  background-color: var(--light-gray-1-color);
   cursor: default;
 }
 
@@ -700,7 +700,7 @@ canvas {
 #projectNameContainer {
   background-color: inherit;
   border: none;
-  color: var(--project-name-color);
+  color: var(--text-secondary-color);
   text-align: right;
   margin-right: 10px;
   margin-top: 2px;
@@ -711,7 +711,7 @@ canvas {
 }
 
 #projectNameContainer:not(.editing):hover {
-  color: var(--project-name-hover-color);
+  color: var(--text-main-color);
   cursor: pointer;
 }
 
@@ -739,7 +739,7 @@ canvas {
 }
 
 #projectNameContainer.editing input{
-  border: 1px solid var(--project-name-border-color);
+  border: 1px solid var(--light-gray-1-color);
   text-align: left;
   border-radius: 3px;
   padding:1px 3px;
