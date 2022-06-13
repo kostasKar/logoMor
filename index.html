@@ -336,6 +336,7 @@
       document.getElementById("backgroundColorPicker").value = "#ffffff";
       LM.p5Renderer.setBackgroundColor("#ffffff");
       LM.retainMode.fireExecution();
+      localStorage.setItem("preferredTheme", "light");
     } else if (newTheme === "dark"){
       document.documentElement.classList.remove('light-mode');
       document.documentElement.classList.add('dark-mode');
@@ -344,11 +345,12 @@
       document.getElementById("backgroundColorPicker").value = "#000000";
       LM.p5Renderer.setBackgroundColor("#000000");
       LM.retainMode.fireExecution();
+      localStorage.setItem("preferredTheme", "dark");
     }
   }
 
-  //set theme to dark mode by default
-  setTheme("dark");
+  //set theme to preferred or dark by default
+  setTheme(localStorage.getItem("preferredTheme") || "dark");
 
 </script>
 
