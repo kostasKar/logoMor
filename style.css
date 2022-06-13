@@ -2,10 +2,70 @@
   -------------- General Rules --------------
  */
 
+/*
+  Color theme properties
+ */
+:root {
+  --body-background-color: #000;
+  --selection-background-color: #444;
+  --bright-text-color: #ddd;
+  --subtle1-text-color: #666;
+  --subtle2-text-color: #555;
+  --btn-background-color: #222;
+  --btn-color: #aaa;
+  --btn-border-color: #333;
+  --btn-hover-color: #ddd;
+  --btn-hover-background-color: #333;
+  --btn-disabled-color: #555;
+  --toggle-btn-background-color: #2c9694;
+  --toggle-button-color: #fff;
+  --toggle-btn-background-color-hover: #3ac4c2;
+  --delete-btn-background-color: #000;
+  --delete-btn-color: #cc8888;
+  --delete-btn-color-hover: #fff;
+  --editor-background-color: #111;
+  --editor-border-color: #333;
+  --pull-tab-color: #555;
+  --hint-text-color: #aaa;
+  --hint-text-border-color: #333;
+  --hint-text-background-color: #49483E;
+  --system-output-color: #cacaa2;
+  --error-output-color: #ee9999;
+  --variables-trace-color: #616138;
+  --moves-limit-color: #888;
+  --moves-limit-background-color: #000;
+  --moves-limit-border-color: #333;
+  --asset-color: #888;
+  --asset-background-color: #000;
+  --asset-border-color: #333;
+  --asset-icon-color: #888;
+  --slider-background-color: #666;
+  --slider-text-color: #888;
+  --slider-range-color: #666;
+  --slider-range-background-color: #000;
+  --slider-range-border-color: #333;
+  --tooltip-background-color: #222;
+  --tooltip-color: #666;
+  --copyright-hover-color: #777;
+  --copyright-visited-color: #444;
+  --horizontal-rule-color: #666;
+  --dropdown-btn-color: #ddd;
+  --dropdown-content-color: #ddd;
+  --dropdown-content-background-color: #333;
+  --dropdown-content-hover-background-color: #2c9694;
+  --dropdown-content-hover-color: #fff;
+  --project-name-color: #ccc;
+  --project-name-hover-color: #eee;
+  --project-name-border-color: #aaa;
+  --light-source-background-color: #ddd;
+  --loading-spinner-background-color: #0f0f0f;
+  --loading-spinner-color: #c0c0c0;
+}
+
 body {
   margin: 0;
   padding: 0;
-  background-color: #000000;
+  background-color: var(--body-background-color);
 }
 
 body, button {
@@ -17,11 +77,11 @@ body, button {
 }
 
 ::-moz-selection { /* Code for Firefox */
-  background: #444444;
+  background: var(--selection-background-color);
 }
 
 ::selection {
-  background: #444444;
+  background: var(--selection-background-color);
 }
 
 canvas {
@@ -35,15 +95,15 @@ canvas {
 }
 
 .brightText {
-  color: #dddddd;
+  color: var(--bright-text-color);
 }
 
 .subtleText1 {
-  color: #666666;
+  color: var(--subtle1-text-color);
 }
 
 .subtleText2 {
-  color: #555555;
+  color: var(--subtle2-text-color);
 }
 
 
@@ -52,9 +112,9 @@ canvas {
  */
 
 .btn {
-  background-color: #222222;
-  color: #aaaaaa;
-  border-color: #333333;
+  background-color: var(--btn-background-color);
+  color: var(--btn-color);
+  border-color: var(--btn-border-color);
   border-style: solid;
   outline: none;
   text-decoration: none;
@@ -64,12 +124,12 @@ canvas {
 }
 
 .btn:hover:not([disabled]){
-  color: #dddddd;
-  background-color: #333333;
+  color: var(--btn-hover-color);
+  background-color: var(--btn-hover-background-color);
 }
 
 .btn:disabled {
-  color: #555555;
+  color: var(--btn-disabled-color);
   cursor: auto ;
 }
 
@@ -106,18 +166,18 @@ canvas {
 }
 
 .toggleButton.checked{
-  background-color: #2c9694;
-  color: white;
+  background-color: var(--toggle-btn-background-color);
+  color: var(--toggle-button-color);
 }
 
 .toggleButton.checked:hover{
-  background-color: #3ac4c2;
+  background-color: var(--toggle-btn-background-color-hover);
 }
 
 .deleteButton {
-  background-color: black;
+  background-color: var(--delete-btn-background-color);
   border: none;
-  color: #cc8888;
+  color: var(--delete-btn-color);
   padding: 5px 5px;
   text-align: center;
   text-decoration: none;
@@ -127,7 +187,7 @@ canvas {
 }
 
 .deleteButton:hover {
-  color: white;
+  color: var(--delete-btn-color-hover);
 }
 
 .afterAsset {
@@ -144,7 +204,7 @@ canvas {
 
 #extraControls{
   display: none;
-  background-color: #333333;
+  background-color: var(--btn-border-color);
   border-radius: 25px;
 }
 
@@ -246,8 +306,8 @@ canvas {
  */
 .CodeMirror {
   position:relative;
-  background-color: #111111;
-  border-color: #333333;
+  background-color: var(--editor-background-color);
+  border-color: var(--editor-border-color);
   border-style: solid;
   border-width: 3px;
   border-radius: 4px;
@@ -263,8 +323,8 @@ canvas {
 
 #consoleTextArea{
   position:relative;
-  background-color: #111111;
-  border-color: #333333;
+  background-color: var(--editor-background-color);
+  border-color: var(--editor-border-color);
   border-style: solid;
   border-width: 3px;
   border-radius: 4px;
@@ -287,8 +347,8 @@ canvas {
   border-bottom: 8px solid ;
   border-top-color: transparent;
   border-right-color: transparent;
-  border-left-color: #555555;
-  border-bottom-color: #555555;
+  border-left-color: var(--pull-tab-color);
+  border-bottom-color: var(--pull-tab-color);
   float: left;
   pointer-events: none;
   z-index: 3;
@@ -297,34 +357,34 @@ canvas {
 }
 
 #hintHelpText{
-  border: 1px solid #333333;
+  border: 1px solid var(--hint-text-border-color);
   border-radius: 3px;
   font-size: 12px;
-  background-color: #49483E;
-  color: #aaaaaa;
+  background-color: var(--hint-text-background-color);
+  color: var(--hint-text-color);
   z-index: 5;
   padding: 5px;
 }
 
 .system-output{
-  color: #cacaa2;
+  color: var(--system-output-color);
 }
 
 .error-output{
-  color: #ee9999;
+  color: var(--error-output-color);
 }
 
 .variablesTraceTable {
   font-size: 14px;
   border-collapse: collapse;
   width: 300px;
-  border: 1px solid #616138;
+  border: 1px solid var(--variables-trace-color);
 }
 
 .variablesTraceTable th {
   font-size: 14px;
-  border-bottom: 1px solid #616138;
-  border-top: 1px solid #616138;
+  border-bottom: 1px solid var(--variables-trace-color);
+  border-top: 1px solid var(--variables-trace-color);
   paddin-left: 3px;
 }
 .variablesTraceTable td {
@@ -378,14 +438,14 @@ canvas {
 }
 
 #movesLimitDiv input {
-  background: black;
+  background: var(--moves-limit-background-color);
   font-size:14px;
   width: 80px;
   padding: 2px;
-  color: #888888;
+  color: var(--moves-limit-color);
   position: relative;
   float: right;
-  border: 1px solid #333333;
+  border: 1px solid var(--moves-limit-border-color);
   border-radius: 3px;
   margin-top: 3px;
 }
@@ -401,14 +461,14 @@ canvas {
 }
 
 .modelName, .imageName, .soundName {
-  color: #888888;
+  color: var(--asset-color);
   font-size: 18px;
   display: inline-block;
   margin-top: 13px;
-  background: black;
+  background: var(--asset-background-color);
   width: 100px;
   outline: none;
-  border: 1px solid #333333;
+  border: 1px solid var(--asset-border-color);
   border-radius: 3px;
 }
 
@@ -420,7 +480,7 @@ canvas {
 
 .assetsIcon{
   margin-right: 8px;
-  color: #888888;
+  color: var(--asset-icon-color);
 }
 
 
@@ -441,7 +501,7 @@ canvas {
   appearance: none;
   width: 260px;
   height: 10px; /* Specified height */
-  background: #333333; /* Grey background */
+  background: var(--slider-range-border-color); /* Grey background */
   outline: none; /* Remove outline */
   opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
   -webkit-transition: .2s; /* 0.2 seconds transition on hover */
@@ -461,7 +521,7 @@ canvas {
   appearance: none;
   width: 25px; /* Set a specific slider handle width */
   height: 25px; /* Slider handle height */
-  background: #666666; /* Green background */
+  background: var(--slider-background-color); /* Green background */
   cursor: pointer; /* Cursor on hover */
   border-radius: 50%;
 }
@@ -469,7 +529,7 @@ canvas {
 .slider::-moz-range-thumb {
   width: 25px; /* Set a specific slider handle width */
   height: 25px; /* Slider handle height */
-  background: #666666 ; /* Green background */
+  background: var(--slider-background-color) ; /* Green background */
   cursor: pointer; /* Cursor on hover */
   border-radius: 50%;
 }
@@ -480,31 +540,31 @@ canvas {
 }
 
 .sliderVarName{
-  color: #888888;
+  color: var(--slider-text-color);
   font-size: 16px;
 }
 
 .sliderValue{
-  color: #888888;
+  color: var(--slider-text-color);
   font-size: 16px;
   margin-left: 5px;
 }
 
 .rangeLabel{
-  color: #666666;
+  color: var(--slider-range-color);
   font-size: 14px;
   Margin-right: 5px;
 }
 
 .rangeInput{
-  color: #666666;
+  color: var(--slider-range-color);
   font-size: 14px;
   display: inline-block;
   margin-top: 13px;
-  background: black;
+  background: var(--slider-range-background-color);
   width: 80px;
   outline: none;
-  border: 1px solid #333333;
+  border: 1px solid var(--slider-range-border-color);
   border-radius: 3px;
   Margin-right: 21px;
 }
@@ -519,8 +579,8 @@ canvas {
   display: none;
   white-space: nowrap;
   padding: 2px 15px 2px 15px;
-  background-color: #222222;
-  color: #666666;
+  background-color: var(--tooltip-background-color);
+  color: var(--tooltip-color);
   text-align: center;
   border-radius: 15px;
   font-size: 14px;
@@ -554,12 +614,12 @@ canvas {
 }
 
 #copyright a, a:visited{
-  color: #444444;
+  color: var(--copyright-visited-color);
   text-decoration: none;
 }
 
 #copyright a:hover{
-  color: #777777;
+  color: var(--copyright-hover-color);
   cursor: pointer;
 }
 
@@ -572,9 +632,9 @@ canvas {
   left: 50%;
   top: 50%;
   z-index: 1;
-  border: 10px solid #0f0f0f;
+  border: 10px solid var(--loading-spinner-background-color);
   border-radius: 50%;
-  border-top: 10px solid #c0c0c0;
+  border-top: 10px solid var(--loading-spinner-color);
   width: 50px;
   height: 50px;
   margin: -35px 0 0 -35px; /* minus valies: half of width, height plus border; */
@@ -591,11 +651,6 @@ canvas {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-
-@keyframes blinkingBorder {
-  from, to  {border-color: #333333;}
-  100% {border-color: #aa8a77;}
 }
 
 
@@ -637,7 +692,7 @@ canvas {
 
 .HorizontalRule{
   border: none;
-  border-bottom: 1px solid #666666;
+  border-bottom: 1px solid var(--horizontal-rule-color);
 }
 
 .dropdown {
@@ -649,18 +704,18 @@ canvas {
   padding: 5px;
   font-size: 12px;
   border: none;
-  color: #dddddd;
+  color: var(--dropdown-btn-color);
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #333333;
+  background-color: var(--dropdown-content-background-color);
   min-width: 180px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 10;
   font-size: 12px;
-  color: #dddddd;
+  color: var(--dropdown-content-color);
 }
 
 .dropdown-content.left {
@@ -675,8 +730,8 @@ canvas {
 }
 
 .dropdown-content div:hover ,.dropdown-content li:hover {
-  background-color: #2c9694;
-  color: white;
+  background-color: var(--dropdown-content-hover-background-color);
+  color: var(--dropdown-content-hover-color);
   cursor: pointer;
 }
 
@@ -688,7 +743,7 @@ canvas {
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .show-on-hover.dropdown:hover .dropdown-button {
-  background-color: #333333;
+  background-color: var(--dropdown-content-background-color);
   cursor: default;
 }
 
@@ -703,7 +758,7 @@ canvas {
 #projectNameContainer {
   background-color: inherit;
   border: none;
-  color: #cccccc;
+  color: var(--project-name-color);
   text-align: right;
   margin-right: 10px;
   margin-top: 2px;
@@ -714,7 +769,7 @@ canvas {
 }
 
 #projectNameContainer:not(.editing):hover {
-  color: #eeeeee;
+  color: var(--project-name-hover-color);
   cursor: pointer;
 }
 
@@ -742,7 +797,7 @@ canvas {
 }
 
 #projectNameContainer.editing input{
-  border: 1px solid #aaaaaa;
+  border: 1px solid var(--project-name-border-color);
   text-align: left;
   border-radius: 3px;
   padding:1px 3px;
@@ -759,9 +814,9 @@ canvas {
   height: 80px;
   top: calc(50% - 40px);
   left: calc(50% - 40px);
-  background-color: #dddddd;
+  background-color: var(--light-source-background-color);
   border-radius: 50%;
-  box-shadow: 0 0 50px #dddddd;
+  box-shadow: 0 0 50px var(--light-source-background-color);
   text-align: center;
 }
 
