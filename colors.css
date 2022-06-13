@@ -110,7 +110,7 @@
     --delete-btn-background-color: #fff;
     --delete-btn-color: #cc8888;
     --delete-btn-color-hover: #000;
-    --console-background-color: #eee;
+    --console-background-color: #f5f5f5;
     --console-border-color: #ddd;
     --pull-tab-color: #ccc;
     --hint-text-color: #555;
@@ -151,14 +151,14 @@
     /* Editor Monokai color palette */
     --editor-background-color: #fafafa;
     --editor-text-color: #111111;
-    --editor-gutter-background-color: #eee;
+    --editor-gutter-background-color: #f5f5f5;
     --editor-linenumber-color: #707070;
     --editor-cursor-color: #000000;
     --editor-selected-color: #eee;
     --editor-empty-color: #888888;
     --editor-comment-color: #666666;
     --editor-variable-color: #75af00;
-    --editor-string-color: #998f2f;
+    --editor-string-color: #dbb24a;
     --editor-operator-color: #111111;
     --editor-enclosing-color: #111111;
     --editor-number-color: #ae81ff;
