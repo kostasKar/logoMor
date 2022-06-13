@@ -32,7 +32,7 @@
     /* Editor Monokai color palette */
     --editor-background-color: #272822;
     --editor-text-color: #f8f8f2;
-    --editor-gutter-background-color: #272822;
+    --editor-gutter-background-color: #222;
     --editor-linenumber-color: #90918b;
     --editor-cursor-color: #f8f8f0;
     --editor-selected-color: #49483E;
