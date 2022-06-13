@@ -3,27 +3,27 @@
 	Based on Sublime Text's Monokai theme 
 */
 
-.cm-s-logomor-theme.CodeMirror, .cm-s-logomor-theme .CodeMirror-gutters { background-color: #272822; color: #f8f8f2; }
-.cm-s-logomor-theme .CodeMirror-gutters {background: #272822; border-right: 0px;}
-.cm-s-logomor-theme .CodeMirror-linenumber {color: #90918b;}
-.cm-s-logomor-theme .CodeMirror-cursor { border-left: 1px solid #f8f8f0; }
-.cm-s-logomor-theme div.CodeMirror-selected { background: #49483E; }
-.cm-s-logomor-theme.CodeMirror-empty {color: #707165;}
+.cm-s-logomor-theme.CodeMirror, .cm-s-logomor-theme .CodeMirror-gutters { background-color: var(--editor-background-color); color: var(--editor-text-color); }
+.cm-s-logomor-theme .CodeMirror-gutters {background: var(--editor-gutter-background-color); border-right: 0px;}
+.cm-s-logomor-theme .CodeMirror-linenumber {color: var(--editor-linenumber-color);}
+.cm-s-logomor-theme .CodeMirror-cursor { border-left: 1px solid var(--editor-cursor-color); }
+.cm-s-logomor-theme div.CodeMirror-selected { background: var(--editor-selected-color); }
+.cm-s-logomor-theme.CodeMirror-empty {color: var(--editor-empty-color);}
 
-.cm-s-logomor-theme span.cm-comment { color: #75715e; }
-.cm-s-logomor-theme span.cm-variable { color: #a6e22e; }
-.cm-s-logomor-theme span.cm-string { color: #e6db74; }
-.cm-s-logomor-theme span.cm-operator { color: #d0d0d0; }
-.cm-s-logomor-theme span.cm-enclosing { color: #d0d0d0; }
-.cm-s-logomor-theme span.cm-number, span.cm-atom { color: #ae81ff; }
-.cm-s-logomor-theme span.cm-move { color: #fd971f; }
-.cm-s-logomor-theme span.cm-command { color: #66d9ef; }
-.cm-s-logomor-theme span.cm-keyword { color: #f92672; }
+.cm-s-logomor-theme span.cm-comment { color: var(--editor-comment-color); }
+.cm-s-logomor-theme span.cm-variable { color: var(--editor-variable-color); }
+.cm-s-logomor-theme span.cm-string { color: var(--editor-string-color); }
+.cm-s-logomor-theme span.cm-operator { color: var(--editor-operator-color); }
+.cm-s-logomor-theme span.cm-enclosing { color: var(--editor-enclosing-color); }
+.cm-s-logomor-theme span.cm-number, span.cm-atom { color: var(--editor-number-color); }
+.cm-s-logomor-theme span.cm-move { color: var(--editor-move-color); }
+.cm-s-logomor-theme span.cm-command { color: var(--editor-command-color); }
+.cm-s-logomor-theme span.cm-keyword { color: var(--editor-keyword-color); }
 
-.cm-s-logomor-theme .CodeMirror-activeline-background { background: #373831; }
+.cm-s-logomor-theme .CodeMirror-activeline-background { background: var(--editor-activeline-background-color); }
 .cm-s-logomor-theme .CodeMirror-matchingbracket {
   text-decoration: underline;
-  color: white !important;
+  color: var(--editor-matchingbracket-color) !important;
 }
 
 .cm-s-logomor-theme span.cm-matchhighlight {
@@ -37,9 +37,9 @@
 .cm-s-logomor-theme .CodeMirror-line::-moz-selection, .cm-s-logomor-theme .CodeMirror-line > span::-moz-selection, .cm-s-logomor-theme .CodeMirror-line > span > span::-moz-selection { background: rgba(255, 255, 255, 0.10); }
 
 .cm-error-line{
-  background-color: #602822 !important;
+  background-color: var(--editor-error-line-background-color) !important;
 }
 
 .cm-debug-line{
-  background-color: #305010 !important;
+  background-color: var(--editor-debugging-line-background-color) !important;
 }

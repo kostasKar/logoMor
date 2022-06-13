@@ -4,6 +4,7 @@ LM.p5Renderer = new p5( function(p) {
   let labelFont;
   let canvas;
   let persistDraw = false;
+  let backgroundColor = "#000000";
 
   p.preload = function(){
     if (window.location.protocol !== "file:"){
@@ -27,7 +28,7 @@ LM.p5Renderer = new p5( function(p) {
 
   p.draw = function() {
     if (!persistDraw) {
-      p.background(0);
+      p.background(backgroundColor);
     }
     LM.cameraViewControl.adjust();
     LM.logo.startDrawing();
@@ -73,6 +74,10 @@ LM.p5Renderer = new p5( function(p) {
 
   p.togglePersistDraw = function(){
     persistDraw = !persistDraw;
+  };
+
+  p.setBackgroundColor = function(color){
+    backgroundColor = color;
   }
 
 });

@@ -1,0 +1,179 @@
+
+/*
+  Color theme properties
+ */
+:root.dark-mode {
+
+    /* UI elements colors*/
+    --body-background-color: #000;
+    --selection-background-color: #444;
+    --bright-text-color: #ddd;
+    --subtle1-text-color: #666;
+    --subtle2-text-color: #555;
+    --btn-background-color: #222;
+    --btn-color: #aaa;
+    --btn-border-color: #333;
+    --btn-hover-color: #ddd;
+    --btn-hover-background-color: #333;
+    --btn-disabled-color: #555;
+    --toggle-btn-background-color: #2c9694;
+    --toggle-button-color: #fff;
+    --toggle-btn-background-color-hover: #3ac4c2;
+    --delete-btn-background-color: #000;
+    --delete-btn-color: #cc8888;
+    --delete-btn-color-hover: #fff;
+    --console-background-color: #111;
+    --console-border-color: #333;
+    --pull-tab-color: #555;
+    --hint-text-color: #aaa;
+    --hint-text-border-color: #333;
+    --hint-text-background-color: #49483E;
+    --system-output-color: #cacaa2;
+    --error-output-color: #ee9999;
+    --variables-trace-color: #616138;
+    --moves-limit-color: #888;
+    --moves-limit-background-color: #000;
+    --moves-limit-border-color: #333;
+    --asset-color: #888;
+    --asset-background-color: #000;
+    --asset-border-color: #333;
+    --asset-icon-color: #888;
+    --slider-background-color: #666;
+    --slider-text-color: #888;
+    --slider-range-color: #666;
+    --slider-range-background-color: #000;
+    --slider-range-border-color: #333;
+    --tooltip-background-color: #222;
+    --tooltip-color: #666;
+    --copyright-hover-color: #777;
+    --copyright-visited-color: #444;
+    --horizontal-rule-color: #666;
+    --dropdown-btn-color: #ddd;
+    --dropdown-content-color: #ddd;
+    --dropdown-content-background-color: #333;
+    --dropdown-content-hover-background-color: #2c9694;
+    --dropdown-content-hover-color: #fff;
+    --project-name-color: #ccc;
+    --project-name-hover-color: #eee;
+    --project-name-border-color: #aaa;
+    --light-source-background-color: #ddd;
+    --loading-spinner-background-color: #0f0f0f;
+    --loading-spinner-color: #c0c0c0;
+
+    /* Editor Monokai color palette */
+    --editor-background-color: #272822;
+    --editor-text-color: #f8f8f2;
+    --editor-gutter-background-color: #272822;
+    --editor-linenumber-color: #90918b;
+    --editor-cursor-color: #f8f8f0;
+    --editor-selected-color: #49483E;
+    --editor-empty-color: #707165;
+    --editor-comment-color: #75715e;
+    --editor-variable-color: #a6e22e;
+    --editor-string-color: #e6db74;
+    --editor-operator-color: #d0d0d0;
+    --editor-enclosing-color: #d0d0d0;
+    --editor-number-color: #ae81ff;
+    --editor-move-color: #fd971f;
+    --editor-command-color: #66d9ef;
+    --editor-keyword-color: #f92672;
+    --editor-activeline-background-color: #373831;
+    --editor-matchingbracket-color: #fff;
+    --editor-error-line-background-color: #602822;
+    --editor-debugging-line-background-color: #305010;
+
+    /* Hint text within editor */
+    --editor-hint-background-color: #49483e;
+    --editor-hint-border-color: #333333;
+    --editor-hint-text-color: #ffffff;
+    --editor-hint-text-background-color: #666557;
+
+}
+
+:root.light-mode {
+
+    /* UI elements colors*/
+    --body-background-color: #fff;
+    --selection-background-color: #eee;
+    --bright-text-color: #333;
+    --subtle1-text-color: #aaa;
+    --subtle2-text-color: #bbb;
+    --btn-background-color: #ddd;
+    --btn-color: #555;
+    --btn-border-color: #ccc;
+    --btn-hover-color: #222;
+    --btn-hover-background-color: #ccc;
+    --btn-disabled-color: #aaa;
+    --toggle-btn-background-color: #36bab8;
+    --toggle-button-color: #000;
+    --toggle-btn-background-color-hover: #2c9694;
+    --delete-btn-background-color: #fff;
+    --delete-btn-color: #cc8888;
+    --delete-btn-color-hover: #000;
+    --console-background-color: #eee;
+    --console-border-color: #ddd;
+    --pull-tab-color: #ccc;
+    --hint-text-color: #555;
+    --hint-text-border-color: #ddd;
+    --hint-text-background-color: #ddd;
+    --system-output-color: #575745;
+    --error-output-color: #865757;
+    --variables-trace-color: #616138;
+    --moves-limit-color: #888;
+    --moves-limit-background-color: #fff;
+    --moves-limit-border-color: #ddd;
+    --asset-color: #888;
+    --asset-background-color: #fff;
+    --asset-border-color: #ddd;
+    --asset-icon-color: #888;
+    --slider-background-color: #aaa;
+    --slider-text-color: #888;
+    --slider-range-color: #aaa;
+    --slider-range-background-color: #fff;
+    --slider-range-border-color: #ddd;
+    --tooltip-background-color: #eee;
+    --tooltip-color: #aaa;
+    --copyright-hover-color: #999;
+    --copyright-visited-color: #bbb;
+    --horizontal-rule-color: #aaa;
+    --dropdown-btn-color: #333;
+    --dropdown-content-color: #333;
+    --dropdown-content-background-color: #ddd;
+    --dropdown-content-hover-background-color: #36bab8;
+    --dropdown-content-hover-color: #000;
+    --project-name-color: #333;
+    --project-name-hover-color: #222;
+    --project-name-border-color: #555;
+    --light-source-background-color: #ddd;
+    --loading-spinner-background-color: #c0c0c0;
+    --loading-spinner-color: #0f0f0f;
+
+    /* Editor Monokai color palette */
+    --editor-background-color: #fafafa;
+    --editor-text-color: #111111;
+    --editor-gutter-background-color: #eee;
+    --editor-linenumber-color: #707070;
+    --editor-cursor-color: #000000;
+    --editor-selected-color: #eee;
+    --editor-empty-color: #888888;
+    --editor-comment-color: #666666;
+    --editor-variable-color: #75af00;
+    --editor-string-color: #998f2f;
+    --editor-operator-color: #111111;
+    --editor-enclosing-color: #111111;
+    --editor-number-color: #ae81ff;
+    --editor-move-color: #fd971f;
+    --editor-command-color: #00a8c8;
+    --editor-keyword-color: #f92672;
+    --editor-activeline-background-color: #eee;
+    --editor-matchingbracket-color: #000;
+    --editor-error-line-background-color: rgba(255, 23, 0, 0.2);
+    --editor-debugging-line-background-color: rgba(125, 255, 0, 0.2);
+
+    /* Hint text within editor */
+    --editor-hint-background-color: #fff;
+    --editor-hint-border-color: #ddd;
+    --editor-hint-text-color: #000;
+    --editor-hint-text-background-color: #ddd;
+}
+

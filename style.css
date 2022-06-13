@@ -2,65 +2,6 @@
   -------------- General Rules --------------
  */
 
-/*
-  Color theme properties
- */
-:root {
-  --body-background-color: #000;
-  --selection-background-color: #444;
-  --bright-text-color: #ddd;
-  --subtle1-text-color: #666;
-  --subtle2-text-color: #555;
-  --btn-background-color: #222;
-  --btn-color: #aaa;
-  --btn-border-color: #333;
-  --btn-hover-color: #ddd;
-  --btn-hover-background-color: #333;
-  --btn-disabled-color: #555;
-  --toggle-btn-background-color: #2c9694;
-  --toggle-button-color: #fff;
-  --toggle-btn-background-color-hover: #3ac4c2;
-  --delete-btn-background-color: #000;
-  --delete-btn-color: #cc8888;
-  --delete-btn-color-hover: #fff;
-  --editor-background-color: #111;
-  --editor-border-color: #333;
-  --pull-tab-color: #555;
-  --hint-text-color: #aaa;
-  --hint-text-border-color: #333;
-  --hint-text-background-color: #49483E;
-  --system-output-color: #cacaa2;
-  --error-output-color: #ee9999;
-  --variables-trace-color: #616138;
-  --moves-limit-color: #888;
-  --moves-limit-background-color: #000;
-  --moves-limit-border-color: #333;
-  --asset-color: #888;
-  --asset-background-color: #000;
-  --asset-border-color: #333;
-  --asset-icon-color: #888;
-  --slider-background-color: #666;
-  --slider-text-color: #888;
-  --slider-range-color: #666;
-  --slider-range-background-color: #000;
-  --slider-range-border-color: #333;
-  --tooltip-background-color: #222;
-  --tooltip-color: #666;
-  --copyright-hover-color: #777;
-  --copyright-visited-color: #444;
-  --horizontal-rule-color: #666;
-  --dropdown-btn-color: #ddd;
-  --dropdown-content-color: #ddd;
-  --dropdown-content-background-color: #333;
-  --dropdown-content-hover-background-color: #2c9694;
-  --dropdown-content-hover-color: #fff;
-  --project-name-color: #ccc;
-  --project-name-hover-color: #eee;
-  --project-name-border-color: #aaa;
-  --light-source-background-color: #ddd;
-  --loading-spinner-background-color: #0f0f0f;
-  --loading-spinner-color: #c0c0c0;
-}
 
 body {
   margin: 0;
@@ -306,8 +247,8 @@ canvas {
  */
 .CodeMirror {
   position:relative;
-  background-color: var(--editor-background-color);
-  border-color: var(--editor-border-color);
+  background-color: var(--console-background-color);
+  border-color: var(--console-border-color);
   border-style: solid;
   border-width: 3px;
   border-radius: 4px;
@@ -323,8 +264,8 @@ canvas {
 
 #consoleTextArea{
   position:relative;
-  background-color: var(--editor-background-color);
-  border-color: var(--editor-border-color);
+  background-color: var(--console-background-color);
+  border-color: var(--console-border-color);
   border-style: solid;
   border-width: 3px;
   border-radius: 4px;
