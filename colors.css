@@ -27,7 +27,7 @@
     --loading-spinner-background-color: #0f0f0f;
     --loading-spinner-color: #c0c0c0;
     --pull-tab-color: #666;
-    --slider-background-color: #101010;
+    --slider-background-color: #666;
 
     /* Editor Monokai color palette */
     --editor-background-color: #272822;
@@ -79,7 +79,7 @@
     --loading-spinner-background-color: #c0c0c0;
     --loading-spinner-color: #0f0f0f;
     --pull-tab-color: #aaa;
-    --slider-background-color: #fafafa;
+    --slider-background-color: #666;
 
     /* Editor Monokai color palette */
     --editor-background-color: #fafafa;
