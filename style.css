@@ -67,6 +67,7 @@ canvas {
 .btn:hover:not([disabled]){
   color: var(--btn-hover-color);
   background-color: var(--btn-hover-background-color);
+  border-color: var(--btn-hover-border-color);
 }
 
 .btn:disabled {

@@ -2,60 +2,75 @@
 /*
   Color theme properties
  */
+
+
+
 :root.dark-mode {
 
+    --bckgnd-color:         #101010;
+    --accent-color:         #2c9694;
+    --text-main-color:      #ddd;
+    --text-secondary-color: #666;
+    --light-gray-1-color:   #333;
+    --light-gray-2-color:   #222;
+
     /* UI elements colors*/
-    --body-background-color: #000;
-    --selection-background-color: #444;
+    --body-background-color: #101010;
+    --selection-background-color: #333;
     --bright-text-color: #ddd;
     --subtle1-text-color: #666;
-    --subtle2-text-color: #555;
-    --btn-background-color: #222;
-    --btn-color: #aaa;
+    --subtle2-text-color: #666;
+    --btn-background-color: #333;
+    --btn-color: #ddd;
     --btn-border-color: #333;
-    --btn-hover-color: #ddd;
-    --btn-hover-background-color: #333;
+    --btn-hover-color: #fff;
+    --btn-hover-background-color: #2c9694;
+    --btn-hover-border-color: #2c9694;
     --btn-disabled-color: #555;
     --toggle-btn-background-color: #2c9694;
     --toggle-button-color: #fff;
-    --toggle-btn-background-color-hover: #3ac4c2;
-    --delete-btn-background-color: #000;
-    --delete-btn-color: #cc8888;
-    --delete-btn-color-hover: #fff;
-    --console-background-color: #111;
+    --toggle-btn-background-color-hover: #2c9694;
+    --delete-btn-background-color: transparent;
+    --delete-btn-color: #666;
+    --delete-btn-color-hover: #666;
+    --console-background-color: #222;
     --console-border-color: #333;
-    --pull-tab-color: #555;
-    --hint-text-color: #aaa;
+    --pull-tab-color: #666;
+
+    --hint-text-color: #ddd;
     --hint-text-border-color: #333;
-    --hint-text-background-color: #49483E;
+    --hint-text-background-color: #333;
+
     --system-output-color: #cacaa2;
     --error-output-color: #ee9999;
     --variables-trace-color: #616138;
-    --moves-limit-color: #888;
-    --moves-limit-background-color: #000;
+    --moves-limit-color: #666;
+    --moves-limit-background-color: #101010;
     --moves-limit-border-color: #333;
-    --asset-color: #888;
-    --asset-background-color: #000;
+    --asset-color: #666;
+    --asset-background-color: #101010;
     --asset-border-color: #333;
-    --asset-icon-color: #888;
+    --asset-icon-color: #666;
+
     --slider-background-color: #666;
-    --slider-text-color: #888;
+    --slider-text-color: #666;
     --slider-range-color: #666;
-    --slider-range-background-color: #000;
+    --slider-range-background-color: #101010;
     --slider-range-border-color: #333;
-    --tooltip-background-color: #222;
+    --tooltip-background-color: #333;
     --tooltip-color: #666;
-    --copyright-hover-color: #777;
-    --copyright-visited-color: #444;
-    --horizontal-rule-color: #666;
+
+    --copyright-hover-color: #666;
+    --copyright-visited-color: #666;
+    --horizontal-rule-color: #222;
     --dropdown-btn-color: #ddd;
     --dropdown-content-color: #ddd;
     --dropdown-content-background-color: #333;
     --dropdown-content-hover-background-color: #2c9694;
     --dropdown-content-hover-color: #fff;
-    --project-name-color: #ccc;
-    --project-name-hover-color: #eee;
-    --project-name-border-color: #aaa;
+    --project-name-color: #666;
+    --project-name-hover-color: #ddd;
+    --project-name-border-color: #333;
     --light-source-background-color: #ddd;
     --loading-spinner-background-color: #0f0f0f;
     --loading-spinner-color: #c0c0c0;
@@ -83,77 +98,93 @@
     --editor-debugging-line-background-color: #305010;
 
     /* Hint text within editor */
-    --editor-hint-background-color: #49483e;
-    --editor-hint-border-color: #333333;
-    --editor-hint-text-color: #ffffff;
-    --editor-hint-text-background-color: #666557;
+    --editor-hint-background-color: #222;
+    --editor-hint-border-color: #222;
+    --editor-hint-text-color: #ddd;
+    --editor-hint-text-background-color: #333;
 
 }
 
+
+
+
+
 :root.light-mode {
 
+    --bckgnd-color:         #fafafa;
+    --accent-color:         #3bccca;
+    --text-main-color:      #333;
+    --text-secondary-color: #666;
+    --light-gray-1-color:   #d9d9d9;
+    --light-gray-2-color:   #f0f0f0;
+
+
+
     /* UI elements colors*/
-    --body-background-color: #fff;
+    --body-background-color: #fafafa;
     --selection-background-color: #eee;
     --bright-text-color: #333;
-    --subtle1-text-color: #aaa;
-    --subtle2-text-color: #bbb;
-    --btn-background-color: #ddd;
-    --btn-color: #555;
-    --btn-border-color: #ccc;
-    --btn-hover-color: #222;
-    --btn-hover-background-color: #ccc;
+    --subtle1-text-color: #666;
+    --subtle2-text-color: #666;
+    --btn-background-color: #d9d9d9;
+    --btn-color: #333;
+    --btn-border-color: #d9d9d9;
+    --btn-hover-color: #333;
+    --btn-hover-background-color: #3bccca;
+    --btn-hover-border-color: #3bccca;
     --btn-disabled-color: #aaa;
-    --toggle-btn-background-color: #36bab8;
-    --toggle-button-color: #000;
-    --toggle-btn-background-color-hover: #2c9694;
-    --delete-btn-background-color: #fff;
-    --delete-btn-color: #cc8888;
-    --delete-btn-color-hover: #000;
-    --console-background-color: #f5f5f5;
-    --console-border-color: #ddd;
-    --pull-tab-color: #ccc;
-    --hint-text-color: #555;
-    --hint-text-border-color: #ddd;
-    --hint-text-background-color: #ddd;
-    --system-output-color: #575745;
-    --error-output-color: #865757;
-    --variables-trace-color: #616138;
-    --moves-limit-color: #888;
-    --moves-limit-background-color: #fff;
-    --moves-limit-border-color: #ddd;
-    --asset-color: #888;
-    --asset-background-color: #fff;
-    --asset-border-color: #ddd;
-    --asset-icon-color: #888;
-    --slider-background-color: #aaa;
-    --slider-text-color: #888;
-    --slider-range-color: #aaa;
-    --slider-range-background-color: #fff;
-    --slider-range-border-color: #ddd;
-    --tooltip-background-color: #eee;
-    --tooltip-color: #aaa;
-    --copyright-hover-color: #999;
-    --copyright-visited-color: #bbb;
-    --horizontal-rule-color: #aaa;
+    --toggle-btn-background-color: #3bccca;
+    --toggle-button-color: #333;
+    --toggle-btn-background-color-hover: #3bccca;
+    --delete-btn-background-color: transparent;
+    --delete-btn-color: #666;
+    --delete-btn-color-hover: #666;
+    --console-background-color: #f0f0f0;
+    --console-border-color: #d9d9d9;
+    --pull-tab-color: #aaa;
+    --hint-text-color: #333;
+    --hint-text-border-color: #d9d9d9;
+    --hint-text-background-color: #d9d9d9;
+    --system-output-color: #333;
+    --error-output-color: #b30000;
+    --variables-trace-color: #333;
+    --moves-limit-color: #333;
+    --moves-limit-background-color: #fafafa;
+    --moves-limit-border-color: #d9d9d9;
+    --asset-color: #333;
+    --asset-background-color: #fafafa;
+    --asset-border-color: #d9d9d9;
+    --asset-icon-color: #666;
+
+    --slider-background-color: #fafafa;
+    --slider-text-color: #666;
+    --slider-range-color: #666;
+    --slider-range-background-color: #fafafa;
+    --slider-range-border-color: #d9d9d9;
+    --tooltip-background-color: #666;
+    --tooltip-color: #d9d9d9;
+
+    --copyright-hover-color: #333;
+    --copyright-visited-color: #666;
+    --horizontal-rule-color: #f0f0f0;
     --dropdown-btn-color: #333;
     --dropdown-content-color: #333;
-    --dropdown-content-background-color: #ddd;
-    --dropdown-content-hover-background-color: #36bab8;
-    --dropdown-content-hover-color: #000;
-    --project-name-color: #333;
-    --project-name-hover-color: #222;
-    --project-name-border-color: #555;
-    --light-source-background-color: #ddd;
+    --dropdown-content-background-color: #d9d9d9;
+    --dropdown-content-hover-background-color: #3bccca;
+    --dropdown-content-hover-color: #333;
+    --project-name-color: #666;
+    --project-name-hover-color: #333;
+    --project-name-border-color: #d9d9d9;
+    --light-source-background-color: #d9d9d9;
     --loading-spinner-background-color: #c0c0c0;
     --loading-spinner-color: #0f0f0f;
 
     /* Editor Monokai color palette */
     --editor-background-color: #fafafa;
-    --editor-text-color: #111111;
-    --editor-gutter-background-color: #f5f5f5;
+    --editor-text-color: #333;
+    --editor-gutter-background-color: #f0f0f0;
     --editor-linenumber-color: #707070;
-    --editor-cursor-color: #000000;
+    --editor-cursor-color: #333;
     --editor-selected-color: #eee;
     --editor-empty-color: #888888;
     --editor-comment-color: #666666;
@@ -171,9 +202,9 @@
     --editor-debugging-line-background-color: rgba(125, 255, 0, 0.2);
 
     /* Hint text within editor */
-    --editor-hint-background-color: #fff;
-    --editor-hint-border-color: #ddd;
-    --editor-hint-text-color: #000;
-    --editor-hint-text-background-color: #ddd;
+    --editor-hint-background-color: #f0f0f0;
+    --editor-hint-border-color: #f0f0f0;
+    --editor-hint-text-color: #333;
+    --editor-hint-text-background-color: #d9d9d9;
 }
 

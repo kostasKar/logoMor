@@ -331,19 +331,19 @@
     if (newTheme === "light"){
       document.documentElement.classList.remove('dark-mode');
       document.documentElement.classList.add('light-mode');
-      document.getElementById("defaultPenColorPicker").value = "#000000";
-      LM.logo.setDefaultHexColor("#000000");
-      document.getElementById("backgroundColorPicker").value = "#ffffff";
-      LM.p5Renderer.setBackgroundColor("#ffffff");
+      document.getElementById("defaultPenColorPicker").value = "#808080";
+      LM.logo.setDefaultHexColor("#808080");
+      document.getElementById("backgroundColorPicker").value = "#fafafa";
+      LM.p5Renderer.setBackgroundColor("#fafafa");
       LM.retainMode.fireExecution();
       localStorage.setItem("preferredTheme", "light");
     } else if (newTheme === "dark"){
       document.documentElement.classList.remove('light-mode');
       document.documentElement.classList.add('dark-mode');
-      document.getElementById("defaultPenColorPicker").value = "#ffffff";
-      LM.logo.setDefaultHexColor("#ffffff");
-      document.getElementById("backgroundColorPicker").value = "#000000";
-      LM.p5Renderer.setBackgroundColor("#000000");
+      document.getElementById("defaultPenColorPicker").value = "#fafafa";
+      LM.logo.setDefaultHexColor("#fafafa");
+      document.getElementById("backgroundColorPicker").value = "#101010";
+      LM.p5Renderer.setBackgroundColor("#101010");
       LM.retainMode.fireExecution();
       localStorage.setItem("preferredTheme", "dark");
     }
