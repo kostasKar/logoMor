@@ -82,7 +82,7 @@ LM.models = (function() {
         canvas.style("display", "inline-block");
         canvas.style("margin-left", "15px");
         canvas.style("position", "absolute");
-        p.background(0);
+        p.background(0,0,0,0); //transparent background
         p.noStroke();
         p.lights();
         p.scale(0.25);
