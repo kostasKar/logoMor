@@ -51,6 +51,9 @@
     --editor-error-line-background-color: #602822;
     --editor-debugging-line-background-color: #305010;
 
+    /* Audio controls*/
+    --audio-invert-percentage: 0;
+
 }
 
 
@@ -103,5 +106,7 @@
     --editor-error-line-background-color: rgba(255, 23, 0, 0.2);
     --editor-debugging-line-background-color: rgba(125, 255, 0, 0.2);
 
+    /* Audio controls*/
+    --audio-invert-percentage: 1;
 }
 

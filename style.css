@@ -774,3 +774,7 @@ canvas {
 #lightSource:hover input{
   display:initial;
 }
+
+audio {
+  filter: grayscale(1) invert(var(--audio-invert-percentage));
+}
