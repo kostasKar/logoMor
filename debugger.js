@@ -43,6 +43,7 @@ LM.debugger = (function () {
 		initForNewRun: function(){
 			commandsLimit = 0;
   		debugControl = "step";
+			LM.retainMode.setForcedOnFromDebugger(false);
 		},
 
 		initForNewFrame: function(){
@@ -56,12 +57,14 @@ LM.debugger = (function () {
 			commandsLimit++;
 			debugControl =  "step";
 			LM.retainMode.fireExecution();
+			LM.retainMode.setForcedOnFromDebugger(false);
 		},
 
 		continuePressed: function(){
 			commandsLimit++;
 			debugControl = "breakpoint";
 			LM.retainMode.fireExecution();
+			LM.retainMode.setForcedOnFromDebugger(false);
 		},
 
 		stoppedNewCommand: function(){
@@ -74,7 +77,7 @@ LM.debugger = (function () {
 			commandsExecuted++;
 			debuggingLine = LM.interpreter.currentTokenLineNumber - 1;
 
-			var ret;
+			let ret;
 			if ((debugControl === "step") && (commandsExecuted === commandsLimit)){
 				showDebuggerOutput();
 				ret = true;
@@ -87,6 +90,9 @@ LM.debugger = (function () {
 			}
 
 			previousDebuggingLine = debuggingLine;
+			if (ret){
+				LM.retainMode.setForcedOnFromDebugger(true);
+			}
 			return ret;
 		}
 

@@ -1,9 +1,10 @@
 LM.retainMode = (function(){
 
   const unretainableTokens = Object.keys(LM.commands).filter(name => LM.commands[name].retainable === false);
-  var isRetainable;
-  var fireOnce;
-  var forcedOn = false;
+  let isRetainable;
+  let fireOnce;
+  let forcedOn = false;
+  let forcedOnFromDebugger = false;
 
   function updateRetainedModeIndication(){
     if (isRetainable || forcedOn){
@@ -23,7 +24,7 @@ LM.retainMode = (function(){
 
     shouldExecute: function(){
       return ((fireOnce) ||
-              ((!isRetainable) && (!forcedOn)));
+              ((!isRetainable) && (!forcedOn) && (!forcedOnFromDebugger)));
     },
 
     completedExecution(){
@@ -40,6 +41,10 @@ LM.retainMode = (function(){
 
     isForcedOn: function(){
       return forcedOn;
+    },
+
+    setForcedOnFromDebugger: function(val){
+      forcedOnFromDebugger = val;
     },
 
     togglePause: function(){
