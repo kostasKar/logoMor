@@ -1128,6 +1128,8 @@ end
 
 ht
 pu
+up 30
+rr 37
 repeat :units [
   colorhsb 180 100 100
   rt 90 rr 90
