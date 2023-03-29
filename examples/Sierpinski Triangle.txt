@@ -1,0 +1,22 @@
+;----Demo Sierpinski Fractal-------  
+  
+;------Recursive Function----------  
+to SierpinskiFractal :l :n  
+ifelse :n=0 [repeat 3[fd :l rt 120]]  
+[SierpinskiFractal :l/2 :n-1 fd :l/2  
+ SierpinskiFractal :l/2 :n-1 rt 120 fd :l/2 lt 120  
+ SierpinskiFractal :l/2 :n-1 lt 120 fd :l/2 rt 120]  
+end  
+  
+;-----Global Variables-------------   
+;-see auto generated sliders below-  
+make "length 250 
+make "depth 7 
+  
+;----drawing-----------------------  
+SierpinskiFractal :length :depth 
+penup 
+setxyz :length*(sqrt 3)/6 :length/2 0 
+label :depth 
+home 
+pendown

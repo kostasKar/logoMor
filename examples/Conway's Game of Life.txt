@@ -1,0 +1,124 @@
+;--------------------------------- 
+;      Conway's Game of Life 
+;--------------------------------- 
+ 
+;Uncomment to see a glider! 
+;randseed "wjqj8
+ 
+make "height 15 
+make "width 15 
+make "d 10 
+make "dt 0.1 
+make "inverseprobability 8 
+static "currentarray "a 
+static "nextarray "b 
+ 
+to checkgeneration 
+  static "previoustime time 
+  if time - :previoustime > :dt [ 
+    nextgeneration 
+    make "previoustime time 
+  ] 
+end 
+ 
+to nextgeneration  
+  repeat :width [ 
+    make "x repcount 
+    repeat :height [ 
+      make "y repcount 
+      make "cellalive thing cellname :currentarray :x :y 
+      make "liveneighbors numofliveneighbors :currentarray :x :y 
+      make cellname :nextarray :x :y :cellalive 
+      if and :cellalive :liveneighbors < 2 [make cellname :nextarray :x :y 0] 
+      if and :cellalive :liveneighbors > 3 [make cellname :nextarray :x :y 0] 
+      if and not :cellalive :liveneighbors = 3 [make cellname :nextarray :x :y 1] 
+    ] 
+  ] 
+  make "tmp :nextarray 
+  make "nextarray :currentarray 
+  make "currentarray :tmp 
+end 
+ 
+to numofliveneighbors :name :x :y 
+  make "liveneighbors 0 
+  make "i -1 
+  while :i <= 1 [ 
+    make "j -1 
+    while :j <= 1 [ 
+      if or :i :j [ 
+        if getcellvaluePeriodic :name :x + :i :y + :j [ 
+          increment "liveneighbors 
+        ] 
+      ] 
+      increment "j 
+    ] 
+    increment "i 
+  ] 
+  return :liveneighbors 
+end 
+ 
+to constructarray :name :randominit 
+  repeat :width [ 
+    make "i repcount 
+    repeat :height [ 
+      make "j repcount 
+      ifelse :randominit [ 
+        static cellname :name :i :j not rand :inverseprobability  
+      ][ 
+        static cellname :name :i :j 0 
+      ] 
+    ] 
+  ] 
+end 
+ 
+to cellname :name :x :y 
+  return word word word :name :x "_ :y 
+end 
+ 
+to getcellvaluePeriodic :name :x :y 
+  if :x > :width [make "x 1] 
+  if :x < 1 [make "x :width] 
+  if :y > :height [make "y 1] 
+  if :y < 1 [make "y :height] 
+  return thing cellname :name :x :y 
+end 
+ 
+to drawarray :name 
+  repeat :width [ 
+    make "x repcount 
+    repeat :height [ 
+      make "y repcount 
+      if thing cellname :name :x :y [ 
+        pu 
+        setxyz :x*:d :y*:d 0 
+        pd 
+        box :d  
+      ] 
+    ] 
+  ] 
+end 
+ 
+to drawborder 
+  pu 
+  setxyz :d/2 :d/2 0 
+  pd 
+  repeat 2 [fd :height*:d rt 90 fd :width*:d rt 90] 
+end 
+   
+   
+;initialization 
+static "once 1 
+if :once [ 
+  constructarray :currentarray 1 
+  constructarray :nextarray 0 
+  make "once 0 
+] 
+ 
+;main loop 
+ht 
+drawborder 
+coloralpha 50 
+drawarray :nextarray 
+coloralpha 255 
+drawarray :currentarray 
+checkgeneration

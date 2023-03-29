@@ -1,0 +1,20 @@
+;-----------Demo Random curve---------
+
+;------Function-----------------------
+TO drawRandomCurve :n
+  repeat :n [ 
+    right rand :maxangle 
+    up rand :maxangle
+    roll_right rand :maxangle
+    forward rand :maxsize 
+  ]
+END
+
+;------Global Variables---------------
+;-Check auto generated sliders below--
+make "maxsize 20
+make "maxangle  36
+
+;--Actual Drawing---------------------
+setpensize 3
+drawRandomCurve 3000

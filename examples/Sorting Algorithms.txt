@@ -1,0 +1,118 @@
+;-------Demo Sorting algorithms---------- 
+ 
+;---------------------------------------- 
+;----array implementation functions------ 
+to makearray :name :size  
+  repeat :size [  
+    static word :name repcount 0  
+    make word :name repcount 0  
+  ]  
+end  
+  
+to getitem :name :index  
+  return thing word :name :index  
+end  
+  
+to setitem :name :index :value  
+  make word :name :index :value  
+end  
+ 
+ 
+;---------------------------------------- 
+;----------sorting functions------------- 
+to insertionsort :arrayname :size  
+  repeat :size [ 
+    make "j repcount 
+    while :j > 1 [ 
+      if (getitem :arrayname :j) < (getitem :arrayname :j-1) [ 
+        swap :arrayname :j :j-1 
+        if :steps > :maxsteps [return 0] 
+      ] 
+      decrement "j 
+    ] 
+  ] 
+end 
+   
+to bubblesort :arrayname :size 
+  make "swapped 1 
+	while :swapped [ 
+    make "swapped 0 
+    repeat :size - 1 [ 
+      if (getitem :arrayname repcount) > (getitem :arrayname repcount+1) [ 
+        swap :arrayname repcount repcount+1 
+        make "swapped 1 
+        if :steps > :maxsteps [return 0] 
+      ] 
+    ] 
+  ] 
+end 
+ 
+to quicksort :arrayname :start :end 
+  if :steps > :maxsteps [return 0] 
+  if :start < :end [ 
+    make "p qspartition :arrayname :start :end 
+    quicksort :arrayname :start :p-1 
+    quicksort :arrayname :p+1 :end 
+  ] 
+end 
+ 
+to qspartition :arrayname :start :end  
+  make "pivot getitem :arrayname :end 
+  make "i :start 
+  make "j :start 
+  while :j <= :end [ 
+    if (getitem :arrayname :j) < :pivot [ 
+      swap :arrayname :j :i 
+      increment "i 
+      if :steps > :maxsteps [swap :arrayname :i :end return 0] 
+    ] 
+    increment "j 
+  ] 
+  swap :arrayname :i :end 
+  return :i  
+end 
+ 
+;helpful swap function  
+to swap :arrayname :i1 :i2 
+  make "tmp getitem :arrayname :i1 
+  setitem :arrayname :i1 getitem :arrayname :i2 
+  setitem :arrayname :i2 :tmp 
+  increment "steps 
+end 
+ 
+;---------------------------------------- 
+;---------demo help functions------------ 
+to makerandomarray :name :size :maxn 
+  makearray :name :size 
+  repeat :size [ 
+    setitem :name repcount rand :maxn 
+  ] 
+end 
+ 
+to drawarraypoints :name :size 
+  pu 
+  repeat :size [ 
+    setxyz repcount * 10 getitem :name repcount 0 
+    colorhsb (getitem :name repcount) * (250 / :maxnum) 100 100 
+    box 10
+  ] 
+end 
+ 
+;---------------------------------------- 
+;-------------drawing-------------------- 
+make "size 50 
+make "maxnum 200 
+make "delaysecs 0.05 
+ 
+make "maxsteps trunc time / :delaysecs 
+make "steps 0 
+ 
+ht 
+makerandomarray "ar :size :maxnum 
+ 
+;insertionsort "ar :size  
+;bubblesort "ar :size  
+quicksort "ar 1 :size   
+ 
+drawarraypoints "ar :size 
+print word "steps\s :steps 

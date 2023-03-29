@@ -1,0 +1,18 @@
+;-----Demo Accelerating Sphere--------   
+;Using timing commands a sketch can be  
+;animated!  
+  
+;-----Global Variables-------------   
+;-see auto generated sliders below-  
+make "radius 15  
+  
+;----drawing----------------------- 
+;frame returns current frame number 
+pu  
+sety 100 * sin frame*frame*0.002  
+setx 100 * cos frame*frame*0.002  
+ht  
+pd 
+sphere :radius  
+print gety  
+print getx 

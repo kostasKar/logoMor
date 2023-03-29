@@ -1,0 +1,37 @@
+;---------Demo Crazy Cubes-------------  
+;Rand produces random numbers for each run  
+;Randcrazy does the same but for each frame!  
+  
+To square  :x  
+  repeat 4 [  
+  forward :x  
+  right 90]  
+END  
+  
+TO cube :x  
+  setpensize randcrazy 10  
+  color randcrazy 255 randcrazy 255 randcrazy 255  
+  repeat 4[  
+    square :x  
+  forward :x  
+  down 90 ]  
+end   
+  
+rl 15   
+up 15  
+  
+repeat 4 [  
+ repeat 4 [  
+  cube 50 + rand 50  
+  penup  
+  setx getx -150   
+  pendown  
+ ]   
+ penup  
+ setx 0  
+ sety gety - 150  
+ pendown  
+]  
+  
+print rand 500  
+print randcrazy 500

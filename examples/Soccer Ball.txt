@@ -1,0 +1,40 @@
+;----------Demo Soccer Ball------------
+; Implemetation using Mutual Recursion
+;--------------------------------------
+
+to pentagonLeftRecursive :l :n
+  ifelse :n = 0 [
+    repeat 5 [fd :l lt 360/5]
+  ][
+    repeat 5 [
+      rl :angle 
+      exagonRightRecursive :l :n-1 
+      rr :angle 
+      fd :l lt 360/5
+    ]
+  ]
+end
+
+to exagonRightRecursive :l :n
+  ifelse :n = 0 [
+    repeat 6 [fd :l rt 360/6]
+  ][
+    repeat 3 [
+      rr :angle 
+      pentagonLeftRecursive :l :n-1 
+      rl :angle fd :l rt 360/6 
+      fd :l rt 360/6
+    ]
+  ]
+end
+
+make "size 50
+make "n 5
+make "angle 37.3775
+sps 3
+
+;for :n = 5 it creates the full ball
+;choose either starting point:
+
+exagonRightRecursive :size :n
+; pentagonLeftRecursive :size :n

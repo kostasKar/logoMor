@@ -1,0 +1,54 @@
+;---Demo Bouncing Ball---------------     
+;---using static variables we can make     
+;---any kind of animation!-----------     
+     
+make "width 300    
+make "height 200    
+make "radius 30    
+    
+static "locationX 0     
+static "locationY :height     
+static "velocityX 1.5     
+static "velocityY 0     
+static "gravity 0.2    
+     
+make "locationX :locationX + :velocityX     
+make "locationY :locationY + :velocityY     
+make "velocityY :velocityY - :gravity     
+     
+if (:locationX<0)[     
+  make "velocityX -:velocityX  
+  make "locationX 0     
+]     
+  
+if (:locationX>:width) [     
+  make "velocityX -:velocityX       
+  make "locationX :width     
+]   
+     
+if (:locationY<0)[     
+ make "velocityY :velocityY*-0.95    
+ make "locationY 0    
+]     
+   
+if (:locationY>:height)[     
+ make "velocityY :velocityY*-0.95     
+ make "locationY :height    
+]     
+     
+to circle :r      
+  setx getx + :r  
+  arc 360 :r  
+  setx getx - :r  
+end    
+     
+penup     
+setxyz :locationX :locationY 0     
+circle :radius    
+home     
+pendown    
+fd :height+:radius rt 90    
+fd :width+(:radius*2) rt 90    
+fd :height+(:radius*2) rt 90    
+fd :width+(:radius*2) rt 90    
+fd :radius   

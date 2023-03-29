@@ -1,0 +1,6 @@
+an error occurs with the codemirror hint functions
+when i press something and the hint comes up, the horizontal scroll is activated. 
+Must check it
+
+* the scroll option is this (thue/false auto scroll)
+myCodeMirror.addWidget({ch:start , line: cursor.line},hht, false);

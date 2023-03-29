@@ -1,0 +1,54 @@
+;----------Demo Bracelet--------------   
+  
+;------Functions----------------------  
+TO centeredCircle :r :n   
+ make "segment 2*pi*:r/:n   
+ penup   
+ rt 90   
+ fd :r   
+ dn 90   
+ bk :segment/2   
+ pendown   
+ repeat :n [   
+  fd :segment    
+  dn 360 / :n   
+ ]   
+ penup   
+ fd :segment/2   
+ dn 90   
+ fd :r   
+ lt 90  
+ rr 180  
+ pendown    
+END   
+   
+TO mysphere :r :n   
+ repeat :n/2 [   
+  centeredCircle :r :n   
+  rt 360/:n   
+ ]   
+ rt 180  
+END   
+   
+to fdWithSphere :d :n  
+ penup  
+ fd :d/2  
+ pendown  
+ mysphere :d/2 :n  
+ penup   
+ fd :d/2  
+ pendown  
+end  
+  
+;-----Global Variables-------------  
+;-see auto generated sliders below-  
+make "radius 100  
+make "segs 5  
+make "segs 2*:segs  
+make "jewels 6  
+  
+;----drawing-----------------------  
+repeat :jewels [  
+ fdWithSphere 2*pi*:radius/:jewels :segs  
+ rt 360/:jewels   
+] 

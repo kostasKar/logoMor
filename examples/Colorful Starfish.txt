@@ -1,0 +1,40 @@
+;----Demo Colorful Starfish---------  
+;Using beginface endface we can create solids  
+  
+;-----Function to dray one leg-------  
+to leg :s :d  
+ up 90  
+ fd :d/2  
+ dn 90  
+ make "a arctan :d/(2*:s)  
+ make "l sqrt (pow :d/2 2)+(pow :s 2)  
+ dn :a  
+ beginface  
+ fd :l  
+ up :a  
+ lt :a  
+ bk :l  
+ endface  
+ rt :a  
+ rr 90  
+ dn 90  
+ fd :d/2  
+ up 90  
+end  
+  
+  
+;Variables.play with size, number of legs  
+;and color. Check variables manipulators  
+make "diameter 30  
+make "length 100  
+make "legs 5  
+make "hue 36 
+  
+;---Actual drawing-----------------  
+colorhsb :hue 100 100 
+repeat :legs [  
+ repeat 4 [  
+  leg :length :diameter  
+ ]  
+ rt 360/:legs  
+] 

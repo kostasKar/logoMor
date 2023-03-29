@@ -1,0 +1,66 @@
+;---Demo pinball game---------------     
+     
+make "width 300    
+make "height 500 
+make "radius 30    
+make "barpos mousex 
+    
+static "locationX rand :width     
+static "locationY 0     
+static "velocityX 2   
+static "velocityY 8 
+static "lose 0 
+static "score 0 
+static "previousmousex mousex
+
+     
+make "locationX :locationX + :velocityX     
+make "locationY :locationY + :velocityY     
+ 
+if :lose [pu  setxyz :width/2 :height/2 0 label "you\slost home return] 
+     
+ 
+if (:locationX<0)[     
+  make "velocityX -:velocityX  
+  make "locationX 0     
+]     
+  
+if (:locationX>:width) [     
+  make "velocityX -:velocityX       
+  make "locationX :width     
+]   
+     
+if (:locationY<0)[     
+ make "velocityY :velocityY*-1   
+ make "locationY 0   
+ make "velocityX :velocityX + 0.1* (mousex - :previousmousex) 
+ ifelse (abs (:locationx+:radius-(:barpos+25)))> 50  
+  [ make "lose 1]  
+  [ make "score :score+1] 
+]     
+   
+if (:locationY>:height)[     
+ make "velocityY -:velocityY     
+ make "locationY :height    
+]     
+     
+to circle :r  
+  setx getx + :r  
+  arc 360 :r  
+  setx getx - :r  
+end  
+     
+penup     
+setxyz :locationX :locationY 0     
+circle :radius    
+home     
+pendown    
+fd :height+:radius rt 90    
+fd :width+(:radius*2) rt 90    
+fd :height+(:radius*2) rt 90   
+pu fd :width+(:radius*2) rt 90    pd 
+fd :radius bk :radius 
+rt 90 pu fd :barpos pd fd 50  
+print "score 
+print :score 
+make "previousmousex mousex
