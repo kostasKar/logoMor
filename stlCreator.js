@@ -42,13 +42,13 @@ LM.stlCreator = (function(){
     let outputTxt = "";
     outputTxt += "solid logomor_solid \n";
     for (let f of obj){
-      outputTxt += `\tfacet normal ${f.normal[0]} ${f.normal[1]} ${f.normal[2]}\n`;
-      outputTxt += `\t\touter loop\n`;
+      outputTxt += "\tfacet normal " + f.normal[0] +  " " + f.normal[1] +  " " + f.normal[2] + "\n";
+      outputTxt += "\t\touter loop\n";
       for (let v of f.vertices){
-        outputTxt += `\t\t\tvertex ${v.x} ${v.y} ${v.z}\n`;
+        outputTxt += "\t\t\tvertex " + v.x + " " + v.y + " " + v.z + "\n";
       }
-      outputTxt += `\t\tendloop\n`;
-      outputTxt += `\tendfacet\n`;
+      outputTxt += "\t\tendloop\n";
+      outputTxt += "\tendfacet\n";
     }
     outputTxt += "endsolid \n";
     return outputTxt;
