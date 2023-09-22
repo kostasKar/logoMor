@@ -4,7 +4,7 @@ LM.demoPrograms = (function(){
 	let programmsArray = [{title: "Random Curve"},
                         {title: "Bracelet"},
                         {title: "Sierpinski Triangle"},
-						{title: "3D Hilbert Curve"},
+                        {title: "3D Hilbert Curve"},
                         {title: "Crazy Cubes"},
                         {title: "Accelerating Sphere"},
                         {title: "Flying Avatars"},

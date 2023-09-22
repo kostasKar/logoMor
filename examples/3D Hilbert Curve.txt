@@ -70,6 +70,5 @@ end
 make "units 1
 repeat :order - 1 [make "units 2 * :units + 1]
 make "d :sidelength / :units
-print :d
 
 hilbert3dleft :d :order
