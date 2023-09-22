@@ -1,0 +1,75 @@
+;----------------3D Hilbert Curve-----------------
+; A space filling, self-avoiding, continuous curve
+; Change 'order' variable to see different depths
+;-------------------------------------------------
+
+make "sidelength 250
+make "order 4
+
+to hilbert3dright  :d :n 
+  if :n <= 1 [
+      fd :d dn 90
+      fd :d dn 90
+      fd :d rt 90
+      fd :d rt 90
+      fd :d dn 90
+      fd :d dn 90
+      fd :d lt 180
+    	stop
+  ]
+  
+  rt 90 hilbert3dleft :d :n - 1 lt 90
+  fd :d
+  rl 90 hilbert3dleft :d :n - 1 lt 90
+  fd :d
+  rt 90 hilbert3dleft :d :n - 1 lt 180
+  fd :d
+  rr 90 hilbert3dright :d :n - 1 rt 90
+  fd :d
+  lt 90 hilbert3dright :d :n - 1 lt 180
+  fd :d
+  rl 90 hilbert3dleft :d :n - 1 lt 90
+  fd :d 
+  rt 90 hilbert3dleft :d :n - 1 lt 180
+  fd :d
+  lt 90 hilbert3dright :d :n - 1 lt 90
+  rl 90
+end
+
+to hilbert3dleft  :d :n 
+  if :n <= 1 [
+      fd :d dn 90
+      fd :d dn 90
+      fd :d lt 90
+      fd :d lt 90
+      fd :d dn 90
+      fd :d dn 90
+      fd :d lt 180
+    	stop
+  ]
+  lt 90 hilbert3dright :d :n - 1 rt 90
+  fd :d
+  rr 90 hilbert3dright :d :n - 1 rt 90
+  fd :d
+  lt 90 hilbert3dright :d :n - 1 rt 180
+  fd :d
+  rl 90 hilbert3dleft :d :n - 1 lt 90
+  fd :d
+  rt 90 hilbert3dleft :d :n - 1 rt 180
+  fd :d
+  rr 90 hilbert3dright :d :n - 1 rt 90
+  fd :d 
+  lt 90 hilbert3dright :d :n - 1 rt 180
+  fd :d
+  rt 90 hilbert3dleft :d :n - 1 rt 90
+  rr 90
+end
+
+
+;Calculate the length unit :d
+make "units 1
+repeat :order - 1 [make "units 2 * :units + 1]
+make "d :sidelength / :units
+print :d
+
+hilbert3dleft :d :order
