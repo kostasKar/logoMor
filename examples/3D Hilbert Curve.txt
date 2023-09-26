@@ -1,13 +1,18 @@
-;----------------3D Hilbert Curve-----------------
+;----------------3D Hilbert Curve------------------
 ; A space filling, self-avoiding, continuous curve
 ; Change 'order' variable to see different depths
-;-------------------------------------------------
+; Color changes with the progression of the drawing
+;--------------------------------------------------
 
 make "sidelength 250
 make "order 4
+make "hue 0
+make "sat 60
 
 to hilbert3dright  :d :n 
   if :n <= 1 [
+      make "hue :hue + :hueincrement
+      colorhsb :hue :sat 100
       fd :d dn 90
       fd :d dn 90
       fd :d rt 90
@@ -38,6 +43,8 @@ end
 
 to hilbert3dleft  :d :n 
   if :n <= 1 [
+      make "hue :hue + :hueincrement
+      colorhsb :hue :sat 100
       fd :d dn 90
       fd :d dn 90
       fd :d lt 90
@@ -70,5 +77,7 @@ end
 make "units 1
 repeat :order - 1 [make "units 2 * :units + 1]
 make "d :sidelength / :units
+make "hueincrement 360 / pow 8 :order - 1
 
+sps 3
 hilbert3dleft :d :order
