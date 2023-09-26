@@ -135,7 +135,7 @@ LM.logo = (function(){
     },
 
     arc: function(angle, radius){
-      LM.sketchBuffer.addPrimitive(activeStyle, LM.matrix.getMatrix(), "arc", 0, 0, radius*2, radius*2, -LM.p5Renderer.HALF_PI, LM.p5Renderer.radians(angle) - LM.p5Renderer.HALF_PI);
+      LM.sketchBuffer.addPrimitive(activeStyle, LM.matrix.getMatrix(), "arc", 0, 0, radius*2, radius*2, -LM.p5Renderer.HALF_PI, LM.p5Renderer.radians(angle) - LM.p5Renderer.HALF_PI, LM.p5Renderer.OPEN, 50);
     },
 
     penDown: function(){
