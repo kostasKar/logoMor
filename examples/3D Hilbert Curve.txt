@@ -72,11 +72,7 @@ to hilbert3dleft  :d :n
   rr 90
 end
 
-
-;Calculate the length unit :d
-make "units 1
-repeat :order - 1 [make "units 2 * :units + 1]
-make "d :sidelength / :units
+make "d :sidelength / ((pow 2 :order) - 1)
 make "hueincrement 360 / pow 8 :order - 1
 
 sps 3
