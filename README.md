@@ -4,7 +4,7 @@ LogoMor is an interpreter and visualizer for the Logo programming language, with
 
 [Check it online](https://logomor.com/)
 
-[LogoMor Documentation](https://logomor.com/assets/documentation/Documentation.pdf)
+[LogoMor Documentation](https://logomor.com/assets/Documentation.pdf)
 
 ## Screenshots
 
