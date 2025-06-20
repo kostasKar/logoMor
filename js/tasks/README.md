@@ -21,4 +21,5 @@ All tasks must implement the following interface:
 
 - **resolve()**
     This function resolves a task and returs a task return value, or "" if the specific task does not return anything  
-    After resolving, the interpreter considers the task complete and pops it out of the tasksStack  
+    After resolving, the interpreter considers the task complete and pops it out of the tasksStack.
+    Its return value, if any, is fed to the next task in the taskStack as an input  
