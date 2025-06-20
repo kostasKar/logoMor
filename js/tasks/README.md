@@ -1,4 +1,4 @@
-## LogoMor interrepter tasks
+## LogoMor interpreter tasks
 
 The Logomor interpreter creates and handles the lifetime of 'tasks'  
 Tasks are the basic structure of anything that can be executed within the Logomor environment  
