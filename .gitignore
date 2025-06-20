@@ -50,3 +50,6 @@ Thumbs.db
 
 # codeMirror library files
 codemirror/*
+
+#deploy folder
+deploy/*
