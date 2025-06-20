@@ -10,7 +10,7 @@ All tasks must implement the following interface:
 - **tryToTakeInput()**:
     This function accepts a code token as an argument. It must decide if it is in position to accept it as a task argument  
     It is the tasks responsibility to know if it accepts arguments, how many and of what kind  
-    This function returs a boolean value:  
+    This function returns a boolean value:  
     True if it managed to successfully consume the argument. The interpreter will then consider that token consumed and move to the next one.  
     False if it did not manage to consume the argument. Either because the task didn't need one or because the specific token did not fit  
 
