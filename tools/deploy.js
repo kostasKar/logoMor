@@ -26,9 +26,9 @@ const allScripts = [...document.querySelectorAll("script[src]")];
 const localScripts = allScripts.filter(el => {
     const src = el.getAttribute("src");
     return !src.startsWith("http") &&
-           !src.includes("defer") &&
            !src.includes("seedrandom") &&
-           !src.includes("codemirrorLogomor");
+           !src.includes("codemirrorLogomor") &&
+           !el.hasAttribute("defer");
 });
 
 // Collect file paths from those <script> tags
