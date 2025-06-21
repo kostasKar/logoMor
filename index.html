@@ -150,7 +150,7 @@
         <div class="dropdown-button">Sketch</div>
         <div class="dropdown-content">
           <div onclick="LM.interpreter.setup()">Run</div>
-          <div onclick="LM.interpreter.setup('')">Stop</div>
+          <div onclick="LM.interpreter.setup(''); LM.sounds.stopAllAudio()">Stop</div>
           <hr class="HorizontalRule">
           <div onclick="document.getElementById('defaultPenColorPicker').click()">Default Pen Color<input id="defaultPenColorPicker" class="colorPickerInput" type="color" value="#ffffff" onchange="LM.logo.setDefaultHexColor(this.value);LM.retainMode.fireExecution();"/></div>
           <div onclick="document.getElementById('backgroundColorPicker').click()">Background Color<input id="backgroundColorPicker" class="colorPickerInput" type="color" value="#000000" onchange="LM.p5Renderer.setBackgroundColor(this.value);LM.retainMode.fireExecution();"/></div>
