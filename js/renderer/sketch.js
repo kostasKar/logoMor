@@ -8,7 +8,7 @@ LM.p5Renderer = new p5( function(p) {
 
   p.preload = function(){
     if (window.location.protocol !== "file:"){
-      labelFont = p.loadFont('assets/Inconsolata.otf');
+      labelFont = p.loadFont('assets/fonts/Inconsolata.otf');
     }
   };
 
