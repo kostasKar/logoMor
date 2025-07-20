@@ -17,16 +17,15 @@ LM.parser = {
 
 	createLineNumbersArrayForWholeProgram: function(){
 	  
-	  let currentTxtIndex = 0;
 	  let startTxtIndex = 0;
 	  let currentLineNumber = 1;
 	  let lineNumbersArray = [];
 	  
-	  for (let i = 0; i < this.wholeSourceTokens.length; i++){
-		currentTxtIndex = this.sourceCodeTxt.indexOf(this.wholeSourceTokens[i], startTxtIndex);
-		currentLineNumber += (this.sourceCodeTxt.substring(startTxtIndex, currentTxtIndex).match(/\n/g)||[]).length;
+	  for (let token of this.wholeSourceTokens){
+		let tokenTxtIndex = this.sourceCodeTxt.indexOf(token, startTxtIndex);
+		currentLineNumber += (this.sourceCodeTxt.substring(startTxtIndex, tokenTxtIndex).match(/\n/g)||[]).length;
 		lineNumbersArray.push(currentLineNumber);
-		startTxtIndex = currentTxtIndex + this.wholeSourceTokens[i].length;
+		startTxtIndex = tokenTxtIndex + token.length;
 	  }
 	  
 	  return lineNumbersArray;
