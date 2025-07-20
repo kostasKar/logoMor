@@ -22,6 +22,7 @@ LM.parser = {
 	  for (var i = 0; i < this.wholeSourceTokens.length; i++){
 	    sourceCodeIndex = this.sourceCodeTxt.indexOf(this.wholeSourceTokens[i], sourceCodeIndex);
 	    lineNumbersArray.push((this.sourceCodeTxt.substring(0, sourceCodeIndex).match(/\n/g)||[]).length + 1);
+		sourceCodeIndex = sourceCodeIndex + this.wholeSourceTokens[i].length;
 	  }
 
 	  return lineNumbersArray;
