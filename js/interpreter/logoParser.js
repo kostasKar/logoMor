@@ -1,11 +1,9 @@
-LM.parser = {
+LM.parser = (function(){
 
-	sourceCodeTxt: "",
-	wholeSourceTokens: [],
-	mainSourceTokens: [],
-	mainSourceTokensLineNumbers: [],
+	let sourceCodeTxt = "";
+	let wholeSourceTokens = [];
 
-	prepareSourceCodeText: function(inputStr){
+	function prepareSourceCodeText (inputStr) {
 		inputStr = inputStr.toLowerCase();
 		inputStr = inputStr.replace(/([\[\]\(\)\+\-\*\/])/g, " $1 "); //isolate operators and enclosures
 		inputStr = inputStr.replace(/([<>])([^=])/g, " $1 $2");       //isolate standalone <, >
@@ -13,34 +11,41 @@ LM.parser = {
 		inputStr = inputStr.replace(/([^<>])(=)/g, "$1 $2 ");         //isolate standalone =
 		inputStr = inputStr.replace(/;.*$/gm, " ");                  //remove comments
 		return inputStr;
-	},
+	}
 
-	createLineNumbersArrayForWholeProgram: function(){
+	function createLineNumbersArrayForWholeProgram (){
 	  
 	  let startTxtIndex = 0;
 	  let currentLineNumber = 1;
 	  let lineNumbersArray = [];
 	  
-	  for (let token of this.wholeSourceTokens){
-		let tokenTxtIndex = this.sourceCodeTxt.indexOf(token, startTxtIndex);
-		currentLineNumber += (this.sourceCodeTxt.substring(startTxtIndex, tokenTxtIndex).match(/\n/g)||[]).length;
+	  for (let token of wholeSourceTokens){
+		let tokenTxtIndex = sourceCodeTxt.indexOf(token, startTxtIndex);
+		currentLineNumber += (sourceCodeTxt.substring(startTxtIndex, tokenTxtIndex).match(/\n/g)||[]).length;
 		lineNumbersArray.push(currentLineNumber);
 		startTxtIndex = tokenTxtIndex + token.length;
 	  }
 	  
 	  return lineNumbersArray;
-	},
-
-	parse: function(sourceCode = null){
-	  if (sourceCode === null){
-		  sourceCode = LM.codeMirror.getValue();
-	  }
-	  this.sourceCodeTxt = this.prepareSourceCodeText(sourceCode);
-	  this.wholeSourceTokens = this.sourceCodeTxt.trim().split(/[\s]+/).filter(function (el) {return el != "";});
-	  this.mainSourceTokens = [...this.wholeSourceTokens];
-	  this.mainSourceTokensLineNumbers = this.createLineNumbersArrayForWholeProgram();
-	  console.log(this.mainSourceTokens);
-		LM.retainMode.setForNewSourceTokens(this.mainSourceTokens);
 	}
 
-}
+	return {
+
+		mainSourceTokens: [],
+		mainSourceTokensLineNumbers: [],
+
+		parse: function(sourceCode = null){
+			if (sourceCode === null){
+				sourceCode = LM.codeMirror.getValue();
+			}
+			sourceCodeTxt = prepareSourceCodeText(sourceCode);
+			wholeSourceTokens = sourceCodeTxt.trim().split(/[\s]+/).filter(function (el) {return el != "";});
+			this.mainSourceTokens = [...wholeSourceTokens];
+			this.mainSourceTokensLineNumbers = createLineNumbersArrayForWholeProgram();
+			console.log(this.mainSourceTokens);
+			LM.retainMode.setForNewSourceTokens(this.mainSourceTokens);
+		}
+
+	}
+
+})();
