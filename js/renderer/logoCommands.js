@@ -141,6 +141,7 @@ LM.logo = (function(){
     penDown: function(){
       if (!activeStyle.penDown){
         activeStyle.penDown = true;
+        startNewShape();
         addStartVertex();
       }
     },
