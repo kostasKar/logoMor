@@ -16,11 +16,8 @@ LM.interpreter = {
   get stackLength() {return this.tasksStack.length;},
   get headTask() {return this.tasksStack[this.tasksStack.length - 1];},
   get currentToken() {return this.sourceTokens[this.currentIndex];},
-  get currentTokenLineNumber(){return (!this.noMoreTokens()) ? this.sourceTokensLineNumbers[this.currentIndex] : this.sourceTokensLineNumbers[this.sourceTokensLineNumbers.length - 1];},
-
-  noMoreTokens: function() {
-    return (this.currentIndex >= this.sourceTokens.length);
-  },
+  get noMoreTokens(){return (this.currentIndex >= this.sourceTokens.length);},
+  get currentTokenLineNumber(){return (!this.noMoreTokens) ? this.sourceTokensLineNumbers[this.currentIndex] : this.sourceTokensLineNumbers[this.sourceTokensLineNumbers.length - 1];},
 
   setError: function(errorValue){
     this.error = errorValue;
@@ -32,7 +29,7 @@ LM.interpreter = {
   checkNextToken: function(){
     
     //first try to feed the task at the head of the stack with the currently examined token as input. If it consumes it, return to check the next token
-    if ((this.stackLength) && (!this.noMoreTokens()) && (this.headTask.tryToTakeInput(this.currentToken))){
+    if ((this.stackLength) && (!this.noMoreTokens) && (this.headTask.tryToTakeInput(this.currentToken))){
       this.currentIndex++;
       return;
     }
@@ -47,7 +44,7 @@ LM.interpreter = {
     }
     
     //Here only new tokens should arrive
-    if (this.noMoreTokens()){
+    if (this.noMoreTokens){
       LM.throwError("Unresolved task expects argument");
       return;
     }
@@ -57,42 +54,14 @@ LM.interpreter = {
       this.returnFromMain = true;
       return;
     }
-    
-    //Return occurred inside another task inside a proc. So several pops are needed for the proc to 'see' the return command
-    if ((this.currentToken === "return") || (this.currentToken === "output") || (this.currentToken === "stop")){
-      while ((this.stackLength) && (this.headTask.constructor.name !== 'ProcedureTask')){
-        if (this.headTask.constructor.name === 'ArgumentResolverTask'){
-          LM.throwError("return statement inside argument");
-          return;
-        }
-        this.tasksStack.pop();
-      } 
-      if ((this.currentToken === "return") && (!this.stackLength)){
-        this.returnFromMain = true; //This is either an error, or we can use return to exit execution. So no actual error thrown
-        LM.consoleHandler.println("Returned from execution");
-      }
-      return;
-    } 
 
-    //Break occurred, so the most recent loop task must exit, along with all tasks after it
-    if(this.currentToken === "break"){
-      while ((this.stackLength) && (!this.headTask.hasOwnProperty("endOfLoopBlockIndex"))){
-        if (this.headTask.constructor.name === 'ArgumentResolverTask'){
-          LM.throwError("break statement inside argument");
-          return;
-        }
-        this.tasksStack.pop();
-      } 
-      if (!this.stackLength){
-        LM.throwError("break command occurred outside of loop task");
-        return;
-      }
-      this.currentIndex = this.headTask["endOfLoopBlockIndex"];
-      this.tasksStack.pop();
+    //Exceptional use of 'return' out of a function. Stops execution with a message. No error
+    if ((this.currentToken === "return") && (!this.stackLength)){
+      this.returnFromMain = true; 
+      LM.consoleHandler.println("Returned from execution");
       return;
     }
 
-    
     //If we got here, it means that a new task has to be created and pushed in the tasks Stack
     this.checkTaskFactory(this.currentToken);
     
@@ -145,7 +114,7 @@ LM.interpreter = {
   },
 
   executeLogo:function(){
-    while (((!this.noMoreTokens()) || (this.stackLength)) && (!this.error) && (!this.returnFromMain) && (this.movesCount < this.movesLimit)){
+    while (((!this.noMoreTokens) || (this.stackLength)) && (!this.error) && (!this.returnFromMain) && (this.movesCount < this.movesLimit)){
       this.checkNextToken();
     }
     if (this.movesCount >= this.movesLimit){

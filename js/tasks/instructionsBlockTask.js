@@ -8,7 +8,8 @@ class InstructionsBlockTask {
       LM.throwError("Missing '['");
     }
     this.opened = false;
-		this.canBeResolved = false;
+    this.canBeResolved = false;
+    this.breakWord = null;
 	}
 
 	tryToTakeInput(arg){
@@ -20,6 +21,10 @@ class InstructionsBlockTask {
     } else if (arg === "]"){
       this.canBeResolved = true;
       return true;
+    } else if (["return", "output", "stop", "break"].includes(arg)) {
+      this.breakWord = arg;
+      this.canBeResolved = true;
+      return false;
     } else {
       return false;
     }
@@ -27,7 +32,7 @@ class InstructionsBlockTask {
 
   resolve(){
   	LM.interpreter.tasksStack.pop();
-  	return "";
+  	return (this.breakWord) ? this.breakWord : "";
   }
 
   static findEndOfBlockIndex(){

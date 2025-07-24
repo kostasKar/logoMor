@@ -32,6 +32,13 @@ class RepeatTask{
       }
       this.totalExecutionsSet = true;
       return true;
+    } else if (arg === "break") {
+      LM.interpreter.currentIndex = this.endOfLoopBlockIndex;
+      this.canBeResolved = true;
+      return false;
+    } else if (["return", "output", "stop"].includes(arg)){
+      this.canBeResolved = true;
+      return false;
     } else {
       this.executionsMade++;
       if (this.executionsMade >= this.totalExecutions){

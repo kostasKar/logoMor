@@ -35,6 +35,13 @@ class UntilTask {
       }
       this.conditionSet = true;
       return true;
+    } else if (arg === "break") {
+      LM.interpreter.currentIndex = this.endOfLoopBlockIndex;
+      this.canBeResolved = true;
+      return false;
+    } else if (["return", "output", "stop"].includes(arg)){
+      this.canBeResolved = true;
+      return false;
     } else {
       LM.interpreter.currentIndex = this.conditionIndex;
       new ArgumentResolverTask();

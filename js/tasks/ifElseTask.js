@@ -8,10 +8,14 @@ class IfElseTask {
     LM.interpreter.tasksStack.push(this);
     new ArgumentResolverTask();
     this.canBeResolved = false;
+    this.breakWordOccured = false;
   }
   
   tryToTakeInput(arg){
     if (this.canBeResolved){
+      if (["return", "output", "stop", "break"].includes(arg)){
+        this.breakWordOccured = true;
+      }
       return false;
     } else {
       if (isNaN(arg)){
@@ -33,7 +37,7 @@ class IfElseTask {
   
   
   resolve(){
-    if (this.conditionValue){
+    if ((this.conditionValue) && (!this.breakWordOccured)){
       InstructionsBlockTask.skipBlock();
     }
     LM.interpreter.tasksStack.pop();
