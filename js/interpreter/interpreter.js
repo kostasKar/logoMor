@@ -12,6 +12,8 @@ LM.interpreter = {
   returnFromMain: false,
   movesCount: 0,
   movesLimit: Infinity,
+  maxExecutionTime: 3000,
+  startExecutionTime: 0,
 
   get stackLength() {return this.tasksStack.length;},
   get headTask() {return this.tasksStack[this.tasksStack.length - 1];},
@@ -114,13 +116,24 @@ LM.interpreter = {
   },
 
   executeLogo:function(){
-    while (((!this.noMoreTokens) || (this.stackLength)) && (!this.error) && (!this.returnFromMain) && (this.movesCount < this.movesLimit)){
+    this.startExecutionTime = Date.now();
+    while (((!this.noMoreTokens) || (this.stackLength)) && 
+           (!this.error) && 
+           (!this.returnFromMain) && 
+           (this.movesCount < this.movesLimit) &&
+           (Date.now() - this.startExecutionTime < this.maxExecutionTime)){
       this.checkNextToken();
     }
+
     if (this.movesCount >= this.movesLimit){
       LM.consoleHandler.println("Stopped: Reached Moves Limit");
       LM.consoleHandler.println("On line: " + this.sourceTokensLineNumbers[(this.currentIndex)? this.currentIndex - 1 : 0]);
     }
+
+    if (Date.now() - this.startExecutionTime >= this.maxExecutionTime){
+      LM.consoleHandler.println("Stopped: Execution takes too long. Possible infinite loop");
+    }
+
     LM.consoleHandler.update();
     this.frameCount++;
   },
