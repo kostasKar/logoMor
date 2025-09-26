@@ -37,7 +37,7 @@ LM.demoPrograms = (function(){
                   LM.interpreter.setup();  
                 }
               }
-              xhttp.open("GET", "examples/" + programmsArray[i].title + ".txt", true);
+              xhttp.open("GET", "examples/" + programmsArray[i].title + ".txt?nocache=" + new Date().getTime(), true);
               xhttp.send();
             } else {
               LM.codeMirror.setValue(programmsArray[i].codeText);
