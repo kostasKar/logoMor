@@ -30,7 +30,7 @@ end
 
 make "size 50
 make "n 5
-make "angle 37.3775
+make "angle 37.377368
 sps 3
 
 ;for :n = 5 it creates the full ball
