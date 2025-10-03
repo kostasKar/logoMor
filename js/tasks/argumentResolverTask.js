@@ -15,67 +15,84 @@
    Among operators of the same precedence, left-to-right associativity is followed
  */
 
-//These are all the allowed operators arranged in descending precedence groups.
-// Within each group all operators have equal precedence
-const operatorsPrecedence = [["*", "/"],
+
+
+class ArgumentResolverTask {
+
+  //These are all the allowed operators arranged in descending precedence groups.
+  // Within each group all operators have equal precedence
+  static operatorsPrecedence = [["*", "/"],
                              ["+", "-"],
                              ["<", "<=", ">", ">="],
                              ["="]];
 
-const operators = operatorsPrecedence.flat();
+  static operators = this.operatorsPrecedence.flat();
 
-class ArgumentResolverTask {
+  resolverStates = {EXPECTING_OPERAND: "expecting_operand",
+                    EXPECTING_OPERATOR: "expecting_operator",
+                    STRING_ARG: "string_arg",}
+
+  empty = true;
+  state = this.resolverStates.EXPECTING_OPERAND;
+  canBeResolved = false;
+  negative = false;
+  expression = [];
   
   constructor(){
-    this.canBeResolved = false;
-    this.stringArgumentSet = false;
-    this.stringArgumentCanBeSet = true;
-    this.negative = false;
     LM.interpreter.tasksStack.push(this);
-    this.expression = [];
   }
 
   
   tryToTakeInput(arg){
+
     
-    if (!this.canBeResolved){
-      if (arg === ""){
-        LM.throwError("Argument resolver was fed with the result of a no return value task");
-        return false;
-      }
+    switch(this.state){
 
-      if (arg.startsWith(":")){
-        arg = LM.memoryController.getVariable(arg.replace(":", ""));
-      }
+      case this.resolverStates.EXPECTING_OPERAND:
+        if (arg === ""){
+          LM.throwError("Argument resolver was fed with the result of a no return value task");
+          return false;
+        }
 
-      if (!isNaN(arg)){
-        this.expression.push((this.negative)? -Number(arg) : Number(arg));
-        this.negative = false;
-      } else if ((arg.startsWith("\"")) && (this.stringArgumentCanBeSet)){
-        this.expression.push(arg);
-        this.stringArgumentSet = true;
-      } else if (arg === "-"){ //unary '-'
-        this.negative = !this.negative;
-        this.stringArgumentCanBeSet = false;
-        return true;
-      } else if (arg === "+"){ //unary '+'
-        this.stringArgumentCanBeSet = false;
-        return true;
-      } else {
+        if (arg.startsWith(":")){
+          arg = LM.memoryController.getVariable(arg.replace(":", ""));
+        }
+
+        if (!isNaN(arg)){ //number argument
+          this.expression.push((this.negative)? -Number(arg) : Number(arg));
+          this.negative = false;
+          this.canBeResolved = true;
+          this.state = this.resolverStates.EXPECTING_OPERATOR;
+        } else if (arg === "-"){ //unary '-'
+          this.negative = !this.negative;
+        } else if (arg === "+"){ //unary '+'
+          //nothing happens, but valid
+        } else if ((this.empty) && (arg.startsWith("\""))){ //string argument
+          this.expression.push(arg);
+          this.canBeResolved = true;
+          this.state = this.resolverStates.STRING_ARG;
+        } else {
+          return false;
+        }
+        break;
+
+      case this.resolverStates.EXPECTING_OPERATOR:
+        if (ArgumentResolverTask.operators.includes(arg)){
+          this.expression.push(arg);
+          this.canBeResolved = false;
+          this.state = this.resolverStates.EXPECTING_OPERAND;
+        } else {
+          return false;
+        }
+        break;
+
+      case this.resolverStates.STRING_ARG:
         return false;
-      }
-      this.stringArgumentCanBeSet = false;
-      this.canBeResolved = true;
-      return true;
-    } else{
-      if ((operators.includes(arg)) && (!this.stringArgumentSet)){
-        this.expression.push(arg);
-        this.canBeResolved = false;
-        return true;
-      } else {
-        return false;
-      }
+
     }
+
+    this.empty = false;
+    return true;
   }
   
   resolve(){
@@ -85,9 +102,9 @@ class ArgumentResolverTask {
   }
 
   evaluateExpressionByPrecedence(){
-    for(var i = 0; i < operatorsPrecedence.length; i++){
+    for(var i = 0; i < ArgumentResolverTask.operatorsPrecedence.length; i++){
       var opIndex;
-      while((opIndex = this.expression.findIndex((element) => operatorsPrecedence[i].includes(element))) !== -1){
+      while((opIndex = this.expression.findIndex((element) => ArgumentResolverTask.operatorsPrecedence[i].includes(element))) !== -1){
         var result = this.doOperation(this.expression[opIndex], this.expression[opIndex-1], this.expression[opIndex+1]);
         this.expression.splice(opIndex-1, 3, result);
       }
@@ -99,7 +116,7 @@ class ArgumentResolverTask {
   }
 
   doOperation(operator, left, right){
-    if((isNaN(left)) || (isNaN(right)) || (!operators.includes(operator))){
+    if((isNaN(left)) || (isNaN(right)) || (!ArgumentResolverTask.operators.includes(operator))){
       LM.throwError("Could not resolve operation: " + left + " " + operator + " " + right);
       return 0;
     }
