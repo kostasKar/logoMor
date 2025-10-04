@@ -372,7 +372,7 @@ canvas {
   margin: 5px 0px 2px 0px;
 }
 
-#movesLimitLabel {
+.movesCountArea {
   margin-top: 7px;
   margin-right: 5px;
   font-size: 12px;

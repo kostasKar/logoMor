@@ -11,6 +11,7 @@ LM.interpreter = {
   frameCount: 0,
   returnFromMain: false,
   movesCount: 0,
+  previousMovesCount: 0,
   movesLimit: Infinity,
   maxExecutionTime: 3000,
   startExecutionTime: 0,
@@ -135,6 +136,7 @@ LM.interpreter = {
     }
 
     LM.consoleHandler.update();
+    this.updateMovesCount();
     this.frameCount++;
   },
 
@@ -149,6 +151,13 @@ LM.interpreter = {
       }
     }
     return traceText;
+  },
+
+  updateMovesCount: function(){
+    if (this.movesCount !== this.previousMovesCount){
+      document.getElementById("totalMovesValue").innerText = this.movesCount;
+      this.previousMovesCount = this.movesCount;
+    }
   }
 
 

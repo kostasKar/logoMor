@@ -197,7 +197,11 @@
       --><button title="Run to breakpoint" class="btn smallButton" id="debugContinueButton" onclick="LM.debugger.continuePressed()" disabled>Continue</button><!--
       --><button title="Run next command" class="btn smallButton" id="debugStepButton" onclick="LM.debugger.stepPressed()" disabled>Step</button>
       <input  id="movesLimitInput" type="number" name="quantity" min="0" placeholder="Infinite" onchange="LM.interpreter.movesLimit = this.value || Infinity; LM.retainMode.fireExecution()">
-      <label title="Maximum number of move commands per frame" class="subtleText1" id="movesLimitLabel">Moves Limit:</label>
+      <label title="Maximum number of move commands per frame" class="subtleText1 movesCountArea">Limit:</label>
+      <label class="subtleText1 movesCountArea" id="totalMovesValue">0</label>
+      <label title="Total moves of sketch" class="subtleText1 movesCountArea" id="totalMovesLabel">Moves:</label>
+      
+
     </div>
 
     <div class="areaDiv fixedWidth" id = "buttonDiv">
