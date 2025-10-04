@@ -1,0 +1,38 @@
+;-------------Demo 3D Random Tree------------------
+; Each run produces a different random tree sketch
+; Tip: you can peek the currently used seed 
+; for the random generator by hovering the mouse 
+; over the 'rand' keyword.
+; to apply the seed use keyword randseed: 
+
+;randseed "iahop6
+
+make "treesize 150
+make "smallest_leave 2
+
+
+to tree :size
+  if :size < :smallest_leave [fd :size back :size stop]
+  make "rollangle rand 360
+  rr :rollangle
+  fd :size/3
+  make "angle rand 60
+  lt :angle 
+  tree :size*2/3 
+  rt :angle
+  fd :size/6
+  make "angle rand 30
+  rt :angle 
+  tree :size/2 
+  lt :angle
+  fd :size/3
+  make "angle rand 30
+  rt :angle 
+  tree :size/2 
+  lt :angle
+  fd :size/6
+  back :size
+  rl :rollangle
+end
+
+tree :treesize

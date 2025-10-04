@@ -11,7 +11,7 @@ LM.demoPrograms = (function(){
                         {title: "Colorful Starfish", version: "1.0"},
                         {title: "Bouncing Ball", version: "1.0"},
                         {title: "Pinball", version: "1.0"},
-                        {title: "Fibonacci Spiral", version: "1.0"},
+                        {title: "Random Tree", version: "1.0"},
                         {title: "Sorting Algorithms", version: "1.0"},
                         {title: "TETRIS", version: "1.0"},
                         {title: "Conway's Game of Life", version: "1.0"},
